@@ -1,0 +1,987 @@
+<div class="card-body p-0">
+  <form #cenopdregisform="ngForm">
+    <ngb-accordion [destroyOnHide]="false" #acc="ngbAccordion" class="range-accordion" activeIds="static-1"
+      (panelChange)="panelChange($event)">
+      <ngb-panel id="static-1">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">OPD Registration Procedure
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-1']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-1']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+
+              <!-- <div class="d-flex accordionToggleIcon"><i class="mdi mdi-minus"></i></div> -->
+            </div>
+          </button>
+        </ng-template><br>
+        <ng-template ngbPanelContent>
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.policy_for_patients_registration_and_admission.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.policy_for_patients_registration_and_admission.ques_selected_opt"
+                name="policy_for_patients_registration_and_admission"
+                #policy_for_patients_registration_and_admission="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="policy_for_patients_registration_and_admission.invalid">
+                <div *ngIf="cenopdregisformSubmitted && policy_for_patients_registration_and_admission.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenopdregispro.policy_for_patients_registration_and_admission.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.policy_for_patients_registration_and_admission,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc1
+                  (change)="previewImage(doc1,$event.target.files,cenopdregispro.policy_for_patients_registration_and_admission,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.policy_for_patients_registration_and_admission,'ques_doc_url')">
+                  <i
+                    [ngClass]="(cenopdregispro.policy_for_patients_registration_and_admission!=null?cenopdregispro.policy_for_patients_registration_and_admission.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="policy_for_patients_registration_and_admission_doc"
+                  #policy_for_patients_registration_and_admission_doc="ngModel" required
+                  [disabled]="cenopdregispro.policy_for_patients_registration_and_admission.ques_selected_opt!=true"
+                  [(ngModel)]="cenopdregispro.policy_for_patients_registration_and_admission.ques_doc_url" required>
+                <div *ngIf="policy_for_patients_registration_and_admission_doc.invalid">
+                  <div
+                    *ngIf="cenopdregisformSubmitted && policy_for_patients_registration_and_admission_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.policy_for_patients_registration_and_admission:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.policy_for_patients_registration_and_admission:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','policy_for_patients_registration_and_admission',cenhospitalPagesQueBank.cenopdregispro.policy_for_patients_registration_and_admission)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.policy_for_patients_registration_and_admission?.nc_cycle_count:''}}
+              </button>
+
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.centre_have_policy_to_register_patients.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.centre_have_policy_to_register_patients.ques_selected_opt"
+                name="centre_have_policy_to_register_patients" #centre_have_policy_to_register_patients="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="centre_have_policy_to_register_patients.invalid">
+                <div *ngIf="cenopdregisformSubmitted && centre_have_policy_to_register_patients.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenopdregispro.centre_have_policy_to_register_patients.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.centre_have_policy_to_register_patients,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc2
+                  (change)="previewImage(doc2,$event.target.files,cenopdregispro.centre_have_policy_to_register_patients,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.centre_have_policy_to_register_patients,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenopdregispro.centre_have_policy_to_register_patients!=null?cenopdregispro.centre_have_policy_to_register_patients.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="centre_have_policy_to_register_patients_doc"
+                  #centre_have_policy_to_register_patients_doc="ngModel" required
+                  [disabled]="cenopdregispro.centre_have_policy_to_register_patients.ques_selected_opt!=true"
+                  [(ngModel)]="cenopdregispro.centre_have_policy_to_register_patients.ques_doc_url" required>
+                <div *ngIf="centre_have_policy_to_register_patients_doc.invalid">
+                  <div *ngIf="cenopdregisformSubmitted && centre_have_policy_to_register_patients_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_have_policy_to_register_patients:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_have_policy_to_register_patients:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','centre_have_policy_to_register_patients',cenhospitalPagesQueBank.cenopdregispro.centre_have_policy_to_register_patients)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.centre_have_policy_to_register_patients?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.centre_maintain_the_registration_register.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.centre_maintain_the_registration_register.ques_selected_opt"
+                name="centre_maintain_the_registration_register" #centre_maintain_the_registration_register="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="centre_maintain_the_registration_register.invalid">
+                <div *ngIf="cenopdregisformSubmitted && centre_maintain_the_registration_register.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenopdregispro.centre_maintain_the_registration_register.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.centre_maintain_the_registration_register,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc3
+                  (change)="previewImage(doc3,$event.target.files,cenopdregispro.centre_maintain_the_registration_register,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.centre_maintain_the_registration_register,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenopdregispro.centre_maintain_the_registration_register!=null?cenopdregispro.centre_maintain_the_registration_register.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="centre_maintain_the_registration_register_doc"
+                  #centre_maintain_the_registration_register_doc="ngModel" required
+                  [disabled]="cenopdregispro.centre_maintain_the_registration_register.ques_selected_opt!=true"
+                  [(ngModel)]="cenopdregispro.centre_maintain_the_registration_register.ques_doc_url" required>
+                <div *ngIf="centre_maintain_the_registration_register_doc.invalid">
+                  <div *ngIf="cenopdregisformSubmitted && centre_maintain_the_registration_register_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_maintain_the_registration_register:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_maintain_the_registration_register:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','centre_maintain_the_registration_register',cenhospitalPagesQueBank.cenopdregispro.centre_maintain_the_registration_register)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.centre_maintain_the_registration_register?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.centre_have_standardised_initial_assessment.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.centre_have_standardised_initial_assessment.ques_selected_opt"
+                name="centre_have_standardised_initial_assessment"
+                #centre_have_standardised_initial_assessment="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="centre_have_standardised_initial_assessment.invalid">
+                <div *ngIf="cenopdregisformSubmitted && centre_have_standardised_initial_assessment.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenopdregispro.centre_have_standardised_initial_assessment.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.centre_have_standardised_initial_assessment,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc4
+                  (change)="previewImage(doc4,$event.target.files,cenopdregispro.centre_have_standardised_initial_assessment,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.centre_have_standardised_initial_assessment,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenopdregispro.centre_have_standardised_initial_assessment!=null?cenopdregispro.centre_have_standardised_initial_assessment.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="centre_have_standardised_initial_assessment_doc"
+                  #centre_have_standardised_initial_assessment_doc="ngModel" required
+                  [disabled]="cenopdregispro.centre_have_standardised_initial_assessment.ques_selected_opt!=true"
+                  [(ngModel)]="cenopdregispro.centre_have_standardised_initial_assessment.ques_doc_url" required>
+                <div *ngIf="centre_have_standardised_initial_assessment_doc.invalid">
+                  <div
+                    *ngIf="cenopdregisformSubmitted && centre_have_standardised_initial_assessment_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_have_standardised_initial_assessment:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_have_standardised_initial_assessment:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','centre_have_standardised_initial_assessment',cenhospitalPagesQueBank.cenopdregispro.centre_have_standardised_initial_assessment)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.centre_have_standardised_initial_assessment?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.centre_define_criteria_mechanism_identify_patients.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.centre_define_criteria_mechanism_identify_patients.ques_selected_opt"
+                name="centre_define_criteria_mechanism_identify_patients"
+                #centre_define_criteria_mechanism_identify_patients="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="centre_define_criteria_mechanism_identify_patients.invalid">
+                <div
+                  *ngIf="cenopdregisformSubmitted && centre_define_criteria_mechanism_identify_patients.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenopdregispro.centre_define_criteria_mechanism_identify_patients.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.centre_define_criteria_mechanism_identify_patients,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+
+                <!-- <input hidden type="file" #doc5
+                  (change)="previewImage(doc5,$event.target.files,cenopdregispro.centre_define_criteria_mechanism_identify_patients,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.centre_define_criteria_mechanism_identify_patients,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenopdregispro.centre_define_criteria_mechanism_identify_patients!=null?cenopdregispro.centre_define_criteria_mechanism_identify_patients.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="centre_define_criteria_mechanism_identify_patients_doc"
+                  #centre_define_criteria_mechanism_identify_patients_doc="ngModel" required
+                  [disabled]="cenopdregispro.centre_define_criteria_mechanism_identify_patients.ques_selected_opt!=true"
+                  [(ngModel)]="cenopdregispro.centre_define_criteria_mechanism_identify_patients.ques_doc_url" required>
+                <div *ngIf="centre_define_criteria_mechanism_identify_patients_doc.invalid">
+                  <div
+                    *ngIf="cenopdregisformSubmitted && centre_define_criteria_mechanism_identify_patients_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_define_criteria_mechanism_identify_patients:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_define_criteria_mechanism_identify_patients:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','centre_define_criteria_mechanism_identify_patients',cenhospitalPagesQueBank.cenopdregispro.centre_define_criteria_mechanism_identify_patients)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.centre_define_criteria_mechanism_identify_patients?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.policy_to_proceed_additional_specialized_assessments.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.policy_to_proceed_additional_specialized_assessments.ques_selected_opt"
+                name="policy_to_proceed_additional_specialized_assessments"
+                #policy_to_proceed_additional_specialized_assessments="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="policy_to_proceed_additional_specialized_assessments.invalid">
+                <div
+                  *ngIf="cenopdregisformSubmitted && policy_to_proceed_additional_specialized_assessments.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenopdregispro.policy_to_proceed_additional_specialized_assessments.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.policy_to_proceed_additional_specialized_assessments,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc6
+                  (change)="previewImage(doc6,$event.target.files,cenopdregispro.policy_to_proceed_additional_specialized_assessments,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.policy_to_proceed_additional_specialized_assessments,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenopdregispro.policy_to_proceed_additional_specialized_assessments!=null?cenopdregispro.policy_to_proceed_additional_specialized_assessments.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="policy_to_proceed_additional_specialized_assessments_doc"
+                  #policy_to_proceed_additional_specialized_assessments_doc="ngModel" required
+                  [disabled]="cenopdregispro.policy_to_proceed_additional_specialized_assessments.ques_selected_opt!=true"
+                  [(ngModel)]="cenopdregispro.policy_to_proceed_additional_specialized_assessments.ques_doc_url"
+                  required>
+                <div *ngIf="policy_to_proceed_additional_specialized_assessments_doc.invalid">
+                  <div
+                    *ngIf="cenopdregisformSubmitted && policy_to_proceed_additional_specialized_assessments_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.policy_to_proceed_additional_specialized_assessments:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.policy_to_proceed_additional_specialized_assessments:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','policy_to_proceed_additional_specialized_assessments',cenhospitalPagesQueBank.cenopdregispro.policy_to_proceed_additional_specialized_assessments)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.policy_to_proceed_additional_specialized_assessments?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <!-- <hr class="form-seprator" /> -->
+
+        </ng-template><br>
+      </ngb-panel>
+      <br>
+
+
+      <ngb-panel id="static-2">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Referral Procedure
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-2']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-2']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+
+              <!-- <div class="d-flex accordionToggleIcon"><i class="mdi mdi-minus"></i></div> -->
+            </div>
+          </button>
+        </ng-template><br>
+        <ng-template ngbPanelContent>
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.policy_to_incorporate_outside_assessment.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.policy_to_incorporate_outside_assessment.ques_selected_opt"
+                name="policy_to_incorporate_outside_assessment" #policy_to_incorporate_outside_assessment="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="policy_to_incorporate_outside_assessment.invalid">
+                <div *ngIf="cenopdregisformSubmitted && policy_to_incorporate_outside_assessment.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenopdregispro.policy_to_incorporate_outside_assessment.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.policy_to_incorporate_outside_assessment,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc23
+                  (change)="previewImage(doc23,$event.target.files,cenopdregispro.policy_to_incorporate_outside_assessment,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.policy_to_incorporate_outside_assessment,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenopdregispro.policy_to_incorporate_outside_assessment!=null?cenopdregispro.policy_to_incorporate_outside_assessment.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="policy_to_incorporate_outside_assessment_doc"
+                  #policy_to_incorporate_outside_assessment_doc="ngModel" required
+                  [disabled]="cenopdregispro.policy_to_incorporate_outside_assessment.ques_selected_opt!=true"
+                  [(ngModel)]="cenopdregispro.policy_to_incorporate_outside_assessment.ques_doc_url" required>
+                <div *ngIf="policy_to_incorporate_outside_assessment_doc.invalid">
+                  <div *ngIf="cenopdregisformSubmitted && policy_to_incorporate_outside_assessment_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.policy_to_incorporate_outside_assessment:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.policy_to_incorporate_outside_assessment:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','policy_to_incorporate_outside_assessment',cenhospitalPagesQueBank.cenopdregispro.policy_to_incorporate_outside_assessment)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.policy_to_incorporate_outside_assessment?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.centres_scope_of_services_mission_resources.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.centres_scope_of_services_mission_resources.ques_selected_opt"
+                name="centres_scope_of_services_mission_resources"
+                #centres_scope_of_services_mission_resources="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="centres_scope_of_services_mission_resources.invalid">
+                <div *ngIf="cenopdregisformSubmitted && centres_scope_of_services_mission_resources.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenopdregispro.centres_scope_of_services_mission_resources.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.centres_scope_of_services_mission_resources,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+
+                <!-- <input hidden type="file" #doc24
+                  (change)="previewImage(doc24,$event.target.files,cenopdregispro.centres_scope_of_services_mission_resources,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.centres_scope_of_services_mission_resources,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenopdregispro.centres_scope_of_services_mission_resources!=null?cenopdregispro.centres_scope_of_services_mission_resources.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="centres_scope_of_services_mission_resources_doc"
+                  #centres_scope_of_services_mission_resources_doc="ngModel" required
+                  [disabled]="cenopdregispro.centres_scope_of_services_mission_resources.ques_selected_opt!=true"
+                  [(ngModel)]="cenopdregispro.centres_scope_of_services_mission_resources.ques_doc_url" required>
+                <div *ngIf="centres_scope_of_services_mission_resources_doc.invalid">
+                  <div
+                    *ngIf="cenopdregisformSubmitted && centres_scope_of_services_mission_resources_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centres_scope_of_services_mission_resources:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centres_scope_of_services_mission_resources:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','centres_scope_of_services_mission_resources',cenhospitalPagesQueBank.cenopdregispro.centres_scope_of_services_mission_resources)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.centres_scope_of_services_mission_resources?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.centre_have_referralout_system_for_additional_care.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.centre_have_referralout_system_for_additional_care.ques_selected_opt"
+                name="centre_have_referralout_system_for_additional_care"
+                #centre_have_referralout_system_for_additional_care="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="centre_have_referralout_system_for_additional_care.invalid">
+                <div
+                  *ngIf="cenopdregisformSubmitted && centre_have_referralout_system_for_additional_care.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenopdregispro.centre_have_referralout_system_for_additional_care.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.centre_have_referralout_system_for_additional_care,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc25
+                  (change)="previewImage(doc25,$event.target.files,cenopdregispro.centre_have_referralout_system_for_additional_care,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.centre_have_referralout_system_for_additional_care,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenopdregispro.centre_have_referralout_system_for_additional_care!=null?cenopdregispro.centre_have_referralout_system_for_additional_care.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="centre_have_referralout_system_for_additional_care_doc"
+                  #centre_have_referralout_system_for_additional_care_doc="ngModel" required
+                  [disabled]="cenopdregispro.centre_have_referralout_system_for_additional_care.ques_selected_opt!=true"
+                  [(ngModel)]="cenopdregispro.centre_have_referralout_system_for_additional_care.ques_doc_url" required>
+                <div *ngIf="centre_have_referralout_system_for_additional_care_doc.invalid">
+                  <div
+                    *ngIf="cenopdregisformSubmitted && centre_have_referralout_system_for_additional_care_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_have_referralout_system_for_additional_care:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.centre_have_referralout_system_for_additional_care:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','centre_have_referralout_system_for_additional_care',cenhospitalPagesQueBank.cenopdregispro.centre_have_referralout_system_for_additional_care)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.centre_have_referralout_system_for_additional_care?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenopdregispro.maintain_proper_coordination_between_medical_centres.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenopdregispro.maintain_proper_coordination_between_medical_centres.ques_text_value"
+                name="maintain_proper_coordination_between_medical_centres"
+                #maintain_proper_coordination_between_medical_centres="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Not Applicable">Not Applicable</option>
+              </select>
+              <div *ngIf="maintain_proper_coordination_between_medical_centres.invalid">
+                <div
+                  *ngIf="cenopdregisformSubmitted && maintain_proper_coordination_between_medical_centres.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenopdregispro.maintain_proper_coordination_between_medical_centres.ques_text_value!='Yes'">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenopdregispro.maintain_proper_coordination_between_medical_centres,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc26
+                  (change)="previewImage(doc26,$event.target.files,cenopdregispro.maintain_proper_coordination_between_medical_centres,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenopdregispro.maintain_proper_coordination_between_medical_centres,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenopdregispro.maintain_proper_coordination_between_medical_centres!=null?cenopdregispro.maintain_proper_coordination_between_medical_centres.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="maintain_proper_coordination_between_medical_centres_doc"
+                  #maintain_proper_coordination_between_medical_centres_doc="ngModel" required
+                  [disabled]="cenopdregispro.maintain_proper_coordination_between_medical_centres.ques_text_value!='Yes'"
+                  [(ngModel)]="cenopdregispro.maintain_proper_coordination_between_medical_centres.ques_doc_url"
+                  required>
+                <div *ngIf="maintain_proper_coordination_between_medical_centres_doc.invalid">
+                  <div
+                    *ngIf="cenopdregisformSubmitted && maintain_proper_coordination_between_medical_centres_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.maintain_proper_coordination_between_medical_centres:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro.maintain_proper_coordination_between_medical_centres:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenopdregispro','maintain_proper_coordination_between_medical_centres',cenhospitalPagesQueBank.cenopdregispro.maintain_proper_coordination_between_medical_centres)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenopdregispro?.maintain_proper_coordination_between_medical_centres?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+          </div>
+
+          <hr class="form-seprator" />
+
+
+        </ng-template><br>
+      </ngb-panel>
+      <br>
+
+
+
+
+    </ngb-accordion>
+
+
+  </form>
+  <!-- image view model -->
+  <ng-template #uploadViewModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Uploaded doc(s)s</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- ------ -->
+      <div *ngIf="!(ary_uploadedDocs===null || ary_uploadedDocs===undefined)" class="table-responsive">
+
+
+        <table class="table table-bordered table-striped customTable">
+          <thead>
+            <tr>
+              <th class="text-center"> Name </th>
+              <th class="text-center">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ary_uploadedDocs">
+              <td class="text-center">{{item.fn}}</td>
+              <td class="text-center">
+
+                <a style="cursor: pointer;" class="text-success" title="Download file"
+                  (click)="downloadUploadFile(item)">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+
+                <a style="cursor: pointer;margin-left: 10px;" class="text-danger" title="Delete file"
+                  (click)="deleteUploadFile(item)" *ngIf="this.currUsrRole ==3 && Stage_id ==20">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+      <!-- ------- -->
+
+    </div>
+
+  </ng-template>
+  <!-- image view model -->
+</div>
+<ng-template #documentuploadModel role="document" let-modal>
+
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Upload Document</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <!-- <div class="row mt-2">
+    <ngb-progressbar *ngIf="showUploadMsg!=null" [value]="this.progress" type="progress-bar" showValue="true"
+      style="width: 100%;">
+    </ngb-progressbar>
+  </div> -->
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <h5 style="margin-left: 10px;"><strong>Document</strong></h5>
+
+    </div>
+
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <input style="margin-left: 10px;" type="file" #myFileInput (change)="handleFileInput($event.target.files)" />
+
+    </div>
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <label style="margin-left: 10px;"><b>Note: </b>The following formats are accepted: PDF, JPG, JPEG, PNG. The
+        maximum file size allowed in 20 MB.</label>
+
+    </div>
+    <div class="row">
+      <br>
+    </div>
+    <div class="row mt-2">
+      <!--  -->
+      <div class="alert alert-success  fade show" style="width: 100%;" *ngIf="showUploadMsg==true">
+
+        The file has been successfully uploaded
+      </div>
+
+      <!-- <ngb-progressbar *ngIf="showUploadMsg==true" type="warning" [value]="100" height="40px"
+      style="width: 100%; background-color:#caeeda !important; ">
+      The file has been successfully
+      uploaded </ngb-progressbar> -->
+
+      <!-- <div class="card" style="width: 100%;  margin-left: 10px;margin-right: 10px;"> -->
+      <!-- <div class="card-body" *ngIf="showUploadMsg==true"
+      style="width: 100%;height: 50px; margin-left: 10px;margin-right: 10px; background-color:#ddf4e7 !important;text-align: justify; ">
+      The file has been successfully uploaded
+    </div> -->
+      <!-- </div> -->
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="Upload2(myFileInput)">Upload</button>
+  </div>
+</ng-template>

@@ -1,0 +1,193 @@
+<div class="container-fluid">
+  <!-- start page title -->
+  <!-- <div class="row">
+    <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-between">
+        <h4 class="mb-0 font-size-18">Dashboard</h4>
+        <div class="page-title-right">
+          <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item active">Welcome to Dashboard</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- end page title -->
+
+  <div class="row">
+
+    <div class="col-xl-12">
+      <div class="row">
+        <div *ngFor="let stat of statData" class="col-md-3">
+          <app-stat [title]="stat.title" [value]="stat.value" [icon]="stat.icon" [route]="stat.route"
+            (click)="anallyticAction(stat.action)" style="font-weight: bold;"></app-stat>
+
+        </div>
+      </div>
+      <!-- end row -->
+
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4 float-sm-left" style="font-size: 15px;">Application Status</h4>
+          <h4 class="card-title mb-4 float-sm-right" style="font-size: 14px;">Total-{{appStatus_count}}</h4>
+
+          <div class="clearfix"></div>
+
+          <apx-chart [series]="appStatusChart?.series" [chart]="appStatusChart?.chart"
+            [dataLabels]="appStatusChart?.dataLabels" [plotOptions]="appStatusChart?.plotOptions"
+            [xaxis]="appStatusChart?.xaxis" [stroke]="appStatusChart?.stroke" [fill]="appStatusChart?.fill"
+            [yaxis]="appStatusChart?.yaxis" [title]="" [tooltip]="appStatusChart?.tooltip"
+            [legend]="appStatusChart?.legend"></apx-chart>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4 float-sm-left" style="font-size: 14px;">Desktop Assessment Status</h4>
+          <h4 class="card-title mb-4 float-sm-right" style="font-size: 14px;">Total-{{desktopAssessment_count}}</h4>
+          <div class="clearfix"></div>
+
+          <apx-chart [series]="desktopAssessmentChart?.series" [chart]="desktopAssessmentChart?.chart"
+            [dataLabels]="desktopAssessmentChart?.dataLabels" [plotOptions]="desktopAssessmentChart?.plotOptions"
+            [xaxis]="desktopAssessmentChart?.xaxis" [stroke]="desktopAssessmentChart?.stroke"
+            [fill]="desktopAssessmentChart?.fill" [yaxis]="desktopAssessmentChart?.yaxis" [title]=""
+            [tooltip]="desktopAssessmentChart?.tooltip" [legend]="desktopAssessmentChart?.legend"></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4 float-sm-left" style="font-size: 14px;">On-Site Assessment Status</h4>
+          <h4 class="card-title mb-4 float-sm-right" style="font-size: 14px;">Total-{{onsiteAssessment_count}}</h4>
+
+          <div class="clearfix"></div>
+
+          <apx-chart [series]="onsiteAssessmentChart?.series" [chart]="onsiteAssessmentChart?.chart"
+            [dataLabels]="onsiteAssessmentChart?.dataLabels" [plotOptions]="onsiteAssessmentChart?.plotOptions"
+            [xaxis]="onsiteAssessmentChart?.xaxis" [stroke]="onsiteAssessmentChart?.stroke"
+            [fill]="onsiteAssessmentChart?.fill" [yaxis]="onsiteAssessmentChart?.yaxis" [title]=""
+            [tooltip]="onsiteAssessmentChart?.tooltip" [legend]="onsiteAssessmentChart?.legend"></apx-chart>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title mb-4 float-sm-left" style="font-size: 14px;">Certificate Committee Status</h4>
+          <h4 class="card-title mb-4 float-sm-right" style="font-size: 14px;">Total-{{certificteCommitte_count}}</h4>
+
+          <div class="clearfix"></div>
+
+          <apx-chart [series]="certificteCommitte?.series" [chart]="certificteCommitte?.chart"
+            [dataLabels]="certificteCommitte?.dataLabels" [plotOptions]="certificteCommitte?.plotOptions"
+            [xaxis]="certificteCommitte?.xaxis" [stroke]="certificteCommitte?.stroke" [fill]="certificteCommitte?.fill"
+            [yaxis]="certificteCommitte?.yaxis" [title]="" [tooltip]="certificteCommitte?.tooltip"
+            [legend]="certificteCommitte?.legend"></apx-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- container-fluid -->
+
+
+
+
+<!-- <ng-template #content role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Order Details</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <p class="mb-2">
+      Product id:
+      <span class="text-primary">#SK2540</span>
+    </p>
+    <p class="mb-4">
+      Billing Name:
+      <span class="text-primary">Neal Matthews</span>
+    </p>
+    <div class="table-responsive">
+      <table class="table table-centered table-nowrap">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <div>
+                <img src="assets/images/product/img-7.png" alt class="avatar-sm" />
+              </div>
+            </th>
+            <td>
+              <div>
+                <h5 class="text-truncate font-size-14">Wireless Headphone (Black)</h5>
+                <p class="text-muted mb-0">$ 225 x 1</p>
+              </div>
+            </td>
+            <td>$ 255</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <div>
+                <img src="assets/images/product/img-4.png" alt class="avatar-sm" />
+              </div>
+            </th>
+            <td>
+              <div>
+                <h5 class="text-truncate font-size-14">Phone patterned cases</h5>
+                <p class="text-muted mb-0">$ 145 x 1</p>
+              </div>
+            </td>
+            <td>$ 145</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <h6 class="m-0 text-right">Sub Total:</h6>
+            </td>
+            <td>$ 400</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <h6 class="m-0 text-right">Shipping:</h6>
+            </td>
+            <td>Free</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <h6 class="m-0 text-right">Total:</h6>
+            </td>
+            <td>$ 400</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template> -->

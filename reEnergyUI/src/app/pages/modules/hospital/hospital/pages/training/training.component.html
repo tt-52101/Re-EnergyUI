@@ -1,0 +1,1020 @@
+<div class="p-0">
+  <form #trainingForm="ngForm">
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>1.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.training.training_for_the_new_staff_members_within_days.ques_text}}</div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="training.training_for_the_new_staff_members_within_days.ques_selected_opt"
+          name="newstff_selection" #newstff_selection="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="newstff_selection.invalid">
+          <div *ngIf="trainingformSubmitted && newstff_selection.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="training.training_for_the_new_staff_members_within_days.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(training.training_for_the_new_staff_members_within_days,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc1
+            (change)="previewImage(doc1,$event.target.files,training.training_for_the_new_staff_members_within_days,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,training.training_for_the_new_staff_members_within_days,'ques_doc_url')">
+
+            <i
+              [ngClass]="(training.training_for_the_new_staff_members_within_days!=null?training.training_for_the_new_staff_members_within_days.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="newstff_doc" #newstff_doc="ngModel" required
+            [disabled]="training.training_for_the_new_staff_members_within_days.ques_selected_opt!=true"
+            [(ngModel)]="training.training_for_the_new_staff_members_within_days.ques_doc_url" required>
+          <div *ngIf="newstff_doc.invalid">
+            <div *ngIf="trainingformSubmitted && newstff_doc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.training_for_the_new_staff_members_within_days:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.training_for_the_new_staff_members_within_days:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','training_for_the_new_staff_members_within_days',hospitalPagesQueBank.training.training_for_the_new_staff_members_within_days)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.training_for_the_new_staff_members_within_days?.nc_cycle_count:''}}
+        </button>
+      </div>
+    </div>
+    <!--./row-->
+    <hr class="form-seprator" />
+
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>2.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.training.induction_training_of_staff_includes_orientation.ques_text}}</div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+
+      </div>
+      <div class="col-sm-1 text-center">
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.induction_training_of_staff_includes_orientation:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.induction_training_of_staff_includes_orientation:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','induction_training_of_staff_includes_orientation',hospitalPagesQueBank.training.induction_training_of_staff_includes_orientation)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.induction_training_of_staff_includes_orientation?.nc_cycle_count:''}}
+        </button>
+      </div>
+    </div>
+
+
+    <div class="row mt-2" ngModelGroup="InductionTraining" #induction_training="ngModelGroup" appMinOneCheckboxSelect>
+      <div class="col-md-12 custom-control custom-checkbox mb-1 ml-3">
+        <div *ngIf="trainingformSubmitted && induction_training.invalid" class="text-danger">
+
+          <div *ngIf="induction_training.errors?.minOneChecked">Please select atleast one option</div>
+
+        </div>
+        <div class="form-check mb-2">
+
+          <input type="checkbox" class="custom-control-input" name="vsnmisss" id="vsnmisss"
+            [(ngModel)]="training.inductin_trn_staff_orientation.vision_mission" (click)="UncheckInductionNone()">
+
+          <label class="custom-control-label" for="vsnmisss">Vision and Mission of Hospital</label>
+
+
+          <fieldset class="IconRight mr-4" *ngIf="training.inductin_trn_staff_orientation.vision_mission==true">
+            <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+              (click)="openDocModel(training.inductin_trn_staff_orientation,'vision_mission_doc')">
+              <i class="bx bx-upload"></i>
+            </a>
+
+            <!-- <input hidden type="file" #doc2
+              (change)="previewImage(doc2,$event.target.files,training.inductin_trn_staff_orientation,'vision_mission_doc')" /> -->
+
+
+            <a title="View Document" class="mt-4"
+              (click)="openUploadedDocsModal(uploadViewModel,training.inductin_trn_staff_orientation,'vision_mission_doc')">
+
+              <i
+                [ngClass]="(training.inductin_trn_staff_orientation!=null?training.inductin_trn_staff_orientation.vision_mission_doc:'')|uploadbtnpipe"></i>
+            </a>
+            <input hidden type="text" name="indctntranvision_url" #indctntranvision_url="ngModel" required
+              [(ngModel)]="training.inductin_trn_staff_orientation.vision_mission_doc" required>
+            <div *ngIf="indctntranvision_url.invalid">
+              <div *ngIf="trainingformSubmitted && indctntranvision_url.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+
+
+          </fieldset>
+
+
+        </div>
+        <div class="form-check mb-2">
+          <input type="checkbox" class="custom-control-input" name="empright" id="empright"
+            [(ngModel)]="training.inductin_trn_staff_orientation.employ_right" (click)="UncheckInductionNone()">
+
+          <label class="custom-control-label" for="empright">Employee Rights and Responsibility</label>
+          <fieldset class="IconRight mr-4" *ngIf="training.inductin_trn_staff_orientation.employ_right==true">
+            <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+              (click)="openDocModel(training.inductin_trn_staff_orientation,'employ_right_doc')">
+              <i class="bx bx-upload"></i>
+            </a>
+
+            <!-- <input hidden type="file" #doc10
+              (change)="previewImage(doc10,$event.target.files,training.inductin_trn_staff_orientation,'employ_right_doc')" /> -->
+
+
+            <a title="View Document" class="mt-4"
+              (click)="openUploadedDocsModal(uploadViewModel,training.inductin_trn_staff_orientation,'employ_right_doc')">
+
+              <i
+                [ngClass]="(training.inductin_trn_staff_orientation!=null?training.inductin_trn_staff_orientation.employ_right_doc:'')|uploadbtnpipe"></i>
+            </a>
+            <input hidden type="text" name="indctntranemplyrght_url" #indctntranemplyrght_url="ngModel" required
+              [(ngModel)]="training.inductin_trn_staff_orientation.employ_right_doc" required>
+            <div *ngIf="indctntranemplyrght_url.invalid">
+              <div *ngIf="trainingformSubmitted && indctntranemplyrght_url.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+
+
+          </fieldset>
+        </div>
+
+        <div class="form-check mb-2">
+          <input type="checkbox" class="custom-control-input" name="patrght" id="patrght"
+            [(ngModel)]="training.inductin_trn_staff_orientation.patient_right" (click)="UncheckInductionNone()">
+
+          <label class="custom-control-label" for="patrght">Patient's Rights and Responsibility</label>
+          <fieldset class="IconRight mr-4" *ngIf="training.inductin_trn_staff_orientation.patient_right==true">
+            <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+              (click)="openDocModel(training.inductin_trn_staff_orientation,'patient_right_doc')">
+              <i class="bx bx-upload"></i>
+            </a>
+
+            <!-- <input hidden type="file" #doc11
+              (change)="previewImage(doc11,$event.target.files,training.inductin_trn_staff_orientation,'patient_right_doc')" /> -->
+
+
+            <a title="View Document" class="mt-4"
+              (click)="openUploadedDocsModal(uploadViewModel,training.inductin_trn_staff_orientation,'patient_right_doc')">
+
+              <i
+                [ngClass]="(training.inductin_trn_staff_orientation!=null?training.inductin_trn_staff_orientation.patient_right_doc:'')|uploadbtnpipe"></i>
+            </a>
+            <input hidden type="text" name="indctntranpatrght_url" #indctntranpatrght_url="ngModel" required
+              [(ngModel)]="training.inductin_trn_staff_orientation.patient_right_doc" required>
+            <div *ngIf="indctntranpatrght_url.invalid">
+              <div *ngIf="trainingformSubmitted && indctntranpatrght_url.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+
+
+          </fieldset>
+
+        </div>
+        <div class="form-check mb-2">
+          <input type="checkbox" class="custom-control-input" name="servcstand" id="servcstand"
+            [(ngModel)]="training.inductin_trn_staff_orientation.servc_standard" (click)="UncheckInductionNone()">
+
+          <label class="custom-control-label" for="servcstand">Service Standards of Hospital</label>
+          <fieldset class="IconRight mr-4" *ngIf="training.inductin_trn_staff_orientation.servc_standard==true">
+            <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+              (click)="openDocModel(training.inductin_trn_staff_orientation,'servc_standard_doc')">
+              <i class="bx bx-upload"></i>
+            </a>
+
+            <!-- <input hidden type="file" #doc12
+              (change)="previewImage(doc12,$event.target.files,training.inductin_trn_staff_orientation,'servc_standard_doc')" /> -->
+
+
+            <a title="View Document" class="mt-4"
+              (click)="openUploadedDocsModal(uploadViewModel,training.inductin_trn_staff_orientation,'servc_standard_doc')">
+
+              <i
+                [ngClass]="(training.inductin_trn_staff_orientation!=null?training.inductin_trn_staff_orientation.servc_standard_doc:'')|uploadbtnpipe"></i>
+            </a>
+            <input hidden type="text" name="indctntranservcstand_url" #indctntranservcstand_url="ngModel" required
+              [(ngModel)]="training.inductin_trn_staff_orientation.servc_standard_doc" required>
+            <div *ngIf="indctntranservcstand_url.invalid">
+              <div *ngIf="trainingformSubmitted && indctntranservcstand_url.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+
+
+          </fieldset>
+
+
+
+        </div>
+        <div class="form-check mb-2">
+          <input type="checkbox" class="custom-control-input" name="non" id="non"
+            [(ngModel)]="training.inductin_trn_staff_orientation.none" (click)="UncheckInductionAll()">
+          <label class="custom-control-label" for="non">None</label>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <hr class="form-seprator" />
+
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>3.</b></div>
+          <div class="media-body">{{hospitalPagesQueBank.training.hospital_provides_training_for_soft_skills.ques_text}}
+          </div>
+        </div>
+        <!--./frm-question-->
+
+
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="training.hospital_provides_training_for_soft_skills.ques_selected_opt" name="softsklselection"
+          #softsklselection="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="softsklselection.invalid">
+          <div *ngIf="trainingformSubmitted && softsklselection.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="training.hospital_provides_training_for_soft_skills.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(training.hospital_provides_training_for_soft_skills,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+
+          <!-- <input hidden type="file" #doc3
+            (change)="previewImage(doc3,$event.target.files,training.hospital_provides_training_for_soft_skills,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,training.hospital_provides_training_for_soft_skills,'ques_doc_url')">
+
+            <i
+              [ngClass]="(training.hospital_provides_training_for_soft_skills!=null?training.hospital_provides_training_for_soft_skills.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="softskldoc" #softskldoc="ngModel" required
+            [disabled]="training.hospital_provides_training_for_soft_skills.ques_selected_opt!=true"
+            [(ngModel)]="training.hospital_provides_training_for_soft_skills.ques_doc_url" required>
+          <div *ngIf="softskldoc.invalid">
+            <div *ngIf="trainingformSubmitted && softskldoc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.hospital_provides_training_for_soft_skills:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.hospital_provides_training_for_soft_skills:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','hospital_provides_training_for_soft_skills',hospitalPagesQueBank.training.hospital_provides_training_for_soft_skills)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.hospital_provides_training_for_soft_skills?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>4.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.training.change_injob_responsibilities_equipment_technology.ques_text}}
+          </div>
+        </div>
+        <!--./frm-question-->
+
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="training.change_injob_responsibilities_equipment_technology.ques_selected_opt"
+          name="chnginjobselection" #chnginjobselection="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="chnginjobselection.invalid">
+          <div *ngIf="trainingformSubmitted && chnginjobselection.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="training.change_injob_responsibilities_equipment_technology.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(training.change_injob_responsibilities_equipment_technology,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+
+          <!-- <input hidden type="file" #doc4
+            (change)="previewImage(doc4,$event.target.files,training.change_injob_responsibilities_equipment_technology,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,training.change_injob_responsibilities_equipment_technology,'ques_doc_url')">
+
+            <i
+              [ngClass]="(training.change_injob_responsibilities_equipment_technology!=null?training.change_injob_responsibilities_equipment_technology.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="chnginjobdoc" #chnginjobdoc="ngModel" required
+            [disabled]="training.change_injob_responsibilities_equipment_technology.ques_selected_opt!=true"
+            [(ngModel)]="training.change_injob_responsibilities_equipment_technology.ques_doc_url" required>
+          <div *ngIf="chnginjobdoc.invalid">
+            <div *ngIf="trainingformSubmitted && chnginjobdoc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.change_injob_responsibilities_equipment_technology:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.change_injob_responsibilities_equipment_technology:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','change_injob_responsibilities_equipment_technology',hospitalPagesQueBank.training.change_injob_responsibilities_equipment_technology)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.change_injob_responsibilities_equipment_technology?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>5.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.training.protective_eqpment_prevent_occupational_health_hazards.ques_text}}
+          </div>
+        </div>
+        <!--./frm-question-->
+
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="training.protective_eqpment_prevent_occupational_health_hazards.ques_selected_opt"
+          name="protequpselection" #protequpselection="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="protequpselection.invalid">
+          <div *ngIf="trainingformSubmitted && protequpselection.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="training.protective_eqpment_prevent_occupational_health_hazards.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(training.protective_eqpment_prevent_occupational_health_hazards,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc5
+            (change)="previewImage(doc5,$event.target.files,training.protective_eqpment_prevent_occupational_health_hazards,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,training.protective_eqpment_prevent_occupational_health_hazards,'ques_doc_url')">
+
+            <i
+              [ngClass]="(training.protective_eqpment_prevent_occupational_health_hazards!=null?training.protective_eqpment_prevent_occupational_health_hazards.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="protequpdoc" #protequpdoc="ngModel" required
+            [disabled]="training.protective_eqpment_prevent_occupational_health_hazards.ques_selected_opt!=true"
+            [(ngModel)]="training.protective_eqpment_prevent_occupational_health_hazards.ques_doc_url" required>
+          <div *ngIf="protequpdoc.invalid">
+            <div *ngIf="trainingformSubmitted && protequpdoc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.protective_eqpment_prevent_occupational_health_hazards:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.protective_eqpment_prevent_occupational_health_hazards:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','protective_eqpment_prevent_occupational_health_hazards',hospitalPagesQueBank.training.protective_eqpment_prevent_occupational_health_hazards)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.protective_eqpment_prevent_occupational_health_hazards?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>6.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.training.prevention_and_control_practices_at_predefined_intervals.ques_text}}
+          </div>
+        </div>
+        <!--./frm-question-->
+
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="training.prevention_and_control_practices_at_predefined_intervals.ques_selected_opt"
+          name="prevctrlselection" #prevctrlselection="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="prevctrlselection.invalid">
+          <div *ngIf="trainingformSubmitted && prevctrlselection.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="training.prevention_and_control_practices_at_predefined_intervals.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(training.prevention_and_control_practices_at_predefined_intervals,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc6
+            (change)="previewImage(doc6,$event.target.files,training.prevention_and_control_practices_at_predefined_intervals,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,training.prevention_and_control_practices_at_predefined_intervals,'ques_doc_url')">
+
+            <i
+              [ngClass]="(training.prevention_and_control_practices_at_predefined_intervals!=null?training.prevention_and_control_practices_at_predefined_intervals.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="prevctrldoc" #prevctrldoc="ngModel" required
+            [disabled]="training.prevention_and_control_practices_at_predefined_intervals.ques_selected_opt!=true"
+            [(ngModel)]="training.prevention_and_control_practices_at_predefined_intervals.ques_doc_url" required>
+          <div *ngIf="prevctrldoc.invalid">
+            <div *ngIf="trainingformSubmitted && prevctrldoc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.prevention_and_control_practices_at_predefined_intervals:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.prevention_and_control_practices_at_predefined_intervals:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','prevention_and_control_practices_at_predefined_intervals',hospitalPagesQueBank.training.prevention_and_control_practices_at_predefined_intervals)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.prevention_and_control_practices_at_predefined_intervals?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>7.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies.ques_text}}
+          </div>
+        </div>
+        <!--./frm-question-->
+
+
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies.ques_selected_opt"
+          name="spillmngmtselection" #spillmngmtselection="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="spillmngmtselection.invalid">
+          <div *ngIf="trainingformSubmitted && spillmngmtselection.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc7
+            (change)="previewImage(doc7,$event.target.files,training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies,'ques_doc_url')">
+
+            <i
+              [ngClass]="(training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies!=null?training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="spillmngmtdoc" #spillmngmtdoc="ngModel" required
+            [disabled]="training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies.ques_selected_opt!=true"
+            [(ngModel)]="training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies.ques_doc_url" required>
+          <div *ngIf="spillmngmtdoc.invalid">
+            <div *ngIf="trainingformSubmitted && spillmngmtdoc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','spills_mngment_mdiction_errors_fire_non_fire_emrgncies',hospitalPagesQueBank.training.spills_mngment_mdiction_errors_fire_non_fire_emrgncies)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.spills_mngment_mdiction_errors_fire_non_fire_emrgncies?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>8.</b></div>
+          <div class="media-body">{{hospitalPagesQueBank.training.doctors_rehabilitation_staff_and_nursing.ques_text}}
+          </div>
+        </div>
+        <!--./frm-question-->
+
+
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="training.doctors_rehabilitation_staff_and_nursing.ques_selected_opt" name="docrehbselection"
+          #docrehbselection="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="docrehbselection.invalid">
+          <div *ngIf="trainingformSubmitted && docrehbselection.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="training.doctors_rehabilitation_staff_and_nursing.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(training.doctors_rehabilitation_staff_and_nursing,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc8
+            (change)="previewImage(doc8,$event.target.files,training.doctors_rehabilitation_staff_and_nursing,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,training.doctors_rehabilitation_staff_and_nursing,'ques_doc_url')">
+
+            <i
+              [ngClass]="(training.doctors_rehabilitation_staff_and_nursing!=null?training.doctors_rehabilitation_staff_and_nursing.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="docrehbdoc" #docrehbdoc="ngModel" required
+            [disabled]="training.doctors_rehabilitation_staff_and_nursing.ques_selected_opt!=true"
+            [(ngModel)]="training.doctors_rehabilitation_staff_and_nursing.ques_doc_url" required>
+          <div *ngIf="docrehbdoc.invalid">
+            <div *ngIf="trainingformSubmitted && docrehbdoc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.doctors_rehabilitation_staff_and_nursing:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.doctors_rehabilitation_staff_and_nursing:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','doctors_rehabilitation_staff_and_nursing',hospitalPagesQueBank.training.doctors_rehabilitation_staff_and_nursing)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.doctors_rehabilitation_staff_and_nursing?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>9.</b></div>
+          <div class="media-body">{{hospitalPagesQueBank.training.fire_and_important_non_fire_emergencies.ques_text}}
+          </div>
+        </div>
+        <!--./frm-question-->
+
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="training.fire_and_important_non_fire_emergencies.ques_selected_opt" name="firnonfirselection"
+          #firnonfirselection="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="firnonfirselection.invalid">
+          <div *ngIf="trainingformSubmitted && firnonfirselection.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="training.fire_and_important_non_fire_emergencies.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(training.fire_and_important_non_fire_emergencies,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc15
+            (change)="previewImage(doc15,$event.target.files,training.fire_and_important_non_fire_emergencies,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,training.fire_and_important_non_fire_emergencies,'ques_doc_url')">
+
+            <i
+              [ngClass]="(training.fire_and_important_non_fire_emergencies!=null?training.fire_and_important_non_fire_emergencies.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="firnonfirdoc" #firnonfirdoc="ngModel" required
+            [disabled]="training.fire_and_important_non_fire_emergencies.ques_selected_opt!=true"
+            [(ngModel)]="training.fire_and_important_non_fire_emergencies.ques_doc_url" required>
+          <div *ngIf="firnonfirdoc.invalid">
+            <div *ngIf="trainingformSubmitted && firnonfirdoc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.fire_and_important_non_fire_emergencies:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.fire_and_important_non_fire_emergencies:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','fire_and_important_non_fire_emergencies',hospitalPagesQueBank.training.fire_and_important_non_fire_emergencies)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.fire_and_important_non_fire_emergencies?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>10.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.training.mock_drill_tests_all_the_components_of_the_plan.ques_text}}
+          </div>
+        </div>
+        <!--./frm-question-->
+
+
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="training.mock_drill_tests_all_the_components_of_the_plan.ques_selected_opt"
+          name="mocdrillselection" #mocdrillselection="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="mocdrillselection.invalid">
+          <div *ngIf="trainingformSubmitted && mocdrillselection.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="training.mock_drill_tests_all_the_components_of_the_plan.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(training.mock_drill_tests_all_the_components_of_the_plan,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc9
+            (change)="previewImage(doc9,$event.target.files,training.mock_drill_tests_all_the_components_of_the_plan,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,training.mock_drill_tests_all_the_components_of_the_plan,'ques_doc_url')">
+
+            <i
+              [ngClass]="(training.mock_drill_tests_all_the_components_of_the_plan!=null?training.mock_drill_tests_all_the_components_of_the_plan.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="mocdrilldoc" #mocdrilldoc="ngModel" required
+            [disabled]="training.mock_drill_tests_all_the_components_of_the_plan.ques_selected_opt!=true"
+            [(ngModel)]="training.mock_drill_tests_all_the_components_of_the_plan.ques_doc_url" required>
+          <div *ngIf="mocdrilldoc.invalid">
+            <div *ngIf="trainingformSubmitted && mocdrilldoc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.training.mock_drill_tests_all_the_components_of_the_plan:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.training.mock_drill_tests_all_the_components_of_the_plan:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('training','mock_drill_tests_all_the_components_of_the_plan',hospitalPagesQueBank.training.mock_drill_tests_all_the_components_of_the_plan)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.training?.mock_drill_tests_all_the_components_of_the_plan?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+
+
+  </form>
+  <!-- image view model -->
+  <ng-template #uploadViewModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Uploaded doc(s)s</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- ------ -->
+      <div *ngIf="!(ary_uploadedDocs===null || ary_uploadedDocs===undefined)" class="table-responsive">
+
+
+        <table class="table table-bordered table-striped customTable">
+          <thead>
+            <tr>
+              <th class="text-center"> Name </th>
+              <th class="text-center">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ary_uploadedDocs">
+              <td class="text-center">{{item.fn}}</td>
+              <td class="text-center">
+
+                <a style="cursor: pointer;" class="text-success" title="Download file"
+                  (click)="downloadUploadFile(item)">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+
+                <a style="cursor: pointer;margin-left: 10px;" class="text-danger" title="Delete file"
+                  *ngIf="this.currUsrRole ==3 && Stage_id ==20" (click)="deleteUploadFile(item)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+      <!-- ------- -->
+
+    </div>
+
+  </ng-template>
+  <!-- image view model -->
+</div>
+<ng-template #documentuploadModel role="document" let-modal>
+
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Upload Document</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <!-- <div class="row mt-2">
+      <ngb-progressbar *ngIf="showUploadMsg!=null" [value]="this.progress" type="progress-bar" showValue="true"
+        style="width: 100%;">
+      </ngb-progressbar>
+    </div> -->
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <h5 style="margin-left: 10px;"><strong>Document</strong></h5>
+
+    </div>
+
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <input style="margin-left: 10px;" type="file" #myFileInput (change)="handleFileInput($event.target.files)" />
+
+    </div>
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <label style="margin-left: 10px;"><b>Note: </b>The following formats are accepted: PDF, JPG, JPEG, PNG. The
+        maximum file size allowed in 20 MB.</label>
+
+    </div>
+    <div class="row">
+      <br>
+    </div>
+    <div class="row mt-2">
+      <!--  -->
+      <div class="alert alert-success  fade show" style="width: 100%;" *ngIf="showUploadMsg==true">
+
+        The file has been successfully uploaded
+      </div>
+
+      <!-- <ngb-progressbar *ngIf="showUploadMsg==true" type="warning" [value]="100" height="40px"
+        style="width: 100%; background-color:#caeeda !important; ">
+        The file has been successfully
+        uploaded </ngb-progressbar> -->
+
+      <!-- <div class="card" style="width: 100%;  margin-left: 10px;margin-right: 10px;"> -->
+      <!-- <div class="card-body" *ngIf="showUploadMsg==true"
+        style="width: 100%;height: 50px; margin-left: 10px;margin-right: 10px; background-color:#ddf4e7 !important;text-align: justify; ">
+        The file has been successfully uploaded
+      </div> -->
+      <!-- </div> -->
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="Upload2(myFileInput)">Upload</button>
+  </div>
+</ng-template>

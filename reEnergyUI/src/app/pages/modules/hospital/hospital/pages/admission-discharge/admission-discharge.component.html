@@ -1,0 +1,2093 @@
+<div class="p-0">
+  <form #admissiondisform="ngForm">
+    <ngb-accordion [destroyOnHide]="false" #acc="ngbAccordion" class="range-accordion" activeIds="static-1"
+      (panelChange)="panelChange($event)">
+
+
+
+      <ngb-panel id="static-1">
+
+        <ng-template ngbPanelHeader class="text-black">
+          <button ngbPanelToggle class="btn btn-link text-left">Patient Admission Records
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-1']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-1']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.policy_for_patients_registration_and_admission.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.policy_for_patients_registration_and_admission.ques_selected_opt"
+                name="policy_for_patients_registration_and_admission"
+                #policy_for_patients_registration_and_admission="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="policy_for_patients_registration_and_admission.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && policy_for_patients_registration_and_admission.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.policy_for_patients_registration_and_admission.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.policy_for_patients_registration_and_admission,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc18.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc18
+                  (change)="previewImage(doc18,$event.target.files,admsn_dischrge.policy_for_patients_registration_and_admission,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.policy_for_patients_registration_and_admission,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.policy_for_patients_registration_and_admission!=null?admsn_dischrge.policy_for_patients_registration_and_admission.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="policy_for_patients_registration_and_admission_doc"
+                  #policy_for_patients_registration_and_admission_doc="ngModel" required
+                  [disabled]="admsn_dischrge.policy_for_patients_registration_and_admission.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.policy_for_patients_registration_and_admission.ques_doc_url" required>
+                <div *ngIf="policy_for_patients_registration_and_admission_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && policy_for_patients_registration_and_admission_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.policy_for_patients_registration_and_admission:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.policy_for_patients_registration_and_admission:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','policy_for_patients_registration_and_admission',hospitalPagesQueBank.admsn_dischrge.policy_for_patients_registration_and_admission)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.policy_for_patients_registration_and_admission?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+          </div>
+          <!--./row-->
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.patien_registered_with_unique_identification_number.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.patien_registered_with_unique_identification_number.ques_selected_opt"
+                name="patien_registered_with_unique_identification_number"
+                #patien_registered_with_unique_identification_number="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="patien_registered_with_unique_identification_number.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && patien_registered_with_unique_identification_number.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.patien_registered_with_unique_identification_number.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.patien_registered_with_unique_identification_number,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc17.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc17
+                  (change)="previewImage(doc17,$event.target.files,admsn_dischrge.patien_registered_with_unique_identification_number,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.patien_registered_with_unique_identification_number,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.patien_registered_with_unique_identification_number!=null?admsn_dischrge.patien_registered_with_unique_identification_number.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="patien_registered_with_unique_identification_number_doc"
+                  #patien_registered_with_unique_identification_number_doc="ngModel" required
+                  [disabled]="admsn_dischrge.patien_registered_with_unique_identification_number.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.patien_registered_with_unique_identification_number.ques_doc_url"
+                  required>
+                <div *ngIf="patien_registered_with_unique_identification_number_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && patien_registered_with_unique_identification_number_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.patien_registered_with_unique_identification_number:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.patien_registered_with_unique_identification_number:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','patien_registered_with_unique_identification_number',hospitalPagesQueBank.admsn_dischrge.patien_registered_with_unique_identification_number)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.patien_registered_with_unique_identification_number?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row">
+            <div class="col-xs-12 col-md-8 col-xl-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients.ques_selected_opt"
+                name="follow_the_standardized_sop_for_initial_assessment_of_patients"
+                #follow_the_standardized_sop_for_initial_assessment_of_patients="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="follow_the_standardized_sop_for_initial_assessment_of_patients.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && follow_the_standardized_sop_for_initial_assessment_of_patients.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc16.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc16
+                  (change)="previewImage(doc16,$event.target.files,admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients!=null?admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="follow_the_standardized_sop_for_initial_assessment_of_patients_doc"
+                  #follow_the_standardized_sop_for_initial_assessment_of_patients_doc="ngModel" required
+                  [disabled]="admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients.ques_doc_url"
+                  required>
+                <div *ngIf="follow_the_standardized_sop_for_initial_assessment_of_patients_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && follow_the_standardized_sop_for_initial_assessment_of_patients_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','follow_the_standardized_sop_for_initial_assessment_of_patients',hospitalPagesQueBank.admsn_dischrge.follow_the_standardized_sop_for_initial_assessment_of_patients)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.follow_the_standardized_sop_for_initial_assessment_of_patients?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors.ques_selected_opt"
+                name="are_all_the_admissions_authorized_by_ayush_doctors"
+                #are_all_the_admissions_authorized_by_ayush_doctors="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="are_all_the_admissions_authorized_by_ayush_doctors.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && are_all_the_admissions_authorized_by_ayush_doctors.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc15.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc15
+                  (change)="previewImage(doc15,$event.target.files,admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors,'ques_doc_url')" />
+ -->
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors!=null?admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="are_all_the_admissions_authorized_by_ayush_doctors_doc"
+                  #are_all_the_admissions_authorized_by_ayush_doctors_doc="ngModel" required
+                  [disabled]="admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors.ques_doc_url" required>
+                <div *ngIf="are_all_the_admissions_authorized_by_ayush_doctors_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && are_all_the_admissions_authorized_by_ayush_doctors_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','are_all_the_admissions_authorized_by_ayush_doctors',hospitalPagesQueBank.admsn_dischrge.are_all_the_admissions_authorized_by_ayush_doctors)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.are_all_the_admissions_authorized_by_ayush_doctors?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.ques_selected_opt"
+                name="initial_assessment_for_inpatients_are_getting_documented_within_hrs"
+                #initial_assessment_for_inpatients_are_getting_documented_within_hrs="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="initial_assessment_for_inpatients_are_getting_documented_within_hrs.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && initial_assessment_for_inpatients_are_getting_documented_within_hrs.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <!-- <fieldset
+                          [hidden]="admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.ques_selected_opt!=true">
+                          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc14.click()">
+                            <i class="bx bx-upload"></i>
+                          </a>
+          
+                          <input hidden type="file" #doc14
+                            (change)="previewImage($event.target.files,admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'ques_doc_url')" />
+          
+          
+                          <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'ques_doc_url')">
+          
+                            <i
+                              [ngClass]="(admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs!=null?admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.ques_doc_url:'')|uploadbtnpipe"></i>
+                          </a>
+                          <input hidden type="text" name="initial_assessment_for_inpatients_are_getting_documented_within_hrs_doc" #initial_assessment_for_inpatients_are_getting_documented_within_hrs_doc="ngModel" required
+                            [disabled]="admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.ques_selected_opt!=true"
+                            [(ngModel)]="admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.ques_doc_url" required>
+                          <div *ngIf="initial_assessment_for_inpatients_are_getting_documented_within_hrs_doc.invalid">
+                            <div *ngIf="admsndischrgeformSubmitted && initial_assessment_for_inpatients_are_getting_documented_within_hrs_doc.errors.required" class="text-danger">
+                              Required
+                            </div>
+                          </div>
+          
+          
+          
+                        </fieldset>
+           -->
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','initial_assessment_for_inpatients_are_getting_documented_within_hrs',hospitalPagesQueBank.admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.initial_assessment_for_inpatients_are_getting_documented_within_hrs?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+          <!-- ------ -->
+          <div class="row mt-3">
+            <div class="col-sm-6 offset-md-2">
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0"
+                  *ngIf="admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.ques_selected_opt==true">
+                  <tbody>
+                    <tr class="text-center">
+                      <td style="width: 75%">Upload Patient Record of Initial Assessment #1</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'initial_assessment_url_1')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc40.click()">
+                          <i class="bx bx-upload"></i>
+                        </a>
+
+                        <input hidden type="file" #doc40
+                          (change)="previewImage(doc40,$event.target.files,admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'initial_assessment_url_1')" /> -->
+
+
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'initial_assessment_url_1')">
+
+                          <i
+                            [ngClass]="(admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs!=null?admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.initial_assessment_url_1:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="initialdoc_1" #initialdoc_1="ngModel" required
+                          [(ngModel)]="admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.initial_assessment_url_1"
+                          required>
+                        <div *ngIf="initialdoc_1.invalid">
+                          <div *ngIf="admsndischrgeformSubmitted && initialdoc_1.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td>Upload Patient Record of Initial Assessment #2</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'initial_assessment_url_2')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc41.click()">
+                          <i class="bx bx-upload"></i>
+                        </a>
+
+                        <input hidden type="file" #doc41
+                          (change)="previewImage(doc41,$event.target.files,admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'initial_assessment_url_2')" /> -->
+
+
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'initial_assessment_url_2')">
+
+                          <i
+                            [ngClass]="(admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs!=null?admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.initial_assessment_url_2:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="initialdoc_2" #initialdoc_2="ngModel" required
+                          [(ngModel)]="admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.initial_assessment_url_2"
+                          required>
+                        <div *ngIf="initialdoc_2.invalid">
+                          <div *ngIf="admsndischrgeformSubmitted && initialdoc_2.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td>Upload Patient Record of Initial Assessment #3</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'initial_assessment_url_3')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc42.click()">
+                          <i class="bx bx-upload"></i>
+                        </a>
+
+                        <input hidden type="file" #doc42
+                          (change)="previewImage(doc42,$event.target.files,admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'initial_assessment_url_3')" /> -->
+
+
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs,'initial_assessment_url_3')">
+
+                          <i
+                            [ngClass]="(admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs!=null?admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.initial_assessment_url_3:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="initialdoc_3" #initialdoc_3="ngModel" required
+                          [(ngModel)]="admsn_dischrge.initial_assessment_for_inpatients_are_getting_documented_within_hrs.initial_assessment_url_3"
+                          required>
+                        <div *ngIf="initialdoc_3.invalid">
+                          <div *ngIf="admsndischrgeformSubmitted && initialdoc_3.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ------ -->
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters.ques_selected_opt"
+                name="maintains_the_documentation_of_relevant_clinical_parameters"
+                #maintains_the_documentation_of_relevant_clinical_parameters="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="maintains_the_documentation_of_relevant_clinical_parameters.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && maintains_the_documentation_of_relevant_clinical_parameters.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc13.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc13
+                  (change)="previewImage(doc13,$event.target.files,admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters!=null?admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="maintains_the_documentation_of_relevant_clinical_parameters_doc"
+                  #maintains_the_documentation_of_relevant_clinical_parameters_doc="ngModel" required
+                  [disabled]="admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters.ques_doc_url"
+                  required>
+                <div *ngIf="maintains_the_documentation_of_relevant_clinical_parameters_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && maintains_the_documentation_of_relevant_clinical_parameters_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','maintains_the_documentation_of_relevant_clinical_parameters',hospitalPagesQueBank.admsn_dischrge.maintains_the_documentation_of_relevant_clinical_parameters)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.maintains_the_documentation_of_relevant_clinical_parameters?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>7.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.hospital_have_policy_for_the_referral_of_patients.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.hospital_have_policy_for_the_referral_of_patients.ques_selected_opt"
+                name="hospital_have_policy_for_the_referral_of_patients"
+                #hospital_have_policy_for_the_referral_of_patients="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="hospital_have_policy_for_the_referral_of_patients.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && hospital_have_policy_for_the_referral_of_patients.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.hospital_have_policy_for_the_referral_of_patients.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.hospital_have_policy_for_the_referral_of_patients,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc12.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc12
+                  (change)="previewImage(doc12,$event.target.files,admsn_dischrge.hospital_have_policy_for_the_referral_of_patients,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.hospital_have_policy_for_the_referral_of_patients,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.hospital_have_policy_for_the_referral_of_patients!=null?admsn_dischrge.hospital_have_policy_for_the_referral_of_patients.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="hospital_have_policy_for_the_referral_of_patients_doc"
+                  #hospital_have_policy_for_the_referral_of_patients_doc="ngModel" required
+                  [disabled]="admsn_dischrge.hospital_have_policy_for_the_referral_of_patients.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.hospital_have_policy_for_the_referral_of_patients.ques_doc_url" required>
+                <div *ngIf="hospital_have_policy_for_the_referral_of_patients_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && hospital_have_policy_for_the_referral_of_patients_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.hospital_have_policy_for_the_referral_of_patients:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.hospital_have_policy_for_the_referral_of_patients:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','hospital_have_policy_for_the_referral_of_patients',hospitalPagesQueBank.admsn_dischrge.hospital_have_policy_for_the_referral_of_patients)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.hospital_have_policy_for_the_referral_of_patients?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>8.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.maintain_the_register_about_patients_condition.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.maintain_the_register_about_patients_condition.ques_selected_opt"
+                name="maintain_the_register_about_patients_condition"
+                #maintain_the_register_about_patients_condition="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="maintain_the_register_about_patients_condition.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && maintain_the_register_about_patients_condition.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.maintain_the_register_about_patients_condition.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.maintain_the_register_about_patients_condition,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc11.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc11
+                  (change)="previewImage(doc11,$event.target.files,admsn_dischrge.maintain_the_register_about_patients_condition,'ques_doc_url')" />
+ -->
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.maintain_the_register_about_patients_condition,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.maintain_the_register_about_patients_condition!=null?admsn_dischrge.maintain_the_register_about_patients_condition.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="maintain_the_register_about_patients_condition_doc"
+                  #maintain_the_register_about_patients_condition_doc="ngModel" required
+                  [disabled]="admsn_dischrge.maintain_the_register_about_patients_condition.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.maintain_the_register_about_patients_condition.ques_doc_url" required>
+                <div *ngIf="maintain_the_register_about_patients_condition_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && maintain_the_register_about_patients_condition_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.maintain_the_register_about_patients_condition:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.maintain_the_register_about_patients_condition:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','maintain_the_register_about_patients_condition',hospitalPagesQueBank.admsn_dischrge.maintain_the_register_about_patients_condition)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.maintain_the_register_about_patients_condition?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>9.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions.ques_selected_opt"
+                name="incorporate_the_details_of_the_procedures_therapies_interventions"
+                #incorporate_the_details_of_the_procedures_therapies_interventions="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="incorporate_the_details_of_the_procedures_therapies_interventions.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && incorporate_the_details_of_the_procedures_therapies_interventions.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc10.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc10
+                  (change)="previewImage(doc10,$event.target.files,admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions,'ques_doc_url')" />
+ -->
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions!=null?admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="incorporate_the_details_of_the_procedures_therapies_interventions_doc"
+                  #incorporate_the_details_of_the_procedures_therapies_interventions_doc="ngModel" required
+                  [disabled]="admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions.ques_doc_url"
+                  required>
+                <div *ngIf="incorporate_the_details_of_the_procedures_therapies_interventions_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && incorporate_the_details_of_the_procedures_therapies_interventions_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','incorporate_the_details_of_the_procedures_therapies_interventions',hospitalPagesQueBank.admsn_dischrge.incorporate_the_details_of_the_procedures_therapies_interventions)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.incorporate_the_details_of_the_procedures_therapies_interventions?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <!--Question start region end-->
+
+
+        </ng-template>
+      </ngb-panel>
+
+      <br>
+      <ngb-panel id="static-2">
+
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Patient Discharge Records
+
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-2']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-2']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <br>
+
+        <ng-template ngbPanelContent>
+
+          <!--Question start region end-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.discharge_summary_contains_the_following_relevant_information.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <!-- <select class="form-control" required
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.ques_selected_opt"
+                  name="discharge_summary_contains_the_following_relevant_information" #discharge_summary_contains_the_following_relevant_information="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+   -->
+            </div>
+            <!-- <div *ngIf="discharge_summary_contains_the_following_relevant_information.invalid">
+                <div *ngIf="admsndischrgeformSubmitted && discharge_summary_contains_the_following_relevant_information.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div> -->
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.discharge_summary_contains_the_following_relevant_information:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.discharge_summary_contains_the_following_relevant_information:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','discharge_summary_contains_the_following_relevant_information',hospitalPagesQueBank.admsn_dischrge.discharge_summary_contains_the_following_relevant_information)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.discharge_summary_contains_the_following_relevant_information?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+          <div class="row mt-2" ngModelGroup="DischargeSummary" #discharge_summary="ngModelGroup"
+            appMinOneCheckboxSelect>
+            <div class="col-md-12 custom-control custom-checkbox mb-1 ml-3">
+
+              <div *ngIf="admsndischrgeformSubmitted && discharge_summary.invalid" class="text-danger">
+
+                <div *ngIf="discharge_summary.errors?.minOneChecked">Please select atleast one option</div>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_patname" id="admsn_patname"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_patname">
+
+                <label class="custom-control-label" for="admsn_patname">Name of the Patient</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_regisnumber" id="admsn_regisnumber"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_regisnumber">
+
+                <label class="custom-control-label" for="admsn_regisnumber">Registration/ UHID Number</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_datetimeadmsn" id="admsn_datetimeadmsn"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_datetimeadmsn">
+
+                <label class="custom-control-label" for="admsn_datetimeadmsn">Date & Time of Admission</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_datetimedis" id="admsn_datetimedis"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_datetimedis">
+
+                <label class="custom-control-label" for="admsn_datetimedis">Date & Time of Discharge</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_resonofadmsn" id="admsn_resonofadmsn"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_resonofadmsn">
+
+                <label class="custom-control-label" for="admsn_resonofadmsn">Reason of Admission</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_signifindings" id="admsn_signifindings"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_signifindings">
+
+                <label class="custom-control-label" for="admsn_signifindings">Significant Findings</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_investigation" id="admsn_investigation"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_investigation">
+
+                <label class="custom-control-label" for="admsn_investigation">Investigation Results</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_diagnosis" id="admsn_diagnosis"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_diagnosis">
+
+                <label class="custom-control-label" for="admsn_diagnosis">Diagnosis</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_procedrperformd"
+                  id="admsn_procedrperformd"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_procedrperformd">
+
+                <label class="custom-control-label" for="admsn_procedrperformd">Procedure Performed</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_treatment" id="admsn_treatment"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_treatment">
+
+                <label class="custom-control-label" for="admsn_treatment">Treatment Given</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_patientcondtion"
+                  id="admsn_patientcondtion"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_patientcondtion">
+
+                <label class="custom-control-label" for="admsn_patientcondtion">Patient's Condition</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_prescrption" id="admsn_prescrption"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_prescrption">
+
+                <label class="custom-control-label" for="admsn_prescrption">Prescription</label>
+
+              </div>
+              <div class="form-check mb-1">
+                <input type="checkbox" class="custom-control-input" name="admsn_urgentcare" id="admsn_urgentcare"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_urgentcare">
+
+                <label class="custom-control-label" for="admsn_urgentcare">Instructions for urgent care in case of
+                  emergency</label>
+
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="row mt-3">
+            <div class="col-sm-6 offset-md-2">
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0"
+                  *ngIf="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_patname==true||
+            admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_regisnumber==true||admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_datetimeadmsn==true||admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_datetimedis==true||
+            admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_resonofadmsn==true||
+            admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_signifindings==true||admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_investigation==true||
+            admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_diagnosis==true||admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_procedrperformd==true||
+            admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_treatment==true||admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_patientcondtion==true||
+            admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_prescrption==true||admsn_dischrge.discharge_summary_contains_the_following_relevant_information.admsn_urgentcare==true">
+                  <tbody>
+                    <tr class="text-center">
+                      <td style="width: 75%">Upload Discharge Summary of Patient #1</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(admsn_dischrge.discharge_summary_contains_the_following_relevant_information,'ques_doc_url_1')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc9.click()">
+                          <i class="bx bx-upload"></i>
+                        </a>
+
+                        <input hidden type="file" #doc9
+                          (change)="previewImage(doc9,$event.target.files,admsn_dischrge.discharge_summary_contains_the_following_relevant_information,'ques_doc_url_1')" /> -->
+
+
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.discharge_summary_contains_the_following_relevant_information,'ques_doc_url_1')">
+
+                          <i
+                            [ngClass]="(admsn_dischrge.discharge_summary_contains_the_following_relevant_information!=null?admsn_dischrge.discharge_summary_contains_the_following_relevant_information.ques_doc_url_1:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="discharge_summary_pat1" #discharge_summary_pat1="ngModel"
+                          required
+                          [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.ques_doc_url_1"
+                          required>
+                        <div *ngIf="discharge_summary_pat1.invalid">
+                          <div *ngIf="admsndischrgeformSubmitted && discharge_summary_pat1.errors.required"
+                            class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td>Upload Discharge Summary of Patient #2</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(admsn_dischrge.discharge_summary_contains_the_following_relevant_information,'ques_doc_url_2')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc10.click()">
+                          <i class="bx bx-upload"></i>
+                        </a>
+
+                        <input hidden type="file" #doc10
+                          (change)="previewImage(doc10,$event.target.files,admsn_dischrge.discharge_summary_contains_the_following_relevant_information,'ques_doc_url_2')" /> -->
+
+
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.discharge_summary_contains_the_following_relevant_information,'ques_doc_url_2')">
+
+                          <i
+                            [ngClass]="(admsn_dischrge.discharge_summary_contains_the_following_relevant_information!=null?admsn_dischrge.discharge_summary_contains_the_following_relevant_information.ques_doc_url_2:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="discharge_summary_pat2" #discharge_summary_pat2="ngModel"
+                          required
+                          [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.ques_doc_url_2"
+                          required>
+                        <div *ngIf="discharge_summary_pat2.invalid">
+                          <div *ngIf="admsndischrgeformSubmitted && discharge_summary_pat2.errors.required"
+                            class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td>Upload Discharge Summary of Patient #3</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(admsn_dischrge.discharge_summary_contains_the_following_relevant_information,'ques_doc_url_3')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc12.click()">
+                          <i class="bx bx-upload"></i>
+                        </a>
+
+                        <input hidden type="file" #doc12
+                          (change)="previewImage(doc12,$event.target.files,admsn_dischrge.discharge_summary_contains_the_following_relevant_information,'ques_doc_url_3')" />
+ -->
+
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.discharge_summary_contains_the_following_relevant_information,'ques_doc_url_3')">
+
+                          <i
+                            [ngClass]="(admsn_dischrge.discharge_summary_contains_the_following_relevant_information!=null?admsn_dischrge.discharge_summary_contains_the_following_relevant_information.ques_doc_url_3:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="discharge_summary_pat3" #discharge_summary_pat3="ngModel"
+                          required
+                          [(ngModel)]="admsn_dischrge.discharge_summary_contains_the_following_relevant_information.ques_doc_url_3"
+                          required>
+                        <div *ngIf="discharge_summary_pat3.invalid">
+                          <div *ngIf="admsndischrgeformSubmitted && discharge_summary_pat3.errors.required"
+                            class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge.ques_selected_opt"
+                name="reassessment_of_patient_before_further_treatment_discharge"
+                #reassessment_of_patient_before_further_treatment_discharge="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="reassessment_of_patient_before_further_treatment_discharge.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && reassessment_of_patient_before_further_treatment_discharge.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc8.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc8
+                  (change)="previewImage(doc8,$event.target.files,admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge!=null?admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="reassessment_of_patient_before_further_treatment_discharge_doc"
+                  #reassessment_of_patient_before_further_treatment_discharge_doc="ngModel" required
+                  [disabled]="admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge.ques_doc_url"
+                  required>
+                <div *ngIf="reassessment_of_patient_before_further_treatment_discharge_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && reassessment_of_patient_before_further_treatment_discharge_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','reassessment_of_patient_before_further_treatment_discharge',hospitalPagesQueBank.admsn_dischrge.reassessment_of_patient_before_further_treatment_discharge)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.reassessment_of_patient_before_further_treatment_discharge?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day.ques_selected_opt"
+                name="hospital_reassess_the_patients_at_least_once_a_day"
+                #hospital_reassess_the_patients_at_least_once_a_day="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="hospital_reassess_the_patients_at_least_once_a_day.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && hospital_reassess_the_patients_at_least_once_a_day.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc7.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc7
+                  (change)="previewImage(doc7,$event.target.files,admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day!=null?admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="hospital_reassess_the_patients_at_least_once_a_day_doc"
+                  #hospital_reassess_the_patients_at_least_once_a_day_doc="ngModel" required
+                  [disabled]="admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day.ques_doc_url" required>
+                <div *ngIf="hospital_reassess_the_patients_at_least_once_a_day_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && hospital_reassess_the_patients_at_least_once_a_day_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','hospital_reassess_the_patients_at_least_once_a_day',hospitalPagesQueBank.admsn_dischrge.hospital_reassess_the_patients_at_least_once_a_day)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.hospital_reassess_the_patients_at_least_once_a_day?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment.ques_selected_opt"
+                name="reassessment_includes_determining_the_response_to_the_treatment"
+                #reassessment_includes_determining_the_response_to_the_treatment="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="reassessment_includes_determining_the_response_to_the_treatment.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && reassessment_includes_determining_the_response_to_the_treatment.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc6.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc6
+                  (change)="previewImage(doc6,$event.target.files,admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment!=null?admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="reassessment_includes_determining_the_response_to_the_treatment_doc"
+                  #reassessment_includes_determining_the_response_to_the_treatment_doc="ngModel" required
+                  [disabled]="admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment.ques_doc_url"
+                  required>
+                <div *ngIf="reassessment_includes_determining_the_response_to_the_treatment_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && reassessment_includes_determining_the_response_to_the_treatment_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','reassessment_includes_determining_the_response_to_the_treatment',hospitalPagesQueBank.admsn_dischrge.reassessment_includes_determining_the_response_to_the_treatment)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.reassessment_includes_determining_the_response_to_the_treatment?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death.ques_selected_opt"
+                name="discharge_summary_include_the_apparent_cause_of_death"
+                #discharge_summary_include_the_apparent_cause_of_death="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="discharge_summary_include_the_apparent_cause_of_death.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && discharge_summary_include_the_apparent_cause_of_death.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc5.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc5
+                  (change)="previewImage(doc5,$event.target.files,admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death!=null?admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="discharge_summary_include_the_apparent_cause_of_death_doc"
+                  #discharge_summary_include_the_apparent_cause_of_death_doc="ngModel" required
+                  [disabled]="admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death.ques_doc_url"
+                  required>
+                <div *ngIf="discharge_summary_include_the_apparent_cause_of_death_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && discharge_summary_include_the_apparent_cause_of_death_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','discharge_summary_include_the_apparent_cause_of_death',hospitalPagesQueBank.admsn_dischrge.discharge_summary_include_the_apparent_cause_of_death)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.discharge_summary_include_the_apparent_cause_of_death?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.hospital_coordinate_between_all_concerned_departments.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.hospital_coordinate_between_all_concerned_departments.ques_selected_opt"
+                name="hospital_coordinate_between_all_concerned_departments"
+                #hospital_coordinate_between_all_concerned_departments="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="hospital_coordinate_between_all_concerned_departments.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && hospital_coordinate_between_all_concerned_departments.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.hospital_coordinate_between_all_concerned_departments.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.hospital_coordinate_between_all_concerned_departments,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc4.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc4
+                  (change)="previewImage(doc4,$event.target.files,admsn_dischrge.hospital_coordinate_between_all_concerned_departments,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.hospital_coordinate_between_all_concerned_departments,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.hospital_coordinate_between_all_concerned_departments!=null?admsn_dischrge.hospital_coordinate_between_all_concerned_departments.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="hospital_coordinate_between_all_concerned_departments_doc"
+                  #hospital_coordinate_between_all_concerned_departments_doc="ngModel" required
+                  [disabled]="admsn_dischrge.hospital_coordinate_between_all_concerned_departments.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.hospital_coordinate_between_all_concerned_departments.ques_doc_url"
+                  required>
+                <div *ngIf="hospital_coordinate_between_all_concerned_departments_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && hospital_coordinate_between_all_concerned_departments_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.hospital_coordinate_between_all_concerned_departments:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.hospital_coordinate_between_all_concerned_departments:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','hospital_coordinate_between_all_concerned_departments',hospitalPagesQueBank.admsn_dischrge.hospital_coordinate_between_all_concerned_departments)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.hospital_coordinate_between_all_concerned_departments?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>7.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient.ques_selected_opt"
+                name="hospital_hand_over_the_discharge_summary_to_the_patient"
+                #hospital_hand_over_the_discharge_summary_to_the_patient="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="hospital_hand_over_the_discharge_summary_to_the_patient.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && hospital_hand_over_the_discharge_summary_to_the_patient.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc3.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc3
+                  (change)="previewImage(doc3,$event.target.files,admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient!=null?admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="hospital_hand_over_the_discharge_summary_to_the_patient_doc"
+                  #hospital_hand_over_the_discharge_summary_to_the_patient_doc="ngModel" required
+                  [disabled]="admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient.ques_doc_url"
+                  required>
+                <div *ngIf="hospital_hand_over_the_discharge_summary_to_the_patient_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && hospital_hand_over_the_discharge_summary_to_the_patient_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','hospital_hand_over_the_discharge_summary_to_the_patient',hospitalPagesQueBank.admsn_dischrge.hospital_hand_over_the_discharge_summary_to_the_patient)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.hospital_hand_over_the_discharge_summary_to_the_patient?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>8.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.patient_is_leaving_hospital_against_medical_advice.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.patient_is_leaving_hospital_against_medical_advice.ques_selected_opt"
+                name="patient_is_leaving_hospital_against_medical_advice"
+                #patient_is_leaving_hospital_against_medical_advice="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="patient_is_leaving_hospital_against_medical_advice.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && patient_is_leaving_hospital_against_medical_advice.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.patient_is_leaving_hospital_against_medical_advice.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.patient_is_leaving_hospital_against_medical_advice,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc2.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc2
+                  (change)="previewImage(doc2,$event.target.files,admsn_dischrge.patient_is_leaving_hospital_against_medical_advice,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.patient_is_leaving_hospital_against_medical_advice,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.patient_is_leaving_hospital_against_medical_advice!=null?admsn_dischrge.patient_is_leaving_hospital_against_medical_advice.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="patient_is_leaving_hospital_against_medical_advice_doc"
+                  #patient_is_leaving_hospital_against_medical_advice_doc="ngModel" required
+                  [disabled]="admsn_dischrge.patient_is_leaving_hospital_against_medical_advice.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.patient_is_leaving_hospital_against_medical_advice.ques_doc_url" required>
+                <div *ngIf="patient_is_leaving_hospital_against_medical_advice_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && patient_is_leaving_hospital_against_medical_advice_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.patient_is_leaving_hospital_against_medical_advice:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.patient_is_leaving_hospital_against_medical_advice:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','patient_is_leaving_hospital_against_medical_advice',hospitalPagesQueBank.admsn_dischrge.patient_is_leaving_hospital_against_medical_advice)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.patient_is_leaving_hospital_against_medical_advice?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>9.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.admsn_dischrge.document_structured_clinical_handover_during_shift_change.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="admsn_dischrge.document_structured_clinical_handover_during_shift_change.ques_selected_opt"
+                name="document_structured_clinical_handover_during_shift_change"
+                #document_structured_clinical_handover_during_shift_change="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="document_structured_clinical_handover_during_shift_change.invalid">
+                <div
+                  *ngIf="admsndischrgeformSubmitted && document_structured_clinical_handover_during_shift_change.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="admsn_dischrge.document_structured_clinical_handover_during_shift_change.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(admsn_dischrge.document_structured_clinical_handover_during_shift_change,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc1.click()">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <input hidden type="file" #doc1
+                  (change)="previewImage(doc1,$event.target.files,admsn_dischrge.document_structured_clinical_handover_during_shift_change,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,admsn_dischrge.document_structured_clinical_handover_during_shift_change,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(admsn_dischrge.document_structured_clinical_handover_during_shift_change!=null?admsn_dischrge.document_structured_clinical_handover_during_shift_change.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="document_structured_clinical_handover_during_shift_change_doc"
+                  #document_structured_clinical_handover_during_shift_change_doc="ngModel" required
+                  [disabled]="admsn_dischrge.document_structured_clinical_handover_during_shift_change.ques_selected_opt!=true"
+                  [(ngModel)]="admsn_dischrge.document_structured_clinical_handover_during_shift_change.ques_doc_url"
+                  required>
+                <div *ngIf="document_structured_clinical_handover_during_shift_change_doc.invalid">
+                  <div
+                    *ngIf="admsndischrgeformSubmitted && document_structured_clinical_handover_during_shift_change_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.document_structured_clinical_handover_during_shift_change:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge.document_structured_clinical_handover_during_shift_change:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('admsn_dischrge','document_structured_clinical_handover_during_shift_change',hospitalPagesQueBank.admsn_dischrge.document_structured_clinical_handover_during_shift_change)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.admsn_dischrge?.document_structured_clinical_handover_during_shift_change?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+
+          <!--Question start region end-->
+
+
+        </ng-template><br>
+      </ngb-panel>
+
+
+
+
+    </ngb-accordion>
+
+  </form>
+  <!-- image view model -->
+  <ng-template #uploadViewModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Uploaded doc(s)s</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped customTable">
+          <thead>
+            <tr>
+              <th class="text-center"> Name </th>
+              <th class="text-center">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ary_uploadedDocs">
+              <td class="text-center">{{item.fn}}</td>
+              <td class="text-center">
+
+                <a style="cursor: pointer;" class="text-success" title="Download file"
+                  (click)="downloadUploadFile(item)">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+
+                <a style="cursor: pointer;margin-left: 10px;" class="text-danger" title="Delete file"
+                  *ngIf="this.currUsrRole ==3 && Stage_id ==20" (click)="deleteUploadFile(item)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+    <!-- <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+  </div> -->
+  </ng-template>
+  <!-- image view model -->
+
+  <ng-template #documentuploadModel role="document" let-modal>
+
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Upload Document</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- <div class="row mt-2">
+        <ngb-progressbar *ngIf="showUploadMsg!=null" [value]="this.progress" type="progress-bar" showValue="true"
+          style="width: 100%;">
+        </ngb-progressbar>
+      </div> -->
+      <div class="row mt-2">
+        <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+        <h5 style="margin-left: 10px;"><strong>Document</strong></h5>
+
+      </div>
+
+      <div class="row mt-2">
+        <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+        <input style="margin-left: 10px;" type="file" #myFileInput (change)="handleFileInput($event.target.files)" />
+
+      </div>
+      <div class="row mt-2">
+        <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+        <label style="margin-left: 10px;"><b>Note: </b>The following formats are accepted: PDF, JPG, JPEG, PNG. The
+          maximum file size allowed in 20 MB.</label>
+
+      </div>
+      <div class="row">
+        <br>
+      </div>
+      <div class="row mt-2">
+        <!--  -->
+        <div class="alert alert-success  fade show" style="width: 100%;" *ngIf="showUploadMsg==true">
+
+          The file has been successfully uploaded
+        </div>
+
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" (click)="Upload2(myFileInput)">Upload</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,39 @@
+<!-- <marquee><h4 style="color: red;">Ceria Tatti khale</h4></marquee>
+<marquee><h3 style="color: green;">Ceria Tatti khale</h3></marquee>
+<marquee><h2 style="color:blue;">Ceria Tatti khale</h2></marquee>
+<marquee><h1 style="color:purple;">Ceria Tatti khale</h1></marquee> -->
+<div class="card">
+    <div class="card-body">
+
+        <div class="table-responsive mt-3">
+            <table class="table table-centered table-bordered hospitalTrackGrid">
+              <thead class="thead-light">
+                <th class="text-center" style="width: 5%;">#</th>
+                <th class="text-center" >Hospital Name</th>
+                <th class="text-center" >Total Section</th>
+                <th class="text-center" >Section Synced</th>
+                <th class="text-center" >Action</th>
+
+              </thead>
+              <tbody>
+
+              
+                 <tr *ngFor="let item of hosplist;let i=index">
+                    <td class="text-center" style="width: 5%;">{{i+1}}</td>
+                   
+                    <td class="text-center">{{item.hospname}}</td>
+                    <td class="text-center">{{item.total_section}}</td>
+                    <td class="text-center">{{item.section_synced}}</td>
+                    <td class="text-center">
+                        <button class="btn" title="View Result" (click)="viewResult(item)">
+                            <i class="fa fa-edit blueIcon" style="color: red;"></i></button>
+                    </td>
+                   
+                </tr>             
+             </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

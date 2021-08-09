@@ -1,0 +1,2469 @@
+<div class="card-body p-0">
+  <form #cenqualitycareform="ngForm">
+    <ngb-accordion [destroyOnHide]="false" #acc="ngbAccordion" class="range-accordion" activeIds="static-1"
+      (panelChange)="panelChange($event)">
+      <ngb-panel id="static-1">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Quality Care Processes
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-1']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-1']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+
+              <!-- <div class="d-flex accordionToggleIcon"><i class="mdi mdi-minus"></i></div> -->
+            </div>
+          </button>
+        </ng-template><br>
+        <ng-template ngbPanelContent>
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.plan_of_care_including_preventive_aspects.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.plan_of_care_including_preventive_aspects.ques_selected_opt"
+                name="plan_of_care_including_preventive_aspects" #plan_of_care_including_preventive_aspects="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="plan_of_care_including_preventive_aspects.invalid">
+              <div *ngIf="cenqualitycareSubmitted && plan_of_care_including_preventive_aspects.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.plan_of_care_including_preventive_aspects.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.plan_of_care_including_preventive_aspects,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc1
+                  (change)="previewImage(doc1,$event.target.files,cenqualitycare.plan_of_care_including_preventive_aspects,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.plan_of_care_including_preventive_aspects,'ques_doc_url')">
+                  <!-- (click)="openUploadedDocsModal(cenqualitycare.plan_of_care_including_preventive_aspects,'ques_doc_url')" -->
+                  <i
+                    [ngClass]="(cenqualitycare.plan_of_care_including_preventive_aspects!=null?cenqualitycare.plan_of_care_including_preventive_aspects.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="plan_of_care_including_preventive_aspects_doc"
+                  #plan_of_care_including_preventive_aspects_doc="ngModel" required
+                  [disabled]="cenqualitycare.plan_of_care_including_preventive_aspects.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.plan_of_care_including_preventive_aspects.ques_doc_url" required>
+                <div *ngIf="plan_of_care_including_preventive_aspects_doc.invalid">
+                  <div *ngIf="cenqualitycareSubmitted && plan_of_care_including_preventive_aspects_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.plan_of_care_including_preventive_aspects:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.plan_of_care_including_preventive_aspects:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','plan_of_care_including_preventive_aspects',cenhospitalPagesQueBank.cenqualitycare.plan_of_care_including_preventive_aspects)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.plan_of_care_including_preventive_aspects?.nc_cycle_count:''}}
+              </button>
+
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.applicable_laws_and_regulations.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.applicable_laws_and_regulations.ques_selected_opt"
+                name="applicable_laws_and_regulations" #applicable_laws_and_regulations="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="applicable_laws_and_regulations.invalid">
+              <div *ngIf="cenqualitycareSubmitted && applicable_laws_and_regulations.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.applicable_laws_and_regulations.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.applicable_laws_and_regulations,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc2
+                  (change)="previewImage(doc2,$event.target.files,cenqualitycare.applicable_laws_and_regulations,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.applicable_laws_and_regulations,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.applicable_laws_and_regulations!=null?cenqualitycare.applicable_laws_and_regulations.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="applicable_laws_and_regulations_doc"
+                  #applicable_laws_and_regulations_doc="ngModel" required
+                  [disabled]="cenqualitycare.applicable_laws_and_regulations.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.applicable_laws_and_regulations.ques_doc_url" required>
+                <div *ngIf="applicable_laws_and_regulations_doc.invalid">
+                  <div *ngIf="cenqualitycareSubmitted && applicable_laws_and_regulations_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.applicable_laws_and_regulations:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.applicable_laws_and_regulations:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','applicable_laws_and_regulations',cenhospitalPagesQueBank.cenqualitycare.applicable_laws_and_regulations)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.applicable_laws_and_regulations?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.centre_ensure_that_the_care_of_patient.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.centre_ensure_that_the_care_of_patient.ques_selected_opt"
+                name="centre_ensure_that_the_care_of_patient" #centre_ensure_that_the_care_of_patient="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="centre_ensure_that_the_care_of_patient.invalid">
+              <div *ngIf="cenqualitycareSubmitted && centre_ensure_that_the_care_of_patient.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.centre_ensure_that_the_care_of_patient.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.centre_ensure_that_the_care_of_patient,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc3
+                  (change)="previewImage(doc3,$event.target.files,cenqualitycare.centre_ensure_that_the_care_of_patient,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.centre_ensure_that_the_care_of_patient,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.centre_ensure_that_the_care_of_patient!=null?cenqualitycare.centre_ensure_that_the_care_of_patient.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="centre_ensure_that_the_care_of_patient_doc"
+                  #centre_ensure_that_the_care_of_patient_doc="ngModel" required
+                  [disabled]="cenqualitycare.centre_ensure_that_the_care_of_patient.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.centre_ensure_that_the_care_of_patient.ques_doc_url" required>
+                <div *ngIf="centre_ensure_that_the_care_of_patient_doc.invalid">
+                  <div *ngIf="cenqualitycareSubmitted && centre_ensure_that_the_care_of_patient_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.centre_ensure_that_the_care_of_patient:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.centre_ensure_that_the_care_of_patient:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','centre_ensure_that_the_care_of_patient',cenhospitalPagesQueBank.cenqualitycare.centre_ensure_that_the_care_of_patient)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.centre_ensure_that_the_care_of_patient?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.sop_policy_to_guide_the_provision_of_services.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.sop_policy_to_guide_the_provision_of_services.ques_selected_opt"
+                name="sop_policy_to_guide_the_provision_of_services"
+                #sop_policy_to_guide_the_provision_of_services="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="sop_policy_to_guide_the_provision_of_services.invalid">
+              <div *ngIf="cenqualitycareSubmitted && sop_policy_to_guide_the_provision_of_services.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.sop_policy_to_guide_the_provision_of_services.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.sop_policy_to_guide_the_provision_of_services,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+
+                <!-- <input hidden type="file" #doc4
+                  (change)="previewImage(doc4,$event.target.files,cenqualitycare.sop_policy_to_guide_the_provision_of_services,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.sop_policy_to_guide_the_provision_of_services,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.sop_policy_to_guide_the_provision_of_services!=null?cenqualitycare.sop_policy_to_guide_the_provision_of_services.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="sop_policy_to_guide_the_provision_of_services_doc"
+                  #sop_policy_to_guide_the_provision_of_services_doc="ngModel" required
+                  [disabled]="cenqualitycare.sop_policy_to_guide_the_provision_of_services.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.sop_policy_to_guide_the_provision_of_services.ques_doc_url" required>
+                <div *ngIf="sop_policy_to_guide_the_provision_of_services_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && sop_policy_to_guide_the_provision_of_services_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_policy_to_guide_the_provision_of_services:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_policy_to_guide_the_provision_of_services:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','sop_policy_to_guide_the_provision_of_services',cenhospitalPagesQueBank.cenqualitycare.sop_policy_to_guide_the_provision_of_services)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.sop_policy_to_guide_the_provision_of_services?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.care_and_treatment_of_vulnerable_patients.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.care_and_treatment_of_vulnerable_patients.ques_selected_opt"
+                name="care_and_treatment_of_vulnerable_patients" #care_and_treatment_of_vulnerable_patients="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="care_and_treatment_of_vulnerable_patients.invalid">
+              <div *ngIf="cenqualitycareSubmitted && care_and_treatment_of_vulnerable_patients.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.care_and_treatment_of_vulnerable_patients.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.care_and_treatment_of_vulnerable_patients,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc5
+                  (change)="previewImage(doc5,$event.target.files,cenqualitycare.care_and_treatment_of_vulnerable_patients,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.care_and_treatment_of_vulnerable_patients,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.care_and_treatment_of_vulnerable_patients!=null?cenqualitycare.care_and_treatment_of_vulnerable_patients.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="care_and_treatment_of_vulnerable_patients_doc"
+                  #care_and_treatment_of_vulnerable_patients_doc="ngModel" required
+                  [disabled]="cenqualitycare.care_and_treatment_of_vulnerable_patients.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.care_and_treatment_of_vulnerable_patients.ques_doc_url" required>
+                <div *ngIf="care_and_treatment_of_vulnerable_patients_doc.invalid">
+                  <div *ngIf="cenqualitycareSubmitted && care_and_treatment_of_vulnerable_patients_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.care_and_treatment_of_vulnerable_patients:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.care_and_treatment_of_vulnerable_patients:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','care_and_treatment_of_vulnerable_patients',cenhospitalPagesQueBank.cenqualitycare.care_and_treatment_of_vulnerable_patients)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.care_and_treatment_of_vulnerable_patients?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.special_precautions_for_the_vulnerable_patients.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.special_precautions_for_the_vulnerable_patients.ques_selected_opt"
+                name="special_precautions_for_the_vulnerable_patients"
+                #special_precautions_for_the_vulnerable_patients="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="special_precautions_for_the_vulnerable_patients.invalid">
+              <div *ngIf="cenqualitycareSubmitted && special_precautions_for_the_vulnerable_patients.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.special_precautions_for_the_vulnerable_patients.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.special_precautions_for_the_vulnerable_patients,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc6
+                  (change)="previewImage(doc6,$event.target.files,cenqualitycare.special_precautions_for_the_vulnerable_patients,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.special_precautions_for_the_vulnerable_patients,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.special_precautions_for_the_vulnerable_patients!=null?cenqualitycare.special_precautions_for_the_vulnerable_patients.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="special_precautions_for_the_vulnerable_patients_doc"
+                  #special_precautions_for_the_vulnerable_patients_doc="ngModel" required
+                  [disabled]="cenqualitycare.special_precautions_for_the_vulnerable_patients.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.special_precautions_for_the_vulnerable_patients.ques_doc_url" required>
+                <div *ngIf="special_precautions_for_the_vulnerable_patients_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && special_precautions_for_the_vulnerable_patients_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.special_precautions_for_the_vulnerable_patients:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.special_precautions_for_the_vulnerable_patients:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','special_precautions_for_the_vulnerable_patients',cenhospitalPagesQueBank.cenqualitycare.special_precautions_for_the_vulnerable_patients)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.special_precautions_for_the_vulnerable_patients?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>7.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.care_of_patients_undergoing_various_ayush_therapies.ques_text}}<br>
+                  <small class="pl-1 text-info"><i><b>Note: </b>e.g. Agnikaram, Para surgical treatment procedures,
+                      Dhouti, Neti,
+                      Suttigai,
+                      Aruvai/yoga/ regimental therapies (Ilaj-bil- tadbeer)/ naturopathy procedure etc.</i></small>
+                </div>
+              </div>
+
+              <!-- <div class="labelnote">
+                <span class="labelhighlight">*</span>e.g. Agnikaram, Para surgical treatment procedures, Dhouti, Neti, Suttigai, Aruvai/yoga/ regimental therapies (Ilaj-bil- tadbeer)/ naturopathy procedure etc.
+              </div> -->
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.care_of_patients_undergoing_various_ayush_therapies.ques_selected_opt"
+                name="care_of_patients_undergoing_various_ayush_therapies"
+                #care_of_patients_undergoing_various_ayush_therapies="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="care_of_patients_undergoing_various_ayush_therapies.invalid">
+              <div
+                *ngIf="cenqualitycareSubmitted && care_of_patients_undergoing_various_ayush_therapies.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.care_of_patients_undergoing_various_ayush_therapies.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.care_of_patients_undergoing_various_ayush_therapies,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc7
+                  (change)="previewImage(doc7,$event.target.files,cenqualitycare.care_of_patients_undergoing_various_ayush_therapies,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.care_of_patients_undergoing_various_ayush_therapies,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.care_of_patients_undergoing_various_ayush_therapies!=null?cenqualitycare.care_of_patients_undergoing_various_ayush_therapies.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="care_of_patients_undergoing_various_ayush_therapies_doc"
+                  #care_of_patients_undergoing_various_ayush_therapies_doc="ngModel" required
+                  [disabled]="cenqualitycare.care_of_patients_undergoing_various_ayush_therapies.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.care_of_patients_undergoing_various_ayush_therapies.ques_doc_url"
+                  required>
+                <div *ngIf="care_of_patients_undergoing_various_ayush_therapies_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && care_of_patients_undergoing_various_ayush_therapies_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.care_of_patients_undergoing_various_ayush_therapies:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.care_of_patients_undergoing_various_ayush_therapies:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','care_of_patients_undergoing_various_ayush_therapies',cenhospitalPagesQueBank.cenqualitycare.care_of_patients_undergoing_various_ayush_therapies)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.care_of_patients_undergoing_various_ayush_therapies?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>8.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.rehabilitative_services_and_commensurate.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.rehabilitative_services_and_commensurate.ques_selected_opt"
+                name="rehabilitative_services_and_commensurate" #rehabilitative_services_and_commensurate="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="rehabilitative_services_and_commensurate.invalid">
+              <div *ngIf="cenqualitycareSubmitted && rehabilitative_services_and_commensurate.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.rehabilitative_services_and_commensurate.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.rehabilitative_services_and_commensurate,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc8
+                  (change)="previewImage(doc8,$event.target.files,cenqualitycare.rehabilitative_services_and_commensurate,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.rehabilitative_services_and_commensurate,'ques_doc_url')">
+                  <!-- (click)="openUploadedDocsModal(cenqualitycare.rehabilitative_services_and_commensurate,'ques_doc_url')" -->
+                  <i
+                    [ngClass]="(cenqualitycare.rehabilitative_services_and_commensurate!=null?cenqualitycare.rehabilitative_services_and_commensurate.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="rehabilitative_services_and_commensurate_doc"
+                  #rehabilitative_services_and_commensurate_doc="ngModel" required
+                  [disabled]="cenqualitycare.rehabilitative_services_and_commensurate.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.rehabilitative_services_and_commensurate.ques_doc_url" required>
+                <div *ngIf="rehabilitative_services_and_commensurate_doc.invalid">
+                  <div *ngIf="cenqualitycareSubmitted && rehabilitative_services_and_commensurate_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.rehabilitative_services_and_commensurate:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.rehabilitative_services_and_commensurate:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','rehabilitative_services_and_commensurate',cenhospitalPagesQueBank.cenqualitycare.rehabilitative_services_and_commensurate)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.rehabilitative_services_and_commensurate?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>9.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.policy_to_guide_the_management_of_pain.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.policy_to_guide_the_management_of_pain.ques_selected_opt"
+                name="policy_to_guide_the_management_of_pain" #policy_to_guide_the_management_of_pain="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="policy_to_guide_the_management_of_pain.invalid">
+              <div *ngIf="cenqualitycareSubmitted && policy_to_guide_the_management_of_pain.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.policy_to_guide_the_management_of_pain.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.policy_to_guide_the_management_of_pain,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc9
+                  (change)="previewImage(doc9,$event.target.files,cenqualitycare.policy_to_guide_the_management_of_pain,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.policy_to_guide_the_management_of_pain,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.policy_to_guide_the_management_of_pain!=null?cenqualitycare.policy_to_guide_the_management_of_pain.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="policy_to_guide_the_management_of_pain_doc"
+                  #policy_to_guide_the_management_of_pain_doc="ngModel" required
+                  [disabled]="cenqualitycare.policy_to_guide_the_management_of_pain.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.policy_to_guide_the_management_of_pain.ques_doc_url" required>
+                <div *ngIf="policy_to_guide_the_management_of_pain_doc.invalid">
+                  <div *ngIf="cenqualitycareSubmitted && policy_to_guide_the_management_of_pain_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.policy_to_guide_the_management_of_pain:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.policy_to_guide_the_management_of_pain:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','policy_to_guide_the_management_of_pain',cenhospitalPagesQueBank.cenqualitycare.policy_to_guide_the_management_of_pain)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.policy_to_guide_the_management_of_pain?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>10.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.the_paediatric_care_in_ayush_centre.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.the_paediatric_care_in_ayush_centre.ques_selected_opt"
+                name="the_paediatric_care_in_ayush_centre" #the_paediatric_care_in_ayush_centre="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="the_paediatric_care_in_ayush_centre.invalid">
+              <div *ngIf="cenqualitycareSubmitted && the_paediatric_care_in_ayush_centre.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.the_paediatric_care_in_ayush_centre.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.the_paediatric_care_in_ayush_centre,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc10
+                  (change)="previewImage(doc10,$event.target.files,cenqualitycare.the_paediatric_care_in_ayush_centre,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.the_paediatric_care_in_ayush_centre,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.the_paediatric_care_in_ayush_centre!=null?cenqualitycare.the_paediatric_care_in_ayush_centre.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="the_paediatric_care_in_ayush_centre_doc"
+                  #the_paediatric_care_in_ayush_centre_doc="ngModel" required
+                  [disabled]="cenqualitycare.the_paediatric_care_in_ayush_centre.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.the_paediatric_care_in_ayush_centre.ques_doc_url" required>
+                <div *ngIf="the_paediatric_care_in_ayush_centre_doc.invalid">
+                  <div *ngIf="cenqualitycareSubmitted && the_paediatric_care_in_ayush_centre_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.the_paediatric_care_in_ayush_centre:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.the_paediatric_care_in_ayush_centre:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','the_paediatric_care_in_ayush_centre',cenhospitalPagesQueBank.cenqualitycare.the_paediatric_care_in_ayush_centre)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.the_paediatric_care_in_ayush_centre?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>11.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc.ques_selected_opt"
+                name="data_has_specification_as_disease_age_group_and_gender_etc"
+                #data_has_specification_as_disease_age_group_and_gender_etc="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="data_has_specification_as_disease_age_group_and_gender_etc.invalid">
+              <div
+                *ngIf="cenqualitycareSubmitted && data_has_specification_as_disease_age_group_and_gender_etc.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc11
+                  (change)="previewImage(doc11,$event.target.files,cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc!=null?cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="data_has_specification_as_disease_age_group_and_gender_etc_doc"
+                  #data_has_specification_as_disease_age_group_and_gender_etc_doc="ngModel" required
+                  [disabled]="cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc.ques_doc_url"
+                  required>
+                <div *ngIf="data_has_specification_as_disease_age_group_and_gender_etc_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && data_has_specification_as_disease_age_group_and_gender_etc_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','data_has_specification_as_disease_age_group_and_gender_etc',cenhospitalPagesQueBank.cenqualitycare.data_has_specification_as_disease_age_group_and_gender_etc)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.data_has_specification_as_disease_age_group_and_gender_etc?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>12.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients.ques_text}}<br>
+                  <small class="pl-1 text-info"><i><b>Note:</b> Credentials of the personnels who make the documentation
+                      of the
+                      procedure notes
+                      and post procedure plan of care can be uploaded</i></small>
+                </div>
+              </div>
+
+              <!-- <div class="labelnote">
+                <span class="labelhighlight">*</span> Credentials of the personnels who make the documentation of the procedure notes and post procedure plan of care can be uploaded
+              </div> -->
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients.ques_selected_opt"
+                name="procedure_notes_and_post_procedure_plan_of_care_of_the_patients"
+                #procedure_notes_and_post_procedure_plan_of_care_of_the_patients="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="procedure_notes_and_post_procedure_plan_of_care_of_the_patients.invalid">
+              <div
+                *ngIf="cenqualitycareSubmitted && procedure_notes_and_post_procedure_plan_of_care_of_the_patients.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc12
+                  (change)="previewImage(doc12,$event.target.files,cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients!=null?cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="procedure_notes_and_post_procedure_plan_of_care_of_the_patients_doc"
+                  #procedure_notes_and_post_procedure_plan_of_care_of_the_patients_doc="ngModel" required
+                  [disabled]="cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients.ques_doc_url"
+                  required>
+                <div *ngIf="procedure_notes_and_post_procedure_plan_of_care_of_the_patients_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && procedure_notes_and_post_procedure_plan_of_care_of_the_patients_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','procedure_notes_and_post_procedure_plan_of_care_of_the_patients',cenhospitalPagesQueBank.cenqualitycare.procedure_notes_and_post_procedure_plan_of_care_of_the_patients)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.procedure_notes_and_post_procedure_plan_of_care_of_the_patients?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+          </div>
+
+          <!-- <hr class="form-seprator" /> -->
+
+
+
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+
+
+          <!--Question start region end-->
+
+
+        </ng-template><br>
+      </ngb-panel>
+      <br>
+
+
+      <ngb-panel id="static-2">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Medication Administration
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-2']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-2']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+
+              <!-- <div class="d-flex accordionToggleIcon"><i class="mdi mdi-minus"></i></div> -->
+            </div>
+          </button>
+        </ng-template><br>
+        <ng-template ngbPanelContent>
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient.ques_selected_opt"
+                name="the_centre_to_meet_the_medication_needs_of_the_patient"
+                #the_centre_to_meet_the_medication_needs_of_the_patient="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="the_centre_to_meet_the_medication_needs_of_the_patient.invalid">
+              <div
+                *ngIf="cenqualitycareSubmitted && the_centre_to_meet_the_medication_needs_of_the_patient.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc16
+                  (change)="previewImage(doc16,$event.target.files,cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient!=null?cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="the_centre_to_meet_the_medication_needs_of_the_patient_doc"
+                  #the_centre_to_meet_the_medication_needs_of_the_patient_doc="ngModel" required
+                  [disabled]="cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient.ques_doc_url"
+                  required>
+                <div *ngIf="the_centre_to_meet_the_medication_needs_of_the_patient_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && the_centre_to_meet_the_medication_needs_of_the_patient_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','the_centre_to_meet_the_medication_needs_of_the_patient',cenhospitalPagesQueBank.cenqualitycare.the_centre_to_meet_the_medication_needs_of_the_patient)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.the_centre_to_meet_the_medication_needs_of_the_patient?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.sop_to_monitor_the_use_of_medication.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.sop_to_monitor_the_use_of_medication.ques_selected_opt"
+                name="sop_to_monitor_the_use_of_medication" #sop_to_monitor_the_use_of_medication="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="sop_to_monitor_the_use_of_medication.invalid">
+              <div *ngIf="cenqualitycareSubmitted && sop_to_monitor_the_use_of_medication.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.sop_to_monitor_the_use_of_medication.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.sop_to_monitor_the_use_of_medication,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc17
+                  (change)="previewImage(doc17,$event.target.files,cenqualitycare.sop_to_monitor_the_use_of_medication,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.sop_to_monitor_the_use_of_medication,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.sop_to_monitor_the_use_of_medication!=null?cenqualitycare.sop_to_monitor_the_use_of_medication.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="sop_to_monitor_the_use_of_medication_doc"
+                  #sop_to_monitor_the_use_of_medication_doc="ngModel" required
+                  [disabled]="cenqualitycare.sop_to_monitor_the_use_of_medication.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.sop_to_monitor_the_use_of_medication.ques_doc_url" required>
+                <div *ngIf="sop_to_monitor_the_use_of_medication_doc.invalid">
+                  <div *ngIf="cenqualitycareSubmitted && sop_to_monitor_the_use_of_medication_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_to_monitor_the_use_of_medication:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_to_monitor_the_use_of_medication:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','sop_to_monitor_the_use_of_medication',cenhospitalPagesQueBank.cenqualitycare.sop_to_monitor_the_use_of_medication)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.sop_to_monitor_the_use_of_medication?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.procurement_process_storage_labelling_and_management_of_medications.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.procurement_process_storage_labelling_and_management_of_medications.ques_selected_opt"
+                name="procurement_process_storage_labelling_and_management_of_medications"
+                #procurement_process_storage_labelling_and_management_of_medications="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="procurement_process_storage_labelling_and_management_of_medications.invalid">
+              <div
+                *ngIf="cenqualitycareSubmitted && procurement_process_storage_labelling_and_management_of_medications.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.procurement_process_storage_labelling_and_management_of_medications.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.procurement_process_storage_labelling_and_management_of_medications,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc18
+                  (change)="previewImage(doc18,$event.target.files,cenqualitycare.procurement_process_storage_labelling_and_management_of_medications,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.procurement_process_storage_labelling_and_management_of_medications,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.procurement_process_storage_labelling_and_management_of_medications!=null?cenqualitycare.procurement_process_storage_labelling_and_management_of_medications.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="procurement_process_storage_labelling_and_management_of_medications_doc"
+                  #procurement_process_storage_labelling_and_management_of_medications_doc="ngModel" required
+                  [disabled]="cenqualitycare.procurement_process_storage_labelling_and_management_of_medications.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.procurement_process_storage_labelling_and_management_of_medications.ques_doc_url"
+                  required>
+                <div *ngIf="procurement_process_storage_labelling_and_management_of_medications_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && procurement_process_storage_labelling_and_management_of_medications_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.procurement_process_storage_labelling_and_management_of_medications:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.procurement_process_storage_labelling_and_management_of_medications:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','procurement_process_storage_labelling_and_management_of_medications',cenhospitalPagesQueBank.cenqualitycare.procurement_process_storage_labelling_and_management_of_medications)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.procurement_process_storage_labelling_and_management_of_medications?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.policy_sop_to_guide_the_care_and_treatment.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.policy_sop_to_guide_the_care_and_treatment.ques_selected_opt"
+                name="policy_sop_to_guide_the_care_and_treatment" #policy_sop_to_guide_the_care_and_treatment="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="policy_sop_to_guide_the_care_and_treatment.invalid">
+              <div *ngIf="cenqualitycareSubmitted && policy_sop_to_guide_the_care_and_treatment.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.policy_sop_to_guide_the_care_and_treatment.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.policy_sop_to_guide_the_care_and_treatment,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc19
+                  (change)="previewImage(doc19,$event.target.files,cenqualitycare.policy_sop_to_guide_the_care_and_treatment,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.policy_sop_to_guide_the_care_and_treatment,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.policy_sop_to_guide_the_care_and_treatment!=null?cenqualitycare.policy_sop_to_guide_the_care_and_treatment.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="policy_sop_to_guide_the_care_and_treatment_doc"
+                  #policy_sop_to_guide_the_care_and_treatment_doc="ngModel" required
+                  [disabled]="cenqualitycare.policy_sop_to_guide_the_care_and_treatment.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.policy_sop_to_guide_the_care_and_treatment.ques_doc_url" required>
+                <div *ngIf="policy_sop_to_guide_the_care_and_treatment_doc.invalid">
+                  <div *ngIf="cenqualitycareSubmitted && policy_sop_to_guide_the_care_and_treatment_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.policy_sop_to_guide_the_care_and_treatment:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.policy_sop_to_guide_the_care_and_treatment:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','policy_sop_to_guide_the_care_and_treatment',cenhospitalPagesQueBank.cenqualitycare.policy_sop_to_guide_the_care_and_treatment)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.policy_sop_to_guide_the_care_and_treatment?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications.ques_selected_opt"
+                name="policies_and_procedures_for_the_safe_dispensing_of_medications"
+                #policies_and_procedures_for_the_safe_dispensing_of_medications="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="policies_and_procedures_for_the_safe_dispensing_of_medications.invalid">
+              <div
+                *ngIf="cenqualitycareSubmitted && policies_and_procedures_for_the_safe_dispensing_of_medications.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc20
+                  (change)="previewImage(doc20,$event.target.files,cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications!=null?cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="policies_and_procedures_for_the_safe_dispensing_of_medications_doc"
+                  #policies_and_procedures_for_the_safe_dispensing_of_medications_doc="ngModel" required
+                  [disabled]="cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications.ques_doc_url"
+                  required>
+                <div *ngIf="policies_and_procedures_for_the_safe_dispensing_of_medications_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && policies_and_procedures_for_the_safe_dispensing_of_medications_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','policies_and_procedures_for_the_safe_dispensing_of_medications',cenhospitalPagesQueBank.cenqualitycare.policies_and_procedures_for_the_safe_dispensing_of_medications)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.policies_and_procedures_for_the_safe_dispensing_of_medications?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa.ques_selected_opt"
+                name="centre_emphasize_specifically_on_storage_of_lasa"
+                #centre_emphasize_specifically_on_storage_of_lasa="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="centre_emphasize_specifically_on_storage_of_lasa.invalid">
+              <div *ngIf="cenqualitycareSubmitted && centre_emphasize_specifically_on_storage_of_lasa.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc21
+                  (change)="previewImage(doc21,$event.target.files,cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa!=null?cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="centre_emphasize_specifically_on_storage_of_lasa_doc"
+                  #centre_emphasize_specifically_on_storage_of_lasa_doc="ngModel" required
+                  [disabled]="cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa.ques_doc_url" required>
+                <div *ngIf="centre_emphasize_specifically_on_storage_of_lasa_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && centre_emphasize_specifically_on_storage_of_lasa_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','centre_emphasize_specifically_on_storage_of_lasa',cenhospitalPagesQueBank.cenqualitycare.centre_emphasize_specifically_on_storage_of_lasa)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.centre_emphasize_specifically_on_storage_of_lasa?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+          </div>
+
+          <hr class="form-seprator" />
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>7.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document.ques_selected_opt"
+                name="sop_to_analyse_the_adverse_medication_effects_and_document"
+                #sop_to_analyse_the_adverse_medication_effects_and_document="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="sop_to_analyse_the_adverse_medication_effects_and_document.invalid">
+              <div
+                *ngIf="cenqualitycareSubmitted && sop_to_analyse_the_adverse_medication_effects_and_document.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc22
+                  (change)="previewImage(doc22,$event.target.files,cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document,'ques_doc_url')">
+                  <!-- (click)="openUploadedDocsModal(cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document,'ques_doc_url')" -->
+                  <i
+                    [ngClass]="(cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document!=null?cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="sop_to_analyse_the_adverse_medication_effects_and_document_doc"
+                  #sop_to_analyse_the_adverse_medication_effects_and_document_doc="ngModel" required
+                  [disabled]="cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document.ques_doc_url"
+                  required>
+                <div *ngIf="sop_to_analyse_the_adverse_medication_effects_and_document_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && sop_to_analyse_the_adverse_medication_effects_and_document_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','sop_to_analyse_the_adverse_medication_effects_and_document',cenhospitalPagesQueBank.cenqualitycare.sop_to_analyse_the_adverse_medication_effects_and_document)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.sop_to_analyse_the_adverse_medication_effects_and_document?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>8.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.policy_to_report_analyse_and_implement_capa.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.policy_to_report_analyse_and_implement_capa.ques_selected_opt"
+                name="policy_to_report_analyse_and_implement_capa"
+                #policy_to_report_analyse_and_implement_capa="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="policy_to_report_analyse_and_implement_capa.invalid">
+              <div *ngIf="cenqualitycareSubmitted && policy_to_report_analyse_and_implement_capa.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset [hidden]="cenqualitycare.policy_to_report_analyse_and_implement_capa.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.policy_to_report_analyse_and_implement_capa,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc26
+                  (change)="previewImage(doc26,$event.target.files,cenqualitycare.policy_to_report_analyse_and_implement_capa,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.policy_to_report_analyse_and_implement_capa,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.policy_to_report_analyse_and_implement_capa!=null?cenqualitycare.policy_to_report_analyse_and_implement_capa.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="policy_to_report_analyse_and_implement_capa_doc"
+                  #policy_to_report_analyse_and_implement_capa_doc="ngModel" required
+                  [disabled]="cenqualitycare.policy_to_report_analyse_and_implement_capa.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.policy_to_report_analyse_and_implement_capa.ques_doc_url" required>
+                <div *ngIf="policy_to_report_analyse_and_implement_capa_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && policy_to_report_analyse_and_implement_capa_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.policy_to_report_analyse_and_implement_capa:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.policy_to_report_analyse_and_implement_capa:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','policy_to_report_analyse_and_implement_capa',cenhospitalPagesQueBank.cenqualitycare.policy_to_report_analyse_and_implement_capa)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.policy_to_report_analyse_and_implement_capa?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>9.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.the_timeframe_for_reporting_any_medication_error.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.the_timeframe_for_reporting_any_medication_error.ques_selected_opt"
+                name="the_timeframe_for_reporting_any_medication_error"
+                #the_timeframe_for_reporting_any_medication_error="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="the_timeframe_for_reporting_any_medication_error.invalid">
+              <div *ngIf="cenqualitycareSubmitted && the_timeframe_for_reporting_any_medication_error.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.the_timeframe_for_reporting_any_medication_error.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.the_timeframe_for_reporting_any_medication_error,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc27
+                  (change)="previewImage(doc27,$event.target.files,cenqualitycare.the_timeframe_for_reporting_any_medication_error,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.the_timeframe_for_reporting_any_medication_error,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.the_timeframe_for_reporting_any_medication_error!=null?cenqualitycare.the_timeframe_for_reporting_any_medication_error.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="the_timeframe_for_reporting_any_medication_error_doc"
+                  #the_timeframe_for_reporting_any_medication_error_doc="ngModel" required
+                  [disabled]="cenqualitycare.the_timeframe_for_reporting_any_medication_error.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.the_timeframe_for_reporting_any_medication_error.ques_doc_url" required>
+                <div *ngIf="the_timeframe_for_reporting_any_medication_error_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && the_timeframe_for_reporting_any_medication_error_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.the_timeframe_for_reporting_any_medication_error:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.the_timeframe_for_reporting_any_medication_error:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','the_timeframe_for_reporting_any_medication_error',cenhospitalPagesQueBank.cenqualitycare.the_timeframe_for_reporting_any_medication_error)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.the_timeframe_for_reporting_any_medication_error?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>10.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care.ques_selected_opt"
+                name="clinical_practice_or_evidence_based_medicine_for_the_patient_care"
+                #clinical_practice_or_evidence_based_medicine_for_the_patient_care="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="clinical_practice_or_evidence_based_medicine_for_the_patient_care.invalid">
+              <div
+                *ngIf="cenqualitycareSubmitted && clinical_practice_or_evidence_based_medicine_for_the_patient_care.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc28
+                  (change)="previewImage(doc28,$event.target.files,cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care!=null?cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="clinical_practice_or_evidence_based_medicine_for_the_patient_care_doc"
+                  #clinical_practice_or_evidence_based_medicine_for_the_patient_care_doc="ngModel" required
+                  [disabled]="cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care.ques_doc_url"
+                  required>
+                <div *ngIf="clinical_practice_or_evidence_based_medicine_for_the_patient_care_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && clinical_practice_or_evidence_based_medicine_for_the_patient_care_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','clinical_practice_or_evidence_based_medicine_for_the_patient_care',cenhospitalPagesQueBank.cenqualitycare.clinical_practice_or_evidence_based_medicine_for_the_patient_care)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.clinical_practice_or_evidence_based_medicine_for_the_patient_care?.nc_cycle_count:''}}
+              </button>
+            </div>
+
+
+          </div>
+
+          <!-- <hr class="form-seprator" /> -->
+          <!-- ----------------------------- -->
+
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+
+
+          <!--Question start region end-->
+
+
+        </ng-template><br>
+      </ngb-panel>
+      <br>
+
+      <ngb-panel id="static-3">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Quality Improvement and Patient Safety
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-3']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-3']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+
+              <!-- <div class="d-flex accordionToggleIcon"><i class="mdi mdi-minus"></i></div> -->
+            </div>
+          </button>
+
+        </ng-template><br>
+        <ng-template ngbPanelContent>
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care.ques_text}}
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care.ques_selected_opt"
+                name="sop_Policy_to_guide_the_basic_and_first_responder_emergency_care"
+                #sop_Policy_to_guide_the_basic_and_first_responder_emergency_care="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+
+            </div>
+            <div *ngIf="sop_Policy_to_guide_the_basic_and_first_responder_emergency_care.invalid">
+              <div
+                *ngIf="cenqualitycareSubmitted && sop_Policy_to_guide_the_basic_and_first_responder_emergency_care.errors.required"
+                class="text-danger">
+                Required
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+              <fieldset
+                [hidden]="cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc23
+                  (change)="previewImage(doc23,$event.target.files,cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care!=null?cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="sop_Policy_to_guide_the_basic_and_first_responder_emergency_care_doc"
+                  #sop_Policy_to_guide_the_basic_and_first_responder_emergency_care_doc="ngModel" required
+                  [disabled]="cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care.ques_selected_opt!=true"
+                  [(ngModel)]="cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care.ques_doc_url"
+                  required>
+                <div *ngIf="sop_Policy_to_guide_the_basic_and_first_responder_emergency_care_doc.invalid">
+                  <div
+                    *ngIf="cenqualitycareSubmitted && sop_Policy_to_guide_the_basic_and_first_responder_emergency_care_doc.errors.required"
+                    class="text-danger">
+                    Required
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('cenqualitycare','sop_Policy_to_guide_the_basic_and_first_responder_emergency_care',cenhospitalPagesQueBank.cenqualitycare.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.sop_Policy_to_guide_the_basic_and_first_responder_emergency_care?.nc_cycle_count:''}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.sop_policy_to_meet_patient_care_needs.ques_text}}
+            </div>
+          </div>
+
+</div>
+
+
+
+<div class="col-xs-12 col-md-2 col-xl-2">
+  <select class="form-control" required
+    [(ngModel)]="cenqualitycare.sop_policy_to_meet_patient_care_needs.ques_selected_opt"
+    name="sop_policy_to_meet_patient_care_needs" #sop_policy_to_meet_patient_care_needs="ngModel">
+    <option [ngValue]="null">Select</option>
+    <option [ngValue]="true">Yes</option>
+    <option [ngValue]="false">No</option>
+  </select>
+
+</div>
+<div *ngIf="sop_policy_to_meet_patient_care_needs.invalid">
+  <div *ngIf="cenqualitycareSubmitted && sop_policy_to_meet_patient_care_needs.errors.required" class="text-danger">
+    Required
+  </div>
+</div>
+<div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+  <fieldset [hidden]="cenqualitycare.sop_policy_to_meet_patient_care_needs.ques_selected_opt!=true">
+    <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+      (click)="openDocModel(cenqualitycare.sop_policy_to_meet_patient_care_needs,'ques_doc_url')">
+      <i class="bx bx-upload"></i>
+    </a>
+
+    <!-- <input hidden type="file" #doc24
+                  (change)="previewImage(doc24,$event.target.files,cenqualitycare.sop_policy_to_meet_patient_care_needs,'ques_doc_url')" /> -->
+
+
+    <a title="View Document" class="mt-4"
+      (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.sop_policy_to_meet_patient_care_needs,'ques_doc_url')">
+
+      <i
+        [ngClass]="(cenqualitycare.sop_policy_to_meet_patient_care_needs!=null?cenqualitycare.sop_policy_to_meet_patient_care_needs.ques_doc_url:'')|uploadbtnpipe"></i>
+    </a>
+    <input hidden type="text" name="sop_policy_to_meet_patient_care_needs_doc"
+      #sop_policy_to_meet_patient_care_needs_doc="ngModel" required
+      [disabled]="cenqualitycare.sop_policy_to_meet_patient_care_needs.ques_selected_opt!=true"
+      [(ngModel)]="cenqualitycare.sop_policy_to_meet_patient_care_needs.ques_doc_url" required>
+    <div *ngIf="sop_policy_to_meet_patient_care_needs_doc.invalid">
+      <div *ngIf="cenqualitycareSubmitted && sop_policy_to_meet_patient_care_needs_doc.errors.required"
+        class="text-danger">
+        Required
+      </div>
+    </div>
+
+
+
+  </fieldset>
+
+
+
+</div>
+<div class="col-sm-1 text-center">
+  <button type="button"
+    *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_policy_to_meet_patient_care_needs:'')|DaNcBtnHideShow: Stage_id"
+    [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.sop_policy_to_meet_patient_care_needs:'')|DaNcbtnColorPipe"
+    (click)="openNcModel('cenqualitycare','sop_policy_to_meet_patient_care_needs',cenhospitalPagesQueBank.cenqualitycare.sop_policy_to_meet_patient_care_needs)">NC
+    {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.sop_policy_to_meet_patient_care_needs?.nc_cycle_count:''}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.centre_have_documented_the_quality_management_programmes.ques_text}}
+</div>
+</div>
+
+</div>
+
+
+
+<div class="col-xs-12 col-md-2 col-xl-2">
+  <select class="form-control" required
+    [(ngModel)]="cenqualitycare.centre_have_documented_the_quality_management_programmes.ques_selected_opt"
+    name="centre_have_documented_the_quality_management_programmes"
+    #centre_have_documented_the_quality_management_programmes="ngModel">
+    <option [ngValue]="null">Select</option>
+    <option [ngValue]="true">Yes</option>
+    <option [ngValue]="false">No</option>
+  </select>
+
+</div>
+<div *ngIf="centre_have_documented_the_quality_management_programmes.invalid">
+  <div *ngIf="cenqualitycareSubmitted && centre_have_documented_the_quality_management_programmes.errors.required"
+    class="text-danger">
+    Required
+  </div>
+</div>
+<div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+  <fieldset [hidden]="cenqualitycare.centre_have_documented_the_quality_management_programmes.ques_selected_opt!=true">
+    <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+      (click)="openDocModel(cenqualitycare.centre_have_documented_the_quality_management_programmes,'ques_doc_url')">
+      <i class="bx bx-upload"></i>
+    </a>
+
+    <!-- <input hidden type="file" #doc25
+                  (change)="previewImage(doc25,$event.target.files,cenqualitycare.centre_have_documented_the_quality_management_programmes,'ques_doc_url')" /> -->
+
+
+    <a title="View Document" class="mt-4"
+      (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.centre_have_documented_the_quality_management_programmes,'ques_doc_url')">
+
+      <i
+        [ngClass]="(cenqualitycare.centre_have_documented_the_quality_management_programmes!=null?cenqualitycare.centre_have_documented_the_quality_management_programmes.ques_doc_url:'')|uploadbtnpipe"></i>
+    </a>
+    <input hidden type="text" name="centre_have_documented_the_quality_management_programmes_doc"
+      #centre_have_documented_the_quality_management_programmes_doc="ngModel" required
+      [disabled]="cenqualitycare.centre_have_documented_the_quality_management_programmes.ques_selected_opt!=true"
+      [(ngModel)]="cenqualitycare.centre_have_documented_the_quality_management_programmes.ques_doc_url" required>
+    <div *ngIf="centre_have_documented_the_quality_management_programmes_doc.invalid">
+      <div
+        *ngIf="cenqualitycareSubmitted && centre_have_documented_the_quality_management_programmes_doc.errors.required"
+        class="text-danger">
+        Required
+      </div>
+    </div>
+
+
+
+  </fieldset>
+
+
+
+</div>
+<div class="col-sm-1 text-center">
+  <button type="button"
+    *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.centre_have_documented_the_quality_management_programmes:'')|DaNcBtnHideShow: Stage_id"
+    [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.centre_have_documented_the_quality_management_programmes:'')|DaNcbtnColorPipe"
+    (click)="openNcModel('cenqualitycare','centre_have_documented_the_quality_management_programmes',cenhospitalPagesQueBank.cenqualitycare.centre_have_documented_the_quality_management_programmes)">NC
+    {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.centre_have_documented_the_quality_management_programmes?.nc_cycle_count:''}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.quality_programmes_are_done_at_least_once_a_year.ques_text}}
+</div>
+</div>
+
+</div>
+
+
+
+<div class="col-xs-12 col-md-2 col-xl-2">
+  <select class="form-control" required
+    [(ngModel)]="cenqualitycare.quality_programmes_are_done_at_least_once_a_year.ques_selected_opt"
+    name="quality_programmes_are_done_at_least_once_a_year" #quality_programmes_are_done_at_least_once_a_year="ngModel">
+    <option [ngValue]="null">Select</option>
+    <option [ngValue]="true">Yes</option>
+    <option [ngValue]="false">No</option>
+  </select>
+
+</div>
+<div *ngIf="quality_programmes_are_done_at_least_once_a_year.invalid">
+  <div *ngIf="cenqualitycareSubmitted && quality_programmes_are_done_at_least_once_a_year.errors.required"
+    class="text-danger">
+    Required
+  </div>
+</div>
+<div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+  <fieldset [hidden]="cenqualitycare.quality_programmes_are_done_at_least_once_a_year.ques_selected_opt!=true">
+    <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+      (click)="openDocModel(cenqualitycare.quality_programmes_are_done_at_least_once_a_year,'ques_doc_url')">
+      <i class="bx bx-upload"></i>
+    </a>
+    <!-- <input hidden type="file" #doc26
+                  (change)="previewImage(doc26,$event.target.files,cenqualitycare.quality_programmes_are_done_at_least_once_a_year,'ques_doc_url')" /> -->
+
+
+    <a title="View Document" class="mt-4"
+      (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.quality_programmes_are_done_at_least_once_a_year,'ques_doc_url')">
+
+      <i
+        [ngClass]="(cenqualitycare.quality_programmes_are_done_at_least_once_a_year!=null?cenqualitycare.quality_programmes_are_done_at_least_once_a_year.ques_doc_url:'')|uploadbtnpipe"></i>
+    </a>
+    <input hidden type="text" name="quality_programmes_are_done_at_least_once_a_year_doc"
+      #quality_programmes_are_done_at_least_once_a_year_doc="ngModel" required
+      [disabled]="cenqualitycare.quality_programmes_are_done_at_least_once_a_year.ques_selected_opt!=true"
+      [(ngModel)]="cenqualitycare.quality_programmes_are_done_at_least_once_a_year.ques_doc_url" required>
+    <div *ngIf="quality_programmes_are_done_at_least_once_a_year_doc.invalid">
+      <div *ngIf="cenqualitycareSubmitted && quality_programmes_are_done_at_least_once_a_year_doc.errors.required"
+        class="text-danger">
+        Required
+      </div>
+    </div>
+
+
+
+  </fieldset>
+
+
+
+</div>
+<div class="col-sm-1 text-center">
+  <button type="button"
+    *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.quality_programmes_are_done_at_least_once_a_year:'')|DaNcBtnHideShow: Stage_id"
+    [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.quality_programmes_are_done_at_least_once_a_year:'')|DaNcbtnColorPipe"
+    (click)="openNcModel('cenqualitycare','quality_programmes_are_done_at_least_once_a_year',cenhospitalPagesQueBank.cenqualitycare.quality_programmes_are_done_at_least_once_a_year)">NC
+    {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.quality_programmes_are_done_at_least_once_a_year?.nc_cycle_count:''}
+              </button>
+            </div>
+
+
+          </div>
+
+          <hr class="form-seprator" />
+
+          <!--Question start region end-->
+
+
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{cenhospitalPagesQueBank.cenqualitycare.centre_conduct_periodic_audit_programmes.ques_text}}
+</div>
+</div>
+
+</div>
+
+
+
+<div class="col-xs-12 col-md-2 col-xl-2">
+  <select class="form-control" required
+    [(ngModel)]="cenqualitycare.centre_conduct_periodic_audit_programmes.ques_selected_opt"
+    name="centre_conduct_periodic_audit_programmes" #centre_conduct_periodic_audit_programmes="ngModel">
+    <option [ngValue]="null">Select</option>
+    <option [ngValue]="true">Yes</option>
+    <option [ngValue]="false">No</option>
+  </select>
+
+</div>
+<div *ngIf="centre_conduct_periodic_audit_programmes.invalid">
+  <div *ngIf="cenqualitycareSubmitted && centre_conduct_periodic_audit_programmes.errors.required" class="text-danger">
+    Required
+  </div>
+</div>
+<div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+  <fieldset [hidden]="cenqualitycare.centre_conduct_periodic_audit_programmes.ques_selected_opt!=true">
+    <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+      (click)="openDocModel(cenqualitycare.centre_conduct_periodic_audit_programmes,'ques_doc_url')">
+      <i class="bx bx-upload"></i>
+    </a>
+
+    <!-- <input hidden type="file" #doc27
+                  (change)="previewImage(doc27,$event.target.files,cenqualitycare.centre_conduct_periodic_audit_programmes,'ques_doc_url')" /> -->
+
+
+    <a title="View Document" class="mt-4"
+      (click)="openUploadedDocsModal(uploadViewModel,cenqualitycare.centre_conduct_periodic_audit_programmes,'ques_doc_url')">
+
+      <i
+        [ngClass]="(cenqualitycare.centre_conduct_periodic_audit_programmes!=null?cenqualitycare.centre_conduct_periodic_audit_programmes.ques_doc_url:'')|uploadbtnpipe"></i>
+    </a>
+    <input hidden type="text" name="centre_conduct_periodic_audit_programmes_doc"
+      #centre_conduct_periodic_audit_programmes_doc="ngModel" required
+      [disabled]="cenqualitycare.centre_conduct_periodic_audit_programmes.ques_selected_opt!=true"
+      [(ngModel)]="cenqualitycare.centre_conduct_periodic_audit_programmes.ques_doc_url" required>
+    <div *ngIf="centre_conduct_periodic_audit_programmes_doc.invalid">
+      <div *ngIf="cenqualitycareSubmitted && centre_conduct_periodic_audit_programmes_doc.errors.required"
+        class="text-danger">
+        Required
+      </div>
+    </div>
+
+
+
+  </fieldset>
+
+
+
+</div>
+<div class="col-sm-1 text-center">
+  <button type="button"
+    *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.centre_conduct_periodic_audit_programmes:'')|DaNcBtnHideShow: Stage_id"
+    [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare.centre_conduct_periodic_audit_programmes:'')|DaNcbtnColorPipe"
+    (click)="openNcModel('cenqualitycare','centre_conduct_periodic_audit_programmes',cenhospitalPagesQueBank.cenqualitycare.centre_conduct_periodic_audit_programmes)">NC
+    {{ncFormTabInfo!=null?ncFormTabInfo.cenqualitycare?.centre_conduct_periodic_audit_programmes?.nc_cycle_count:''}
+              </button>
+            </div>
+
+          </div>
+
+          <hr class="form-seprator" />
+
+
+          <!--Question start region end-->
+
+          <!--Question  start region-->
+
+
+          <!--Question start region end-->
+
+
+        </ng-template><br>
+      </ngb-panel>
+      <br>
+
+
+
+
+    </ngb-accordion>
+
+  </form>
+
+  <!-- image view model -->
+  <ng-template #uploadViewModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Uploaded doc(s)</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- ------ -->
+      <div *ngIf="!(ary_uploadedDocs===null || ary_uploadedDocs===undefined)" class="table-responsive">
+
+
+        <table class="table table-bordered table-striped customTable">
+          <thead>
+            <tr>
+              <th class="text-center"> Name </th>
+              <th class="text-center">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ary_uploadedDocs">
+              <td class="text-center">{{item.fn}}</td>
+    <td class="text-center">
+
+      <a class="text-success mouse-pointer" title="Download file" (click)="downloadUploadFile(item)">
+        <i class="fa fa-download" aria-hidden="true"></i>
+      </a>
+
+      <a style="margin-left: 10px;" class="text-danger mouse-pointer" title="Delete file"
+        (click)="deleteUploadFile(item)" *ngIf="this.currUsrRole ==3 && Stage_id ==20">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </a>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+</div>
+
+
+</div>
+
+</ng-template>
+<!-- image view model -->
+
+</div>
+
+<ng-template #documentuploadModel role="document" let-modal>
+
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Upload Document</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <!-- <div class="row mt-2">
+      <ngb-progressbar *ngIf="showUploadMsg!=null" [value]="this.progress" type="progress-bar" showValue="true"
+        style="width: 100%;">
+      </ngb-progressbar>
+    </div> -->
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <h5 style="margin-left: 10px;"><strong>Document</strong></h5>
+
+    </div>
+
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <input style="margin-left: 10px;" type="file" #myFileInput (change)="handleFileInput($event.target.files)" />
+
+    </div>
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <label style="margin-left: 10px;"><b>Note: </b>The following formats are accepted: PDF, JPG, JPEG, PNG. The
+        maximum file size allowed in 20 MB.</label>
+
+    </div>
+    <div class="row">
+      <br>
+    </div>
+    <div class="row mt-2">
+      <!--  -->
+      <div class="alert alert-success  fade show" style="width: 100%;" *ngIf="showUploadMsg==true">
+
+        The file has been successfully uploaded
+      </div>
+
+      <!-- <ngb-progressbar *ngIf="showUploadMsg==true" type="warning" [value]="100" height="40px"
+        style="width: 100%; background-color:#caeeda !important; ">
+        The file has been successfully
+        uploaded </ngb-progressbar> -->
+
+      <!-- <div class="card" style="width: 100%;  margin-left: 10px;margin-right: 10px;"> -->
+      <!-- <div class="card-body" *ngIf="showUploadMsg==true"
+        style="width: 100%;height: 50px; margin-left: 10px;margin-right: 10px; background-color:#ddf4e7 !important;text-align: justify; ">
+        The file has been successfully uploaded
+      </div> -->
+      <!-- </div> -->
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="Upload2(myFileInput)">Upload</button>
+  </div>
+</ng-template>

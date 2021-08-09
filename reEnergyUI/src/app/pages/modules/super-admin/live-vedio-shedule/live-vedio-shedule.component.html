@@ -1,0 +1,182 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <ul ngbNav #customNav="ngbNav" class="nav-tabs nav-tabs-custom" [destroyOnHide]="false"
+                            role="tablist">
+                            <li [ngbNavItem]="1">
+                                <a ngbNavLink class="border-left-0">
+                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                    <span class="d-none d-sm-block" style="font-size: 13px">
+                                        Planning
+
+                                    </span>
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="planning"></ng-template>
+                                </ng-template>
+                            </li>
+                            <li [ngbNavItem]="2">
+                                <a ngbNavLink class="border-left-0">
+                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                    <span class="d-none d-sm-block" style="font-size: 13px">
+                                        Completed
+
+                                    </span>
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="complete"></ng-template>
+                                </ng-template>
+                            </li>
+                        </ul>
+                        <div class="p-3" [ngbNavOutlet]="customNav"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #complete></ng-template>
+<ng-template #planning>
+    <div class="main-content">
+        <div class="container-fluid">
+            <button type="button" class="btn btn-primary float-right waves-effect mb-3"
+                (click)="createSchedule(addScheduleModel)">
+                <i class="bx bx-plus mr-1"></i>Create Schedule</button>
+            <div class="table-responsive">
+                <table class="table table-centered table-bordered hospitalTrackGrid">
+                    <thead class="thead-light">
+
+                        <tr>
+
+                            <th class="text-center">Sr.No.</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Number of Sessions</th>
+                            <th class="text-center">Created By</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of dummy_data; let i=index">
+
+                            <td class="text-center">{{i+this.skip+1}}</td>
+                            <td class="text-center">{{data.date}}</td>
+                            <td class="text-center">{{data.no_servces}}</td>
+                            <td class="text-center">{{data.craetedby}}</td>
+                            <td class="text-center">{{data.status}}</td>
+
+
+
+                            <td class="text-center">
+
+                                <button type="button" class="button-icon">
+                                    <i style="color: blue; font-weight: bolder; font-size: larger;" class="bx bx-edit"
+                                        title="Edit Details"></i>
+                                </button>
+
+                                <button type="button" class="button-icon ml-2 mr-2">
+                                    <i style="color: #00aff0; font-weight: bolder; font-size: larger;"
+                                        class="bx bx-food-menu" title="Un-Published"></i>
+                                </button>
+
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <!-- <span>Showing {{minCount}} to {{maxCount}} of {{totalCount}} entries
+                    </span> -->
+                </div>
+
+                <tfoot style="float: right;">
+                    <!-- <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls> -->
+                </tfoot>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<form #scheduleForm="ngForm" novalidate>
+    <ng-template #addScheduleModel let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title mt-0">{{UserModalCaption}}</h5>
+
+            <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-3" style="font-weight: 500;">Create video streaming for date</div>
+                <div class="col-md-3">
+                    <div class="input-group clockpicker">
+                        <input required ngbDatepicker class="form-control" readonly placeholder="DD/MM/YYYY"
+                            #d8="ngbDatepicker" [maxDate]="maxDate" [minDate]="{year: 1950, month:1, day: 1}" />
+                        <div class="input-group-append" (click)="d8.toggle()">
+                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <div class="table-responsive">
+                        <table class="table table-centered table-bordered hospitalTrackGrid">
+                            <thead class="thead-light">
+                                <tr class="text-center">
+                                    <th>Category</th>
+                                    <th style="width: 20%;">Duration</th>
+                                    <th>Slot1</th>
+                                    <th>Slot2</th>
+                                    <th>Slot3</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <select class="form-control" required>
+                                            <option [ngValue]="null">Select</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="text" class="form-control" required>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="time" class="form-control" required>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="time" class="form-control" required>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="time" class="form-control" required>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="button-icon">
+                                            <i style="color: #df6b4d; font-weight: bolder; font-size: larger;" class="bx bx-trash-alt"
+                                              title="Delete"></i>
+                                          </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-2">
+                    <button type="button" class="btn btn-success waves-effect">
+                        <i class="bx bx-plus mr-1"></i>Add
+                      </button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
+            <button type="button" class="btn btn-info" [disabled]="!scheduleForm.form.valid"
+              >Save</button>
+      
+          </div>
+    </ng-template>
+</form>

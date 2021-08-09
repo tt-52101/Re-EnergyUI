@@ -1,0 +1,216 @@
+
+/*----------------------------
+     Grid-Ayush
+  -----------------------------*/
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+  
+  .grid-ayush {
+    border: 1px solid #efefef !important;
+}
+// .bg-fill{
+//     background: #d9eafe;
+// }
+// .grid-ayush td, .grid-ayush th {
+//     padding: .5rem;
+//     vertical-align: top;
+//     border-top: 1px solid #bcdbf7;
+// }
+
+// .grid-ayush tbody tr:nth-of-type(odd) {
+//     background-color: #f7f7f7;
+// }
+
+// .grid-ayush thead th {
+//     vertical-align: bottom;
+//     border-bottom: 1px solid #bcdbf7;
+// 	background: #d9eafe;
+// }
+.grid-ayush td, .grid-ayush th {
+    border: 1px solid #efefef;
+    padding: 7px 12px;
+
+}  
+
+.history_grid td, .history_grid th {
+    padding: 7px 12px;
+
+}  
+::ng-deep aw-wizard-navigation-bar ul.steps-indicator li a .label {
+  display: inline-block;
+  padding-top: 2px !important;
+  text-align: center;
+  font-size: 13px !important;
+  text-transform: capitalize !important;
+  font-weight: 500 !important;
+  color: #8c8a94;
+}
+::ng-deep aw-wizard-navigation-bar ul.steps-indicator li.done a .label,
+::ng-deep aw-wizard-navigation-bar ul.steps-indicator li.current a .label{
+  color: #495057;
+}
+.bg-fill{
+  color: #495057;
+    font-weight: 600;
+}
+::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li .step-indicator {
+  top: -45px !important;
+  left: calc(60% - 30px) !important;
+  position: absolute;
+  width: 40px !important;
+  height: 40px !important;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 39px !important;
+  transition: 0.25s;
+  border-radius: 100%;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #E6E6E6;
+  color: #E6E6E6;
+}
+::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li:not(:last-child):before {
+  background-color: #E6E6E6;
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: calc(100% - 40px) !important;
+  top: -25px;
+  left: calc(50% + 24px);
+}
+::ng-deep aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator {
+  padding: 44px 0 0px 0 !important;
+}
+
+
+
+
+
+.scroll-Hbody{
+  width: 100%;
+    height: 187px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/*-------------------------------------------------
+          Custom Progressbar-- Start
+--------------------------------------------------*/
+.stepper-custom {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0;
+}
+.stepper-custom li {
+  list-style-type: none;
+    width: 104px;
+    float: left;
+    font-size: 13px;
+    position: relative;
+    text-align: center;
+    color: #4e5a6c;
+    z-index: 11;
+}
+.stepper-custom li:before {
+  width: 34px;
+  height: 34px;
+  // content: counter(step);
+  // counter-increment: step;
+  line-height: 34px;
+  /* border: 2px solid #7d7d7d; */
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+}
+.stepper-custom li:after {
+  width: 100%;
+    height: 2px;
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: -30%;
+    border: 1px solid #ededed;
+    z-index: -1;
+}
+.stepper-custom li:first-child:after {
+  content: none;
+}
+
+.customIconSteppers{
+  position: absolute;
+    top: 12px;
+    left: 45px;
+    color: #fff;
+}
+
+/*-------------------------------------------
+                Default
+---------------------------------------------*/
+.stepper-custom li.currentStageDafault:before{
+  background: #989898;
+  color: #fff;
+  content: "";
+}
+
+/*-------------------------------------------
+                Accepted
+---------------------------------------------*/
+.stepper-custom li.currentstageaccepted:before{
+  background: #009688;
+  color: #fff;
+  content: "";
+  font-weight: 600;
+}
+
+
+/*-------------------------------------------
+                In Progress
+---------------------------------------------*/
+.stepper-custom li.currentstageinprogress:before{
+  background: #556ee6;
+  color: #fff;
+  content: "";
+}
+.IconInprogress{
+    position: absolute;
+    top: 6px;
+    left: 63px;
+    background: #556ee6;
+    color: #fff;
+  }
+  .left-44{
+    margin-left: 2px !important;
+  }
+/*-------------------------------------------
+                Rejected
+---------------------------------------------*/
+.stepper-custom li.currentstagerejected:before{
+  background: #f46968;
+  color: #fff;
+  content: "";
+  font-weight: 600;
+
+}
+
+
+/*-------------------------------------------------
+           Custom Progressbar -- End
+--------------------------------------------------*/

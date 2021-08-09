@@ -1,0 +1,114 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Certification Committee </h4>
+        <div class="row">
+          <div class="col-xs-12 col-md-2 col-xl-2">
+            <select class="form-control" name="showEntitity" [(ngModel)]="FilterRow.limit" (change)="showEnteries()">
+              <option [ngValue]="10">Show Entries</option>
+              <option *ngFor="let data of enties" [ngValue]="data">{{data}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-4 col-xl-2">
+            <input type="text" class="form-control" (change)="getHospitalList_Allocation()"
+              [(ngModel)]="FilterRow.SearchTerms" placeholder="Search" name="searchEntitity">
+          </div>
+          <div class="col-xs-12 col-md-2 col-xl-2">
+            <select class="form-control" name="searchState" (change)="getHospitalList_Allocation()"
+              [(ngModel)]="FilterRow.SearchState">
+              <option [ngValue]="0">Select State</option>
+              <option *ngFor="let data of stateDropdown" [ngValue]="data.value">{{data.text}}</option>
+
+
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-2 col-xl-2">
+            <select class="form-control" name="searchtype" (change)="getHospitalList_Allocation()"
+              [(ngModel)]="FilterRow.SearchType">
+              <option [ngValue]="null">Select Type</option>
+              <option value="centre">Centre</option>
+              <option value="hospital">Hospital</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-2 col-xl-2">
+            <select class="form-control" name="searchStage" [(ngModel)]="FilterRow.SearchStage"
+              (change)="getHospitalList_Allocation()">
+              <option [ngValue]="0">Select Stage</option>
+              <option *ngFor="let data of stageDropdown" [ngValue]="data.value">{{data.text}}</option>
+
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-1 col-xl-2">
+            <button class="btn btn-danger float-right btn-rounded waves-effect" (click)="searchReset()"><i
+                class="bx bx-reset mr-1"></i>Reset</button>
+          </div>
+
+
+        </div>
+
+
+
+        <div class="table-responsive mt-3">
+          <table class="table table-centered table-bordered hospitalTrackGrid">
+            <thead class="thead-light">
+              <tr>
+
+                <th class="text-center" style="width: 5%;">#</th>
+                <th class="text-center">Reference ID</th>
+                <th>Organisation Name</th>
+                <th class="text-center">State</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Application No</th>
+                <th class="text-center">Committee Date</th>
+                <th class="text-center">Stage</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let data of hospitalList.rows |paginate: { itemsPerPage: FilterRow.limit, currentPage: hospitalList.current, totalItems: hospitalList.total };let i=index">
+                <td class="text-center" style="width: 5%;">{{i + this.skip + 1}}</td>
+                <td class="text-center">{{data.reference_id}}</td>
+                <td>{{data.org_name}}</td>
+                <td class="text-center">{{data.state}}</td>
+                <td class="text-center">{{data.type}}</td>
+                <td class="text-center">{{data.application_no}}</td>
+                <td class="text-center">{{data.committeedate|date: 'dd-MMM-yyyy'}}</td>
+                <!-- <td class="text-center">{{data.cometemember}}</td> -->
+                <td class="text-center">{{data.stage}}</td>
+
+                <td class="text-center">
+
+                  <button type="button" class="button-icon" *ngIf="data.stage_id >= 200 " ngbTooltip="View Assessment"
+                    placement="top" (click)="redirectToAssessment(data)">
+                    <i style="color: blue; font-weight: bolder; font-size: larger;" class="bx bx-data text-primary"></i>
+                  </button>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+
+
+          <div>
+            <span>Showing {{minCount}} to {{maxCount}} of {{totalCount}} entries
+            </span>
+          </div>
+
+          <tfoot style="float: right;">
+
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+          </tfoot>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>

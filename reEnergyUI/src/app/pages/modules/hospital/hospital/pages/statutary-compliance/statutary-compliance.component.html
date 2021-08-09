@@ -1,0 +1,1327 @@
+<div class="p-0">
+  <form #statutaryform="ngForm">
+    <!--Question  start region-->
+    <!-- ques 1 -->
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>1.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.statutory_compliance.hospital_adheres_with_the_statutory_requirements.ques_text}}
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-xs-12 col-md-8 col-xl-8">
+        <div class="frm-question">
+          <span class="quest-count"><b>1.</b></span>
+          <div class="question-desc">
+            <label>{{hospitalPagesQueBank.statutory_compliance.hospital_adheres_with_the_statutory_requirements.ques_text}}</label>
+          </div>
+        </div>
+      
+
+
+
+      </div> -->
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="statutory_compliance.hospital_adheres_with_the_statutory_requirements.ques_selected_opt"
+          name="hospital_adheres_with_the_statutory_requirements"
+          #hospital_adheres_with_the_statutory_requirements="ngModel">
+          <option [ngValue]=null>Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="hospital_adheres_with_the_statutory_requirements.invalid">
+          <div *ngIf="statutaryformSubmitted && hospital_adheres_with_the_statutory_requirements.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1">
+
+        <fieldset class="text-right"
+          [hidden]="statutory_compliance.hospital_adheres_with_the_statutory_requirements.ques_selected_opt!=true">
+
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(statutory_compliance.hospital_adheres_with_the_statutory_requirements,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc1
+            (change)="previewImage(doc1,$event.target.files,statutory_compliance.hospital_adheres_with_the_statutory_requirements,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,statutory_compliance.hospital_adheres_with_the_statutory_requirements,'ques_doc_url')">
+
+            <i
+              [ngClass]="(statutory_compliance.hospital_adheres_with_the_statutory_requirements!=null?statutory_compliance.hospital_adheres_with_the_statutory_requirements.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="hospital_adheres_with_the_statutory_requirements_doc"
+            #hospital_adheres_with_the_statutory_requirements_doc="ngModel" required
+            [disabled]="statutory_compliance.hospital_adheres_with_the_statutory_requirements.ques_selected_opt!=true"
+            [(ngModel)]="statutory_compliance.hospital_adheres_with_the_statutory_requirements.ques_doc_url" required>
+          <div *ngIf="hospital_adheres_with_the_statutory_requirements_doc.invalid">
+            <div *ngIf="statutaryformSubmitted && hospital_adheres_with_the_statutory_requirements_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.hospital_adheres_with_the_statutory_requirements:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.hospital_adheres_with_the_statutory_requirements:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('statutory_compliance','hospital_adheres_with_the_statutory_requirements',hospitalPagesQueBank.statutory_compliance.hospital_adheres_with_the_statutory_requirements)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance?.hospital_adheres_with_the_statutory_requirements?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+    </div>
+    <!-- ques 1 end-->
+
+    <hr class="form-seprator" />
+    <!-- ques 2 -->
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>2.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity.ques_text}}
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-xs-12 col-md-8 col-xl-8">
+        <div class="frm-question">
+          <span class="quest-count"><b>2.</b></span>
+          <div class="question-desc">
+            <label>
+              {{hospitalPagesQueBank.statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity.ques_text}}</label>
+          </div>
+        </div>
+     
+      </div> -->
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity.ques_selected_opt"
+          name="conducts_its_functioning_as_a_duly_permitted_legal_entity"
+          #conducts_its_functioning_as_a_duly_permitted_legal_entity="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="conducts_its_functioning_as_a_duly_permitted_legal_entity.invalid">
+          <div
+            *ngIf="statutaryformSubmitted && conducts_its_functioning_as_a_duly_permitted_legal_entity.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1">
+
+        <fieldset class="text-right"
+          [hidden]="statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity.ques_selected_opt!=true">
+
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+          <!-- 
+          <input hidden type="file" #doc2
+            (change)="previewImage(doc2,$event.target.files,statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity,'ques_doc_url')">
+
+            <i
+              [ngClass]="(statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity!=null?statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="conducts_its_functioning_as_a_duly_permitted_legal_entity_doc"
+            #conducts_its_functioning_as_a_duly_permitted_legal_entity_doc="ngModel" required
+            [disabled]="statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity.ques_selected_opt!=true"
+            [(ngModel)]="statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity.ques_doc_url"
+            required>
+          <div *ngIf="conducts_its_functioning_as_a_duly_permitted_legal_entity_doc.invalid">
+            <div
+              *ngIf="statutaryformSubmitted && conducts_its_functioning_as_a_duly_permitted_legal_entity_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('statutory_compliance','conducts_its_functioning_as_a_duly_permitted_legal_entity',hospitalPagesQueBank.statutory_compliance.conducts_its_functioning_as_a_duly_permitted_legal_entity)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance?.conducts_its_functioning_as_a_duly_permitted_legal_entity?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+    </div>
+    <!-- ques 2 end-->
+
+    <hr class="form-seprator" />
+
+    <!-- ques 3 -->
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>3.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.statutory_compliance.regularly_updates_licenses_registrations_certifications.ques_text}}
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-xs-12 col-md-8 col-xl-8">
+        <div class="frm-question">
+          <span class="quest-count"><b>3.</b></span>
+          <div class="question-desc">
+            <label>{{hospitalPagesQueBank.statutory_compliance.regularly_updates_licenses_registrations_certifications.ques_text}}</label>
+          </div>
+        </div>
+
+      </div> -->
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="statutory_compliance.regularly_updates_licenses_registrations_certifications.ques_selected_opt"
+          name="regularly_updates_licenses_registrations_certifications"
+          #regularly_updates_licenses_registrations_certifications="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="regularly_updates_licenses_registrations_certifications.invalid">
+          <div *ngIf="statutaryformSubmitted &&
+                         regularly_updates_licenses_registrations_certifications.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-1 col-xl-1"></div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.regularly_updates_licenses_registrations_certifications:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.regularly_updates_licenses_registrations_certifications:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('statutory_compliance','regularly_updates_licenses_registrations_certifications',hospitalPagesQueBank.statutory_compliance.regularly_updates_licenses_registrations_certifications)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance?.regularly_updates_licenses_registrations_certifications?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+
+    </div>
+
+
+    <!-- ques 3 end-->
+
+    <!-- <hr class="form-seprator" /> -->
+
+    <!-- ques 4 -->
+    <!--Question Removed-->
+    <!-- <div class="row">
+            <div class="col-xs-12 col-md-8 col-xl-8">
+              <div class="frm-question">
+                <span class="quest-count"><b>4.</b></span>
+                <div class="question-desc">
+                  <label>Registration License</label>
+                </div>
+                </div>
+              
+            </div>
+
+            <div class="col-xs-12 col-md-4 col-xl-4">
+              
+            </div>
+
+
+          </div>
+
+          <div class="row" *ngFor="let tab of this.statutory_compliance.registration_license_list; let i=index;">
+          
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="row">
+              <div  class="col-xs-12 col-md-2 col-xl-2">
+                <div class="form-group  mb-3">
+                  <label for="example-text-input"> Agency Name</label>
+                 
+
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-4 col-xl-4">
+                <select class="form-control" [(ngModel)]="tab.agency_name" name="agency_name{{i}}"
+                id="agency_name{{i}}" #agency_name="ngModel" required>
+                <option [ngValue]="null">Select</option>
+                <option value="Shops & Establishment Act">Shops & Establishment Act</option>
+                <option value="Clinical Establishment Act">Clinical Establishment Act</option>
+                <option value="State or Local Statutory">State or Local Statutory</option>
+                <option value="Other">Other</option>
+              </select>
+              <div *ngIf="agency_name.invalid">
+                <div *ngIf="statutaryformSubmitted && agency_name.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+              </div>
+            </div>  
+        
+            
+              <div *ngIf="tab.agency_name!=null && tab.agency_name!='null'" class="databox">
+                    
+                <div class="row">
+
+                  <div class="col-xs-12 col-md-6 col-xl-6" *ngIf="tab.agency_name=='Other'">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Others</label>
+                      <input class="form-control" type="text" id="others{{i}}" name="others{{i}}"
+                        [(ngModel)]="tab.others" #others="ngModel" required>
+                      <div *ngIf="others.invalid">
+                        <div *ngIf="statutaryformSubmitted && others.errors.required" class="text-danger">
+                          Required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                 
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Status</label>
+
+
+                      <select class="form-control" [(ngModel)]="tab.status" name="status{{i}}" id="status{{i}}"
+                        #status="ngModel" required>
+                        <option value=null>Select</option>
+                        <option value="Valid">Valid</option>
+                        <option value="Expired">Expired</option>
+                      </select>
+                      <div *ngIf="status.invalid">
+                        <div *ngIf="statutaryformSubmitted && status.errors.required" class="text-danger">
+                          Required
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                 
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">License Number</label>
+                      <input class="form-control" type="text" id="license_number{{i}}" name="license_number{{i}}"
+                        [(ngModel)]="tab.license_number" #license_number="ngModel" required>
+
+                      <div *ngIf="license_number.invalid">
+                        <div *ngIf="statutaryformSubmitted && license_number.errors.required" class="text-danger">
+                          Required
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Valid From</label>
+                      <input class="form-control" type="date" id="valid_from{{i}}" name="valid_from{{i}}"
+                        [(ngModel)]="tab.valid_from" #valid_from="ngModel" required>
+
+                      <div *ngIf="valid_from.invalid">
+                        <div *ngIf="statutaryformSubmitted && valid_from.errors.required" class="text-danger">
+                          Required
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Valid Till</label>
+                      <input class="form-control" type="date" id="valid_till{{i}}" name="valid_till{{i}}"
+                        [(ngModel)]="tab.valid_till" #valid_till="ngModel" required>
+                      <div *ngIf="valid_till.invalid">
+                        <div *ngIf="statutaryformSubmitted && valid_till.errors.required" class="text-danger">
+                          Required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Upload Document</label>
+                      <fieldset class="form-control">
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc17.click()">
+                         <i class="bx bx-upload"></i>
+                        </a>
+                        <input hidden type="file" #doc17
+                          (change)="previewImage($event.target.files,tab,'license_url')" />
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,tab,'license_url')">
+                          <i [ngClass]="(tab!=null?tab.license_url:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="license_url" #license_url="ngModel"
+                          [(ngModel)]="tab.license_url">
+                        
+                      </fieldset>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-md-6 col-xl-6" *ngIf="tab.status=='Expired'">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Application number of renewal application</label>
+                      <input class="form-control" type="text" id="application_number_renewal{{i}}"
+                        name="application_number_renewal{{i}}" [(ngModel)]="tab.application_number_renewal"
+                        #application_number_renewal="ngModel" required />
+                      <div *ngIf="application_number_renewal.invalid">
+                        <div *ngIf="statutaryformSubmitted && application_number_renewal.errors.required"
+                          class="text-danger">
+                          Required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              
+                
+
+                
+               
+                <div class="text-right mt-2">
+                  <button *ngIf="statutory_compliance.registration_license_list.length>1" class="btn btn-danger" (click)="removeRegistrationLicense(tab)">Delete</button>
+                </div>
+
+              </div>
+            
+          </div>
+          </div>
+
+         
+          <div class="row" *ngIf="this.statutory_compliance.registration_license_list.length>0">
+            <div class="col-xs-12 col-md-12 col-xl-12">
+             
+              <ul ngbNav #customNavv="ngbNav" [(activeId)]="registeration_lic_active_tab" [destroyOnHide]="false"
+                class=" nav-tabs nav-tabs-custom nav-justified">
+                <li *ngFor="let tab of this.statutory_compliance.registration_license_list; let i=index;"
+                  [ngbNavItem]="i">
+                  <a ngbNavLink>
+                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                    <span class="d-none d-sm-block"> License {{i+1}}</span>
+                  </a>
+                  <ng-template ngbNavContent>
+
+                    <div class="card-body">
+                    
+                      <div class="row">
+
+                     
+
+                       
+                        <div class="col-xs-12 col-md-6 col-xl-6">
+                          <div class="form-group  mb-3">
+                            <label for="example-text-input">Status</label>
+
+
+                            <select class="form-control" [(ngModel)]="tab.status" name="status{{i}}" id="status{{i}}"
+                              #status="ngModel" required>
+                              <option value=null>Select</option>
+                              <option value="Valid">Valid</option>
+                              <option value="Expired">Expired</option>
+                            </select>
+                            <div *ngIf="status.invalid">
+                              <div *ngIf="statutaryformSubmitted && status.errors.required" class="text-danger">
+                                Required
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+                        
+
+
+
+                      
+                      </div>
+                     
+
+                      
+                      <div class="row">
+
+                        <div class="col-xs-12 col-md-6 col-xl-6">
+                          <div class="form-group  mb-3">
+                            <label for="example-text-input">License Number</label>
+                            <input class="form-control" type="text" id="license_number{{i}}" name="license_number{{i}}"
+                              [(ngModel)]="tab.license_number" #license_number="ngModel" required>
+
+                            <div *ngIf="license_number.invalid">
+                              <div *ngIf="statutaryformSubmitted && license_number.errors.required" class="text-danger">
+                                Required
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+
+
+                        <div class="col-xs-12 col-md-6 col-xl-6">
+                          <div class="form-group  mb-3">
+                            <label for="example-text-input">Valid From</label>
+                            <input class="form-control" type="date" id="valid_from{{i}}" name="valid_from{{i}}"
+                              [(ngModel)]="tab.valid_from" #valid_from="ngModel" required>
+
+                            <div *ngIf="valid_from.invalid">
+                              <div *ngIf="statutaryformSubmitted && valid_from.errors.required" class="text-danger">
+                                Required
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+
+                      </div>
+                    
+
+                     
+                      <div class="row">
+
+                        <div class="col-xs-12 col-md-6 col-xl-6">
+                          <div class="form-group  mb-3">
+                            <label for="example-text-input">Valid Till</label>
+                            <input class="form-control" type="date" id="valid_till{{i}}" name="valid_till{{i}}"
+                              [(ngModel)]="tab.valid_till" #valid_till="ngModel" required>
+                            <div *ngIf="valid_till.invalid">
+                              <div *ngIf="statutaryformSubmitted && valid_till.errors.required" class="text-danger">
+                                Required
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-xs-12 col-md-6 col-xl-6">
+                          <div class="form-group  mb-3">
+                            <label for="example-text-input">Upload Document</label>
+                            <fieldset class="form-control">
+                              <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc17.click()">
+                               <i class="bx bx-upload"></i>
+                              </a>
+                              <input hidden type="file" #doc17
+                                (change)="previewImage($event.target.files,tab,'license_url')" />
+                              <a title="View Document" class="mt-4"
+                                (click)="openUploadedDocsModal(uploadViewModel,tab,'license_url')">
+                                <i [ngClass]="(tab!=null?tab.license_url:'')|uploadbtnpipe"></i>
+                              </a>
+                              <input hidden type="text" name="license_url" #license_url="ngModel"
+                                [(ngModel)]="tab.license_url">
+                             
+
+                            </fieldset>
+                          </div>
+                        </div>
+
+                      </div>
+                     
+                      <div class="row">
+
+                        <div class="col-xs-12 col-md-6 col-xl-6" *ngIf="tab.agency_name=='Other'">
+                          <div class="form-group  mb-3">
+                            <label for="example-text-input">Others</label>
+                            <input class="form-control" type="text" id="others{{i}}" name="others{{i}}"
+                              [(ngModel)]="tab.others" #others="ngModel" required>
+                            <div *ngIf="others.invalid">
+                              <div *ngIf="statutaryformSubmitted && others.errors.required" class="text-danger">
+                                Required
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-6 col-xl-6" *ngIf="tab.status=='Expired'">
+                          <div class="form-group  mb-3">
+                            <label for="example-text-input">Application number of renewal application</label>
+                            <input class="form-control" type="text" id="application_number_renewal{{i}}"
+                              name="application_number_renewal{{i}}" [(ngModel)]="tab.application_number_renewal"
+                              #application_number_renewal="ngModel" required />
+                            <div *ngIf="application_number_renewal.invalid">
+                              <div *ngIf="statutaryformSubmitted && application_number_renewal.errors.required"
+                                class="text-danger">
+                                Required
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                     
+                      <div class="text-right mt-2">
+                        <button *ngIf="statutory_compliance.registration_license_list.length>1" class="btn btn-danger" (click)="removeRegistrationLicense(tab)">Delete</button>
+                      </div>
+
+                    </div>
+
+                  </ng-template>
+
+
+
+                </li>
+
+              </ul>
+              <div [ngbNavOutlet]="customNavv"></div>
+            
+
+            </div>
+
+          </div>
+          <div class="text-right mt-2">
+            <button class="btn btn-success" (click)="AddRegistrationLicense()">Add License Details</button>
+          </div> -->
+
+    <!--Question Removed Region End-->
+
+    <!-- ques 4 end-->
+
+
+
+    <hr class="form-seprator" />
+
+    <!-- ques 5 -->
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>4.</b></div>
+          <div class="media-body">
+            {{hospitalPagesQueBank.statutory_compliance.discloses_the_documents_regarding_the_ownership.ques_text}}
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-xs-12 col-md-8 col-xl-8">
+        <div class="frm-question">
+          <span class="quest-count"><b>4.</b></span>
+          <div class="question-desc">
+            <label>{{hospitalPagesQueBank.statutory_compliance.discloses_the_documents_regarding_the_ownership.ques_text}}</label>
+          </div>
+        </div>
+    
+
+
+
+      </div> -->
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control"
+          [(ngModel)]="statutory_compliance.discloses_the_documents_regarding_the_ownership.ques_selected_opt"
+          name="discloses_the_documents_regarding_the_ownership" id="discloses_the_documents_regarding_the_ownership"
+          #discloses_the_documents_regarding_the_ownership="ngModel" required>
+          <option [ngValue]=null>Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="discloses_the_documents_regarding_the_ownership.invalid">
+          <div *ngIf="statutaryformSubmitted && discloses_the_documents_regarding_the_ownership.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1">
+
+        <fieldset class="text-right"
+          [hidden]="statutory_compliance.discloses_the_documents_regarding_the_ownership.ques_selected_opt!=true">
+
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(statutory_compliance.discloses_the_documents_regarding_the_ownership,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc3
+            (change)="previewImage(doc3,$event.target.files,statutory_compliance.discloses_the_documents_regarding_the_ownership,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,statutory_compliance.discloses_the_documents_regarding_the_ownership,'ques_doc_url')">
+
+            <i
+              [ngClass]="(statutory_compliance.discloses_the_documents_regarding_the_ownership!=null?statutory_compliance.discloses_the_documents_regarding_the_ownership.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="discloses_the_documents_regarding_the_ownership_url"
+            #discloses_the_documents_regarding_the_ownership_url="ngModel" required
+            [disabled]="statutory_compliance.discloses_the_documents_regarding_the_ownership.ques_selected_opt!=true"
+            [(ngModel)]="statutory_compliance.discloses_the_documents_regarding_the_ownership.ques_doc_url" required>
+          <div *ngIf="discloses_the_documents_regarding_the_ownership_url.invalid">
+            <div *ngIf="statutaryformSubmitted && discloses_the_documents_regarding_the_ownership_url.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.discloses_the_documents_regarding_the_ownership:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.discloses_the_documents_regarding_the_ownership:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('statutory_compliance','discloses_the_documents_regarding_the_ownership',hospitalPagesQueBank.statutory_compliance.discloses_the_documents_regarding_the_ownership)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance?.discloses_the_documents_regarding_the_ownership?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+    </div>
+    <!-- ques 5 end-->
+
+    <hr class="form-seprator" />
+    <!-- ques 6 -->
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>5.</b></div>
+          <div class="media-body">Does the Hospital have MoU with Bio-Medical Waste (BMW) collecting agency?</div>
+        </div>
+      </div>
+      <!-- <div class="col-xs-12 col-md-8 col-xl-8">
+        <div class="frm-question">
+          <span class="quest-count"><b>5.</b></span>
+          <div class="question-desc">
+        
+            <label>Does the Hospital have MoU with Bio-Medical Waste (BMW) collecting agency?</label>
+          </div>
+        </div>
+    
+
+
+
+      </div> -->
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control"
+          [(ngModel)]="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.ques_selected_opt" name="hvmoubiological"
+          id="hvmoubiological" #hvmoubiological="ngModel" required>
+          <option [ngValue]=null>Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="hvmoubiological.invalid">
+          <div *ngIf="statutaryformSubmitted && hvmoubiological.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1">
+
+
+
+
+      </div>
+
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.hospital_hv_mou_wt_bilogical_waste:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.hospital_hv_mou_wt_bilogical_waste:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('statutory_compliance','hospital_hv_mou_wt_bilogical_waste',hospitalPagesQueBank.statutory_compliance.hospital_hv_mou_wt_bilogical_waste)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance?.hospital_hv_mou_wt_bilogical_waste?.nc_cycle_count:''}}
+        </button>
+      </div>
+
+    </div>
+
+
+    <div class="databox1" *ngIf="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.ques_selected_opt==true">
+      <!---->
+      <div class="row">
+        <!-- cbs -->
+        <div class="col-xs-12 col-md-4 col-xl-4">
+          <div class="form-group">
+            <label><b>Agency Name</b></label>
+            <input required [(ngModel)]="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.agency_name"
+              name="moubiologicalagncyname" #moubiologicalagncyname="ngModel" type="text" class="form-control">
+            <div *ngIf="moubiologicalagncyname.invalid">
+              <div *ngIf="statutaryformSubmitted && moubiologicalagncyname.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="col-xs-12 col-md-4 col-xl-4"> 
+                <div class="form-group  mb-3">
+                  <label> Available</label>
+
+                  <select class="form-control"
+                  [disabled]="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.ques_selected_opt!=true"
+                  [(ngModel)]="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.available"
+                    name="moubiologicalavailabel" id="moubiologicalavailabel" #moubiologicalavailabel="ngModel">
+                    <option [ngValue]="null">Select</option>
+                    <option [ngValue]="true">Yes</option>
+                    <option [ngValue]="false">No</option>
+                  </select>
+                  <div *ngIf="moubiologicalavailabel.invalid">
+                    <div *ngIf="statutaryformSubmitted && moubiologicalavailabel.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+                </div>
+            </div> -->
+        <div class="col-xs-12 col-md-4 col-xl-4">
+          <div class="form-group">
+            <label><b>Valid From</b></label>
+            <!-- <input [disabled]="statutory_compliance.hospital_has_imaging_services.ques_selected_opt!='Outsourced' && statutory_compliance.hospital_has_imaging_services.ques_selected_opt!='Both'"
+                     required [(ngModel)]="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.valid_from" name="imgmouvalidfrom" #imgmouvalidfrom="ngModel" type="text" class="form-control"> -->
+            <div class="input-group clockpicker">
+              <input required [(ngModel)]="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.valid_from"
+                name="moubiologicalvalidfrom" #moubiologicalvalidfrom="ngModel" ngbDatepicker class="form-control"
+                readonly placeholder="DD/MM/YYYY" [minDate]="{year: 1950, month:1, day: 1}" #d6="ngbDatepicker">
+              <div class="input-group-append" (click)="d6.toggle()">
+                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+              </div>
+            </div>
+
+            <div *ngIf="moubiologicalvalidfrom.invalid">
+              <div *ngIf="statutaryformSubmitted && moubiologicalvalidfrom.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-md-4 col-xl-4">
+          <div class="form-group">
+            <label><b>Valid Till</b></label>
+            <!-- <input [disabled]="statutory_compliance.hospital_has_imaging_services.ques_selected_opt!='Outsourced' && statutory_compliance.hospital_has_imaging_services.ques_selected_opt!='Both'"
+                   required [(ngModel)]="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.valid_till" name="imgmouvalidtill" #imgmouvalidtill="ngModel" type="text" class="form-control"> -->
+            <div class="input-group clockpicker">
+              <input required [(ngModel)]="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.valid_till"
+                dateFormat="dd-MMM-yyyy" name="moubiologicalvalidtill" #moubiologicalvalidtill="ngModel" ngbDatepicker
+                class="form-control" readonly placeholder="DD/MM/YYYY" [minDate]="{year: 1950, month:1, day: 1}"
+                #d10="ngbDatepicker">
+              <div class="input-group-append" (click)="d10.toggle()">
+                <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+              </div>
+            </div>
+            <div *ngIf="moubiologicalvalidtill.invalid">
+              <div *ngIf="statutaryformSubmitted && moubiologicalvalidtill.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4 col-xl-4">
+          <div>
+            <label><b>Upload MoU</b></label>
+            &nbsp; <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+              (click)="openDocModel(statutory_compliance.hospital_hv_mou_wt_bilogical_waste,'ques_doc_url')">
+              <i class="bx bx-upload"></i>
+            </a>
+
+            <!-- <input hidden type="file" #doc13
+              (change)="previewImage(doc13,$event.target.files,statutory_compliance.hospital_hv_mou_wt_bilogical_waste,'ques_doc_url')" /> -->
+
+
+            <a title="View Document"
+              (click)="openUploadedDocsModal(uploadViewModel,statutory_compliance.hospital_hv_mou_wt_bilogical_waste,'ques_doc_url')"
+              class="mt-4">
+
+              <i
+                [ngClass]="(statutory_compliance.hospital_hv_mou_wt_bilogical_waste!=null?statutory_compliance.hospital_hv_mou_wt_bilogical_waste.ques_doc_url:'')|uploadbtnpipe"></i>
+            </a>
+            <input hidden type="text" name="moubiologicaldoc" #moubiologicaldoc="ngModel" required
+              [(ngModel)]="statutory_compliance.hospital_hv_mou_wt_bilogical_waste.ques_doc_url" required>
+            <div *ngIf="moubiologicaldoc.invalid">
+              <div *ngIf="statutaryformSubmitted && moubiologicaldoc.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+      <!---->
+    </div>
+
+
+    <hr class="form-seprator" />
+
+
+
+
+
+
+    <!-- ques 6 end-->
+
+
+
+    <ngb-accordion class="range-accordion" [destroyOnHide]="false" #acc="ngbAccordion"
+      (panelChange)="panelChange($event)">
+      <ngb-panel id="static-1">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Details of Licenses
+            <!-- <button ngbPanelToggle class="btn btn-link text-left">Details Of Licenses</button> -->
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-1']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-1']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+
+
+
+
+          <div class="row" *ngFor="let data of statutory_compliance.details_of_licience;let i=index">
+            <div ngModelGroup="licienceDetails" #licienceDetails="ngModelGroup" class="col-md-12 col-xl-12 col-xs-12">
+
+
+
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="media">
+                    <div class="mr-3"><b>{{i+1}}.</b></div>
+                    <div class="media-body">{{data.lic_name}}</div>
+
+                  </div>
+
+                </div>
+
+                <div class="col-xs-12 col-md-2 col-xl-2">
+
+                  <fieldset [disabled]="this.hospitalPages.isFinalSubmit==true">
+                    <select class="form-control" required [(ngModel)]="data.isapplicable" name="isapplicable{{i}}"
+                      #isapplicable="ngModel">
+                      <option [ngValue]="null">Select</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                      <option *ngIf="data.id==12||data.id==13" value="not applicable">
+                        Not Applicable</option>
+                    </select>
+                    <div *ngIf="isapplicable.invalid">
+                      <div *ngIf="statutaryformSubmitted &&
+      isapplicable.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </fieldset>
+
+
+                </div>
+
+
+                <div class="col-xs-12 col-md-2 col-xl-2">
+                  <button type="button"
+                    *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance['details_of_licience_' + data.id]:'')|DaNcBtnHideShow: Stage_id"
+                    [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance['details_of_licience_' + data.id]:'')|DaNcbtnColorPipe"
+                    (click)="openNcModel('statutory_compliance','details_of_licience_'+ data.id,data)">NC
+                    <!-- {{ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.details_of_licience_ +data.id+.nc_cycle_count:''}} -->
+
+                    <!-- {{ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.details_of_licience_1?.nc_cycle_count:''}} -->
+                    <!-- {{ncFormTabInfo.censtatutarylicense. +'details_of_licience_'+data.id. +nc_cycle_count}} -->
+                  </button>
+
+
+                  <!-- <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.discloses_the_documents_regarding_the_ownership:'')|DaNcBtnHideShow:Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance.discloses_the_documents_regarding_the_ownership:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('statutory_compliance','discloses_the_documents_regarding_the_ownership',hospitalPagesQueBank.statutory_compliance.discloses_the_documents_regarding_the_ownership)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.statutory_compliance?.discloses_the_documents_regarding_the_ownership?.nc_cycle_count:''}}
+        </button> -->
+
+                </div>
+
+              </div>
+
+              <div class="databox" *ngIf="data.isapplicable=='yes'">
+
+                <!-- row -->
+                <div class="row">
+
+                  <!-- <div class="col-xs-12 col-md-6 col-xl-6">
+      <div class="form-group  mb-3">
+        <label for="example-text-input">Licience Name</label>
+        <input class="form-control" type="text" id="licc_nam{{i}}" name="licc_nam{{i}}"
+        [(ngModel)]="data.lic_detail.licience_name" #licc_nam="ngModel" required>
+
+        <div *ngIf="licc_nam.invalid">
+          <div *ngIf="statutaryformSubmitted && licc_nam.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+    </div> -->
+
+                  <!--  -->
+
+
+                  <!--  -->
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Licensing Body</label>
+
+                      <fieldset [disabled]="this.hospitalPages.isFinalSubmit==true">
+                        <input class="form-control" type="text" id="licc_body{{i}}" name="licc_body{{i}}"
+                          [(ngModel)]="data.lic_detail.agent_licensing_name" #licc_body="ngModel" required>
+
+                        <div *ngIf="licc_body.invalid">
+                          <div *ngIf="statutaryformSubmitted && licc_body.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </fieldset>
+
+
+                    </div>
+                  </div>
+
+                  <!--  -->
+                  <!--  -->
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Status</label>
+                      <fieldset [disabled]="this.hospitalPages.isFinalSubmit==true">
+                        <select class="form-control" [(ngModel)]="data.lic_detail.status" name="liccstatus{{i}}"
+                          id="liccstatus{{i}}" #liccstatus="ngModel" required>
+                          <option value=null>Select</option>
+                          <option value="Valid">Valid</option>
+                          <option value="Expired">Expired</option>
+                        </select>
+                        <div *ngIf="liccstatus.invalid">
+                          <div *ngIf="statutaryformSubmitted && liccstatus.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </fieldset>
+
+
+
+                    </div>
+                  </div>
+
+                  <!--  -->
+                  <div *ngIf="data.lic_detail.status=='Expired'" class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Application Number of Renewal Application</label>
+                      <fieldset [disabled]="this.hospitalPages.isFinalSubmit==true">
+                        <input class="form-control" type="text" id="app_num_renew{{i}}" name="app_num_renew{{i}}"
+                          [(ngModel)]="data.lic_detail.application_number_renewal" #app_num_renew="ngModel" required>
+
+                        <div *ngIf="app_num_renew.invalid">
+                          <div *ngIf="statutaryformSubmitted && app_num_renew.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </fieldset>
+
+
+                    </div>
+                  </div>
+
+                  <!--  -->
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">License Number</label>
+                      <fieldset [disabled]="this.hospitalPages.isFinalSubmit==true">
+                        <input class="form-control" type="text" id="licns_number{{i}}" name="licns_number{{i}}"
+                          [(ngModel)]="data.lic_detail.license_number" #licns_number="ngModel" required>
+
+                        <div *ngIf="licns_number.invalid">
+                          <div *ngIf="statutaryformSubmitted && licns_number.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </fieldset>
+
+
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Valid From</label>
+                      <fieldset [disabled]="this.hospitalPages.isFinalSubmit==true">
+                        <div class="input-group clockpicker">
+
+                          <input required [(ngModel)]="data.lic_detail.valid_from" id="valid_from{{i}}"
+                            name="valid_from{{i}}" #valid_from="ngModel" ngbDatepicker class="form-control" readonly
+                            placeholder="DD/MM/YYYY" [minDate]="{year: 1950, month:1, day: 1}" #d7="ngbDatepicker">
+                          <div class="input-group-append" (click)="d7.toggle()">
+                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                          </div>
+
+
+
+
+                        </div>
+
+
+
+                        <div *ngIf="valid_from.invalid">
+                          <div *ngIf="statutaryformSubmitted && valid_from.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </fieldset>
+
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Valid Till</label>
+                      <fieldset [disabled]="this.hospitalPages.isFinalSubmit==true">
+                        <div class="input-group clockpicker">
+                          <input required [(ngModel)]="data.lic_detail.valid_till" #valid_till="ngModel"
+                            id="valid_till{{i}}" name="valid_till{{i}}" ngbDatepicker class="form-control" readonly
+                            placeholder="DD/MM/YYYY" [minDate]="{year: 1950, month:1, day: 1}" #d8="ngbDatepicker">
+                          <div class="input-group-append" (click)="d8.toggle()">
+                            <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
+                          </div>
+                        </div>
+
+
+                        <div *ngIf="valid_till.invalid">
+                          <div *ngIf="statutaryformSubmitted && valid_till.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+
+                      </fieldset>
+
+
+                    </div>
+                  </div>
+
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+                    <div class="form-group  mb-3">
+                      <label for="example-text-input">Upload License</label>
+                      <fieldset class="form-control" [disabled]="this.hospitalPages.isFinalSubmit==true">
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(data.lic_detail,'license_url')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <input hidden type="file" #doc18
+                          (change)="previewImage(doc18,$event.target.files,data.lic_detail,'license_url')" /> -->
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,data.lic_detail,'license_url')">
+                          <i [ngClass]="(data.lic_detail!=null?data.lic_detail.license_url:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input required hidden type="text" name="license_url{{i}}" #license_url="ngModel"
+                          [(ngModel)]="data.lic_detail.license_url">
+
+
+
+                      </fieldset>
+                      <div *ngIf="license_url.invalid">
+                        <div *ngIf="statutaryformSubmitted && license_url.errors.required" class="text-danger">
+                          Required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- row end -->
+
+                <!-- row -->
+                <div class="row">
+
+
+
+
+                </div>
+                <!-- row end -->
+
+                <!-- row start -->
+                <div class="row">
+
+
+
+
+
+
+                </div>
+                <!-- row end -->
+
+                <!-- row start -->
+                <div class="row">
+
+
+
+                </div>
+                <!-- row end -->
+
+
+              </div>
+
+              <hr class="form-seprator" />
+
+
+            </div>
+          </div>
+
+          <!-- <button class="btn btn-success pull-right" (click)="AddMoreLicience()">+Add more</button> -->
+
+
+
+        </ng-template>
+      </ngb-panel>
+
+
+    </ngb-accordion>
+
+
+
+
+  </form>
+  <!-- image view model -->
+  <ng-template #uploadViewModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Uploaded doc(s)</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- ------ -->
+      <div *ngIf="!(ary_uploadedDocs===null || ary_uploadedDocs===undefined)" class="table-responsive">
+
+
+        <table class="table table-bordered table-striped customTable">
+          <thead>
+            <tr>
+              <th class="text-center"> Name </th>
+              <th class="text-center">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ary_uploadedDocs">
+              <td class="text-center">{{item.fn}}</td>
+              <td class="text-center">
+
+                <a class="text-success mouse-pointer" title="Download file" (click)="downloadUploadFile(item)">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+
+                <a style="margin-left: 10px;" class="text-danger mouse-pointer" title="Delete file"
+                  *ngIf="this.currUsrRole ==3 && Stage_id ==20" (click)="deleteUploadFile(item)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+
+    </div>
+
+  </ng-template>
+  <!-- image view model -->
+</div>
+<ng-template #documentuploadModel role="document" let-modal>
+
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Upload Document</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <!-- <div class="row mt-2">
+      <ngb-progressbar *ngIf="showUploadMsg!=null" [value]="this.progress" type="progress-bar" showValue="true"
+        style="width: 100%;">
+      </ngb-progressbar>
+    </div> -->
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <h5 style="margin-left: 10px;"><strong>Document</strong></h5>
+
+    </div>
+
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <input style="margin-left: 10px;" type="file" #myFileInput (change)="handleFileInput($event.target.files)" />
+
+    </div>
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <label style="margin-left: 10px;"><b>Note: </b>The following formats are accepted: PDF, JPG, JPEG, PNG. The
+        maximum file size allowed in 20 MB.</label>
+
+    </div>
+    <div class="row">
+      <br>
+    </div>
+    <div class="row mt-2">
+      <!--  -->
+      <div class="alert alert-success  fade show" style="width: 100%;" *ngIf="showUploadMsg==true">
+
+        The file has been successfully uploaded
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="Upload2(myFileInput)">Upload</button>
+  </div>
+</ng-template>

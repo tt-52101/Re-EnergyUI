@@ -1,0 +1,986 @@
+<div class="card-body p-0">
+  <form #centrainingform="ngForm">
+
+
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>1.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.centraining.communicate_disseminate_duties_jobs_responsibilities.ques_text}}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="centraining.communicate_disseminate_duties_jobs_responsibilities.ques_selected_opt"
+          name="communicate_disseminate_duties_jobs_responsibilities"
+          #communicate_disseminate_duties_jobs_responsibilities="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="communicate_disseminate_duties_jobs_responsibilities.invalid">
+          <div *ngIf="centrainingSubmitted && communicate_disseminate_duties_jobs_responsibilities.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="centraining.communicate_disseminate_duties_jobs_responsibilities.ques_selected_opt!=true">
+
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(centraining.communicate_disseminate_duties_jobs_responsibilities,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc1
+            (change)="previewImage(doc1,$event.target.files,centraining.communicate_disseminate_duties_jobs_responsibilities,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,centraining.communicate_disseminate_duties_jobs_responsibilities,'ques_doc_url')">
+            <i
+              [ngClass]="(centraining.communicate_disseminate_duties_jobs_responsibilities!=null?centraining.communicate_disseminate_duties_jobs_responsibilities.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="communicate_disseminate_duties_jobs_responsibilities_doc"
+            #communicate_disseminate_duties_jobs_responsibilities_doc="ngModel" required
+            [disabled]="centraining.communicate_disseminate_duties_jobs_responsibilities.ques_selected_opt!=true"
+            [(ngModel)]="centraining.communicate_disseminate_duties_jobs_responsibilities.ques_doc_url" required>
+          <div *ngIf="communicate_disseminate_duties_jobs_responsibilities_doc.invalid">
+            <div
+              *ngIf="centrainingSubmitted && communicate_disseminate_duties_jobs_responsibilities_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.centraining.communicate_disseminate_duties_jobs_responsibilities:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.centraining.communicate_disseminate_duties_jobs_responsibilities:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('centraining','communicate_disseminate_duties_jobs_responsibilities',cenhospitalPagesQueBank.centraining.communicate_disseminate_duties_jobs_responsibilities)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.centraining?.communicate_disseminate_duties_jobs_responsibilities?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>2.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.centraining.training_employees_voluntary_worker_includes_orientation.ques_text}}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <!-- <select class="form-control" required
+                        [(ngModel)]="centraining.training_employees_voluntary_worker_includes_orientation.ques_selected_opt"
+                        name="training_employees_voluntary_worker_includes_orientation" #training_employees_voluntary_worker_includes_orientation="ngModel">
+                        <option [ngValue]="null">Select</option>
+                        <option [ngValue]="true">Yes</option>
+                        <option [ngValue]="false">No</option>
+                      </select> -->
+
+      </div>
+      <!-- <div *ngIf="training_employees_voluntary_worker_includes_orientation.invalid">
+                      <div *ngIf="centrainingSubmitted && training_employees_voluntary_worker_includes_orientation.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div> -->
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset
+          [hidden]="centraining.training_employees_voluntary_worker_includes_orientation.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(centraining.training_employees_voluntary_worker_includes_orientation,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc2
+            (change)="previewImage(doc2,$event.target.files,centraining.training_employees_voluntary_worker_includes_orientation,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,centraining.training_employees_voluntary_worker_includes_orientation,'ques_doc_url')">
+
+            <i
+              [ngClass]="(centraining.training_employees_voluntary_worker_includes_orientation!=null?centraining.training_employees_voluntary_worker_includes_orientation.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="training_employees_voluntary_worker_includes_orientation_doc"
+            #training_employees_voluntary_worker_includes_orientation_doc="ngModel" required
+            [disabled]="centraining.training_employees_voluntary_worker_includes_orientation.ques_selected_opt!=true"
+            [(ngModel)]="centraining.training_employees_voluntary_worker_includes_orientation.ques_doc_url" required>
+          <div *ngIf="training_employees_voluntary_worker_includes_orientation_doc.invalid">
+            <div
+              *ngIf="centrainingSubmitted && training_employees_voluntary_worker_includes_orientation_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.centraining.training_employees_voluntary_worker_includes_orientation:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.centraining.training_employees_voluntary_worker_includes_orientation:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('centraining','training_employees_voluntary_worker_includes_orientation',cenhospitalPagesQueBank.centraining.training_employees_voluntary_worker_includes_orientation)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.centraining?.training_employees_voluntary_worker_includes_orientation?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+    </div>
+    <!-- <div class="row mt-2"> -->
+    <div class="row mt-2" ngModelGroup="IndcTrainingEmp" #indc_training_emp="ngModelGroup" appMinOneCheckboxSelect>
+      <div class="col-md-12 custom-control custom-checkbox mb-1 ml-3">
+        <div *ngIf="centrainingSubmitted && indc_training_emp.invalid" class="text-danger">
+
+          <div *ngIf="indc_training_emp.errors?.minOneChecked">Please select atleast one option</div>
+
+        </div>
+        <div class="form-check mb-2">
+          <input type="checkbox" class="custom-control-input" name="vsnmiss" id="vsnmiss"
+            [(ngModel)]="centraining.inductin_trn_staff_orientation.vision_mission" (click)="UncheckInductionNone()">
+
+          <label class="custom-control-label" for="vsnmiss">Vision and Mission of Centre</label>
+
+          <fieldset class="IconRight" *ngIf="centraining.inductin_trn_staff_orientation.vision_mission==true">
+            <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+              (click)="openDocModel(centraining.inductin_trn_staff_orientation,'vision_mission_url')">
+              <i class="bx bx-upload"></i>
+            </a>
+
+            <!-- <input hidden type="file" #doc10
+              (change)="previewImage(doc10,$event.target.files,centraining.inductin_trn_staff_orientation,'vision_mission_url')" /> -->
+
+
+            <a title="View Document" class="mt-4"
+              (click)="openUploadedDocsModal(uploadViewModel,centraining.inductin_trn_staff_orientation,'vision_mission_url')">
+
+              <i
+                [ngClass]="(centraining.inductin_trn_staff_orientation!=null?centraining.inductin_trn_staff_orientation.vision_mission_url:'')|uploadbtnpipe"></i>
+            </a>
+            <input hidden type="text" name="indctntranvisonmission_url" #indctntranvisonmission_url="ngModel" required
+              [(ngModel)]="centraining.inductin_trn_staff_orientation.vision_mission_url" required>
+            <div *ngIf="indctntranvisonmission_url.invalid">
+              <div *ngIf="centrainingSubmitted && indctntranvisonmission_url.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+
+
+          </fieldset>
+
+        </div>
+
+        <div class="form-check mb-2">
+          <input type="checkbox" class="custom-control-input" name="empright" id="empright"
+            [(ngModel)]="centraining.inductin_trn_staff_orientation.employ_right" (click)="UncheckInductionNone()">
+
+          <label class="custom-control-label" for="empright">Employee Rights and Responsibility</label>
+          <fieldset class="IconRight" *ngIf="centraining.inductin_trn_staff_orientation.employ_right==true">
+            <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+              (click)="openDocModel(centraining.inductin_trn_staff_orientation,'employ_right_url')">
+              <i class="bx bx-upload"></i>
+            </a>
+
+            <!-- <input hidden type="file" #doc11
+              (change)="previewImage(doc11,$event.target.files,centraining.inductin_trn_staff_orientation,'employ_right_url')" /> -->
+
+
+            <a title="View Document" class="mt-4"
+              (click)="openUploadedDocsModal(uploadViewModel,centraining.inductin_trn_staff_orientation,'employ_right_url')">
+
+              <i
+                [ngClass]="(centraining.inductin_trn_staff_orientation!=null?centraining.inductin_trn_staff_orientation.employ_right_url:'')|uploadbtnpipe"></i>
+            </a>
+            <input hidden type="text" name="indctntranvisonpatright_url" #indctntranvisonpatright_url="ngModel" required
+              [(ngModel)]="centraining.inductin_trn_staff_orientation.employ_right_url" required>
+            <div *ngIf="indctntranvisonpatright_url.invalid">
+              <div *ngIf="centrainingSubmitted && indctntranvisonpatright_url.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+
+
+          </fieldset>
+        </div>
+        <div class="form-check mb-2">
+          <input type="checkbox" class="custom-control-input" name="patrght" id="patrght"
+            [(ngModel)]="centraining.inductin_trn_staff_orientation.service_policies" (click)="UncheckInductionNone()">
+
+          <label class="custom-control-label" for="patrght">Service Policies and Procedures of the Centre</label>
+          <fieldset class="IconRight" *ngIf="centraining.inductin_trn_staff_orientation.service_policies==true">
+            <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+              (click)="openDocModel(centraining.inductin_trn_staff_orientation,'service_policies_url')">
+              <i class="bx bx-upload"></i>
+            </a>
+            <!-- <input hidden type="file" #doc12
+              (change)="previewImage(doc12,$event.target.files,centraining.inductin_trn_staff_orientation,'service_policies_url')" /> -->
+
+
+            <a title="View Document" class="mt-4"
+              (click)="openUploadedDocsModal(uploadViewModel,centraining.inductin_trn_staff_orientation,'service_policies_url')">
+
+              <i
+                [ngClass]="(centraining.inductin_trn_staff_orientation!=null?centraining.inductin_trn_staff_orientation.service_policies_url:'')|uploadbtnpipe"></i>
+            </a>
+            <input hidden type="text" name="indctntranvisonservcpol_url" #indctntranvisonservcpol_url="ngModel" required
+              [(ngModel)]="centraining.inductin_trn_staff_orientation.service_policies_url" required>
+            <div *ngIf="indctntranvisonservcpol_url.invalid">
+              <div *ngIf="centrainingSubmitted && indctntranvisonservcpol_url.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+
+
+          </fieldset>
+
+        </div>
+        <div class="form-check mb-2">
+          <input type="checkbox" class="custom-control-input" name="non" id="non"
+            [(ngModel)]="centraining.inductin_trn_staff_orientation.none" (click)="UncheckInductionAll()">
+          <label class="custom-control-label" for="non">None</label>
+
+
+        </div>
+      </div>
+
+    </div>
+    <!-- </div> -->
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>3.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.centraining.responsibility_for_protecting_patients_right_responsibilities.ques_text}}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="centraining.responsibility_for_protecting_patients_right_responsibilities.ques_selected_opt"
+          name="responsibility_for_protecting_patients_right_responsibilities"
+          #responsibility_for_protecting_patients_right_responsibilities="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="responsibility_for_protecting_patients_right_responsibilities.invalid">
+          <div
+            *ngIf="centrainingSubmitted && responsibility_for_protecting_patients_right_responsibilities.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset
+          [hidden]="centraining.responsibility_for_protecting_patients_right_responsibilities.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(centraining.responsibility_for_protecting_patients_right_responsibilities,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc3
+            (change)="previewImage(doc3,$event.target.files,centraining.responsibility_for_protecting_patients_right_responsibilities,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,centraining.responsibility_for_protecting_patients_right_responsibilities,'ques_doc_url')">
+
+            <i
+              [ngClass]="(centraining.responsibility_for_protecting_patients_right_responsibilities!=null?centraining.responsibility_for_protecting_patients_right_responsibilities.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="responsibility_for_protecting_patients_right_responsibilities_doc"
+            #responsibility_for_protecting_patients_right_responsibilities_doc="ngModel" required
+            [disabled]="centraining.responsibility_for_protecting_patients_right_responsibilities.ques_selected_opt!=true"
+            [(ngModel)]="centraining.responsibility_for_protecting_patients_right_responsibilities.ques_doc_url"
+            required>
+          <div *ngIf="responsibility_for_protecting_patients_right_responsibilities_doc.invalid">
+            <div
+              *ngIf="centrainingSubmitted && responsibility_for_protecting_patients_right_responsibilities_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.centraining.responsibility_for_protecting_patients_right_responsibilities:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.centraining.responsibility_for_protecting_patients_right_responsibilities:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('centraining','responsibility_for_protecting_patients_right_responsibilities',cenhospitalPagesQueBank.centraining.responsibility_for_protecting_patients_right_responsibilities)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.centraining?.responsibility_for_protecting_patients_right_responsibilities?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>4.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.centraining.occupational_risks_and_their_prevention.ques_text}}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="centraining.occupational_risks_and_their_prevention.ques_selected_opt"
+          name="occupational_risks_and_their_prevention" #occupational_risks_and_their_prevention="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="occupational_risks_and_their_prevention.invalid">
+          <div *ngIf="centrainingSubmitted && occupational_risks_and_their_prevention.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="centraining.occupational_risks_and_their_prevention.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(centraining.occupational_risks_and_their_prevention,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc4
+            (change)="previewImage(doc4,$event.target.files,centraining.occupational_risks_and_their_prevention,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,centraining.occupational_risks_and_their_prevention,'ques_doc_url')">
+
+            <i
+              [ngClass]="(centraining.occupational_risks_and_their_prevention!=null?centraining.occupational_risks_and_their_prevention.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="occupational_risks_and_their_prevention_doc"
+            #occupational_risks_and_their_prevention_doc="ngModel" required
+            [disabled]="centraining.occupational_risks_and_their_prevention.ques_selected_opt!=true"
+            [(ngModel)]="centraining.occupational_risks_and_their_prevention.ques_doc_url" required>
+          <div *ngIf="occupational_risks_and_their_prevention_doc.invalid">
+            <div *ngIf="centrainingSubmitted && occupational_risks_and_their_prevention_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.centraining.occupational_risks_and_their_prevention:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.centraining.occupational_risks_and_their_prevention:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('centraining','occupational_risks_and_their_prevention',cenhospitalPagesQueBank.centraining.occupational_risks_and_their_prevention)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.centraining?.occupational_risks_and_their_prevention?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>5.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.centraining.standard_precautions_of_hygiene_control_practices.ques_text}}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="centraining.standard_precautions_of_hygiene_control_practices.ques_selected_opt"
+          name="standard_precautions_of_hygiene_control_practices"
+          #standard_precautions_of_hygiene_control_practices="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="standard_precautions_of_hygiene_control_practices.invalid">
+          <div *ngIf="centrainingSubmitted && standard_precautions_of_hygiene_control_practices.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="centraining.standard_precautions_of_hygiene_control_practices.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(centraining.standard_precautions_of_hygiene_control_practices,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc5
+            (change)="previewImage(doc5,$event.target.files,centraining.standard_precautions_of_hygiene_control_practices,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,centraining.standard_precautions_of_hygiene_control_practices,'ques_doc_url')">
+
+            <i
+              [ngClass]="(centraining.standard_precautions_of_hygiene_control_practices!=null?centraining.standard_precautions_of_hygiene_control_practices.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="standard_precautions_of_hygiene_control_practices_doc"
+            #standard_precautions_of_hygiene_control_practices_doc="ngModel" required
+            [disabled]="centraining.standard_precautions_of_hygiene_control_practices.ques_selected_opt!=true"
+            [(ngModel)]="centraining.standard_precautions_of_hygiene_control_practices.ques_doc_url" required>
+          <div *ngIf="standard_precautions_of_hygiene_control_practices_doc.invalid">
+            <div *ngIf="centrainingSubmitted && standard_precautions_of_hygiene_control_practices_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.centraining.standard_precautions_of_hygiene_control_practices:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.centraining.standard_precautions_of_hygiene_control_practices:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('centraining','standard_precautions_of_hygiene_control_practices',cenhospitalPagesQueBank.centraining.standard_precautions_of_hygiene_control_practices)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.centraining?.standard_precautions_of_hygiene_control_practices?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+
+
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>6.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.centraining.regular_training_staff_for_infection_control.ques_text}}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="centraining.regular_training_staff_for_infection_control.ques_selected_opt"
+          name="regular_training_staff_for_infection_control" #regular_training_staff_for_infection_control="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="regular_training_staff_for_infection_control.invalid">
+          <div *ngIf="centrainingSubmitted && regular_training_staff_for_infection_control.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="centraining.regular_training_staff_for_infection_control.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(centraining.regular_training_staff_for_infection_control,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc6
+            (change)="previewImage(doc6,$event.target.files,centraining.regular_training_staff_for_infection_control,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,centraining.regular_training_staff_for_infection_control,'ques_doc_url')">
+
+            <i
+              [ngClass]="(centraining.regular_training_staff_for_infection_control!=null?centraining.regular_training_staff_for_infection_control.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="regular_training_staff_for_infection_control_doc"
+            #regular_training_staff_for_infection_control_doc="ngModel" required
+            [disabled]="centraining.regular_training_staff_for_infection_control.ques_selected_opt!=true"
+            [(ngModel)]="centraining.regular_training_staff_for_infection_control.ques_doc_url" required>
+          <div *ngIf="regular_training_staff_for_infection_control_doc.invalid">
+            <div *ngIf="centrainingSubmitted && regular_training_staff_for_infection_control_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.centraining.regular_training_staff_for_infection_control:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.centraining.regular_training_staff_for_infection_control:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('centraining','regular_training_staff_for_infection_control',cenhospitalPagesQueBank.centraining.regular_training_staff_for_infection_control)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.centraining?.regular_training_staff_for_infection_control?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>7.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.centraining.staff_for_identification_spill_management_training.ques_text}}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="centraining.staff_for_identification_spill_management_training.ques_selected_opt"
+          name="staff_for_identification_spill_management_training"
+          #staff_for_identification_spill_management_training="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="staff_for_identification_spill_management_training.invalid">
+          <div *ngIf="centrainingSubmitted && staff_for_identification_spill_management_training.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="centraining.staff_for_identification_spill_management_training.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(centraining.staff_for_identification_spill_management_training,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc7
+            (change)="previewImage(doc7,$event.target.files,centraining.staff_for_identification_spill_management_training,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,centraining.staff_for_identification_spill_management_training,'ques_doc_url')">
+
+            <i
+              [ngClass]="(centraining.staff_for_identification_spill_management_training!=null?centraining.staff_for_identification_spill_management_training.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="staff_for_identification_spill_management_training_doc"
+            #staff_for_identification_spill_management_training_doc="ngModel" required
+            [disabled]="centraining.staff_for_identification_spill_management_training.ques_selected_opt!=true"
+            [(ngModel)]="centraining.staff_for_identification_spill_management_training.ques_doc_url" required>
+          <div *ngIf="staff_for_identification_spill_management_training_doc.invalid">
+            <div *ngIf="centrainingSubmitted && staff_for_identification_spill_management_training_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.centraining.staff_for_identification_spill_management_training:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.centraining.staff_for_identification_spill_management_training:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('centraining','staff_for_identification_spill_management_training',cenhospitalPagesQueBank.centraining.staff_for_identification_spill_management_training)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.centraining?.staff_for_identification_spill_management_training?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+
+    <!--Question  start region-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>8.</b></div>
+          <div class="media-body">{{cenhospitalPagesQueBank.centraining.continual_medical_education.ques_text}}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required [(ngModel)]="centraining.continual_medical_education.ques_selected_opt"
+          name="continual_medical_education" #continual_medical_education="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="continual_medical_education.invalid">
+          <div *ngIf="centrainingSubmitted && continual_medical_education.errors.required" class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="centraining.continual_medical_education.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(centraining.continual_medical_education,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc8
+            (change)="previewImage(doc8,$event.target.files,centraining.continual_medical_education,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,centraining.continual_medical_education,'ques_doc_url')">
+
+            <i
+              [ngClass]="(centraining.continual_medical_education!=null?centraining.continual_medical_education.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="continual_medical_education_doc" #continual_medical_education_doc="ngModel"
+            required [disabled]="centraining.continual_medical_education.ques_selected_opt!=true"
+            [(ngModel)]="centraining.continual_medical_education.ques_doc_url" required>
+          <div *ngIf="continual_medical_education_doc.invalid">
+            <div *ngIf="centrainingSubmitted && continual_medical_education_doc.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.centraining.continual_medical_education:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.centraining.continual_medical_education:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('centraining','continual_medical_education',cenhospitalPagesQueBank.centraining.continual_medical_education)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.centraining?.continual_medical_education?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+    <!--Question start region end-->
+    <div class="row mt-2">
+      <div class="col-sm-8">
+        <div class="media">
+          <div class="mr-3"><b>9.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.centraining.staff_for_fighting_fire_nonfire_emergencies.ques_text}}
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <select class="form-control" required
+          [(ngModel)]="centraining.staff_for_fighting_fire_nonfire_emergencies.ques_selected_opt"
+          name="staff_for_fighting_fire_nonfire_emergencies" #staff_for_fighting_fire_nonfire_emergencies="ngModel">
+          <option [ngValue]="null">Select</option>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+        <div *ngIf="staff_for_fighting_fire_nonfire_emergencies.invalid">
+          <div *ngIf="centrainingSubmitted && staff_for_fighting_fire_nonfire_emergencies.errors.required"
+            class="text-danger">
+            Required
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-md-1 col-xl-1 text-center text-center">
+
+        <fieldset [hidden]="centraining.staff_for_fighting_fire_nonfire_emergencies.ques_selected_opt!=true">
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+            (click)="openDocModel(centraining.staff_for_fighting_fire_nonfire_emergencies,'ques_doc_url')">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <!-- <input hidden type="file" #doc9
+            (change)="previewImage(doc9,$event.target.files,centraining.staff_for_fighting_fire_nonfire_emergencies,'ques_doc_url')" /> -->
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,centraining.staff_for_fighting_fire_nonfire_emergencies,'ques_doc_url')">
+
+            <i
+              [ngClass]="(centraining.staff_for_fighting_fire_nonfire_emergencies!=null?centraining.staff_for_fighting_fire_nonfire_emergencies.ques_doc_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="staff_for_fighting_fire_nonfire_emergencies_doc"
+            #staff_for_fighting_fire_nonfire_emergencies_doc="ngModel" required
+            [disabled]="centraining.staff_for_fighting_fire_nonfire_emergencies.ques_selected_opt!=true"
+            [(ngModel)]="centraining.staff_for_fighting_fire_nonfire_emergencies.ques_doc_url" required>
+          <div *ngIf="staff_for_fighting_fire_nonfire_emergencies_doc.invalid">
+            <div *ngIf="centrainingSubmitted && staff_for_fighting_fire_nonfire_emergencies_doc.errors.required"
+              class="text-danger">
+              Required
+            </div>
+          </div>
+
+
+
+        </fieldset>
+
+
+
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.centraining.staff_for_fighting_fire_nonfire_emergencies:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.centraining.staff_for_fighting_fire_nonfire_emergencies:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('centraining','staff_for_fighting_fire_nonfire_emergencies',cenhospitalPagesQueBank.centraining.staff_for_fighting_fire_nonfire_emergencies)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.centraining?.staff_for_fighting_fire_nonfire_emergencies?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+
+    </div>
+
+    <hr class="form-seprator" />
+
+
+    <!--Question start region end-->
+
+
+
+  </form>
+  <!-- image view model -->
+  <ng-template #uploadViewModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Uploaded doc(s)s</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- ------ -->
+      <div *ngIf="!(ary_uploadedDocs===null || ary_uploadedDocs===undefined)" class="table-responsive">
+
+
+        <table class="table table-bordered table-striped customTable">
+          <thead>
+            <tr>
+              <th class="text-center"> Name </th>
+              <th class="text-center">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ary_uploadedDocs">
+              <td class="text-center">{{item.fn}}</td>
+              <td class="text-center">
+
+                <a style="cursor: pointer;" class="text-success" title="Download file"
+                  (click)="downloadUploadFile(item)">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+
+                <a style="cursor: pointer;margin-left: 10px;" class="text-danger" title="Delete file"
+                  (click)="deleteUploadFile(item)" *ngIf="this.currUsrRole ==3 && Stage_id ==20">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+      <!-- ------- -->
+
+    </div>
+
+  </ng-template>
+  <!-- image view model -->
+</div>
+
+<ng-template #documentuploadModel role="document" let-modal>
+
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Upload Document</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <!-- <div class="row mt-2">
+      <ngb-progressbar *ngIf="showUploadMsg!=null" [value]="this.progress" type="progress-bar" showValue="true"
+        style="width: 100%;">
+      </ngb-progressbar>
+    </div> -->
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <h5 style="margin-left: 10px;"><strong>Document</strong></h5>
+
+    </div>
+
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <input style="margin-left: 10px;" type="file" #myFileInput (change)="handleFileInput($event.target.files)" />
+
+    </div>
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <label style="margin-left: 10px;"><b>Note: </b>The following formats are accepted: PDF, JPG, JPEG, PNG. The
+        maximum file size allowed in 20 MB.</label>
+
+    </div>
+    <div class="row">
+      <br>
+    </div>
+    <div class="row mt-2">
+      <!--  -->
+      <div class="alert alert-success  fade show" style="width: 100%;" *ngIf="showUploadMsg==true">
+
+        The file has been successfully uploaded
+      </div>
+
+      <!-- <ngb-progressbar *ngIf="showUploadMsg==true" type="warning" [value]="100" height="40px"
+        style="width: 100%; background-color:#caeeda !important; ">
+        The file has been successfully
+        uploaded </ngb-progressbar> -->
+
+      <!-- <div class="card" style="width: 100%;  margin-left: 10px;margin-right: 10px;"> -->
+      <!-- <div class="card-body" *ngIf="showUploadMsg==true"
+        style="width: 100%;height: 50px; margin-left: 10px;margin-right: 10px; background-color:#ddf4e7 !important;text-align: justify; ">
+        The file has been successfully uploaded
+      </div> -->
+      <!-- </div> -->
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="Upload2(myFileInput)">Upload</button>
+  </div>
+</ng-template>

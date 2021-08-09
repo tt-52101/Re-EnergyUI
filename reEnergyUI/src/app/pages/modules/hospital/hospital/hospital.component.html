@@ -1,0 +1,1296 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card" *ngIf="this.currUsrRole == 9">
+        <!-- cc start -->
+        <div class="d-flex page-title-style row" *ngIf="this.currUsrRole == 9" style="margin-bottom: -20px;">
+          <div class="col-md-4">
+            <h4 class="mb-0 font-size-14"><strong>COMMITTEE DECISION</strong></h4>
+          </div>
+          <div class="col-md-6">
+
+          </div>
+          <div class="col-md-2">
+            <a href="javascript:void(0);" (click)="goCCdashboard()" style="margin-left: 40%;"> <i
+                class="bx bx-arrow-back"></i> Go Back</a>
+          </div>
+        </div>
+
+        <div class="d-flex page-title-style row" *ngIf="this.currUsrRole == 9 " style="margin-bottom: -20px;">
+
+
+          <div class="col-md-3">
+            <h4 class="mb-0 font-size-14"><strong>Reference ID :</strong> {{ hospitalPages.ref_id}}</h4>
+          </div>
+          <div class="col-md-5">
+            <h4 class="mb-0 font-size-14"><strong>Organisation Name :</strong> {{ hospitalPages.org_name | titlecase}}
+            </h4>
+          </div>
+          <div class="col-md-3">
+            <h4 class="mb-0 font-size-14"><strong>State :</strong> {{ hospitalPages.state | titlecase}}</h4>
+          </div>
+
+
+
+        </div>
+        <div class="d-flex page-title-style row" *ngIf="this.currUsrRole  == 9">
+
+          <div class="col-md-3">
+            <h4 class="mb-0 font-size-14"><strong>Application Number :</strong> {{ hospitalPages.application_no}}
+            </h4>
+          </div>
+          <div class="col-md-5">
+            <h4 class="mb-0 font-size-14"><strong>Specialities</strong> {{ hospitalPages.sepeciality}}
+            </h4>
+          </div>
+          <div class="col-md-1" *ngIf="this.currUsrRole ==9">
+            <h4 class="mb-0 font-size-14"><strong>Type :</strong> {{ hospitalPages.type}}
+            </h4>
+          </div>
+          <div class="col-md-2" *ngIf="this.currUsrRole ==9">
+            <h4 class="mb-0 font-size-14"><strong>Sanctioned Beds :</strong> {{ hospitalPages.senction_bed}}
+            </h4>
+          </div>
+
+
+
+        </div>
+        <!-- CC end -->
+      </div>
+      <div class="row mt-3 mb-3" *ngIf="this.currUsrRole == 9">
+
+        <div class="col-md-6">
+          <button class="btn btn-sm btn-success  btn-rounded waves-effect mr-3 ml-2"><i
+              class="bx bx-reset mr-1"></i>Desktop
+            Assessment</button>
+          <button class="btn btn-sm btn-info  btn-rounded waves-effect mr-10 ml-10" (click)="redirectonsite()"><i
+              class="bx bx-reset mr-1"></i>On-site
+            Assessment</button>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+          <button class="btn btn-sm btn-primary  btn-rounded waves-effect pull-right" (click)="openCCpopup()"><i
+              class="bx bx-reset mr-1"></i>Submit Advisory
+            Assessment</button>
+        </div>
+
+      </div>
+      <div class="card">
+
+        <div class="">
+
+          <!-- start page title -->
+          <div class="d-flex page-title-style row"
+            *ngIf="this.currUsrRole == 5 || this.currUsrRole == 1 || this.currUsrRole == 2"
+            style="margin-bottom: -20px;">
+            <div class="col-md-4">
+              <h4 class="mb-0 font-size-14"><strong>Desktop Assessment</strong></h4>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+            <!-- <div class="col-md-4"> -->
+
+            <div class="col-md-4" *ngIf="this.currUsrRole != 5">
+              <div class="row">
+                <div class="col-md-2">
+                  <label>Progress: </label>
+                </div>
+                <div class="col-md-10">
+                  <ngb-progressbar [max]="100" [value]="aplcProgress" type="success" showValue="true" height="1.4rem">
+                  </ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex page-title-style row" *ngIf="this.currUsrRole == 3">
+            <!-- <h4 class="mb-0 font-size-16"><strong>Application Number - {{ hospitalPages.application_no}}</strong></h4> -->
+
+            <div class="col-md-7">
+              <h4 class="mb-0 font-size-14"><strong>Application Number - {{ hospitalPages.application_no}}</strong></h4>
+            </div>
+
+            <div class="col-md-5" *ngIf="!hospitalPages.isFinalSubmit==true">
+
+              <div class="row">
+                <div class="col-md-2">
+                  <label>Progress: </label>
+                </div>
+                <div class="col-md-10">
+                  <ngb-progressbar [max]="100" [value]="aplcProgress" type="success" showValue="true" height="1.4rem">
+                  </ngb-progressbar>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="d-flex page-title-style row"
+            *ngIf="this.currUsrRole == 5 || this.currUsrRole == 1 || this.currUsrRole == 2"
+            style="margin-bottom: -20px;">
+            <!-- <h4 class="mb-0 font-size-16"><strong>Application Number - {{ hospitalPages.application_no}}</strong></h4> -->
+
+            <div class="col-md-3">
+              <h4 class="mb-0 font-size-14"><strong>Reference ID :</strong> {{ hospitalPages.ref_id}}</h4>
+            </div>
+            <div class="col-md-6">
+              <h4 class="mb-0 font-size-14"><strong>Organisation Name :</strong> {{ hospitalPages.org_name | titlecase}}
+              </h4>
+            </div>
+            <div class="col-md-3">
+              <h4 class="mb-0 font-size-14"><strong>State :</strong> {{ hospitalPages.state | titlecase}}</h4>
+            </div>
+
+
+
+          </div>
+          <div class="d-flex page-title-style row"
+            *ngIf="this.currUsrRole == 5|| this.currUsrRole == 1 || this.currUsrRole == 2">
+
+            <div class="col-md-3">
+              <h4 class="mb-0 font-size-14"><strong>Application Number :</strong> {{ hospitalPages.application_no}}
+              </h4>
+            </div>
+            <div class="col-md-3" *ngIf="this.currUsrRole !=5">
+              <h4 class="mb-0 font-size-14"><strong>Type :</strong> {{ hospitalPages.type}}
+              </h4>
+            </div>
+            <div class="col-md-6" *ngIf="this.currUsrRole ==5">
+              <h4 class="mb-0 font-size-14"><strong>Type :</strong> {{ hospitalPages.type}}
+              </h4>
+            </div>
+            <div class="col-md-3">
+              <h4 class="mb-0 font-size-14"><strong>Assessment Date :</strong>
+                {{ hospitalPages.asmt_date | date:'dd-MMM-yyyy'}}
+              </h4>
+            </div>
+            <div class="col-md-3" *ngIf="this.currUsrRole !=5">
+              <h4 class="mb-0 font-size-14"><strong>Desktop Assessor :</strong>
+                {{ hospitalPages.asr_name}}
+              </h4>
+            </div>
+
+          </div>
+          <ul ngbNav #customNav="ngbNav" class="nav-tabs nav-tabs-custom" [destroyOnHide]="false" role="tablist">
+            <li [ngbNavItem]="1">
+              <a ngbNavLink class="border-left-0">
+                <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">
+                  General &nbsp;<i *ngIf="formSubmitted==true && genIfoFrom.invalid==true" class="fas fa-exclamation"
+                    style="color:red"></i>
+                  <span class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.generalInfo:''}}</span>
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="GenralInfo"></ng-template>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
+                <!--Section name changed to Scope of Certification from Scope of Services -->
+                <span class="d-none d-sm-block" style="font-size: 13px">Scope of Certification &nbsp; <i
+                    *ngIf="formSubmitted==true && scopeOfServiceform.invalid==true" class="fas fa-exclamation"
+                    style="color:red;padding-right: 0px;"></i>
+                  <span class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.scope_of_service:''}}</span>
+                </span>
+              </a>
+
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="scopeOfService"></ng-template>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">Statutory Compliance &nbsp;<i
+                    *ngIf="formSubmitted==true && statutaryComplianceform.invalid==true" class="fas fa-exclamation"
+                    style="color:red;padding-right: 0px;"></i>
+                  <span
+                    class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.statutory_compliance:''}}</span>
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="StatutaryCompliance"></ng-template>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="4">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">
+                  Infection Control &nbsp;<i *ngIf="formSubmitted==true && infectioncontrolform.invalid==true"
+                    class="fas fa-exclamation" style="color:red"></i>
+                  <span
+                    class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.infection_control:''}}</span>
+
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="InfectionControl"></ng-template>
+              </ng-template>
+
+
+            </li>
+            <li [ngbNavItem]="5">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">Quality of Care &nbsp;<i
+                    *ngIf="formSubmitted==true && qocform.invalid==true" class="fas fa-exclamation"
+                    style="color:red"></i>
+
+                  <span class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.quality_care:''}}</span>
+
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="QualityOfCare"></ng-template>
+              </ng-template>
+
+            </li>
+            <li [ngbNavItem]="6">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">HR &nbsp;<i
+                    *ngIf="formSubmitted==true && humanResourceform.invalid==true" class="fas fa-exclamation"
+                    style="color:red"></i>
+
+                  <span class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.human_resource:''}}</span>
+
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="HumanResource"></ng-template>
+              </ng-template>
+
+
+            </li>
+            <li [ngbNavItem]="7">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">Training &nbsp;<i
+                    *ngIf="formSubmitted==true && trainingform.invalid==true" class="fas fa-exclamation"
+                    style="color:red"></i>
+                  <span class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.training:''}}</span>
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="Training"></ng-template>
+              </ng-template>
+
+            </li>
+            <li [ngbNavItem]="8">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">Patient Records &nbsp;<i
+                    *ngIf="formSubmitted==true && patientrecordform.invalid==true" class="fas fa-exclamation"
+                    style="color:red"></i>
+                  <span class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.patient_record:''}}</span>
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="Patientrecord"></ng-template>
+              </ng-template>
+
+            </li>
+            <li [ngbNavItem]="9">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">Admission & Discharge &nbsp;<i
+                    *ngIf="formSubmitted==true && admissiondischargeform.invalid==true" class="fas fa-exclamation"
+                    style="color:red"></i>
+                  <span class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.admsn_dischrge:''}}</span>
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="AdmissionDischarge"></ng-template>
+              </ng-template>
+
+
+
+            </li>
+            <li [ngbNavItem]="10">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">Admin Records &nbsp;<i
+                    *ngIf="formSubmitted==true && adminrecordform.invalid==true" class="fas fa-exclamation"
+                    style="color:red"></i>
+                  <span class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.admin_record:''}}</span>
+                </span>
+              </a>
+
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="AdminRecord"></ng-template>
+              </ng-template>
+
+            </li>
+            <li [ngbNavItem]="11">
+              <a ngbNavLink>
+                <span class="d-block d-sm-none"><i class="fas fa-cog"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">Support Services &nbsp;<i
+                    *ngIf="formSubmitted==true && (supportServiceForm.invalid==true || declarationForm.invalid==true)"
+                    class="fas fa-exclamation" style="color:red"></i>
+                  <span class="pl-1 text-danger">{{ncFormTabInfo!=null?ncFormTabInfo.opennc.support_service:''}}</span>
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="SupportService"></ng-template>
+              </ng-template>
+
+            </li>
+          </ul>
+
+
+
+          <div class="p-3" [ngbNavOutlet]="customNav"></div>
+
+
+
+          <!--Save Button-->
+          <div class="text-right mt-3">
+            <button class="btn btn-success" [disabled]="this.hospitalPages.status ==false"
+              *ngIf="!this.hospitalPages.isFinalSubmit && this.currUsrRole==3 && this.currentUser.workkingdays!=''"
+              (click)="submitForm(0)">Save</button>
+            <button class="btn btn-primary ml-2" [disabled]="this.hospitalPages.status ==false"
+              *ngIf="!this.hospitalPages.isFinalSubmit && this.currUsrRole==3 && this.currentUser.workkingdays!=''"
+              (click)="submitForm(1)">
+              Submit Application</button>
+
+            <button class="btn btn-primary ml-2" *ngIf="daNcReviewbtn" (click)="Review('review')">Submit DA
+              Review</button>
+            <button class="btn btn-primary ml-2" *ngIf="hcoNcResponsebtn" (click)="Review('reply')">Submit NC
+              Reply</button>
+            <button class="btn btn-primary ml-2" *ngIf="daCompletebtn" (click)="DoNothing()">Save</button>
+            <button class="btn btn-primary ml-2" *ngIf="daCompletebtn"
+              (click)="OpenDaCompleteRejectModal('DaComplete')">DA complete</button>
+            <button class="btn btn-primary ml-2" *ngIf="daRejectbtn" (click)="OpenDaCompleteRejectModal('DaReject')">DA
+              Reject</button>
+
+          </div>
+          <!--./Save Button-->
+
+
+        </div>
+        <!--./card-body-->
+
+        <ng-template #GenralInfo>
+          <app-genralform (deleteFile)="submitForm($event)" (openNcModelTabControl)="openNcModelForChild($event)">
+          </app-genralform>
+        </ng-template>
+        <ng-template #QualityOfCare>
+          <app-quality-of-care (openNcModelQualityCare)="openNcModelForChild($event)"></app-quality-of-care>
+        </ng-template>
+        <ng-template #InfectionControl>
+          <app-infection-control (openNcModelInfectionControl)="openNcModelForChild($event)"></app-infection-control>
+        </ng-template>
+
+        <ng-template #Training>
+          <app-training (openNcModelTrainingControl)="openNcModelForChild($event)"></app-training>
+        </ng-template>
+        <ng-template #Patientrecord>
+          <app-patientrecord (openNcModelPatientControl)="openNcModelForChild($event)"></app-patientrecord>
+        </ng-template>
+
+        <ng-template #AdmissionDischarge>
+          <app-admission-discharge (openNcModelAdmsnControl)="openNcModelForChild($event)"></app-admission-discharge>
+        </ng-template>
+        <ng-template #HumanResource>
+          <app-human-resource (openNcModelHumanControl)="openNcModelForChild($event)"></app-human-resource>
+
+        </ng-template>
+        <ng-template #SupportService>
+          <app-support-service (openNcModelSupportControl)="openNcModelForChild($event)"></app-support-service>
+        </ng-template>
+
+        <!-- (openNcModelHumanResource)="openNcModelForChild($event)" -->
+        <ng-template #AdminRecord>
+          <app-adminrecord (openNcModelAdminControl)="openNcModelForChild($event)"></app-adminrecord>
+        </ng-template>
+        <ng-template #StatutaryCompliance>
+          <app-statutary-compliance (openNcModelStatutaryControl)="openNcModelForChild($event)">
+          </app-statutary-compliance>
+        </ng-template>
+
+        <ng-template #scopeOfService>
+          <app-scope-of-service (openNcModelScopeOfService)="openNcModelForChild($event)"
+            (deleteFile)="submitForm($event)"></app-scope-of-service>
+        </ng-template>
+
+
+
+      </div>
+      <!--./card-->
+    </div>
+    <!--./col-sm-12-->
+  </div>
+  <!--./row-->
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<ng-template #daNcModel role="document" [destroyOnHide]="false" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Non-Compliance</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <form #DaNcHospitalForm="ngForm">
+      <div class="row">
+
+        <div class="col-xs-12 col-md-12 col-xl-12">
+          <div class="media">
+            <div class="mr-3"><b>Q.</b></div>
+            <div class="media-body">
+              <b>{{ques_text}}</b>
+            </div>
+          </div>
+
+          <!-- Da  -->
+          <fieldset *ngIf="currUsrRole == 5 && isNcClosePreviousStage">
+            <div class="input-group mb-2" *ngIf="this.hospitalPages.stage_id==60 || this.hospitalPages.stage_id==80">
+              <div class="form-check form-check-inline">
+                <label class="mt-2"><b>NC Status</b></label>
+                <input class="form-check-input ncStatusleftPadding" [(ngModel)]="daNcHospitalOrCenterDetails.isOpen"
+                  type="radio" [value]="true" name="optionNcStatus" id="radio1" #optionNcStatus="ngModel">
+                <span class="form-check-label" for="radio1">Open</span>
+                <input class="form-check-input ncStatusleftPadding" type="radio"
+                  [(ngModel)]="daNcHospitalOrCenterDetails.isOpen" [value]="false" name="optionNcStatus" id="radio1"
+                  #optionNcStatus="ngModel">
+                <span class="form-check-label" for="radio1">Close</span>
+              </div>
+
+              <div *ngIf="optionNcStatus.invalid">
+                <div *ngIf="optionNcStatus.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-2">
+              <label><b>NC Remark</b></label>
+              <div class="input-group">
+                <input type="text" class="form-control" style="height: 60px;" id="ncfinalremarks" name="ncfinalremarks"
+                  #ncfinalremarks="ngModel" [(ngModel)]="daNcHospitalOrCenterDetails.finalRemark" required>
+
+              </div>
+              <div *ngIf="ncfinalremarks.invalid">
+                <div *ngIf="ncfinalremarks.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <!-- --------------for reply -->
+
+          <fieldset *ngIf="currUsrRole == 3 && daNcHospitalOrCenterDetails.isOpen!=false">
+            <div class="form-group">
+
+              <label class="mt-2"><b>NC Reply</b></label>
+              <div class="input-group">
+                <input type="text" style="height: 60px;" class="form-control"
+                  [(ngModel)]="daNcHospitalOrCenterDetails.reply" #ncreply="ngModel" id="ncreply" name="ncreply"
+                  required>
+              </div>
+              <div *ngIf="ncreply.invalid">
+                <div *ngIf="ncreply.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+
+              <label>Document</label>
+              <div class="input-group">
+
+                <input type="file" #myFileInput (change)="getUploadFilesPath($event.target.files)">
+                <!-- <label style="font-size: 11px; color:#42C0FB;margin-top: 10px;">NOTE: The following formats are
+                  accepted
+                  PDF , JPEG , PNG.The maximum file size allowed is 20 MB.</label> <br /> -->
+                <label style="font-size: 11px; margin-top: 10px;">NOTE: The following formats are
+                  accepted
+                  PDF , JPEG , PNG.The maximum file size allowed is 20 MB.</label> <br />
+              </div>
+
+              <input hidden type="text" name="ncUploadrepleyDoc_url" #ncUploadrepleyDoc_url="ngModel" required
+                [(ngModel)]="daNcHospitalOrCenterDetails.uploadUrl" required>
+              <div *ngIf="ncUploadrepleyDoc_url.invalid">
+                <div *ngIf="ncUploadrepleyDoc_url.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+            <div class="table-responsive" style="margin-top: -10px;">
+              <table class="table table-centered table-bordered table-nowrap">
+                <tbody>
+
+                  <tr *ngFor="let item of arryNcUploadedDocs">
+                    <td>
+                      <span class="text-primary">{{item.fn}}</span>
+                      <i class="fa fa-times ml-3 text-danger" (click)="DeleteNcUpload(item)"></i>
+                    </td>
+                  </tr>
+                  <!-- <tr>
+                  <td><span class="text-primary">SOP for AYUSH Process .pdf</span> <i
+                      class="fa fa-times ml-3 text-danger"></i></td>
+                </tr> -->
+
+
+                </tbody>
+              </table>
+            </div>
+
+          </fieldset>
+          <!-- ------------------for reply -->
+          <!-- </span> -->
+
+        </div>
+
+
+      </div>
+
+      <fieldset
+        *ngIf="daNcHospitalOrCenterDetailsItem.rows.length>0 &&  (currUsrRole == 3 || currUsrRole == 1 || currUsrRole == 2 ||currUsrRole == 5|| currUsrRole == 8|| currUsrRole == 9)">
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <h3 class="card-title custom-inner-title-grey mt-2">NC LOG </h3>
+
+          </div>
+
+
+        </div>
+        <!--  nc trail-------------------------------------- -->
+        <!-- <hr> -->
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <!-- *ngFor="let item of daNcHospitalOrCenterDetailsItem.rows;" -->
+            <div class="table-responsive mb-1" *ngFor="let item of daNcHospitalOrCenterDetailsItem.rows;">
+              <table class="table table-centered table-nowrap nc_log_grid" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th colspan="2" class="text-center">Assessor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td width="25%"><strong>Date</strong> </td>
+                    <td>{{item.nccreatedatebyda | date:'dd-MMM-yyyy, h:mm a'}}</td>
+                  </tr>
+                  <tr>
+
+                    <td><strong>Remark</strong></td>
+                    <td>{{item.remarks}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Status</strong></td>
+                    <td>
+                      <!-- <div *ngFor="let itm of item.uploadItems"> -->
+                      <span
+                        [ngClass]="{'badge badge-danger dangerB': item.isOpen==null||item.isOpen==true, 'badge badge-success': item.isOpen==false}">
+                        {{item.isOpen!=null?(item.isOpen==true?'Open':'Close'):'Open'}}
+                      </span>
+                      <!-- </div> -->
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+
+            <div class="table-responsive mb-1" *ngFor="let item of daNcHospitalOrCenterDetailsItem.rows;">
+              <!-- *ngFor="let item of daNcHospitalOrCenterDetailsItem.rows;" -->
+              <table class="table table-centered table-nowrap nc_log_grid" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th colspan="2" class="text-center">Organisation</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td width="25%"><strong>Date</strong> </td>
+                    <td>{{item.ncCreateDate | date:'dd-MMM-yyyy, h:mm a'}}</td>
+                  </tr>
+                  <tr>
+
+                    <td><strong>Reply</strong></td>
+                    <td>{{item.reply}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Document</strong></td>
+                    <td>
+                      <div *ngFor="let itm of item.uploadItems" style="float: left; margin-right: 4px">
+                        <span class="badge badge-success" style="cursor:pointer"
+                          (click)="downloadUploadFile(itm)">{{itm.fn}}</span>
+                        <!-- <span class="download-img " (click)="downloadUploadFile(itm)" style="cursor:pointer"><i
+                              class="fa fa-download"></i></span> -->
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <!-- ----------------------------------------- -->
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer" style="margin-top: -15px;">
+    <button type="button" class="btn btn-danger"
+      *ngIf="currUsrRole == 5 && this.hospitalPages.stage_id==45 && daNcHospitalOrCenterDetailsItem.rows.length==1"
+      (click)="RemoveNc(0)">Remove NC</button>
+    <button type="button" class="btn btn-success" *ngIf="currUsrRole == 5 && this.hospitalPages.stage_id==45"
+      (click)="RaiseNc(0)">Raise NC</button>
+    <button type="button" class="btn btn-success" *ngIf="this.hospitalPages.stage_id>45"
+      (click)="AddorUpdateNc(0)">Submit</button>
+    <!-- <button type="button" class="btn btn-success" *ngIf="this.hospitalPages.stage_id>45"
+        (click)="AddorUpdateNc(0)">Submit NC</button> -->
+  </div>
+
+</ng-template>
+
+
+
+
+<ng-template #DaCompleteRejectModal role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0"> Desktop Assessment</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <form #DaCompleteRejectForm="ngForm">
+      <!-- <div class="row"> -->
+
+      <!-- <div class="col-xs-12 col-md-12 col-xl-12"> -->
+
+      <div class="form-group">
+        <!-- <label>3. &nbsp; &nbsp;Remarks</label><br /> -->
+        <div [ngClass]="classshown">
+
+          {{messageShown}}
+        </div>
+        <label [ngClass]="colorclass">{{daCompleteRejHead}}</label>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="input-group">
+
+              <textarea class="form-control" name="daremark" placeholder="Remark" [(ngModel)]="DaRemarkText" rows="5"
+                style="resize: none !important;" #daremark="ngModel" required></textarea>
+              <div *ngIf="daremark.errors && (daremark.dirty || daremark.touched)" class="text-danger">
+                <div *ngIf="daremark.errors.required">
+                  required
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-lg-12 ">
+            <div class="form-check " style="float: left; padding-right: 1.2em;">
+              <input type="checkbox" id="dec" name="dec" [(ngModel)]="declartion_new">
+              <label for="dec">&nbsp; I hereby deaclare that i have reviewed all the sections
+                of
+                the application to the best of my knowledge,</label>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <!-- </div> -->
+
+
+      <!-- </div> -->
+
+    </form>
+  </div>
+  <div class="modal-footer" style="margin-top: -15px;">
+    <button type="button" class="btn btn-sm btn-success"
+      *ngIf="!daremark.errors && (declartion_new!=null && declartion_new !=false)"
+      (click)="SaveFinalNcByDa()">Submit</button>
+    <button class="btn btn-sm btn-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
+  </div>
+</ng-template>
+<!--CC start-->
+
+<ng-template #ccModel let-modal>
+  <div class="modal-header">
+    <h4 class="mb-0 font-size-16 ml-3">Committee Descisiom</h4>
+
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-hidden="true">×</button>
+  </div>
+
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+
+
+          <ul ngbNav #customNav="ngbNav" class="nav-tabs nav-tabs-custom" [destroyOnHide]="false" role="tablist">
+            <li [ngbNavItem]="1">
+              <a ngbNavLink class="border-left-0">
+                <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">
+                  Organisation
+                  <!-- <i *ngIf="dicisionForm.invalid" class="fas fa-exclamation" style="color:red"></i> -->
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="dddd"></ng-template>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2">
+              <a ngbNavLink class="border-left-0">
+                <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">
+                  Desktop Assessor
+                  <!-- <i *ngIf="dicisionDAForm.invalid" class="fas fa-exclamation" style="color:red"></i> -->
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="aaa"></ng-template>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3">
+              <a ngbNavLink class="border-left-0">
+                <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                <span class="d-none d-sm-block" style="font-size: 13px">
+                  On-site Assessor
+                  <!-- <i *ngIf="dicisionOAForm.invalid" class="fas fa-exclamation" style="color:red"></i> -->
+                </span>
+              </a>
+              <ng-template ngbNavContent>
+                <ng-template [ngTemplateOutlet]="aaaa"></ng-template>
+              </ng-template>
+            </li>
+
+          </ul>
+          <div class="p-3" [ngbNavOutlet]="customNav"></div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer" *ngIf="this.hospitalPages.stage_id==202 || this.hospitalPages.stage_id==206">
+    <button type="button" class="btn btn-primary" (click)="saveCCDecision(1)">Save Draft</button>
+    <button type="button" class="btn btn-success" (click)="alertSweet2(2)">Submit</button>
+  </div>
+
+  <ng-template #dddd>
+    <form #decForm="ngForm">
+      <div class="media">
+        <div class="mr-4"><b>Decision</b></div>
+        <div class="media-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="custom-control custom-checkbox" style="display: inline;">
+                <input class="custom-control-input" type="checkbox" id="recommende" name="recommende"
+                  [(ngModel)]="committeeRespone.recommended" (change)="notrecmndPendngHide()">
+                <label class="custom-control-label" for="recommende">Recommended</label>
+              </div>
+              <div class="custom-control custom-checkbox ml-3" style="display: inline;">
+                <input class="custom-control-input" type="checkbox" id="not_recommended" name="not_recommended"
+                  [(ngModel)]="committeeRespone.non_recommended" (change)="recmndPandngHide()">
+                <label class="custom-control-label" for="not_recommended">Not Recommended</label>
+              </div>
+              <div class="custom-control custom-checkbox ml-3" style="display: inline;">
+                <input class="custom-control-input" type="checkbox" id="pending" name="pending"
+                  [(ngModel)]="committeeRespone.pending_recommended" (change)="recomndNotcomndHide()">
+                <label class="custom-control-label" for="pending">Pending</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="committeeRespone.recommended==true" style="margin-top: 10px;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group mt-2">
+              <label style="color: #009688;">Recommendation Remarks</label>
+              <textarea rows="3" id="recommend_remark" class="form-control" name="recommend_remark"
+                [(ngModel)]="committeeRespone.recommend_remark"></textarea>
+            </div>
+          </div>
+        </div>
+        <h3 class="card-title custom-inner-title-grey mt-3">Scope Of Certification</h3>
+        <ngb-accordion [destroyOnHide]="false" #acc="ngbAccordion" class="range-accordion"
+          (panelChange)="panelChange($event)">
+          <ngb-panel id="static-1" *ngIf="ayushcount>0">
+            <ng-template ngbPanelHeader>
+              <button ngbPanelToggle class="btn btn-link text-left">Scope of Ayurveda Certification
+
+                <div class="w-100">
+
+
+                  <div class="d-flex accordionToggleIcon" *ngIf="openById['static-1']">
+                    <i class="mdi mdi-minus"></i>
+                  </div>
+                  <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-1']">
+                    <i class="mdi mdi-plus"></i>
+                  </div>
+
+
+                </div>
+              </button>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered table-striped customTable">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Clinical Service</th>
+                        <th>Organisation</th>
+                        <th>Assessor</th>
+                        <th>Recommended</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of committeeRespone.scope_tab.scopeayurveda.sosvalues;let i=index">
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          {{data.services}}</td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <input class="form-check-input" type="checkbox" id="hospselected_ayurveda{{i}}"
+                            name="hospselected_ayurveda{{i}}" [(ngModel)]="data.hospselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <input class="form-check-input" type="checkbox" id="asrselected_ayurveda{{i}}"
+                            name="asrselected_ayurveda{{i}}" [(ngModel)]="data.asrselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <div class="form-check form-check-inline">
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_ayurveda{{i}}"
+                              id="recomm_bycc_ayurveda1{{i}}" [(ngModel)]="data.recomm_bycc" value="Yes">
+                            <label class="form-check-label" for="recomm_bycc_ayurveda1">Yes</label>
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_ayurveda{{i}}"
+                              id="recomm_bycc_ayurveda2{{i}}" [(ngModel)]="data.recomm_bycc" value="No"
+                              style="margin-left: 10px;">
+                            <label class="form-check-label" for="recomm_bycc_ayurveda2">No</label>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="static-2" *ngIf="yunanicount>0">
+            <ng-template ngbPanelHeader>
+              <button ngbPanelToggle class="btn btn-link text-left">Scope of Yunani Certification
+
+                <div class="w-100">
+
+
+                  <div class="d-flex accordionToggleIcon" *ngIf="openById['static-2']">
+                    <i class="mdi mdi-minus"></i>
+                  </div>
+                  <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-2']">
+                    <i class="mdi mdi-plus"></i>
+                  </div>
+
+
+                </div>
+              </button>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered table-striped customTable">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Clinical Service</th>
+                        <th>Organisation</th>
+                        <th>Assessor</th>
+                        <th>Recommended</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of committeeRespone.scope_tab.scopeyunani.sosvalues;let i=index">
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          {{data.services}}</td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <input class="form-check-input" type="checkbox" id="hospselected_yunani{{i}}"
+                            name="hospselected_yunani{{i}}" [(ngModel)]="data.hospselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <input class="form-check-input" type="checkbox" id="asrselected_yunani{{i}}"
+                            name="asrselected_yunani{{i}}" [(ngModel)]="data.asrselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <div class="form-check form-check-inline">
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_yunani{{i}}"
+                              id="recomm_bycc_yunani1{{i}}" [(ngModel)]="data.recomm_bycc" value="Yes">
+                            <label class="form-check-label" for="recomm_bycc_yunani1">Yes</label>
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_yunani{{i}}"
+                              id="recomm_bycc_yunani2{{i}}" [(ngModel)]="data.recomm_bycc" value="No"
+                              style="margin-left: 10px;">
+                            <label class="form-check-label" for="recomm_bycc_yunani2">No</label>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="static-3" *ngIf="homopathycount>0">
+            <ng-template ngbPanelHeader>
+              <button ngbPanelToggle class="btn btn-link text-left">Scope of Hemopathy Certification
+
+                <div class="w-100">
+
+
+                  <div class="d-flex accordionToggleIcon" *ngIf="openById['static-3']">
+                    <i class="mdi mdi-minus"></i>
+                  </div>
+                  <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-3']">
+                    <i class="mdi mdi-plus"></i>
+                  </div>
+
+
+                </div>
+              </button>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered table-striped customTable">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Clinical Service</th>
+                        <th>Organisation</th>
+                        <th>Assessor</th>
+                        <th>Recommended</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of committeeRespone.scope_tab.scopeHemopathy.sosvalues;let i=index">
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          {{data.services}}</td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <input class="form-check-input" type="checkbox" id="hospselected_scopeHemopathy{{i}}"
+                            name="hospselected_scopeHemopathy{{i}}" [(ngModel)]="data.hospselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <input class="form-check-input" type="checkbox" id="asrselected_scopeHemopathy{{i}}"
+                            name="asrselected_scopeHemopathy{{i}}" [(ngModel)]="data.asrselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <div class="form-check form-check-inline">
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_scopeHemopathy{{i}}"
+                              id="recomm_bycc_scopeHemopathy1{{i}}" [(ngModel)]="data.recomm_bycc" value="Yes">
+                            <label class="form-check-label" for="recomm_bycc_scopeHemopathy1">Yes</label>
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_scopeHemopathy{{i}}"
+                              id="recomm_bycc_scopeHemopathy2{{i}}" [(ngModel)]="data.recomm_bycc" value="No"
+                              style="margin-left: 10px;">
+                            <label class="form-check-label" for="recomm_bycc_scopeHemopathy2">No</label>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="static-4" *ngIf="nuropathycount>0">
+            <ng-template ngbPanelHeader>
+              <button ngbPanelToggle class="btn btn-link text-left">Scope of Nuropathy Certification
+
+                <div class="w-100">
+
+
+                  <div class="d-flex accordionToggleIcon" *ngIf="openById['static-4']">
+                    <i class="mdi mdi-minus"></i>
+                  </div>
+                  <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-4']">
+                    <i class="mdi mdi-plus"></i>
+                  </div>
+
+
+                </div>
+              </button>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered table-striped customTable">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Clinical Service</th>
+                        <th>Organisation</th>
+                        <th>Assessor</th>
+                        <th>Recommended</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of committeeRespone.scope_tab.scopenuropathy.sosvalues;let i=index">
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          {{data.services}}</td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true" disabled>
+                          <input class="form-check-input" type="checkbox" id="hospselected_scopenuropathy{{i}}"
+                            name="hospselected_scopenuropathy{{i}}" [(ngModel)]="data.hospselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <input class="form-check-input" type="checkbox" id="asrselected_scopenuropathy{{i}}"
+                            name="asrselected_scopenuropathy{{i}}" [(ngModel)]="data.asrselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <div class="form-check form-check-inline">
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_scopenuropathy{{i}}"
+                              id="recomm_bycc_scopenuropathy1{{i}}" [(ngModel)]="data.recomm_bycc" value="Yes">
+                            <label class="form-check-label" for="recomm_bycc_scopenuropathy1">Yes</label>
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_scopenuropathy{{i}}"
+                              id="recomm_bycc_scopenuropathy2{{i}}" [(ngModel)]="data.recomm_bycc" value="No"
+                              style="margin-left: 10px;">
+                            <label class="form-check-label" for="recomm_bycc_scopenuropathy2">No</label>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="static-5" *ngIf="siddhacount>0">
+            <ng-template ngbPanelHeader>
+              <button ngbPanelToggle class="btn btn-link text-left">Scope of Sidhha Certification
+
+                <div class="w-100">
+
+
+                  <div class="d-flex accordionToggleIcon" *ngIf="openById['static-5']">
+                    <i class="mdi mdi-minus"></i>
+                  </div>
+                  <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-5']">
+                    <i class="mdi mdi-plus"></i>
+                  </div>
+
+
+                </div>
+              </button>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered table-striped customTable">
+                    <thead>
+                      <tr class="text-center">
+                        <th>Clinical Service</th>
+                        <th>Organisation</th>
+                        <th>Assessor</th>
+                        <th>Recommended</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of committeeRespone.scope_tab.scopesidhha.sosvalues;let i=index">
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          {{data.services}}</td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <input class="form-check-input" type="checkbox" id="hospselected_scopesidhha{{i}}"
+                            name="hospselected_scopesidhha{{i}}" [(ngModel)]="data.hospselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <input class="form-check-input" type="checkbox" id="asrselected_scopesidhha{{i}}"
+                            name="asrselected_scopesidhha{{i}}" [(ngModel)]="data.asrselected" disabled>
+                        </td>
+                        <td class="text-center" *ngIf="data.hospselected==true || data.asrselected==true">
+                          <div class="form-check form-check-inline">
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_scopesidhha{{i}}"
+                              id="recomm_bycc_scopesidhha1{{i}}" [(ngModel)]="data.recomm_bycc" value="Yes">
+                            <label class="form-check-label" for="recomm_bycc_scopesidhha1">Yes</label>
+                            <input required class="form-check-input" type="radio" name="recomm_bycc_scopesidhha{{i}}"
+                              id="recomm_bycc_scopesidhha2{{i}}" [(ngModel)]="data.recomm_bycc" value="No"
+                              style="margin-left: 10px;">
+                            <label class="form-check-label" for="recomm_bycc_scopesidhha2">No</label>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+
+
+      </div>
+      <div *ngIf="committeeRespone.non_recommended==true" style="margin-top: 10px;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group mt-2">
+              <label style="color: red;">REASON FOR NON RECOMMENDATION</label>
+              <textarea rows="3" id="non_recommend_remark" class="form-control" required name="non_recommend_remark"
+                [(ngModel)]="committeeRespone.non_recommend_remark"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="committeeRespone.pending_recommended==true" style="margin-top: 10px;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group mt-2">
+              <label style="color:orange;">REASON FOR PENDING</label>
+              <textarea rows="3" id="pending_remark" class="form-control" required name="pending_remark"
+                [(ngModel)]="committeeRespone.pending_remark"></textarea>
+            </div>
+          </div>
+        </div>
+        <h3 class="card-title custom-inner-title-grey mt-3">Committee Log</h3>
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <!-- *ngFor="let item of daNcHospitalOrCenterDetailsItem.rows;" -->
+            <div class="table-responsive mb-1" *ngFor="let item of committeeRespone.ccpening.rows;">
+              <table class="table table-centered table-nowrap nc_log_grid" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th colspan="2" class="text-center">Commettee</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td width="25%"><strong>Date</strong> </td>
+                    <td>{{item.ccCreateDate | date:'dd-MMM-yyyy, h:mm a'}}</td>
+                  </tr>
+                  <tr>
+
+                    <td><strong>Remark</strong></td>
+                    <td>{{item.remarks}}</td>
+                  </tr>
+                  <!-- <tr>
+                  <td><strong>Status</strong></td>
+                  <td>
+                  
+                    <span
+                      [ngClass]="{'badge badge-danger dangerB': item.isOpen==null||item.isOpen==true, 'badge badge-success': item.isOpen==false}">
+                      {{item.isOpen!=null?(item.isOpen==true?'Open':'Close'):'Open'}}
+                    </span>
+                    
+                  </td>
+                </tr> -->
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+
+            <div class="table-responsive mb-1" *ngFor="let item of committeeRespone.ccpening.rows;">
+              <!-- *ngFor="let item of daNcHospitalOrCenterDetailsItem.rows;" -->
+              <table class="table table-centered table-nowrap nc_log_grid" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th colspan="2" class="text-center">Organisation</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td width="25%"><strong>Date</strong> </td>
+                    <td>{{item.ccReplyDate | date:'dd-MMM-yyyy, h:mm a'}}</td>
+                  </tr>
+                  <tr>
+
+                    <td><strong>Reply</strong></td>
+                    <td>{{item.reply}}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Document</strong></td>
+                    <td>
+                      <div *ngFor="let itm of item.uploadItems" style="float: left; margin-right: 4px">
+                        <span class="badge badge-success" style="cursor:pointer"
+                          (click)="downloadUploadFile(itm)">{{itm.fn}}</span>
+                        <!-- <span class="download-img " (click)="downloadUploadFile(itm)" style="cursor:pointer"><i
+                          class="fa fa-download"></i></span> -->
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+
+  <ng-template #aaa>
+    <form #decDaForm="ngForm">
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Desktop Assessor Advisory</label>
+            <textarea rows="3" id="da_advisary" class="form-control" name="da_advisary"
+              [(ngModel)]="committeeRespone.da_advisary"></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+
+  <ng-template #aaaa>
+    <form #decOaForm="ngForm">
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>On-site Assessor Advisory</label>
+            <textarea rows="3" id="oa_advisary" class="form-control" name="oa_advisary"
+              [(ngModel)]="committeeRespone.oa_advisary"></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+
+</ng-template>
+<!-- </form> -->

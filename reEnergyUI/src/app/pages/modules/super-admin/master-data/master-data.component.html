@@ -1,0 +1,182 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <ul ngbNav #customNav="ngbNav" class="nav-tabs nav-tabs-custom" [destroyOnHide]="false"
+                            role="tablist">
+                            <li [ngbNavItem]="1">
+                                <a ngbNavLink class="border-left-0">
+                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                    <span class="d-none d-sm-block" style="font-size: 13px">
+                                        Services
+
+                                    </span>
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="services"></ng-template>
+                                </ng-template>
+                            </li>
+                            <li [ngbNavItem]="2">
+                                <a ngbNavLink class="border-left-0">
+                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                    <span class="d-none d-sm-block" style="font-size: 13px">
+                                        Category Of Videos
+
+                                    </span>
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="category_video"></ng-template>
+                                </ng-template>
+                            </li>
+                        </ul>
+                        <div class="p-3" [ngbNavOutlet]="customNav"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #services>
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="table-responsive">
+                <table class="table table-centered table-bordered hospitalTrackGrid">
+                    <thead class="thead-light">
+
+                        <tr>
+                            <th class="text-center" style="width: 5%;">Sr.No.</th>
+                            <th class="text-center">Center Type</th>
+                            <th class="text-center">Service</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of dummy_data;let i=index">
+                            <td class="text-center">{{i+this.skip+1}}</td>
+                            <td class="text-center">{{data.centertype}}</td>
+                            <td class="text-center">{{data.service}}</td>
+                            <td class="text-center">
+
+                                <button type="button" class="button-icon">
+                                    <i style="color: blue; font-weight: bolder; font-size: larger;" class="bx bx-edit"
+                                        title="Edit Details"></i>
+                                </button>
+
+                                <button type="button" class="button-icon"><i class="bx bxs-book-content ml-3"
+                                        title="View Historical Data"
+                                        style="color:green; font-weight: bolder; font-size: larger;"></i>
+                                </button>
+
+
+                            </td>
+                        </tr>
+
+                        
+                    </tbody>
+                </table>
+                <div>
+                    <!-- <span>Showing {{minCount}} to {{maxCount}} of {{totalCount}} entries
+                            </span> -->
+                </div>
+
+                <tfoot style="float: right;">
+                    <!-- <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls> -->
+                </tfoot>
+            </div>
+
+        </div>
+    </div>
+</ng-template>
+<ng-template #category_video>
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="table-responsive">
+                <table class="table table-centered table-bordered hospitalTrackGrid">
+                    <thead class="thead-light">
+
+                        <tr>
+                            <th class="text-center" style="width: 5%;">Sr.No.</th>
+                            <th class="text-center">Category Name</th>
+                            <th class="text-center">Icon Uploaded</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">1.</td>
+                            <td class="text-center">Zumba</td>
+                            <td class="text-center">Yes</td>
+                            <td class="text-center">
+
+                                <button type="button" class="button-icon">
+                                    <i style="color: blue; font-weight: bolder; font-size: larger;" class="bx bx-edit"
+                                        title="Edit Details"></i>
+                                </button>
+
+                                <button type="button" class="button-icon"><i class="bx bxs-book-content ml-3"
+                                        title="View Historical Data"
+                                        style="color:green; font-weight: bolder; font-size: larger;"></i>
+                                </button>
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">2.</td>
+                            <td class="text-center">Yoga</td>
+                            <td class="text-center">Yes</td>
+                            <td class="text-center">
+
+                                <button type="button" class="button-icon">
+                                    <i style="color: blue; font-weight: bolder; font-size: larger;" class="bx bx-edit"
+                                        title="Edit Details"></i>
+                                </button>
+
+                                <button type="button" class="button-icon"><i class="bx bxs-book-content ml-3"
+                                        title="View Historical Data"
+                                        style="color:green; font-weight: bolder; font-size: larger;"></i>
+                                </button>
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">3.</td>
+                            <td class="text-center">Crossfit</td>
+                            <td class="text-center">Yes</td>
+                            <td class="text-center">
+
+                                <button type="button" class="button-icon">
+                                    <i style="color: blue; font-weight: bolder; font-size: larger;" class="bx bx-edit"
+                                        title="Edit Details"></i>
+                                </button>
+
+                                <button type="button" class="button-icon"><i class="bx bxs-book-content ml-3"
+                                        title="View Historical Data"
+                                        style="color:green; font-weight: bolder; font-size: larger;"></i>
+                                </button>
+
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <!-- <span>Showing {{minCount}} to {{maxCount}} of {{totalCount}} entries
+                            </span> -->
+                </div>
+
+                <tfoot style="float: right;">
+                    <!-- <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls> -->
+                </tfoot>
+            </div>
+
+        </div>
+    </div>
+</ng-template>

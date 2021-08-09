@@ -1,0 +1,1758 @@
+<div class="card-body p-0">
+  <form #censcopeOfServiceform="ngForm">
+
+    <!--question-container-->
+    <div class="row mt-2 mb-2">
+      <div class="col-xs-12 col-sm-11">
+        <div class="media">
+          <div class="mr-3"><b>1.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.scope_of_service.scope_services_provided_by_the_organization.ques_text}}</div>
+        </div>
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.scope_of_service.scope_services_provided_by_the_organization:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.scope_of_service.scope_services_provided_by_the_organization:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('scope_of_service','scope_services_provided_by_the_organization',cenhospitalPagesQueBank.scope_of_service.scope_services_provided_by_the_organization)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.scope_of_service?.scope_services_provided_by_the_organization?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+    </div>
+    <!--./question-container-->
+
+    <!-- Ayurveda -->
+    <ngb-accordion [destroyOnHide]="false" #acc="ngbAccordion" class="range-accordion"
+      (panelChange)="panelChange($event)">
+      <ngb-panel id="scope-1" *ngIf="ayurveda_visibility">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Scope of Ayurveda Certification
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['scope-1']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['scope-1']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <!-- Kayachikitsa -->
+          <div class="row">
+            <div class="col-md-8 offset-md-2">
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0 customTable">
+                  <thead class="bg-teal">
+                    <tr class="text-center">
+                      <th>Clinical Service</th>
+                      <!-- style="width: 60%;" -->
+                      <th>Options</th>
+                      <!-- <th>Remark</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr class="text-center">
+                           <th scope="row" class="bg-light" colspan="3">Kayachikitsa</th>
+                        </tr> -->
+                    <tr *ngFor="let itm of scope_of_service.scopeOfAyurvedaCertification.fixed_services;let
+                        i=index;">
+                      <td class="text-center" style="width: 60%;">
+                        {{itm.service_name}}
+                      </td>
+                      <!-- <td class="text-center"  style="width: 33%;">
+                          <select class="form-control" name="ayurveda_option{{i}}" id="ayurveda_option{{i}}" [(ngModel)]="itm.option"
+                            #ayurveda_option="ngModel" required>
+                            <option [ngValue]=null>Select</option>
+                            <option [ngValue]="true">Yes</option>
+                            <option [ngValue]="false">No</option>
+                          </select>
+      
+                          <div *ngIf="ayurveda_option.invalid">
+                            <div *ngIf="scopeOfServiceformSubmitted && ayurveda_option.errors.required" class="text-danger">
+                              Required
+                            </div>
+                          </div>
+      
+                        </td> -->
+                      <td class="text-center" style="width: 40%;">
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option="ngModel" required name="option{{i}}"
+                              id="radio1" [(ngModel)]="itm.option" value="yes">
+                            <label class="form-check-label" for="radio1">Yes</label>
+                          </fieldset>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option="ngModel" name="option{{i}}"
+                              id="radio2" [(ngModel)]="itm.option" value="no">
+                            <label class="form-check-label" for="radio2">No</label>
+                          </fieldset>
+                        </div>
+
+                        <div *ngIf="option.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && option.errors.required" class="text-danger">
+                            required
+                          </div>
+                        </div>
+                      </td>
+
+                      <!-- <td class="text-center">
+                          <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="ayurveda_remark{{i}}" id="ayurveda_remark{{i}}" [(ngModel)]="itm.remark"
+                            #ayurveda_remark="ngModel" required>
+                          <div *ngIf="ayurveda_remark.invalid">
+                            <div *ngIf="scopeOfServiceformSubmitted && ayurveda_remark.errors.required" class="text-danger">
+                              Required
+                            </div>
+                          </div>
+                        </td> -->
+                    </tr>
+                    <!--./Ayurveda Clinical Services-->
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- others Kayachikitsa sos -->
+              <!-- <div class="clearfix" *ngIf="scope_of_service.scopeOfAyurvedaCertification.kayachikitsa.other_services.length>0">
+            <p class="bg-light addServices">Additional Services</p>
+          </div>
+          <div class="table-responsive"
+            *ngIf="scope_of_service.scopeOfAyurvedaCertification.kayachikitsa.other_services.length>0">
+            <table class="table customTable">
+
+              <tbody>
+                <tr *ngFor="let itm of
+                  scope_of_service.scopeOfAyurvedaCertification.kayachikitsa.other_services;
+                  let i=index;">
+                  <td style="width: 40%" class="text-center">
+                    <input class="form-control" type="text" [(ngModel)]="itm.service_name"
+                      name="ayurotherservice_name_{{i}}" #ayurotherservice_name="ngModel" required>
+                    <div *ngIf="ayurotherservice_name.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && ayurotherservice_name.errors.required"
+                        class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </td>
+                 
+                  <td class="text-center">
+                    <div class="form-check form-check-inline"> 
+                      <input class="form-check-input" type="radio" name="option1{{i}}" id="radio3" [(ngModel)]="itm.option" value="yes"> 
+                      <label class="form-check-label" for="radio3">Yes</label> </div>
+                    <div class="form-check form-check-inline"> 
+                      <input class="form-check-input" type="radio" name="option1{{i}}" id="radio4" [(ngModel)]="itm.option" value="no"> 
+                      <label class="form-check-label" for="radio4">No</label> </div>
+                 </td>
+                  <td class="text-center" style="width: 28%">
+                    <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="ayurotherremark_{{i}}" id="ayurotherremark_{{i}}"
+                      [(ngModel)]="itm.remark" #ayurotherremark="ngModel" required>
+                    <div *ngIf="ayurotherremark.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && ayurotherremark.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center">
+                    <a (click)="removeAyurvedaKayachikitsaCertification(itm)">
+                      <i class="bx bx-x-circle text-danger box-icon"></i>
+                    </a>
+                  </td>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <div class="text-right mt-2">
+            <button type="button" (click)="addAyurvedaKayachikitsaCertification()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1">
+            <i class="bx bx-plus mr-1"></i>Add New Services</button>
+            </div> -->
+
+
+
+
+            </div>
+          </div>
+
+          <!-- Kayachikitsa end -->
+          <!-- Shalakya Tantra -->
+          <!-- <div class="row" style="margin-top: 10px;">
+          <div class="col-md-8 offset-md-2">
+             <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0 customTable">
+                   <thead class="bg-teal">
+                      <tr class="text-center">
+                         <th style="width: 40%">Clinical Service</th>
+                         <th>Options</th>
+                         <th>Remark</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      <tr class="text-center">
+                         <th scope="row" class="bg-light" colspan="3">Shalakya Tantra</th>
+                      </tr>
+                      <tr *ngFor="let itm of
+                      scope_of_service.scopeOfAyurvedaCertification.shalakyaTantra.fixed_services;let
+                      i=index;">
+                      <td class="text-center">
+                        <input class="form-control" type="text" [(ngModel)]="itm.service_name" name="shalak_service_name{{i}}"
+                          id="shalak_service_name{{i}}" readonly>
+                      </td>
+                    
+                      <td class="text-center">
+                        <div class="form-check form-check-inline"> 
+                          <input class="form-check-input" type="radio" name="option2{{i}}" id="radio5" [(ngModel)]="itm.option" value="yes"> 
+                          <label class="form-check-label" for="radio5">Yes</label> </div>
+                        <div class="form-check form-check-inline"> 
+                          <input class="form-check-input" type="radio" name="option2{{i}}" id="radio6" [(ngModel)]="itm.option" value="no"> 
+                          <label class="form-check-label" for="radio6">No</label> </div>
+                     </td>
+                      <td class="text-center">
+                        <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="shalak_remark{{i}}" id="shalak_remark{{i}}" [(ngModel)]="itm.remark"
+                          #shalak_remark="ngModel" required>
+                        <div *ngIf="shalak_remark.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && shalak_remark.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+               
+
+                   </tbody>
+                </table>
+             </div>
+              
+               <div *ngIf="scope_of_service.scopeOfAyurvedaCertification.shalakyaTantra.other_services.length>0">
+                <p class="bg-light addServices">Additional Services</p>
+              </div>
+              <div class="table-responsive"
+                *ngIf="scope_of_service.scopeOfAyurvedaCertification.shalakyaTantra.other_services.length>0">
+                <table class="table customTable">
+    
+                  <tbody>
+                    <tr *ngFor="let itm of
+                      scope_of_service.scopeOfAyurvedaCertification.shalakyaTantra.other_services;
+                      let i=index;">
+                      <td class="text-center">
+                        <input class="form-control" type="text" [(ngModel)]="itm.service_name"
+                          name="ayurotherservice_name_{{i}}" #ayurotherservice_name="ngModel" required>
+                        <div *ngIf="ayurotherservice_name.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && ayurotherservice_name.errors.required"
+                            class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                     
+                      
+                      <td class="text-center">
+                        <div class="form-check form-check-inline"> 
+                          <input class="form-check-input" type="radio" name="option3{{i}}" id="radio7" [(ngModel)]="itm.option" value="yes"> 
+                          <label class="form-check-label" for="radio7">Yes</label> </div>
+                        <div class="form-check form-check-inline"> 
+                          <input class="form-check-input" type="radio" name="option3{{i}}" id="radio8" [(ngModel)]="itm.option" value="no"> 
+                          <label class="form-check-label" for="radio8">No</label> </div>
+                     </td>
+                      <td class="text-center">
+                        <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="ayurotherremark_{{i}}" id="ayurotherremark_{{i}}"
+                          [(ngModel)]="itm.remark" #ayurotherremark="ngModel" required>
+                        <div *ngIf="ayurotherremark.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && ayurotherremark.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+    
+                      <td class="text-center">
+                        <a (click)="removeAyurvedaShalakyaTantraCertification(itm)">
+                          <i class="bx bx-x-circle text-danger box-icon"></i>
+                        </a>
+                      </td>
+    
+                    </tr>
+    
+                  </tbody>
+                </table>
+              </div>
+
+
+              <div class="text-right mt-2">
+                <button type="button" (click)="addAyurvedaShalakyaTantraCertification()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1">
+                <i class="bx bx-plus mr-1"></i>Add New Services</button>
+                </div>
+    
+    
+              
+      
+         
+          </div>
+       </div> -->
+          <!-- Shalakya Tantra end -->
+          <!-- Kaumarabhrithya-->
+          <!-- <div class="row" style="margin-top: 10px;">
+            <div class="col-md-8 offset-md-2">
+               <div class="table-responsive">
+                  <table class="table table-sm table-bordered mb-0 customTable">
+                     <thead class="bg-teal">
+                        <tr class="text-center">
+                           <th style="width: 40%">Clinical Service</th>
+                           <th>Options</th>
+                           <th>Remark</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="text-center">
+                           <th scope="row" class="bg-light" colspan="3">Kaumarabhrithya</th>
+                        </tr>
+                        <tr *ngFor="let itm of
+                        scope_of_service.scopeOfAyurvedaCertification.kaumarabhrithya.fixed_services;let
+                        i=index;">
+                        <td class="text-center">
+                          <input class="form-control" type="text" [(ngModel)]="itm.service_name" name="kumara_service_name_{{i}}"
+                            id="kumara_service_name_{{i}}" readonly>
+                        </td>
+                        <td class="text-center">
+                          <div class="form-check form-check-inline"> 
+                            <input class="form-check-input" type="radio" name="option4{{i}}" id="radio9" [(ngModel)]="itm.option" value="yes"> 
+                            <label class="form-check-label" for="radio9">Yes</label> </div>
+                          <div class="form-check form-check-inline"> 
+                            <input class="form-check-input" type="radio" name="option4{{i}}" id="radio10" [(ngModel)]="itm.option" value="no"> 
+                            <label class="form-check-label" for="radio10">No</label> </div>
+                       </td>
+                        <td class="text-center">
+                          <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="kumara_remark{{i}}" id="kumara_remark{{i}}" [(ngModel)]="itm.remark"
+                            #kumara_remark="ngModel" required>
+                          <div *ngIf="kumara_remark.invalid">
+                            <div *ngIf="scopeOfServiceformSubmitted && kumara_remark.errors.required" class="text-danger">
+                              Required
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    
+                     </tbody>
+                  </table>
+               </div>
+               
+                
+          <div *ngIf="scope_of_service.scopeOfAyurvedaCertification.kaumarabhrithya.other_services.length>0">
+            <p class="bg-light addServices">Additional Services</p>
+          </div>
+          <div class="table-responsive"
+            *ngIf="scope_of_service.scopeOfAyurvedaCertification.kaumarabhrithya.other_services.length>0">
+            <table class="table customTable">
+
+              <tbody>
+                <tr *ngFor="let itm of
+                  scope_of_service.scopeOfAyurvedaCertification.kaumarabhrithya.other_services;
+                  let i=index;">
+                  <td class="text-center">
+                    <input class="form-control" type="text" [(ngModel)]="itm.service_name"
+                      name="ayurotherservice_name_{{i}}" #ayurotherservice_name="ngModel" required>
+                    <div *ngIf="ayurotherservice_name.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && ayurotherservice_name.errors.required"
+                        class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="form-check form-check-inline"> 
+                      <input class="form-check-input" type="radio" name="option5{{i}}" id="radio11" [(ngModel)]="itm.option" value="yes"> 
+                      <label class="form-check-label" for="radio11">Yes</label> </div>
+                    <div class="form-check form-check-inline"> 
+                      <input class="form-check-input" type="radio" name="option5{{i}}" id="radio12" [(ngModel)]="itm.option" value="no"> 
+                      <label class="form-check-label" for="radio12">No</label> </div>
+                 </td>
+                  <td class="text-center">
+                    <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="ayurotherremark_{{i}}" id="ayurotherremark_{{i}}"
+                      [(ngModel)]="itm.remark" #ayurotherremark="ngModel" required>
+                    <div *ngIf="ayurotherremark.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && ayurotherremark.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="text-center">
+                    <a (click)="removeAyurvedaKaumarabhrithyaCertification(itm)">
+                      <i class="bx bx-x-circle text-danger box-icon"></i>
+                    </a>
+                  </td>
+
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+
+
+          <div class="text-right mt-2">
+            <button type="button" (click)="addAyurvedaKaumarabhrithyaCertification()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1">
+            <i class="bx bx-plus mr-1"></i>Add New Services</button>
+            </div>
+
+          
+       
+        
+           
+            </div>
+         </div> -->
+          <!-- Kaumarabhrithya end-->
+          <!-- Agada Tantra-->
+          <!-- <div class="row" style="margin-top: 10px;">
+            <div class="col-md-8 offset-md-2">
+               <div class="table-responsive">
+                  <table class="table table-sm table-bordered mb-0 customTable">
+                     <thead class="bg-teal">
+                        <tr class="text-center">
+                           <th style="width: 40%">Clinical Service</th>
+                           <th>Options</th>
+                           <th>Remark</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="text-center">
+                           <th scope="row" class="bg-light" colspan="3">Agada Tantra (Toxicology) Kayachikitsa</th>
+                        </tr>
+                        <tr *ngFor="let itm of
+    scope_of_service.scopeOfAyurvedaCertification.agadaTantra.fixed_services;let
+    i=index;">
+    <td class="text-center">
+      <input class="form-control" type="text" [(ngModel)]="itm.service_name" name="agadatantra_service_name_{{i}}"
+        id="agadatantra_service_name_{{i}}" readonly>
+    </td>
+    <td class="text-center">
+      <div class="form-check form-check-inline"> 
+        <input class="form-check-input" type="radio" name="option6{{i}}" id="radio13" [(ngModel)]="itm.option" value="yes"> 
+        <label class="form-check-label" for="radio13">Yes</label> </div>
+      <div class="form-check form-check-inline"> 
+        <input class="form-check-input" type="radio" name="option6{{i}}" id="radio14" [(ngModel)]="itm.option" value="no"> 
+        <label class="form-check-label" for="radio14">No</label> </div>
+   </td>
+    <td class="text-center">
+      <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="agadatantra_remark{{i}}" id="agadatantra_remark{{i}}" [(ngModel)]="itm.remark"
+        #agadatantra_remark="ngModel" required>
+      <div *ngIf="agadatantra_remark.invalid">
+        <div *ngIf="scopeOfServiceformSubmitted && agadatantra_remark.errors.required" class="text-danger">
+          Required
+        </div>
+      </div>
+    </td>
+                         </tr>
+                    
+                     </tbody>
+                  </table>
+               </div>
+               
+                 <div *ngIf="scope_of_service.scopeOfAyurvedaCertification.agadaTantra.other_services.length>0">
+                  <p class="bg-light addServices">Additional Services</p>
+                </div>
+                <div class="table-responsive"
+                  *ngIf="scope_of_service.scopeOfAyurvedaCertification.agadaTantra.other_services.length>0">
+                  <table class="table customTable">
+      
+                    <tbody>
+                      <tr *ngFor="let itm of
+                        scope_of_service.scopeOfAyurvedaCertification.agadaTantra.other_services;
+                        let i=index;">
+                        <td class="text-center">
+                          <input class="form-control" type="text" [(ngModel)]="itm.service_name"
+                            name="ayurotherservice_name_{{i}}" #ayurotherservice_name="ngModel" required>
+                          <div *ngIf="ayurotherservice_name.invalid">
+                            <div *ngIf="scopeOfServiceformSubmitted && ayurotherservice_name.errors.required"
+                              class="text-danger">
+                              Required
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-center">
+                          <div class="form-check form-check-inline"> 
+                            <input class="form-check-input" type="radio" name="option7{{i}}" id="radio15" [(ngModel)]="itm.option" value="yes"> 
+                            <label class="form-check-label" for="radio15">Yes</label> </div>
+                          <div class="form-check form-check-inline"> 
+                            <input class="form-check-input" type="radio" name="option7{{i}}" id="radio16" [(ngModel)]="itm.option" value="no"> 
+                            <label class="form-check-label" for="radio16">No</label> </div>
+                       </td>
+                        <td class="text-center">
+                          <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="ayurotherremark_{{i}}" id="ayurotherremark_{{i}}"
+                            [(ngModel)]="itm.remark" #ayurotherremark="ngModel" required>
+                          <div *ngIf="ayurotherremark.invalid">
+                            <div *ngIf="scopeOfServiceformSubmitted && ayurotherremark.errors.required" class="text-danger">
+                              Required
+                            </div>
+                          </div>
+                        </td>
+      
+                        <td class="text-center">
+                          <a (click)="removeAyurvedAagadaTantraCertification(itm)">
+                            <i class="bx bx-x-circle text-danger box-icon"></i>
+                          </a>
+                        </td>
+      
+                      </tr>
+      
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="text-right mt-2">
+                  <button type="button" (click)="addAyurvedaAgadaTantraCertification()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1">
+                  <i class="bx bx-plus mr-1"></i>Add New Services</button>
+                  </div>
+      
+      
+                
+       
+        
+           
+            </div>
+         </div> -->
+          <!-- Agada Tantra end-->
+          <!-- Prasooti Tantra and Streeroga-->
+          <!-- <div class="row" style="margin-top: 10px;">
+            <div class="col-md-8 offset-md-2">
+               <div class="table-responsive">
+                  <table class="table table-sm table-bordered mb-0 customTable">
+                     <thead class="bg-teal">
+                        <tr class="text-center">
+                           <th style="width: 40%">Clinical Service</th>
+                           <th>Options</th>
+                           <th>Remark</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class="text-center">
+                           <th scope="row" class="bg-light" colspan="3">Prasooti Tantra and Streeroga</th>
+                        </tr>
+                        <tr *ngFor="let itm of
+                        scope_of_service.scopeOfAyurvedaCertification.prasootiTantraStreeroga.fixed_services;let
+                        i=index;">
+                        <td class="text-center">
+                          <input class="form-control" type="text" [(ngModel)]="itm.service_name" name="prasooti_service_name{{i}}"
+                            id="prasooti_service_name{{i}}" readonly>
+                        </td>
+                        <td class="text-center">
+                          <div class="form-check form-check-inline"> 
+                            <input class="form-check-input" type="radio" name="option8{{i}}" id="radio17" [(ngModel)]="itm.option" value="yes"> 
+                            <label class="form-check-label" for="radio17">Yes</label> </div>
+                          <div class="form-check form-check-inline"> 
+                            <input class="form-check-input" type="radio" name="option8{{i}}" id="radio18" [(ngModel)]="itm.option" value="no"> 
+                            <label class="form-check-label" for="radio18">No</label> </div>
+                       </td>
+                        <td class="text-center">
+                          <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="prasooti_remark{{i}}" id="prasooti_remark{{i}}" [(ngModel)]="itm.remark"
+                            #prasooti_remark="ngModel" required>
+                          <div *ngIf="prasooti_remark.invalid">
+                            <div *ngIf="scopeOfServiceformSubmitted && prasooti_remark.errors.required" class="text-danger">
+                              Required
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    
+                     </tbody>
+                  </table>
+               </div>
+              
+                 <div *ngIf="scope_of_service.scopeOfAyurvedaCertification.prasootiTantraStreeroga.other_services.length>0">
+                  <p class="bg-light addServices">Additional Services</p>
+                </div>
+                <div class="table-responsive"
+                  *ngIf="scope_of_service.scopeOfAyurvedaCertification.prasootiTantraStreeroga.other_services.length>0">
+                  <table class="table customTable">
+                
+                    <tbody>
+                      <tr *ngFor="let itm of
+                        scope_of_service.scopeOfAyurvedaCertification.prasootiTantraStreeroga.other_services;
+                        let i=index;">
+                        <td class="text-center">
+                          <input class="form-control" type="text" [(ngModel)]="itm.service_name"
+                            name="ayurotherservice_name_{{i}}" #ayurotherservice_name="ngModel" required>
+                          <div *ngIf="ayurotherservice_name.invalid">
+                            <div *ngIf="scopeOfServiceformSubmitted && ayurotherservice_name.errors.required"
+                              class="text-danger">
+                              Required
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-center">
+                          <div class="form-check form-check-inline"> 
+                            <input class="form-check-input" type="radio" name="option9{{i}}" id="radio19" [(ngModel)]="itm.option" value="yes"> 
+                            <label class="form-check-label" for="radio19">Yes</label> </div>
+                          <div class="form-check form-check-inline"> 
+                            <input class="form-check-input" type="radio" name="option9{{i}}" id="radio20" [(ngModel)]="itm.option" value="no"> 
+                            <label class="form-check-label" for="radio20">No</label> </div>
+                       </td>
+                        <td class="text-center">
+                          <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="ayurotherremark_{{i}}" id="ayurotherremark_{{i}}"
+                            [(ngModel)]="itm.remark" #ayurotherremark="ngModel" required>
+                          <div *ngIf="ayurotherremark.invalid">
+                            <div *ngIf="scopeOfServiceformSubmitted && ayurotherremark.errors.required" class="text-danger">
+                              Required
+                            </div>
+                          </div>
+                        </td>
+                
+                        <td class="text-center">
+                          <a (click)="removeAyurvedPrasootiTantraStreerogaCertification(itm)">
+                            <i class="bx bx-x-circle text-danger box-icon"></i>
+                          </a>
+                        </td>
+                
+                      </tr>
+                
+                    </tbody>
+                  </table>
+                </div>
+                <div class="text-right mt-2">
+                  <button type="button" (click)="addAyurvedaPrasootiTantraStreerogaCertification()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1">
+                  <i class="bx bx-plus mr-1"></i>Add New Services</button>
+                  </div>
+                
+              
+          
+           
+            </div>
+         </div> -->
+          <!-- Prasooti Tantra and Streeroga end-->
+          <!-- Shalya Tantra (Surgery)-->
+          <!-- <div class="row" style="margin-top: 10px;">
+              <div class="col-md-8 offset-md-2">
+                 <div class="table-responsive">
+                    <table class="table table-sm table-bordered mb-0 customTable">
+                       <thead class="bg-teal">
+                          <tr class="text-center">
+                             <th style="width: 40%">Clinical Service</th>
+                             <th>Options</th>
+                             <th>Remark</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                          <tr class="text-center">
+                             <th scope="row" class="bg-light" colspan="3">Shalya Tantra (Surgery)</th>
+                          </tr>
+                          <tr *ngFor="let itm of
+scope_of_service.scopeOfAyurvedaCertification.shalyaTantra.fixed_services;let
+i=index;">
+<td class="text-center">
+  <input class="form-control" type="text" [(ngModel)]="itm.service_name" name="shlayatantra_service_name_{{i}}"
+    id="shlayatantra_service_name_{{i}}" readonly>
+</td>
+<td class="text-center">
+  <div class="form-check form-check-inline"> 
+    <input class="form-check-input" type="radio" name="option10{{i}}" id="radio21" [(ngModel)]="itm.option" value="yes"> 
+    <label class="form-check-label" for="radio21">Yes</label> </div>
+  <div class="form-check form-check-inline"> 
+    <input class="form-check-input" type="radio" name="option10{{i}}" id="radio22" [(ngModel)]="itm.option" value="no"> 
+    <label class="form-check-label" for="radio22">No</label> </div>
+</td>
+<td class="text-center">
+  <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="shlayatantra_remark{{i}}" id="shlayatantra_remark{{i}}" [(ngModel)]="itm.remark"
+    #shlayatantra_remark="ngModel" required>
+  <div *ngIf="shlayatantra_remark.invalid">
+    <div *ngIf="scopeOfServiceformSubmitted && shlayatantra_remark.errors.required" class="text-danger">
+      Required
+    </div>
+  </div>
+</td>
+</tr>
+                      
+                       </tbody>
+                    </table>
+                 </div>
+                  
+                   <div *ngIf="scope_of_service.scopeOfAyurvedaCertification.shalyaTantra.other_services.length>0">
+                    <p class="bg-light addServices">Additional Services</p>
+                  </div>
+                  <div class="table-responsive"
+                    *ngIf="scope_of_service.scopeOfAyurvedaCertification.shalyaTantra.other_services.length>0">
+                    <table class="table customTable">
+        
+                      <tbody>
+                        <tr *ngFor="let itm of
+                          scope_of_service.scopeOfAyurvedaCertification.shalyaTantra.other_services;
+                          let i=index;">
+                          <td class="text-center">
+                            <input class="form-control" type="text" [(ngModel)]="itm.service_name"
+                              name="ayurotherservice_name_{{i}}" #ayurotherservice_name="ngModel" required>
+                            <div *ngIf="ayurotherservice_name.invalid">
+                              <div *ngIf="scopeOfServiceformSubmitted && ayurotherservice_name.errors.required"
+                                class="text-danger">
+                                Required
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline"> 
+                              <input class="form-check-input" type="radio" name="option11{{i}}" id="radio23" [(ngModel)]="itm.option" value="yes"> 
+                              <label class="form-check-label" for="radio23">Yes</label> </div>
+                            <div class="form-check form-check-inline"> 
+                              <input class="form-check-input" type="radio" name="option11{{i}}" id="radio24" [(ngModel)]="itm.option" value="no"> 
+                              <label class="form-check-label" for="radio24">No</label> </div>
+                          </td>
+                          <td class="text-center">
+                            <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="ayurotherremark_{{i}}" id="ayurotherremark_{{i}}"
+                              [(ngModel)]="itm.remark" #ayurotherremark="ngModel" required>
+                            <div *ngIf="ayurotherremark.invalid">
+                              <div *ngIf="scopeOfServiceformSubmitted && ayurotherremark.errors.required" class="text-danger">
+                                Required
+                              </div>
+                            </div>
+                          </td>
+        
+                          <td class="text-center">
+                            <a (click)="removeAyurvedaShalyaTantraCertification(itm)">
+                              <i class="bx bx-x-circle text-danger box-icon"></i>
+                            </a>
+                          </td>
+        
+                        </tr>
+        
+                      </tbody>
+                    </table>
+                  </div>
+
+
+                  <div class="text-right mt-2">
+                    <button type="button" (click)="addAyurvedaShalyaTantraCertification()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1">
+                    <i class="bx bx-plus mr-1"></i>Add New Services</button>
+                    </div>
+        
+        
+                  
+          
+             
+              </div>
+           </div> -->
+          <!-- Shalya Tantra (Surgery) end-->
+          <!-- Anu Shastra Karmas (Para-Surgical Procedures)-->
+          <!-- <div class="row" style="margin-top: 10px;">
+              <div class="col-md-8 offset-md-2">
+                 <div class="table-responsive">
+                    <table class="table table-sm table-bordered mb-0 customTable">
+                       <thead class="bg-teal">
+                          <tr class="text-center">
+                             <th style="width: 40%">Clinical Service</th>
+                             <th>Options</th>
+                             <th>Remark</th>
+                          </tr>
+                       </thead>
+                       <tbody>
+                          <tr class="text-center">
+                             <th scope="row" class="bg-light" colspan="3">Anu Shastra Karmas (Para-Surgical Procedures)</th>
+                          </tr>
+                          <tr *ngFor="let itm of
+        scope_of_service.scopeOfAyurvedaCertification.anuShastraKarmas.fixed_services;let
+        i=index;">
+        <td class="text-center">
+          <input class="form-control" type="text" [(ngModel)]="itm.service_name" name="anushastra_service_name{{i}}"
+            id="anushastra_service_name{{i}}" readonly>
+        </td>
+        <td class="text-center">
+          <div class="form-check form-check-inline"> 
+            <input class="form-check-input" type="radio" name="option12{{i}}" id="radio25" [(ngModel)]="itm.option" value="yes"> 
+            <label class="form-check-label" for="radio25">Yes</label> </div>
+          <div class="form-check form-check-inline"> 
+            <input class="form-check-input" type="radio" name="option12{{i}}" id="radio26" [(ngModel)]="itm.option" value="no"> 
+            <label class="form-check-label" for="radio26">No</label> </div>
+        </td>
+        <td class="text-center">
+          <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="anushastra_remark{{i}}" id="anushastra_remark{{i}}" [(ngModel)]="itm.remark"
+            #anushastra_remark="ngModel" required>
+          <div *ngIf="anushastra_remark.invalid">
+            <div *ngIf="scopeOfServiceformSubmitted && anushastra_remark.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+        </td>
+      </tr>
+                      
+                       </tbody>
+                    </table>
+                 </div>
+                   
+                   <div *ngIf="scope_of_service.scopeOfAyurvedaCertification.anuShastraKarmas.other_services.length>0">
+                    <p class="bg-light addServices">Additional Services</p>
+                  </div>
+                  <div class="table-responsive"
+                    *ngIf="scope_of_service.scopeOfAyurvedaCertification.anuShastraKarmas.other_services.length>0">
+                    <table class="table customTable">
+            
+                      <tbody>
+                        <tr *ngFor="let itm of
+                          scope_of_service.scopeOfAyurvedaCertification.anuShastraKarmas.other_services;
+                          let i=index;">
+                          <td class="text-center">
+                            <input class="form-control" type="text" [(ngModel)]="itm.service_name"
+                              name="ayurotherservice_name_{{i}}" #ayurotherservice_name="ngModel" required>
+                            <div *ngIf="ayurotherservice_name.invalid">
+                              <div *ngIf="scopeOfServiceformSubmitted && ayurotherservice_name.errors.required"
+                                class="text-danger">
+                                Required
+                              </div>
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <div class="form-check form-check-inline"> 
+                              <input class="form-check-input" type="radio" name="option13{{i}}" id="radio27" [(ngModel)]="itm.option" value="yes"> 
+                              <label class="form-check-label" for="radio27">Yes</label> </div>
+                            <div class="form-check form-check-inline"> 
+                              <input class="form-check-input" type="radio" name="option13{{i}}" id="radio28" [(ngModel)]="itm.option" value="no"> 
+                              <label class="form-check-label" for="radio28">No</label> </div>
+                          </td>
+                          <td class="text-center">
+                            <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="ayurotherremark_{{i}}" id="ayurotherremark_{{i}}"
+                              [(ngModel)]="itm.remark" #ayurotherremark="ngModel" required>
+                            <div *ngIf="ayurotherremark.invalid">
+                              <div *ngIf="scopeOfServiceformSubmitted && ayurotherremark.errors.required" class="text-danger">
+                                Required
+                              </div>
+                            </div>
+                          </td>
+            
+                          <td class="text-center">
+                            <a (click)="removeAyurvedaAnuShastraKarmasCertification(itm)">
+                              <i class="bx bx-x-circle text-danger box-icon"></i>
+                            </a>
+                          </td>
+            
+                        </tr>
+            
+                      </tbody>
+                    </table>
+                  </div>
+            
+            
+                    <div class="text-right mt-2">
+                      <button type="button" (click)="addAyurvedaAnuShastraKarmasCertification()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1">
+                      <i class="bx bx-plus mr-1"></i>Add New Services</button>
+                      </div>
+             
+              </div>
+           </div> -->
+
+        </ng-template>
+      </ngb-panel>
+      <!--./scope-1-->
+
+      <!-- yoga -->
+      <ngb-panel id="scope-2" *ngIf="yoga_visibility">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Scope of Yoga and Naturopathy Certification
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['scope-2']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['scope-2']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2">
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0 customTable">
+                  <thead class="bg-teal">
+                    <tr class="text-center">
+                      <th style="width: 40%">Clinical Service</th>
+                      <th>Options</th>
+                      <!-- <th>Remark</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let itm of
+                    scope_of_service.scopeOfYogaCertification.fixed_services;let
+                    i=index;">
+                      <td class="text-center" style="width: 60%;">
+
+                        {{itm.service_name}}
+                      </td>
+                      <td class="text-center" style="width: 40%;">
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option14="ngModel" required
+                              name="option14{{i}}" id="radio29" [(ngModel)]="itm.option" value="yes">
+                            <label class="form-check-label" for="radio29">Yes</label>
+                          </fieldset>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option14="ngModel" required
+                              name="option14{{i}}" id="radio30" [(ngModel)]="itm.option" value="no">
+                            <label class="form-check-label" for="radio30">No</label>
+                          </fieldset>
+                        </div>
+                        <div *ngIf="option14.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && option14.errors.required" class="text-danger">
+                            required
+                          </div>
+                        </div>
+                      </td>
+                      <!-- <td class="text-center">
+                      <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="yoga_cert_remark{{i}}" id="yoga_cert_remark{{i}}" [(ngModel)]="itm.remark"
+                        #yoga_cert_remark="ngModel" required>
+                      <div *ngIf="yoga_cert_remark.invalid">
+                        <div *ngIf="scopeOfServiceformSubmitted && yoga_cert_remark.errors.required" class="text-danger">
+                          Required
+                        </div>
+                      </div>
+                    </td> -->
+                    </tr>
+                    <!--./Ayurveda Clinical Services-->
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- others yoga sos -->
+              <!-- <div *ngIf="scope_of_service.scopeOfYogaCertification.other_sos_service.length>0">
+                <p class="bg-light addServices">Additional Services</p>
+              </div>
+    
+              <div class="table-responsive" *ngIf="scope_of_service.scopeOfYogaCertification.other_sos_service.length>0">
+                <table class="table customTable">
+    
+                  <tbody>
+                    <tr *ngFor="let itm of
+                      scope_of_service.scopeOfYogaCertification.other_sos_service;
+                      let i=index;">
+                      <td class="text-center">
+                        <input class="form-control" type="text" [(ngModel)]="itm.service_name"
+                          name="yogaotherservice_name{{i}}" id="yogaotherservice_name_{{i}}"
+                          #yogaotherservice_name="ngModel" required>
+                        <div *ngIf="yogaotherservice_name.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && yogaotherservice_name.errors.required"
+                            class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <div class="form-check form-check-inline"> 
+                          <input class="form-check-input" type="radio" name="option15{{i}}" id="radio31" [(ngModel)]="itm.option" value="yes"> 
+                          <label class="form-check-label" for="radio31">Yes</label> </div>
+                        <div class="form-check form-check-inline"> 
+                          <input class="form-check-input" type="radio" name="option15{{i}}" id="radio32" [(ngModel)]="itm.option" value="no"> 
+                          <label class="form-check-label" for="radio32">No</label> </div>
+                      </td>
+                      <td class="text-center">
+                        <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="yogaotherremark{{i}}" id="yogaotherremark{{i}}"
+                          [(ngModel)]="itm.remark" #yogaotherremark="ngModel" required>
+                        <div *ngIf="yogaotherremark.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && yogaotherremark.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <a (click)="removeYogaCertification(itm)">
+                          <i class="bx bx-x-circle text-danger box-icon"></i>
+                        </a>
+                      </td>
+                    </tr>
+    
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="text-right mt-2">
+                <button type="button" (click)="addYogaCertification()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1">
+                <i class="bx bx-plus mr-1"></i>Add New Services</button>
+                </div> -->
+
+
+
+
+
+              <!--others yoga sos  -->
+              <!-- --------------- -->
+
+              <!-- ------------- -->
+            </div>
+          </div>
+
+
+        </ng-template>
+      </ngb-panel>
+      <!-- ./yoga -->
+
+
+      <!--Scope of Unani Certification-3-->
+      <ngb-panel id="scope-4" *ngIf="unani_visibility">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Scope of Unani Certification
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['scope-4']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['scope-4']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2">
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0 customTable">
+                  <thead class="bg-teal">
+                    <tr class="text-center">
+                      <th>Clinical Service</th>
+                      <th>Options</th>
+                      <!-- <th>Remark</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let itm of
+                  scope_of_service.scopeOfUnaniCertification.fixed_services;let
+                  i=index;">
+                      <td class="text-center" style="width: 60%;">
+                        {{itm.service_name}}
+                      </td>
+                      <td class="text-center" style="width: 40%;">
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option18="ngModel" required
+                              name="option18{{i}}" id="radio37" [(ngModel)]="itm.option" value="yes">
+                            <label class="form-check-label" for="radio37">Yes</label>
+                          </fieldset>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option18="ngModel" required
+                              name="option18{{i}}" id="radio38" [(ngModel)]="itm.option" value="no">
+                            <label class="form-check-label" for="radio38">No</label>
+                          </fieldset>
+                        </div>
+                        <div *ngIf="option18.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && option18.errors.required" class="text-danger">
+                            required
+                          </div>
+                        </div>
+                      </td>
+                      <!-- <td class="text-center">
+                    <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="unanicert_remark{{i}}" id="unanicert_remark{{i}}" [(ngModel)]="itm.remark"
+                      #unanicert_remark="ngModel" required>
+                    <div *ngIf="unanicert_remark.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && unanicert_remark.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </td> -->
+                    </tr>
+                    <!--./Ayurveda Clinical Services-->
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+
+        </ng-template>
+      </ngb-panel>
+      <!--Scope of Unani Certification-3-->
+      <!--Scope of Siddha Certification-3-->
+      <ngb-panel id="scope-5" *ngIf="sidha_visibility">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Scope of Siddha Certification
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['scope-5']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['scope-5']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+
+          <div class="row">
+            <div class="col-md-8 offset-md-2">
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0 customTable">
+                  <thead class="bg-teal">
+                    <tr class="text-center">
+                      <th>Clinical Service</th>
+                      <th>Options</th>
+                      <!-- <th>Remark</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let itm of
+                  scope_of_service.socSiddhaCertification.fixed_services;let
+                  i=index;">
+                      <td class="text-center" style="width: 60%;">
+                        {{itm.service_name}}
+                      </td>
+                      <td class="text-center" style="width: 40%;">
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option19="ngModel" required
+                              name="option19{{i}}" id="radio39" [(ngModel)]="itm.option" value="yes">
+                            <label class="form-check-label" for="radio39">Yes</label>
+                          </fieldset>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option19="ngModel" required
+                              name="option19{{i}}" id="radio40" [(ngModel)]="itm.option" value="no">
+                            <label class="form-check-label" for="radio40">No</label>
+                          </fieldset>
+                        </div>
+                        <div *ngIf="option19.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && option19.errors.required" class="text-danger">
+                            required
+                          </div>
+                        </div>
+                      </td>
+                      <!-- <td class="text-center">
+                    <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="socsidd_remark{{i}}" id="socsidd_remark{{i}}" [(ngModel)]="itm.remark"
+                      #socsidd_remark="ngModel" required>
+                    <div *ngIf="socsidd_remark.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && socsidd_remark.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </td> -->
+                    </tr>
+                    <!--./Ayurveda Clinical Services-->
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+
+
+        </ng-template>
+      </ngb-panel>
+      <!--Scope of Siddha Certification-3-->
+      <!--Scope of Homeopathy Certification-3-->
+      <ngb-panel id="scope-6" *ngIf="homeopathy_visibility">
+
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Scope of Homeopathy Certification
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['scope-6']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['scope-6']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="media">
+                <!-- <div class="mr-3">1.</div> -->
+                <div class="mr-3"></div>
+
+              </div>
+            </div>
+            <div class="col-md-8 offset-md-2">
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0 customTable">
+                  <thead class="bg-teal">
+                    <tr class="text-center">
+                      <th>Clinical Service</th>
+                      <th>Options</th>
+                      <!-- <th>Remark</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let itm of
+                  scope_of_service.sosHomeopathyCert.fixed_services;let
+                  i=index;">
+                      <td class="text-center" style="width: 60%;">
+                        {{itm.service_name}}
+                      </td>
+                      <td class="text-center" style="width: 40%;">
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option20="ngModel" required
+                              name="option20{{i}}" id="radio41" [(ngModel)]="itm.option" value="yes">
+                            <label class="form-check-label" for="radio41">Yes</label>
+                          </fieldset>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                            <input class="form-check-input" type="radio" #option20="ngModel" required
+                              name="option20{{i}}" id="radio42" [(ngModel)]="itm.option" value="no">
+                            <label class="form-check-label" for="radio42">No</label>
+                          </fieldset>
+                        </div>
+                        <div *ngIf="option20.invalid">
+                          <div *ngIf="scopeOfServiceformSubmitted && option20.errors.required" class="text-danger">
+                            required
+                          </div>
+                        </div>
+                      </td>
+                      <!-- <td class="text-center">
+                    <input class="form-control form-control-sm text-center" placeholder="Enter" type="text" name="hpmepathy_remark{{i}}" id="hpmepathy_remark{{i}}" [(ngModel)]="itm.remark"
+                      #hpmepathy_remark="ngModel" required>
+                    <div *ngIf="hpmepathy_remark.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && hpmepathy_remark.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </td> -->
+                    </tr>
+                    <!--./Ayurveda Clinical Services-->
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+    <hr class="form-seprator" />
+    <div class="row mt-2">
+      <div class="col-sm-11">
+        <div class="media">
+          <div class="mr-3"><b>2.</b></div>
+          <div class="media-body">{{cenhospitalPagesQueBank.scope_of_service.lst_sop_per_dept.ques_text}}</div>
+        </div>
+      </div>
+
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.scope_of_service.lst_sop_per_dept:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.scope_of_service.lst_sop_per_dept:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('scope_of_service','lst_sop_per_dept',cenhospitalPagesQueBank.scope_of_service.lst_sop_per_dept)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.scope_of_service?.lst_sop_per_dept?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-sm-4 offset-md-2">
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered mb-0">
+            <tbody>
+              <tr class="text-center">
+                <td width="180">OPD</td>
+                <td>
+
+                  <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                    (click)="openDocModel(scope_of_service.opdSosProvidedDepartments,'dept_url')">
+                    <i class="bx bx-upload"></i>
+                  </a>
+
+                  <!-- <input hidden type="file" #doc1 [disabled]="cenhospitalPages.isFinalSubmit==true"
+                    (change)="previewImage(doc1,$event.target.files,scope_of_service.opdSosProvidedDepartments,'dept_url')" /> -->
+
+
+                  <a title="View Document" class="mt-4"
+                    (click)="openUploadedDocsModal(uploadViewModel,scope_of_service.opdSosProvidedDepartments,'dept_url')">
+                    <i
+                      [ngClass]="(scope_of_service.opdSosProvidedDepartments!=null?scope_of_service.opdSosProvidedDepartments.dept_url:'')|uploadbtnpipe"></i>
+                  </a>
+                  <input hidden type="text" name="opd_dpet" #opd_dpet="ngModel" required
+                    [(ngModel)]="scope_of_service.opdSosProvidedDepartments.dept_url" required>
+                  <div *ngIf="opd_dpet.invalid">
+                    <div *ngIf="scopeOfServiceformSubmitted && opd_dpet.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <!-- <tr class="text-center">
+                     <td>Upload Prescription #2</td>
+                     <td>
+                      <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc412.click()">
+                        <i class="bx bx-upload"></i>
+                     </a>
+     
+                     <input hidden type="file" #doc412
+                       (change)="previewImage($event.target.files,cenpatientrecord.guidelines_of_good_clinical_practice,'ques_doc_url_2')" />
+     
+     
+                     <a title="View Document" class="mt-4"
+           (click)="openUploadedDocsModal(uploadViewModel,cenpatientrecord.guidelines_of_good_clinical_practice,'ques_doc_url_2')">
+     
+                       <i
+                         [ngClass]="(cenpatientrecord.guidelines_of_good_clinical_practice!=null?cenpatientrecord.guidelines_of_good_clinical_practice.ques_doc_url_2:'')|uploadbtnpipe"></i>
+                     </a>
+                     <input hidden type="text" name="guidelines_of_good_clinical_practicebdoc_2" #guidelines_of_good_clinical_practicebdoc_2="ngModel" required
+                       
+                       [(ngModel)]="cenpatientrecord.guidelines_of_good_clinical_practice.ques_doc_url_2" required>
+                     <div *ngIf="guidelines_of_good_clinical_practicebdoc_2.invalid">
+                       <div *ngIf="cenpatientformSubmitted && guidelines_of_good_clinical_practicebdoc_2.errors.required" class="text-danger">
+                         Required
+                       </div>
+                     </div>
+                     </td>
+                  </tr>
+                  <tr class="text-center">
+                     <td>Upload Prescription #3</td>
+                     <td>
+                      <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc422.click()">
+                        <i class="bx bx-upload"></i>
+                     </a>
+     
+                     <input hidden type="file" #doc422
+                       (change)="previewImage($event.target.files,cenpatientrecord.guidelines_of_good_clinical_practice,'ques_doc_url_3')" />
+     
+     
+                     <a title="View Document" class="mt-4"
+           (click)="openUploadedDocsModal(uploadViewModel,cenpatientrecord.guidelines_of_good_clinical_practice,'ques_doc_url_3')">
+     
+                       <i
+                         [ngClass]="(cenpatientrecord.guidelines_of_good_clinical_practice!=null?cenpatientrecord.guidelines_of_good_clinical_practice.ques_doc_url_3:'')|uploadbtnpipe"></i>
+                     </a>
+                     <input hidden type="text" name="guidelines_of_good_clinical_practicedoc_3" #guidelines_of_good_clinical_practicedoc_3="ngModel" required
+                       
+                       [(ngModel)]="cenpatientrecord.guidelines_of_good_clinical_practice.ques_doc_url_3" required>
+                     <div *ngIf="guidelines_of_good_clinical_practicedoc_3.invalid">
+                       <div *ngIf="cenpatientformSubmitted && guidelines_of_good_clinical_practicedoc_3.errors.required" class="text-danger">
+                         Required
+                       </div>
+                     </div>
+                     </td>
+                  </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <hr class="form-seprator" />
+    <div class="row mt-2">
+      <div class="col-sm-11">
+        <div class="media">
+          <div class="mr-3"><b>3.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.scope_of_service.number_of_patients_for_last_two_years_visited_opd_and_ipd.ques_text}}
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.scope_of_service.number_of_patients_for_last_two_years_visited_opd_and_ipd:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.scope_of_service.number_of_patients_for_last_two_years_visited_opd_and_ipd:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('scope_of_service','number_of_patients_for_last_two_years_visited_opd_and_ipd',cenhospitalPagesQueBank.scope_of_service.number_of_patients_for_last_two_years_visited_opd_and_ipd)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.scope_of_service?.number_of_patients_for_last_two_years_visited_opd_and_ipd?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+
+    </div>
+    <div class="row mt-3">
+      <div class="col-sm-6 offset-md-3">
+        <div class="table-responsive">
+          <table class="table table-sm table-bordered mb-0 customTable">
+            <!-- <tbody> -->
+            <thead class="bg-teal">
+              <tr class="text-center">
+                <th class="text-center">Year</th>
+                <th class="text-center">OPD Data</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center" style="width: 50%;">
+                  <select class="form-control table-text" name="opdyear" id="opdyear"
+                    [(ngModel)]="scope_of_service.providePatientvisitedOrganization.opdData.year" #opdyear="ngModel"
+                    required>
+                    <option [ngValue]="null">--Select year--</option>
+                    <option [value]="yr" *ngFor="let yr of yearsList">{{yr}}</option>
+                  </select>
+
+                  <div *ngIf="opdyear.invalid">
+                    <div *ngIf="scopeOfServiceformSubmitted && opdyear.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+
+                </td>
+                <td class="text-center">
+                  <input class="form-control table-text" type="text" (keypress)="onlyNumberKey($event)"
+                    name="opdno_of_patients" id="opdno_of_patients"
+                    [(ngModel)]="scope_of_service.providePatientvisitedOrganization.opdData.no_of_patients"
+                    #opdno_of_patients="ngModel" required>
+                  <div *ngIf="opdno_of_patients.invalid">
+                    <div *ngIf="scopeOfServiceformSubmitted && opdno_of_patients.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center">
+                  <select class="form-control" name="ipdyear1" id="ipdyear1"
+                    [(ngModel)]="scope_of_service.providePatientvisitedOrganization.opdData.year1" #ipdyear1="ngModel"
+                    required>
+                    <option [ngValue]="null">--Select year--</option>
+                    <option [value]="yr" *ngFor="let yr of yearsList">{{yr}}</option>
+                  </select>
+
+                  <div *ngIf="ipdyear1.invalid">
+                    <div *ngIf="scopeOfServiceformSubmitted && ipdyear1.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+
+                </td>
+                <td class="text-center">
+                  <input class="form-control table-text" type="text" (keypress)="onlyNumberKey($event)"
+                    name="ipdno_of_patients1" id="ipdno_of_patients1"
+                    [(ngModel)]="scope_of_service.providePatientvisitedOrganization.opdData.no_of_patients1"
+                    #ipdno_of_patients1="ngModel" required>
+                  <div *ngIf="ipdno_of_patients1.invalid">
+                    <div *ngIf="scopeOfServiceformSubmitted && ipdno_of_patients1.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <hr class="form-seprator" />
+    <div class="row mt-2">
+      <div class="col-sm-11">
+        <div class="media">
+          <div class="mr-3"><b>4.</b></div>
+          <div class="media-body">
+            {{cenhospitalPagesQueBank.scope_of_service.list_of_ambulatory_or_out_patients_units_with_numberof_visits.ques_text}}
+
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-1 text-center">
+        <button type="button"
+          *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.scope_of_service.list_of_ambulatory_or_out_patients_units_with_numberof_visits:'')|DaNcBtnHideShow: Stage_id"
+          [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.scope_of_service.list_of_ambulatory_or_out_patients_units_with_numberof_visits:'')|DaNcbtnColorPipe"
+          (click)="openNcModel('scope_of_service','list_of_ambulatory_or_out_patients_units_with_numberof_visits',cenhospitalPagesQueBank.scope_of_service.list_of_ambulatory_or_out_patients_units_with_numberof_visits)">NC
+          {{ncFormTabInfo!=null?ncFormTabInfo.scope_of_service?.list_of_ambulatory_or_out_patients_units_with_numberof_visits?.nc_cycle_count:''}}
+        </button>
+
+      </div>
+    </div>
+    <br>
+    <div class="row mt-1">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8">
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped customTable mb-0">
+            <thead>
+              <tr>
+                <th class="text-center">Name of Out-Patient Department(OPD) Unit.</th>
+                <th class="text-center">Average Patient Visits per Month</th>
+                <!-- <th class="text-center">Type of Service</th> -->
+                <th class="text-center">Floor/ Location</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let itm of scope_of_service.provideAmbulatoryPatientsservice.ambulatoryPatientsservices;let i
+                 =index;">
+                <td class="text-center">
+                  <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                    <input class="form-control text-center " type="text" name="ambulatory_or_patient_name{{i}}"
+                      id="ambulatory_or_patient_name{{i}}" [(ngModel)]="itm.ambulatory_or_patient_name"
+                      #ambulatory_or_patient_name="ngModel" required>
+                    <div *ngIf="ambulatory_or_patient_name.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && ambulatory_or_patient_name.errors.required"
+                        class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </fieldset>
+
+
+                </td>
+
+                <td class="text-center">
+                  <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                    <input class="form-control text-center" type="text" (keypress)="onlyNumberKey($event)"
+                      name="average_visits_per_month{{i}}" id="average_visits_per_month{{i}}"
+                      [(ngModel)]="itm.average_visits_per_month" #average_visits_per_month="ngModel" required>
+                    <div *ngIf="average_visits_per_month.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && average_visits_per_month.errors.required"
+                        class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </fieldset>
+
+
+                </td>
+
+                <!-- <td class="text-center">
+                  <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                    <input class="form-control" type="text" name="type_of_service{{i}}" id="type_of_service{{i}}"
+                      [(ngModel)]="itm.type_of_service" #type_of_service="ngModel" required>
+                    <div *ngIf="type_of_service.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && type_of_service.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </fieldset>
+
+
+                </td> -->
+
+                <td class="text-center">
+                  <fieldset [disabled]="cenhospitalPages.isFinalSubmit==true">
+                    <input class="form-control text-center" type="text" name="floor_location{{i}}"
+                      id="floor_location{{i}}" [(ngModel)]="itm.floor_location" #floor_location="ngModel" required>
+                    <div *ngIf="floor_location.invalid">
+                      <div *ngIf="scopeOfServiceformSubmitted && floor_location.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </fieldset>
+
+
+                </td>
+
+                <td class="text-center">
+
+                  <fieldset>
+
+
+                    <a (click)="removeAmbulatoryPatientsservices(itm)" style="float: right;"
+                      *ngIf="this.scope_of_service.provideAmbulatoryPatientsservice.ambulatoryPatientsservices.length>=2">
+                      <i class="bx bx-x-circle text-danger box-icon"></i>
+                    </a>
+
+
+                  </fieldset>
+
+                </td>
+
+
+                <!-- <td class="text-center"
+                  *ngIf="this.scope_of_service.provideAmbulatoryPatientsservice.ambulatoryPatientsservices.length>=2">
+                  <a (click)="removeAmbulatoryPatientsservices(itm)">
+                    <i class="bx bx-x-circle text-danger box-icon"></i>
+                  </a>
+                </td> -->
+
+
+              </tr>
+
+            </tbody>
+          </table>
+          <div class="mt-2">
+            <label class="pull-left">Upload Floor Plan</label>
+            <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="ml-4"
+              (click)="openDocModel(scope_of_service.provideAmbulatoryPatientsservice,'floor_plan_urll')">
+              <i class="bx bx-upload"></i>
+            </a>
+            <a title="View Document"
+              (click)="openUploadedDocsModal(uploadViewModel,scope_of_service.provideAmbulatoryPatientsservice,'floor_plan_urll')"
+              class="ml-4">
+              <i
+                [ngClass]="(scope_of_service.provideAmbulatoryPatientsservice!=null?scope_of_service.provideAmbulatoryPatientsservice.floor_plan_urll:'')|uploadbtnpipe"></i>
+            </a>
+            <input hidden type="text" name="floor_plan_urll" id="floor_plan_urll" #floor_plan_urll="ngModel" required
+              [(ngModel)]="scope_of_service.provideAmbulatoryPatientsservice.floor_plan_urll" required>
+            <div *ngIf="floor_plan_urll.invalid">
+              <div *ngIf="scopeOfServiceformSubmitted && floor_plan_urll.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+            <button type="button" (click)="addAmbulatoryPatientsservices()"
+              class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1 pull-right"><i
+                class="bx bx-plus mr-1"></i>Add</button>
+          </div>
+          <!-- <div class="text-right mt-2">
+          <button class="btn btn-success" (click)="addAmbulatoryPatientsservices()">Add New Services</button>
+        </div> -->
+        </div>
+
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+
+    <!--Scope of Homeopathy Certification-3-->
+
+    <!--Scope of Homeopathy Certification-3-->
+
+
+
+
+
+
+    <!-- <div class="row">
+      <div class="col-xs-12 col-md-2 col-xl-2"></div>
+      <div class="col-xs-12 col-md-4 col-xl-2">
+        <label for="" class="text-center">IPD</label>
+      </div>
+      <div class="col-xs-12 col-md-2 col-xl-2">
+        <fieldset>
+
+          <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc99.click()">
+            <i class="bx bx-upload"></i>
+          </a>
+
+          <input hidden type="file" #doc99
+            (change)="previewImage($event.target.files,scope_of_service.ipdSosProvidedDepartments,'dept_url')" />
+
+
+          <a title="View Document" class="mt-4"
+            (click)="openUploadedDocsModal(uploadViewModel,scope_of_service.ipdSosProvidedDepartments,'dept_url')">
+            <i
+              [ngClass]="(scope_of_service.ipdSosProvidedDepartments!=null?scope_of_service.ipdSosProvidedDepartments.dept_url:'')|uploadbtnpipe"></i>
+          </a>
+          <input hidden type="text" name="ipd_dpet" #ipd_dpet="ngModel" required
+            [(ngModel)]="scope_of_service.ipdSosProvidedDepartments.dept_url" required>
+          <div *ngIf="ipd_dpet.invalid">
+            <div *ngIf="scopeOfServiceformSubmitted && ipd_dpet.errors.required" class="text-danger">
+              Required
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-xs-12 col-md-3 col-xl-6"></div>
+    </div> -->
+
+
+
+
+
+
+
+  </form>
+
+
+  <!-- image view model -->
+  <ng-template #uploadViewModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Uploaded doc(s)</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- ------ -->
+      <div *ngIf="!(ary_uploadedDocs===null || ary_uploadedDocs===undefined)" class="table-responsive">
+
+
+        <table class="table customTablecustomTable">
+          <thead>
+            <tr>
+              <th class="text-center"> Name </th>
+              <th class="text-center">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ary_uploadedDocs">
+              <td class="text-center">{{item.fn}}</td>
+              <td class="text-center">
+
+                <a class="text-success mouse-pointer" title="Download file" (click)="downloadUploadFile(item)">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+
+                <a style="margin-left: 10px;" class="text-danger mouse-pointer" title="Delete file"
+                  (click)="deleteUploadFile(item)" *ngIf="this.currUsrRole ==3 && Stage_id ==20">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+
+    </div>
+
+  </ng-template>
+  <!-- image view model -->
+
+</div>
+<ng-template #documentuploadModel role="document" let-modal>
+
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Upload Document</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <!-- <div class="row mt-2">
+      <ngb-progressbar *ngIf="showUploadMsg!=null" [value]="this.progress" type="progress-bar" showValue="true"
+        style="width: 100%;">
+      </ngb-progressbar>
+    </div> -->
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <h5 style="margin-left: 10px;"><strong>Document</strong></h5>
+
+    </div>
+
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <input style="margin-left: 10px;" type="file" #myFileInput (change)="handleFileInput($event.target.files)" />
+
+    </div>
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <label style="margin-left: 10px;"><b>Note: </b>The following formats are accepted: PDF, JPG, JPEG, PNG. The
+        maximum file size allowed in 20 MB.</label>
+
+    </div>
+    <div class="row">
+      <br>
+    </div>
+    <div class="row mt-2">
+      <!--  -->
+      <div class="alert alert-success  fade show" style="width: 100%;" *ngIf="showUploadMsg==true">
+
+        The file has been successfully uploaded
+      </div>
+
+      <!-- <ngb-progressbar *ngIf="showUploadMsg==true" type="warning" [value]="100" height="40px"
+        style="width: 100%; background-color:#caeeda !important; ">
+        The file has been successfully
+        uploaded </ngb-progressbar> -->
+
+      <!-- <div class="card" style="width: 100%;  margin-left: 10px;margin-right: 10px;"> -->
+      <!-- <div class="card-body" *ngIf="showUploadMsg==true"
+        style="width: 100%;height: 50px; margin-left: 10px;margin-right: 10px; background-color:#ddf4e7 !important;text-align: justify; ">
+        The file has been successfully uploaded
+      </div> -->
+      <!-- </div> -->
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="Upload2(myFileInput)">Upload</button>
+  </div>
+</ng-template>

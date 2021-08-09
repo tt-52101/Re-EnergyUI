@@ -1,0 +1,287 @@
+<!-- <div class="main-content">
+  <div class="container-fluid">
+
+
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Payment Tracker </h4>
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-2">
+            <select class="form-control" name="searchEntries" [(ngModel)]="limit" (change)="getApplicationList()">
+              <option [ngValue]="10">Show Entries</option>
+
+              <option *ngFor="let data of enties" [ngValue]="data">{{data}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-6 col-xl-2">
+            <input type="text" class="form-control" placeholder="Search" (change)="getApplicationList()"
+              [(ngModel)]="SearchTerms" name="searchEntitity">
+          
+
+          </div>
+          <div class="col-xs-12 col-md-6 col-xl-2">
+            <select class="form-control" name="SearchState" (change)="getApplicationList()" [(ngModel)]="SearchState">
+              <option [ngValue]="0">Select State</option>
+              <option *ngFor="let data of stateDropdown" [ngValue]="data.value">{{data.text}}</option>
+            
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-6 col-xl-2">
+            <select class="form-control" name="SearchType" [(ngModel)]="SearchType" (change)="getApplicationList()">
+              <option [ngValue]="null">Select Type</option>
+              <option value="centre">Centre</option>
+              <option value="hospital">Hospital</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-1 col-xl-1 pr-0">
+
+            <span class="input-group clockpicker" (click)="d1.toggle()">
+              <input name="datefrom" ngbDatepicker class="form-control dateControlL" placeholder="Date From"
+                #d1="ngbDatepicker" [(ngModel)]="SearchFrom" (ngModelChange)="getApplicationList()">
+            </span>
+
+
+
+          </div>
+          <div class="col-xs-12 col-md-1 col-xl-1 pl-0">
+            <span class="input-group clockpicker" (click)="d2.toggle()">
+              <input name="dateto" ngbDatepicker class="form-control dateControlR" placeholder="Date To"
+                #d2="ngbDatepicker" [(ngModel)]="SearchTo" (ngModelChange)="getApplicationList()">
+            </span>
+          </div>
+          <div class="col-xs-12 col-md-8 col-xl-2">
+
+            <button *ngIf="this.currUsrRoleId == 1 || this.currUsrRoleId == 2"
+              class="btn btn-primary float-right ml-2 btn-rounded waves-effect" (click)="exportData()"><i
+                class="bx bx-file mr-1"></i>Export Data</button>
+
+            <button class="btn btn-danger float-right btn-rounded waves-effect" (click)="searchReset()"><i
+                class="bx bx-reset mr-1"></i>Reset</button>
+
+          </div>
+        </div>
+
+        <div class="mt-3 table-responsive">
+          <table class="table table-centered table-bordered hospitalTrackGrid">
+            <thead class="thead-light">
+
+              <tr>
+                <th class="text-center" style="width: 5%;">#</th>
+                <th class="text-center">Reference ID</th>
+                <th class="text-center">Organisation Name</th>
+                <th class="text-center">State</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Application Number</th>
+                <th class="text-center">Amount</th>
+                <th class="text-center">Payment Date</th>
+              
+                <th class="text-center">Transaction Number</th>
+                <th class="text-center">View</th>
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let data of applicationList.rows |paginate: { itemsPerPage: limit, currentPage: applicationList.current, totalItems: applicationList.total }; let i=index">
+                <td class="text-center">{{i+1}}</td>
+                <td class="text-center">{{data.reference_id}}</td>
+                <td class="text-center" style="width: 25%;">{{data.org_name}}</td>
+                <td class="text-center">{{data.state}}</td>
+                <td class="text-center">{{data.type}}</td>
+                <td class="text-center">{{data.application_no}}</td>
+                <td class="text-center">{{data.amount}}</td>
+                <td class="text-center">{{data.payment_date|date: 'dd-MMM-yyyy'}}</td>
+                <td class="text-center">{{data.tracking_id}}</td>
+                <td class="text-center">
+                  <div ngbDropdown class="d-inline-block float_left" placement="bottom-left">
+                    <i id="dropdownMenuButton" ngbDropdownToggle class="fas fa-ellipsis-h "></i>
+                    <div ngbDropdownMenu aria-labelledby="dropdownMenuButton" placement="bottom-left">
+                      <button ngbDropdownItem style="color:rgb(38, 0, 255) ;"><i class="far fa-file-alt mr-2"
+                          (click)='downloadPmytInvoice(data.hosp_id)'></i>Invoice</button>
+                      <button ngbDropdownItem style="color:limegreen ;" (click)='downloadPmytReciept(data.hosp_id)'><i
+                          class="far fa-file-alt mr-2"></i>Receipt</button>
+                      <button ngbDropdownItem style="color:royalblue"><i class="far fa-file-alt mr-2"
+                          (click)="downloadUploadFile(data.gstcertificate)"></i>GST
+                        Certificate</button>
+                      <button ngbDropdownItem style="color:red"><i class="far fa-file-alt mr-2"></i>TDS
+                        Certificate</button>
+                    </div>
+                  </div>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <span>Showing {{minCount}} to {{maxCount}} of {{totalCount}} entries
+            </span>
+          </div>
+
+          <tfoot style="float: right;">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+          </tfoot>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+
+
+            <ul ngbNav #customNav="ngbNav" class="nav-tabs nav-tabs-custom" [destroyOnHide]="false" role="tablist">
+              <li [ngbNavItem]="1">
+                <a ngbNavLink class="border-left-0">
+                  <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                  <span class="d-none d-sm-block" style="font-size: 13px">
+                    Customer wise
+
+                  </span>
+                </a>
+                <ng-template ngbNavContent>
+                  <ng-template [ngTemplateOutlet]="customer"></ng-template>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2">
+                <a ngbNavLink class="border-left-0">
+                  <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                  <span class="d-none d-sm-block" style="font-size: 13px">
+                    Studio wise
+
+                  </span>
+                </a>
+                <ng-template ngbNavContent>
+                  <ng-template [ngTemplateOutlet]="studio"></ng-template>
+                </ng-template>
+              </li>
+            </ul>
+            <div class="p-3" [ngbNavOutlet]="customNav"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #customer>
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row mb-3">
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+          <select class="form-control">
+            <option value="null">July</option>
+            <option>January</option>
+            <option>Fab</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select class="form-control">
+            <option value="null">2021</option>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+            <option>2020</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-centered table-bordered hospitalTrackGrid">
+          <thead class="thead-light">
+            <tr>
+              <th class="text-center" style="width: 5%;">Sr.No.</th>
+              <th class="text-center">Customer Id</th>
+              <th class="text-center">Customer</th>
+              <th class="text-center">state</th>
+              <th class="text-center">Pass Category</th>
+              <th class="text-center">Amount</th>
+              <th class="text-center">Payment Date</th>
+              <th class="text-center">Transaction No.</th>
+              <th class="text-center">View Details</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of dummy_data; let i=index;"> 
+                <td class="text-center">{{i+this.skip+1}}</td>
+                <td class="text-center">{{data.customerid}}</td>
+                <td class="text-center">{{data.customer}}</td>
+                <td class="text-center">{{data.state}}</td>
+                <td class="text-center">{{data.passcategory}}</td>
+                <td class="text-center">{{data.amount}}</td>
+                <td class="text-center">{{data.paymentdate}}</td>
+                <td class="text-center">{{data.transation}}</td>
+                <td class="text-center">
+                  <button type="button" class="button-icon"><i
+                    class="bx bxs-book-content" title="View Detail"
+                    style="color:green; font-weight: bolder; font-size: larger;"></i>
+                  </button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #studio>
+  <div class="main-content">
+    <div class="container-fluid">
+      <div class="row mb-3">
+        <div class="col-md-8"></div>
+        <div class="col-md-2">
+          <select class="form-control">
+            <option value="null">July</option>
+            <option>January</option>
+            <option>Fab</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select class="form-control">
+            <option value="null">2021</option>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+            <option>2020</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-centered table-bordered hospitalTrackGrid">
+          <thead class="thead-light">
+            <tr>
+              <th class="text-center" style="width: 5%;">Sr.No.</th>
+              <th class="text-center">Studio Id</th>
+              <th class="text-center">Name</th>
+              <th class="text-center">Studio type</th>
+              <th class="text-center">Total Payment</th>
+             
+              <th class="text-center">View Details</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of dummy_datas; let i=index;"> 
+                <td class="text-center">{{i+this.skip+1}}</td>
+                <td class="text-center">{{data.studioid}}</td>
+                <td class="text-center">{{data.name}}</td>
+                <td class="text-center">{{data.studiotype}}</td>
+                <td class="text-center">{{data.totalpayment}}</td>
+               
+                <td class="text-center">
+                  <button type="button" class="button-icon"><i
+                    class="bx bxs-book-content" title="View Detail"
+                    style="color:green; font-weight: bolder; font-size: larger;"></i>
+                  </button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-template>

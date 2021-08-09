@@ -1,0 +1,114 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Certified List </h4>
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-2">
+            <select class="form-control" name="showEntitity" [(ngModel)]="limit" (change)="showEnteries()">
+              <option [ngValue]="10">--Show Entries--</option>
+              <option *ngFor="let data of enties" [ngValue]="data">{{data}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-6 col-xl-2">
+            <input type="text" class="form-control" (change)="getHospitalList()" [(ngModel)]="SearchTerms"
+              placeholder="Search" name="searchEntitity">
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-2">
+            <select class="form-control" name="searchCity" (change)="getHospitalList()" [(ngModel)]="SearchCity">
+              <option [ngValue]="0">Select City</option>
+              <option *ngFor="let data of cityDropdown" [ngValue]="data.value">{{data.text}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-6 col-xl-2">
+            <select class="form-control" name="searchState" (change)="getHospitalList()" [(ngModel)]="SearchState">
+              <option [ngValue]="0">Select State</option>
+              <option *ngFor="let data of stateDropdown" [ngValue]="data.value">{{data.text}}</option>
+            </select>
+          </div>
+          <div class="col-xs-12 col-md-6 col-xl-2">
+            <select class="form-control" name="searchtype" [(ngModel)]="SearchType" (change)="getHospitalList()">
+              <option [ngValue]="null">Select Type</option>
+              <option value="centre">Centre</option>
+              <option value="hospital">Hospital</option>
+            </select>
+          </div>
+
+
+          <div class="col-xs-12 col-md-2 col-xl-2" style="padding-left: 0;">
+            <button class="btn btn-primary float-right btn-rounded waves-effect"><i class="bx bx-file mr-1"></i>Export
+              Data</button>
+            <button class="btn btn-danger float-right btn-rounded waves-effect" style="margin-right: 5px;"
+              (click)="searchReset()"><i class="bx bx-reset"></i>Reset</button>
+            <!-- <button class="btn btn-danger" (click)="searchReset()"><i class="bx bx-reset"></i>Reset </button> &nbsp;
+            <button class="btn btn-primary"><i class="bx bxs-file-doc"></i>Export </button> -->
+          </div>
+
+        </div>
+
+
+
+        <!-- <app-transaction [transactions]="transactions"></app-transaction> -->
+
+        <div class="table-responsive mt-3">
+          <table class="table table-centered table-bordered hospitalTrackGrid">
+            <thead class="thead-light">
+              <tr>
+
+                <th class="text-center" style="width: 5%;">#</th>
+                <th class="text-center">Reference ID</th>
+                <th>Organisation Name</th>
+                <th class="text-center">City</th>
+                <th class="text-center">State</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Certificate No</th>
+                <th class="text-center">Valid From</th>
+                <th class="text-center">Valid To</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let data of hospitalList.rows |paginate: { itemsPerPage: limit, currentPage: hospitalList.current, totalItems: hospitalList.total };let i=index">
+                <td class="text-center" style="width: 5%;">{{i + this.skip + 1}}</td>
+                <td class="text-center">{{data.reference_id}}</td>
+                <td>{{data.org_name}}</td>
+                <td class="text-center">{{data.district}}</td>
+                <td class="text-center">{{data.state}}</td>
+                <td class="text-center">{{data.type}}</td>
+                <td class="text-center">{{data.certificate_no}}</td>
+                <td class="text-center">{{data.valid_from|date: 'dd/MM/yyyy'}}</td>
+
+                <td class="text-center">{{data.valid_to|date: 'dd/MM/yyyy'}}</td>
+
+
+              </tr>
+
+            </tbody>
+          </table>
+
+
+          <div>
+            <span>Showing {{minCount}} to {{maxCount}} of {{totalCount}} entries
+            </span>
+          </div>
+
+          <tfoot style="float: right;">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+          </tfoot>
+
+
+        </div>
+
+
+        <!-- end table -->
+      </div>
+    </div>
+
+
+  </div>
+</div>

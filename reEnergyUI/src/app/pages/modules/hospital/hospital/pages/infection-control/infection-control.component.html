@@ -1,0 +1,1043 @@
+<div class="infectedControlMain p-0">
+  <form #infectioncontrolform="ngForm">
+    <ngb-accordion [destroyOnHide]="false" #acc="ngbAccordion" class="infectedControl" activeIds="static-1">
+      <ngb-panel id="static-1">
+
+        <ng-template ngbPanelContent>
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_adheres_hand_hygne_gudeline.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_adheres_hand_hygne_gudeline.ques_selected_opt"
+                name="does_hosp_adheres_hand_hygne_gudeline" #does_hosp_adheres_hand_hygne_gudeline="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_adheres_hand_hygne_gudeline.invalid">
+                <div *ngIf="infectionformSubmitted && does_hosp_adheres_hand_hygne_gudeline.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset [hidden]="infection_control.does_hosp_adheres_hand_hygne_gudeline.ques_selected_opt!=true">
+
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_adheres_hand_hygne_gudeline,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc1
+                  (change)="previewImage(doc1,$event.target.files,infection_control.does_hosp_adheres_hand_hygne_gudeline,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_adheres_hand_hygne_gudeline,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_adheres_hand_hygne_gudeline!=null?infection_control.does_hosp_adheres_hand_hygne_gudeline.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="does_hosp_adheres_hand_hygne_gudeline_doc"
+                  #does_hosp_adheres_hand_hygne_gudeline_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_adheres_hand_hygne_gudeline.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_adheres_hand_hygne_gudeline.ques_doc_url" required>
+                <div *ngIf="does_hosp_adheres_hand_hygne_gudeline_doc.invalid">
+                  <div *ngIf="infectionformSubmitted && does_hosp_adheres_hand_hygne_gudeline_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+              </fieldset>
+              <input name="stggid" type="text" hidden [(ngModel)]="stageId">
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_adheres_hand_hygne_gudeline:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_adheres_hand_hygne_gudeline:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_adheres_hand_hygne_gudeline',hospitalPagesQueBank.infection_control.does_hosp_adheres_hand_hygne_gudeline)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_adheres_hand_hygne_gudeline?.nc_cycle_count:''}}
+              </button>
+            </div>
+            <!-- class="btn btn-sm btn-danger waves-effect waves-light" -->
+          </div>
+          <!--./row-->
+          <hr class="form-seprator" />
+
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts.ques_selected_opt"
+                name="does_hosp_thrpy_equpped_mnitrd_infctn_prcts"
+                #does_hosp_thrpy_equpped_mnitrd_infctn_prcts="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_thrpy_equpped_mnitrd_infctn_prcts.invalid">
+                <div *ngIf="infectionformSubmitted && does_hosp_thrpy_equpped_mnitrd_infctn_prcts.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset
+                [hidden]="infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+
+                <!-- <input hidden type="file" #doc2
+                  (change)="previewImage(doc2,$event.target.files,infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts!=null?infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="does_hosp_thrpy_equpped_mnitrd_infctn_prcts_doc"
+                  #does_hosp_thrpy_equpped_mnitrd_infctn_prcts_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts.ques_doc_url" required>
+                <div *ngIf="does_hosp_thrpy_equpped_mnitrd_infctn_prcts_doc.invalid">
+                  <div *ngIf="infectionformSubmitted && does_hosp_thrpy_equpped_mnitrd_infctn_prcts_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts:'')|DaNcBtnHideShow: Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_thrpy_equpped_mnitrd_infctn_prcts',hospitalPagesQueBank.infection_control.does_hosp_thrpy_equpped_mnitrd_infctn_prcts)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_thrpy_equpped_mnitrd_infctn_prcts?.nc_cycle_count:''}}
+              </button>
+
+            </div>
+          </div>
+          <!--./row-->
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt.ques_selected_opt"
+                name="does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt"
+                #does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt.invalid">
+                <div
+                  *ngIf="infectionformSubmitted && does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset
+                [hidden]="infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc3
+                  (change)="previewImage(doc3,$event.target.files,infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt!=null?infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt_doc"
+                  #does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt.ques_doc_url"
+                  required>
+                <div *ngIf="does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt_doc.invalid">
+                  <div
+                    *ngIf="infectionformSubmitted && does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt',hospitalPagesQueBank.infection_control.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt)">NC
+
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_mntns_adqute_invntry_strlsd_glvs_disnfctnt?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--./row-->
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_docmnt_infection_prvntn_mnitrng.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_docmnt_infection_prvntn_mnitrng.ques_selected_opt"
+                name="does_hosp_docmnt_infection_prvntn_mnitrng" #does_hosp_docmnt_infection_prvntn_mnitrng="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_docmnt_infection_prvntn_mnitrng.invalid">
+                <div *ngIf="infectionformSubmitted && does_hosp_docmnt_infection_prvntn_mnitrng.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset [hidden]="infection_control.does_hosp_docmnt_infection_prvntn_mnitrng.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_docmnt_infection_prvntn_mnitrng,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc4
+                  (change)="previewImage(doc4,$event.target.files,infection_control.does_hosp_docmnt_infection_prvntn_mnitrng,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_docmnt_infection_prvntn_mnitrng,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_docmnt_infection_prvntn_mnitrng!=null?infection_control.does_hosp_docmnt_infection_prvntn_mnitrng.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="does_hosp_docmnt_infection_prvntn_mnitrng_doc"
+                  #does_hosp_docmnt_infection_prvntn_mnitrng_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_docmnt_infection_prvntn_mnitrng.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_docmnt_infection_prvntn_mnitrng.ques_doc_url" required>
+                <div *ngIf="does_hosp_docmnt_infection_prvntn_mnitrng_doc.invalid">
+                  <div *ngIf="infectionformSubmitted && does_hosp_docmnt_infection_prvntn_mnitrng_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_docmnt_infection_prvntn_mnitrng:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_docmnt_infection_prvntn_mnitrng:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_docmnt_infection_prvntn_mnitrng',hospitalPagesQueBank.infection_control.does_hosp_docmnt_infection_prvntn_mnitrng)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_docmnt_infection_prvntn_mnitrng?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--./row-->
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges.ques_selected_opt"
+                name="does_hosp_mantns_sop_hygne_dlution_methdlges"
+                #does_hosp_mantns_sop_hygne_dlution_methdlges="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_mantns_sop_hygne_dlution_methdlges.invalid">
+                <div *ngIf="infectionformSubmitted && does_hosp_mantns_sop_hygne_dlution_methdlges.errors.required"
+                  class="text-danger">
+                  <small>Required</small>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset
+                [hidden]="infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc5
+                  (change)="previewImage(doc5,$event.target.files,infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges!=null?infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="does_hosp_mantns_sop_hygne_dlution_methdlges_doc"
+                  #does_hosp_mantns_sop_hygne_dlution_methdlges_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges.ques_doc_url" required>
+                <div *ngIf="does_hosp_mantns_sop_hygne_dlution_methdlges_doc.invalid">
+                  <div
+                    *ngIf="infectionformSubmitted && does_hosp_mantns_sop_hygne_dlution_methdlges_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_mantns_sop_hygne_dlution_methdlges',hospitalPagesQueBank.infection_control.does_hosp_mantns_sop_hygne_dlution_methdlges)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_mantns_sop_hygne_dlution_methdlges?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--./row-->
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs.ques_selected_opt"
+                name="does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs"
+                #does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs.invalid">
+                <div
+                  *ngIf="infectionformSubmitted && does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs.errors.required"
+                  class="text-danger">
+                  <small>Required</small>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset
+                [hidden]="infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc6
+                  (change)="previewImage(doc6,$event.target.files,infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs!=null?infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs_doc"
+                  #does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs.ques_doc_url"
+                  required>
+                <div *ngIf="does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs_doc.invalid">
+                  <div
+                    *ngIf="infectionformSubmitted && does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs',hospitalPagesQueBank.infection_control.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_mntn_trnng_rcrd_clnlness_hygiene_huskpng_polcs?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--./row-->
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>7.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy.ques_selected_opt"
+                name="does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy"
+                #does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy.invalid">
+                <div
+                  *ngIf="infectionformSubmitted && does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy.errors.required"
+                  class="text-danger">
+                  <small>Required</small>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset
+                [hidden]="infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc7
+                  (change)="previewImage(doc7,$event.target.files,infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy!=null?infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy_doc"
+                  #does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy.ques_doc_url"
+                  required>
+                <div *ngIf="does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy_doc.invalid">
+                  <div
+                    *ngIf="infectionformSubmitted && does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy',hospitalPagesQueBank.infection_control.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_mntns_rcrd_audits_clenlnss_gnral_hygne_rglr_frqncy?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--./row-->
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>8.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue.ques_selected_opt"
+                name="does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue"
+                #does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue.invalid">
+                <div
+                  *ngIf="infectionformSubmitted && does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue.errors.required"
+                  class="text-danger">
+                  <small>Required</small>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset
+                [hidden]="infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc8
+                  (change)="previewImage(doc8,$event.target.files,infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue!=null?infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text"
+                  name="does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue_doc"
+                  #does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue.ques_doc_url"
+                  required>
+                <div *ngIf="does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue_doc.invalid">
+                  <div
+                    *ngIf="infectionformSubmitted && does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue',hospitalPagesQueBank.infection_control.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_clning_dsnfctn_sterlztn_prctces_equipmnt_inwards_trtmnt_prcdrue?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--./row-->
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>9.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn.ques_text}}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn.ques_selected_opt"
+                name="does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn"
+                #does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn.invalid">
+                <div
+                  *ngIf="infectionformSubmitted && does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn.errors.required"
+                  class="text-danger">
+                  <small>Required</small>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset
+                [hidden]="infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc10
+                  (change)="previewImage(doc10,$event.target.files,infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn!=null?infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn_doc"
+                  #does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn.ques_doc_url"
+                  required>
+                <div *ngIf="does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn_doc.invalid">
+                  <div
+                    *ngIf="infectionformSubmitted && does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn',hospitalPagesQueBank.infection_control.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_plcy_intrumnt_equpmnt_aprprt_mnnr_acrss_orgntn?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--./row-->
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>10.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen.ques_selected_opt"
+                name="does_hosp_plcy_ensure_infctn_prctcs_linen" #does_hosp_plcy_ensure_infctn_prctcs_linen="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="does_hosp_plcy_ensure_infctn_prctcs_linen.invalid">
+                <div *ngIf="infectionformSubmitted && does_hosp_plcy_ensure_infctn_prctcs_linen.errors.required"
+                  class="text-danger">
+                  Required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-xs-12 col-md-1 col-xl-1 text-center">
+
+              <fieldset [hidden]="infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+
+                <!-- <input hidden type="file" #doc9
+                  (change)="previewImage(doc9,$event.target.files,infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen,'ques_doc_url')" /> -->
+
+
+                <a title="View Document" class="mt-4"
+                  (click)="openUploadedDocsModal(uploadViewModel,infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen,'ques_doc_url')">
+
+                  <i
+                    [ngClass]="(infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen!=null?infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="does_hosp_plcy_ensure_infctn_prctcs_linen_doc"
+                  #does_hosp_plcy_ensure_infctn_prctcs_linen_doc="ngModel" required
+                  [disabled]="infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen.ques_selected_opt!=true"
+                  [(ngModel)]="infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen.ques_doc_url" required>
+                <div *ngIf="does_hosp_plcy_ensure_infctn_prctcs_linen_doc.invalid">
+                  <div *ngIf="infectionformSubmitted && does_hosp_plcy_ensure_infctn_prctcs_linen_doc.errors.required"
+                    class="text-danger">
+                    <small>Required</small>
+                  </div>
+                </div>
+
+
+
+              </fieldset>
+
+
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('infection_control','does_hosp_plcy_ensure_infctn_prctcs_linen',hospitalPagesQueBank.infection_control.does_hosp_plcy_ensure_infctn_prctcs_linen)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.infection_control?.does_hosp_plcy_ensure_infctn_prctcs_linen?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--./row-->
+
+        </ng-template>
+      </ngb-panel>
+
+
+
+
+
+    </ngb-accordion>
+
+  </form>
+  <!-- image view model -->
+  <ng-template #uploadViewModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Uploaded doc(s)</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- ------ -->
+      <div *ngIf="!(ary_uploadedDocs===null || ary_uploadedDocs===undefined)" class="table-responsive">
+
+
+        <table class="table table-bordered table-striped customTable">
+          <thead>
+            <tr>
+              <th class="text-center"> Name </th>
+              <th class="text-center">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ary_uploadedDocs">
+              <td class="text-center">{{item.fn}}</td>
+              <td class="text-center">
+
+                <a class="text-success mouse-pointer" title="Download file" (click)="downloadUploadFile(item)">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+
+                <a style="margin-left: 10px;" class="text-danger mouse-pointer" title="Delete file"
+                  *ngIf="this.currUsrRole ==3 && Stage_id ==20" (click)="deleteUploadFile(item)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+
+    </div>
+
+  </ng-template>
+
+  <ng-template #ncModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Non-Compliance</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+
+        <div class="col-xs-12 col-md-12 col-xl-12">
+
+          <div class="form-group">
+            <label>3. &nbsp; &nbsp;Dynamic question should be here for particular NC button</label><br />
+            <label class="mt-2">NC Remark</label>
+            <div class="input-group">
+              <textarea class="form-control"></textarea>
+
+            </div>
+          </div>
+          <!-- --------------for reply -->
+          <div class="form-group">
+
+            <label>NC Reply</label>
+            <div class="input-group">
+              <textarea class="form-control"></textarea>
+
+            </div>
+          </div>
+          <div class="form-group">
+
+            <label>Document</label>
+            <div class="input-group">
+
+              <input type="file" #myFileInput>
+              <label style="font-size: 11px; color:#42C0FB;margin-top: 10px;">NOTE: The following formats are accepted
+                PDF , JPEG , PNG.The maximum file size allowed is 20 MB.</label> <br />
+
+
+
+            </div>
+          </div>
+          <div class="table-responsive" style="margin-top: -10px;">
+            <table class="table table-centered table-bordered table-nowrap">
+              <tbody>
+
+                <tr>
+                  <td><span class="text-primary">SOP for AYUSH Process .pdf</span> <i
+                      class="fa fa-times ml-3 text-danger"></i></td>
+                </tr>
+                <tr>
+                  <td><span class="text-primary">SOP for AYUSH Process .pdf</span> <i
+                      class="fa fa-times ml-3 text-danger"></i></td>
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+          <!-- ------------------for reply -->
+
+
+        </div>
+
+
+      </div>
+
+      <div class="row">
+
+
+
+
+        <div class="col-xs-12 col-md-12 col-xl-12">
+
+          <h4 style="font-size: 14px; font-weight: bold;color:#009688">NC LOG</h4>
+          <hr style="margin-top: -2px;" />
+
+        </div>
+
+
+      </div>
+      <!-- -------------------------------------- -->
+      <div class="row">
+
+        <div class="col-xs-12 col-md-6 col-xl-6">
+          <div class="table-responsive mb-0">
+            <table class="table table-centered table-bordered table-nowrap">
+              <tbody>
+                <tr>
+
+                  <td colspan="2" class="text-center" style="font-weight: bold; background-color: #F8F8F8;"> Assessor
+                  </td>
+
+                </tr>
+                <tr>
+                  <td width="25%"><strong>Date</strong> </td>
+                  <td></td>
+                </tr>
+                <tr>
+
+                  <td><strong>Remark</strong></td>
+                  <td></td>
+                </tr>
+                <tr>
+
+                  <td><strong>Status</strong></td>
+                  <td></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+
+
+        </div>
+        <div class="col-xs-12 col-md-6 col-xl-6">
+
+          <div class="table-responsive mb-0">
+            <table class="table table-centered table-bordered table-nowrap">
+              <tbody>
+                <tr>
+
+                  <td colspan="2" class="text-center" style="font-weight: bold; background-color: #F8F8F8;">
+                    Organisation</td>
+
+                </tr>
+                <tr>
+                  <td width="25%"><strong>Date</strong> </td>
+                  <td></td>
+                </tr>
+                <tr>
+
+                  <td><strong>Reply</strong></td>
+                  <td></td>
+                </tr>
+                <tr>
+
+                  <td><strong>Document</strong></td>
+                  <td></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+
+
+      </div>
+      <!-- ----------------------------------------- -->
+
+
+    </div>
+    <div class="modal-footer" style="margin-top: -15px;">
+      <button type="button" class="btn btn-danger">Remove NC</button>
+      <button type="button" class="btn btn-success">Raise NC</button>
+    </div>
+
+  </ng-template>
+  <!-- image view model -->
+</div>
+<ng-template #documentuploadModel role="document" let-modal>
+
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Upload Document</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <!-- <div class="row mt-2">
+      <ngb-progressbar *ngIf="showUploadMsg!=null" [value]="this.progress" type="progress-bar" showValue="true"
+        style="width: 100%;">
+      </ngb-progressbar>
+    </div> -->
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <h5 style="margin-left: 10px;"><strong>Document</strong></h5>
+
+    </div>
+
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <input style="margin-left: 10px;" type="file" #myFileInput (change)="handleFileInput($event.target.files)" />
+
+    </div>
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <label style="margin-left: 10px;"><b>Note: </b>The following formats are accepted: PDF, JPG, JPEG, PNG. The
+        maximum file size allowed in 20 MB.</label>
+
+    </div>
+    <div class="row">
+      <br>
+    </div>
+    <div class="row mt-2">
+      <!--  -->
+      <div class="alert alert-success  fade show" style="width: 100%;" *ngIf="showUploadMsg==true">
+
+        The file has been successfully uploaded
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="Upload2(myFileInput)">Upload</button>
+  </div>
+</ng-template>

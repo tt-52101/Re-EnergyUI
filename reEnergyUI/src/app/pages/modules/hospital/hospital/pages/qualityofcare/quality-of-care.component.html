@@ -1,0 +1,3178 @@
+<div class="p-0">
+  <form #qualityofcareForm="ngForm">
+    <ngb-accordion [destroyOnHide]="false" #acc="ngbAccordion" class="range-accordion" activeIds="static-1"
+      (panelChange)="panelChange($event)">
+      <ngb-panel id="static-1">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Quality Care Processes
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-1']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-1']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique.ques_selected_opt"
+                name="hosp_flw_assmt" #flwpainassmtselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="flwpainassmtselect.invalid">
+                <div *ngIf="qocformSubmitted && flwpainassmtselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center"> </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','flw_pain_asssment_rssmnt_including_mitigation_technique',hospitalPagesQueBank.quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.flw_pain_asssment_rssmnt_including_mitigation_technique?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-sm-6 offset-md-2">
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0"
+                  *ngIf="quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique.ques_selected_opt==true">
+                  <tbody>
+                    <tr class="text-center">
+                      <td style="width: 75%">Record #1</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique,'record_doc_url_1')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <input hidden type="file" #doc46
+                          (change)="previewImage(doc46,$event.target.files,quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique,'record_doc_url_1')" /> -->
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique,'record_doc_url_1')">
+                          <i
+                            [ngClass]="(quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique!=null?quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique.record_doc_url_1:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="painassmtdoc_1" #painassmtdoc_1="ngModel" required
+                          [(ngModel)]="quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique.record_doc_url_1"
+                          required>
+                        <div *ngIf="painassmtdoc_1.invalid">
+                          <div *ngIf="qocformSubmitted && painassmtdoc_1.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td>Record #2</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique,'record_doc_url_2')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <input hidden type="file" #doc47
+                          (change)="previewImage(doc47,$event.target.files,quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique,'record_doc_url_2')" /> -->
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique,'record_doc_url_2')">
+                          <i
+                            [ngClass]="(quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique!=null?quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique.record_doc_url_2:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="painassmtdoc_2" #painassmtdoc_2="ngModel" required
+                          [(ngModel)]="quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique.record_doc_url_2"
+                          required>
+                        <div *ngIf="painassmtdoc_2.invalid">
+                          <div *ngIf="qocformSubmitted && painassmtdoc_2.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td>Record #3</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique,'record_doc_url_3')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <input hidden type="file" #doc48
+                          (change)="previewImage(doc48,$event.target.files,quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique,'record_doc_url_3')" /> -->
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique,'record_doc_url_3')">
+                          <i
+                            [ngClass]="(quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique!=null?quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique.record_doc_url_3:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="painassmtdoc_3" #painassmtdoc_3="ngModel" required
+                          [(ngModel)]="quality_care.flw_pain_asssment_rssmnt_including_mitigation_technique.record_doc_url_3"
+                          required>
+                        <div *ngIf="painassmtdoc_3.invalid">
+                          <div *ngIf="qocformSubmitted && painassmtdoc_3.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.intensity_character_frequency_location_duration.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.intensity_character_frequency_location_duration.ques_selected_opt"
+                name="intncharselect" #intncharselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="intncharselect.invalid">
+                <div *ngIf="qocformSubmitted && intncharselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.intensity_character_frequency_location_duration.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.intensity_character_frequency_location_duration,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc2
+                  (change)="previewImage(doc2,$event.target.files,quality_care.intensity_character_frequency_location_duration,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.intensity_character_frequency_location_duration,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.intensity_character_frequency_location_duration!=null?quality_care.intensity_character_frequency_location_duration.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="intnchardoc" #intnchardoc="ngModel" required
+                  [disabled]="quality_care.intensity_character_frequency_location_duration.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.intensity_character_frequency_location_duration.ques_doc_url" required>
+                <div *ngIf="intnchardoc.invalid">
+                  <div *ngIf="qocformSubmitted && intnchardoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.intensity_character_frequency_location_duration:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.intensity_character_frequency_location_duration:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','intensity_character_frequency_location_duration',hospitalPagesQueBank.quality_care.intensity_character_frequency_location_duration)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.intensity_character_frequency_location_duration?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.identify_clinically_vulnerable_patients_and_staff.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.identify_clinically_vulnerable_patients_and_staff.ques_selected_opt"
+                name="idntclnvulselect" #idntclnvulselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="idntclnvulselect.invalid">
+                <div *ngIf="qocformSubmitted && idntclnvulselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.identify_clinically_vulnerable_patients_and_staff.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.identify_clinically_vulnerable_patients_and_staff,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc3
+                  (change)="previewImage(doc3,$event.target.files,quality_care.identify_clinically_vulnerable_patients_and_staff,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.identify_clinically_vulnerable_patients_and_staff,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.identify_clinically_vulnerable_patients_and_staff!=null?quality_care.identify_clinically_vulnerable_patients_and_staff.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="idntclnvuldoc" #idntclnvuldoc="ngModel" required
+                  [disabled]="quality_care.identify_clinically_vulnerable_patients_and_staff.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.identify_clinically_vulnerable_patients_and_staff.ques_doc_url" required>
+                <div *ngIf="idntclnvuldoc.invalid">
+                  <div *ngIf="qocformSubmitted && idntclnvuldoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.identify_clinically_vulnerable_patients_and_staff:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.identify_clinically_vulnerable_patients_and_staff:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','identify_clinically_vulnerable_patients_and_staff',hospitalPagesQueBank.quality_care.identify_clinically_vulnerable_patients_and_staff)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.identify_clinically_vulnerable_patients_and_staff?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.patients_monitored_at_least_twice_a_day.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.patients_monitored_at_least_twice_a_day.ques_selected_opt"
+                name="patmntrselect" #patmntrselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="patmntrselect.invalid">
+                <div *ngIf="qocformSubmitted && patmntrselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.patients_monitored_at_least_twice_a_day.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.patients_monitored_at_least_twice_a_day,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc4
+                  (change)="previewImage(doc4,$event.target.files,quality_care.patients_monitored_at_least_twice_a_day,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.patients_monitored_at_least_twice_a_day,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.patients_monitored_at_least_twice_a_day!=null?quality_care.patients_monitored_at_least_twice_a_day.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="patmntrdoc" #patmntrdoc="ngModel" required
+                  [disabled]="quality_care.patients_monitored_at_least_twice_a_day.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.patients_monitored_at_least_twice_a_day.ques_doc_url" required>
+                <div *ngIf="patmntrdoc.invalid">
+                  <div *ngIf="qocformSubmitted && patmntrdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.patients_monitored_at_least_twice_a_day:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.patients_monitored_at_least_twice_a_day:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','patients_monitored_at_least_twice_a_day',hospitalPagesQueBank.quality_care.patients_monitored_at_least_twice_a_day)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.patients_monitored_at_least_twice_a_day?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.standard_nursing_services_practices_relevant_regulations.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.standard_nursing_services_practices_relevant_regulations.ques_selected_opt"
+                name="stndnurselect" #stndnurselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="stndnurselect.invalid">
+                <div *ngIf="qocformSubmitted && stndnurselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.standard_nursing_services_practices_relevant_regulations.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.standard_nursing_services_practices_relevant_regulations,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc5
+                  (change)="previewImage(doc5,$event.target.files,quality_care.standard_nursing_services_practices_relevant_regulations,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.standard_nursing_services_practices_relevant_regulations,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.standard_nursing_services_practices_relevant_regulations!=null?quality_care.standard_nursing_services_practices_relevant_regulations.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="stndnursdoc" #stndnursdoc="ngModel" required
+                  [disabled]="quality_care.standard_nursing_services_practices_relevant_regulations.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.standard_nursing_services_practices_relevant_regulations.ques_doc_url"
+                  required>
+                <div *ngIf="stndnursdoc.invalid">
+                  <div *ngIf="qocformSubmitted && stndnursdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.standard_nursing_services_practices_relevant_regulations:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.standard_nursing_services_practices_relevant_regulations:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','standard_nursing_services_practices_relevant_regulations',hospitalPagesQueBank.quality_care.standard_nursing_services_practices_relevant_regulations)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.standard_nursing_services_practices_relevant_regulations?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.nursing_care_provided_based_on_clinical_requirements.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.nursing_care_provided_based_on_clinical_requirements.ques_selected_opt"
+                name="nurcareprvdselect" #nurcareprvdselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="nurcareprvdselect.invalid">
+                <div *ngIf="qocformSubmitted && nurcareprvdselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.nursing_care_provided_based_on_clinical_requirements.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.nursing_care_provided_based_on_clinical_requirements,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc6
+                  (change)="previewImage(doc6,$event.target.files,quality_care.nursing_care_provided_based_on_clinical_requirements,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.nursing_care_provided_based_on_clinical_requirements,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.nursing_care_provided_based_on_clinical_requirements!=null?quality_care.nursing_care_provided_based_on_clinical_requirements.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="nurcareprvddoc" #nurcareprvddoc="ngModel" required
+                  [disabled]="quality_care.nursing_care_provided_based_on_clinical_requirements.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.nursing_care_provided_based_on_clinical_requirements.ques_doc_url" required>
+                <div *ngIf="nurcareprvddoc.invalid">
+                  <div *ngIf="qocformSubmitted && nurcareprvddoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.nursing_care_provided_based_on_clinical_requirements:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.nursing_care_provided_based_on_clinical_requirements:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','nursing_care_provided_based_on_clinical_requirements',hospitalPagesQueBank.quality_care.nursing_care_provided_based_on_clinical_requirements)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.nursing_care_provided_based_on_clinical_requirements?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>7.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.protocol_of_screening_examination_of_food_handler.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.protocol_of_screening_examination_of_food_handler.ques_selected_opt"
+                name="protscrselect" #protscrselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="protscrselect.invalid">
+                <div *ngIf="qocformSubmitted && protscrselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.protocol_of_screening_examination_of_food_handler.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.protocol_of_screening_examination_of_food_handler,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc7
+                  (change)="previewImage(doc7,$event.target.files,quality_care.protocol_of_screening_examination_of_food_handler,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.protocol_of_screening_examination_of_food_handler,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.protocol_of_screening_examination_of_food_handler!=null?quality_care.protocol_of_screening_examination_of_food_handler.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="protscrdoc" #protscrdoc="ngModel" required
+                  [disabled]="quality_care.protocol_of_screening_examination_of_food_handler.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.protocol_of_screening_examination_of_food_handler.ques_doc_url" required>
+                <div *ngIf="protscrdoc.invalid">
+                  <div *ngIf="qocformSubmitted && protscrdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.protocol_of_screening_examination_of_food_handler:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.protocol_of_screening_examination_of_food_handler:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','protocol_of_screening_examination_of_food_handler',hospitalPagesQueBank.quality_care.protocol_of_screening_examination_of_food_handler)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.protocol_of_screening_examination_of_food_handler?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>8.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.salient_steps_key_findings_and_post_procedure_care.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.salient_steps_key_findings_and_post_procedure_care.ques_selected_opt"
+                name="saltstpselect" #saltstpselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="saltstpselect.invalid">
+                <div *ngIf="qocformSubmitted && saltstpselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <!-- <fieldset
+                       [hidden]="quality_care.salient_steps_key_findings_and_post_procedure_care.ques_selected_opt!=true">
+                       <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc8.click()">
+                         <i class="bx bx-upload"></i>
+                       </a>
+                       
+                       <input hidden type="file" #doc8
+                         (change)="previewImage($event.target.files,quality_care.salient_steps_key_findings_and_post_procedure_care,'ques_doc_url')" />
+                       
+                       
+                       <a title="View Document" (click)="openUploadedDocsModal(uploadViewModel,quality_care.salient_steps_key_findings_and_post_procedure_care,'ques_doc_url')" class="mt-4">
+                       
+                         <i
+                           [ngClass]="(quality_care.salient_steps_key_findings_and_post_procedure_care!=null?quality_care.salient_steps_key_findings_and_post_procedure_care.ques_doc_url:'')|uploadbtnpipe"></i>
+                       </a>
+                       <input hidden type="text" name="saltstpdoc" #saltstpdoc="ngModel" required
+                         [disabled]="quality_care.salient_steps_key_findings_and_post_procedure_care.ques_selected_opt!=true"
+                         [(ngModel)]="quality_care.salient_steps_key_findings_and_post_procedure_care.ques_doc_url" required>
+                       <div *ngIf="saltstpdoc.invalid">
+                         <div *ngIf="qocformSubmitted && saltstpdoc.errors.required" class="text-danger">
+                           Required
+                         </div>
+                       </div>
+                       
+                       
+                       
+                       </fieldset> -->
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.salient_steps_key_findings_and_post_procedure_care:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.salient_steps_key_findings_and_post_procedure_care:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','salient_steps_key_findings_and_post_procedure_care',hospitalPagesQueBank.quality_care.salient_steps_key_findings_and_post_procedure_care)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.salient_steps_key_findings_and_post_procedure_care?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-sm-6 offset-md-2">
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered mb-0"
+                  *ngIf="quality_care.salient_steps_key_findings_and_post_procedure_care.ques_selected_opt==true">
+                  <tbody>
+                    <tr class="text-center">
+                      <td style="width: 75%">Record #1</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(quality_care.salient_steps_key_findings_and_post_procedure_care,'record_doc_url_1')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <input hidden type="file" #doc49
+                          (change)="previewImage(doc49,$event.target.files,quality_care.salient_steps_key_findings_and_post_procedure_care,'record_doc_url_1')" /> -->
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,quality_care.salient_steps_key_findings_and_post_procedure_care,'record_doc_url_1')">
+                          <i
+                            [ngClass]="(quality_care.salient_steps_key_findings_and_post_procedure_care!=null?quality_care.salient_steps_key_findings_and_post_procedure_care.record_doc_url_1:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="salfeatdoc_1" #salfeatdoc_1="ngModel" required
+                          [(ngModel)]="quality_care.salient_steps_key_findings_and_post_procedure_care.record_doc_url_1"
+                          required>
+                        <div *ngIf="salfeatdoc_1.invalid">
+                          <div *ngIf="qocformSubmitted && salfeatdoc_1.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td>Record #2</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(quality_care.salient_steps_key_findings_and_post_procedure_care,'record_doc_url_2')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <input hidden type="file" #doc50
+                          (change)="previewImage(doc50,$event.target.files,quality_care.salient_steps_key_findings_and_post_procedure_care,'record_doc_url_2')" /> -->
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,quality_care.salient_steps_key_findings_and_post_procedure_care,'record_doc_url_2')">
+                          <i
+                            [ngClass]="(quality_care.salient_steps_key_findings_and_post_procedure_care!=null?quality_care.salient_steps_key_findings_and_post_procedure_care.record_doc_url_2:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="salfeatdoc_2" #salfeatdoc_2="ngModel" required
+                          [(ngModel)]="quality_care.salient_steps_key_findings_and_post_procedure_care.record_doc_url_2"
+                          required>
+                        <div *ngIf="salfeatdoc_2.invalid">
+                          <div *ngIf="qocformSubmitted && salfeatdoc_2.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="text-center">
+                      <td>Record #3</td>
+                      <td>
+                        <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                          (click)="openDocModel(quality_care.salient_steps_key_findings_and_post_procedure_care,'record_doc_url_3')">
+                          <i class="bx bx-upload"></i>
+                        </a>
+                        <!-- <input hidden type="file" #doc51
+                          (change)="previewImage(doc51,$event.target.files,quality_care.salient_steps_key_findings_and_post_procedure_care,'record_doc_url_3')" /> -->
+                        <a title="View Document" class="mt-4"
+                          (click)="openUploadedDocsModal(uploadViewModel,quality_care.salient_steps_key_findings_and_post_procedure_care,'record_doc_url_3')">
+                          <i
+                            [ngClass]="(quality_care.salient_steps_key_findings_and_post_procedure_care!=null?quality_care.salient_steps_key_findings_and_post_procedure_care.record_doc_url_3:'')|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" name="salfeatdoc_3" #salfeatdoc_3="ngModel" required
+                          [(ngModel)]="quality_care.salient_steps_key_findings_and_post_procedure_care.record_doc_url_3"
+                          required>
+                        <div *ngIf="salfeatdoc_3.invalid">
+                          <div *ngIf="qocformSubmitted && salfeatdoc_3.errors.required" class="text-danger">
+                            Required
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </ng-template>
+      </ngb-panel>
+
+      <!--./static--1 -->
+      <ngb-panel id="static-2">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Medication Administration
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-2']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-2']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.administered_only_by_competent_personnel.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.administered_only_by_competent_personnel.ques_selected_opt"
+                name="adminbycmptselect" #adminbycmptselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="adminbycmptselect.invalid">
+                <div *ngIf="qocformSubmitted && adminbycmptselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.administered_only_by_competent_personnel.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.administered_only_by_competent_personnel,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc9
+                  (change)="previewImage(doc9,$event.target.files,quality_care.administered_only_by_competent_personnel,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.administered_only_by_competent_personnel,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.administered_only_by_competent_personnel!=null?quality_care.administered_only_by_competent_personnel.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="adminbycmptdoc" #adminbycmptdoc="ngModel" required
+                  [disabled]="quality_care.administered_only_by_competent_personnel.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.administered_only_by_competent_personnel.ques_doc_url" required>
+                <div *ngIf="adminbycmptdoc.invalid">
+                  <div *ngIf="qocformSubmitted && adminbycmptdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.administered_only_by_competent_personnel:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.administered_only_by_competent_personnel:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','administered_only_by_competent_personnel',hospitalPagesQueBank.quality_care.administered_only_by_competent_personnel)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.administered_only_by_competent_personnel?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.prepared_in_a_designated_and_well_equipped_place.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.prepared_in_a_designated_and_well_equipped_place.ques_selected_opt"
+                name="prepindesgnselect" #prepindesgnselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="prepindesgnselect.invalid">
+                <div *ngIf="qocformSubmitted && prepindesgnselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.prepared_in_a_designated_and_well_equipped_place.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.prepared_in_a_designated_and_well_equipped_place,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc10
+                  (change)="previewImage(doc10,$event.target.files,quality_care.prepared_in_a_designated_and_well_equipped_place,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.prepared_in_a_designated_and_well_equipped_place,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.prepared_in_a_designated_and_well_equipped_place!=null?quality_care.prepared_in_a_designated_and_well_equipped_place.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="prepindesgndoc" #prepindesgndoc="ngModel" required
+                  [disabled]="quality_care.prepared_in_a_designated_and_well_equipped_place.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.prepared_in_a_designated_and_well_equipped_place.ques_doc_url" required>
+                <div *ngIf="prepindesgndoc.invalid">
+                  <div *ngIf="qocformSubmitted && prepindesgndoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.prepared_in_a_designated_and_well_equipped_place:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.prepared_in_a_designated_and_well_equipped_place:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','prepared_in_a_designated_and_well_equipped_place',hospitalPagesQueBank.quality_care.prepared_in_a_designated_and_well_equipped_place)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.prepared_in_a_designated_and_well_equipped_place?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">{{hospitalPagesQueBank.quality_care.preparation_of_the_second_drug.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.preparation_of_the_second_drug.ques_selected_opt" name="prepscnddrugselect"
+                #prepscnddrugselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="prepscnddrugselect.invalid">
+                <div *ngIf="qocformSubmitted && prepscnddrugselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.preparation_of_the_second_drug.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.preparation_of_the_second_drug,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc11
+                  (change)="previewImage(doc11,$event.target.files,quality_care.preparation_of_the_second_drug,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.preparation_of_the_second_drug,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.preparation_of_the_second_drug!=null?quality_care.preparation_of_the_second_drug.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="prepscnddrugdoc" #prepscnddrugdoc="ngModel" required
+                  [disabled]="quality_care.preparation_of_the_second_drug.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.preparation_of_the_second_drug.ques_doc_url" required>
+                <div *ngIf="prepscnddrugdoc.invalid">
+                  <div *ngIf="qocformSubmitted && prepscnddrugdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.preparation_of_the_second_drug:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.preparation_of_the_second_drug:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','preparation_of_the_second_drug',hospitalPagesQueBank.quality_care.preparation_of_the_second_drug)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.preparation_of_the_second_drug?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">{{hospitalPagesQueBank.quality_care.name_dosage_route_and_timing.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.name_dosage_route_and_timing.ques_selected_opt" name="namedosgselect"
+                #namedosgselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="namedosgselect.invalid">
+                <div *ngIf="qocformSubmitted && namedosgselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.name_dosage_route_and_timing.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.name_dosage_route_and_timing,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc12
+                  (change)="previewImage(doc12,$event.target.files,quality_care.name_dosage_route_and_timing,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.name_dosage_route_and_timing,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.name_dosage_route_and_timing!=null?quality_care.name_dosage_route_and_timing.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="namedosgdoc" #namedosgdoc="ngModel" required
+                  [disabled]="quality_care.name_dosage_route_and_timing.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.name_dosage_route_and_timing.ques_doc_url" required>
+                <div *ngIf="namedosgdoc.invalid">
+                  <div *ngIf="qocformSubmitted && namedosgdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.name_dosage_route_and_timing:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.name_dosage_route_and_timing:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','name_dosage_route_and_timing',hospitalPagesQueBank.quality_care.name_dosage_route_and_timing)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.name_dosage_route_and_timing?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.mechanism_to_identify_medication_error.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.mechanism_to_identify_medication_error.ques_selected_opt"
+                name="identmedicselect" #identmedicselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="identmedicselect.invalid">
+                <div *ngIf="qocformSubmitted && identmedicselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.mechanism_to_identify_medication_error.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.mechanism_to_identify_medication_error,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc13
+                  (change)="previewImage(doc13,$event.target.files,quality_care.mechanism_to_identify_medication_error,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.mechanism_to_identify_medication_error,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.mechanism_to_identify_medication_error!=null?quality_care.mechanism_to_identify_medication_error.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="identmedicdoc" #identmedicdoc="ngModel" required
+                  [disabled]="quality_care.mechanism_to_identify_medication_error.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.mechanism_to_identify_medication_error.ques_doc_url" required>
+                <div *ngIf="identmedicdoc.invalid">
+                  <div *ngIf="qocformSubmitted && identmedicdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.mechanism_to_identify_medication_error:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.mechanism_to_identify_medication_error:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','mechanism_to_identify_medication_error',hospitalPagesQueBank.quality_care.mechanism_to_identify_medication_error)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.mechanism_to_identify_medication_error?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.mechanism_to_verify_the_adverse_drug_reaction.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.mechanism_to_verify_the_adverse_drug_reaction.ques_selected_opt"
+                name="dggreactselect" #dggreactselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="dggreactselect.invalid">
+                <div *ngIf="qocformSubmitted && dggreactselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.mechanism_to_verify_the_adverse_drug_reaction.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.mechanism_to_verify_the_adverse_drug_reaction,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc14
+                  (change)="previewImage(doc14,$event.target.files,quality_care.mechanism_to_verify_the_adverse_drug_reaction,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.mechanism_to_verify_the_adverse_drug_reaction,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.mechanism_to_verify_the_adverse_drug_reaction!=null?quality_care.mechanism_to_verify_the_adverse_drug_reaction.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="dggreactdoc" #dggreactdoc="ngModel" required
+                  [disabled]="quality_care.mechanism_to_verify_the_adverse_drug_reaction.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.mechanism_to_verify_the_adverse_drug_reaction.ques_doc_url" required>
+                <div *ngIf="dggreactdoc.invalid">
+                  <div *ngIf="qocformSubmitted && dggreactdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.mechanism_to_verify_the_adverse_drug_reaction:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.mechanism_to_verify_the_adverse_drug_reaction:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','mechanism_to_verify_the_adverse_drug_reaction',hospitalPagesQueBank.quality_care.mechanism_to_verify_the_adverse_drug_reaction)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.mechanism_to_verify_the_adverse_drug_reaction?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>7.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.medicatio_error_and_adverse_drug_reactions.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.medicatio_error_and_adverse_drug_reactions.ques_selected_opt"
+                name="advdrgreactselect" #advdrgreactselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="advdrgreactselect.invalid">
+                <div *ngIf="qocformSubmitted && advdrgreactselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.medicatio_error_and_adverse_drug_reactions.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.medicatio_error_and_adverse_drug_reactions,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc15
+                  (change)="previewImage(doc15,$event.target.files,quality_care.medicatio_error_and_adverse_drug_reactions,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.medicatio_error_and_adverse_drug_reactions,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.medicatio_error_and_adverse_drug_reactions!=null?quality_care.medicatio_error_and_adverse_drug_reactions.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="advdrgreactdoc" #advdrgreactdoc="ngModel" required
+                  [disabled]="quality_care.medicatio_error_and_adverse_drug_reactions.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.medicatio_error_and_adverse_drug_reactions.ques_doc_url" required>
+                <div *ngIf="advdrgreactdoc.invalid">
+                  <div *ngIf="qocformSubmitted && advdrgreactdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.medicatio_error_and_adverse_drug_reactions:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.medicatio_error_and_adverse_drug_reactions:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','medicatio_error_and_adverse_drug_reactions',hospitalPagesQueBank.quality_care.medicatio_error_and_adverse_drug_reactions)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.medicatio_error_and_adverse_drug_reactions?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>8.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.reduce_the_medication_errors_and_adverse_drug_reaction.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.reduce_the_medication_errors_and_adverse_drug_reaction.ques_selected_opt"
+                name="redadvdrgreactselect" #redadvdrgreactselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="redadvdrgreactselect.invalid">
+                <div *ngIf="qocformSubmitted && redadvdrgreactselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.reduce_the_medication_errors_and_adverse_drug_reaction.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.reduce_the_medication_errors_and_adverse_drug_reaction,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc16
+                  (change)="previewImage(doc16,$event.target.files,quality_care.reduce_the_medication_errors_and_adverse_drug_reaction,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.reduce_the_medication_errors_and_adverse_drug_reaction,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.reduce_the_medication_errors_and_adverse_drug_reaction!=null?quality_care.reduce_the_medication_errors_and_adverse_drug_reaction.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="redadvdrgreactdoc" #redadvdrgreactdoc="ngModel" required
+                  [disabled]="quality_care.reduce_the_medication_errors_and_adverse_drug_reaction.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.reduce_the_medication_errors_and_adverse_drug_reaction.ques_doc_url"
+                  required>
+                <div *ngIf="redadvdrgreactdoc.invalid">
+                  <div *ngIf="qocformSubmitted && redadvdrgreactdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.reduce_the_medication_errors_and_adverse_drug_reaction:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.reduce_the_medication_errors_and_adverse_drug_reaction:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','reduce_the_medication_errors_and_adverse_drug_reaction',hospitalPagesQueBank.quality_care.reduce_the_medication_errors_and_adverse_drug_reaction)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.reduce_the_medication_errors_and_adverse_drug_reaction?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <!-- <div class="row">
+                 <div class="col-xs-12 col-md-8 col-xl-8">
+                   <div class="frm-question">
+                     <span class="quest-count"><b><b>9.</b></b></span>
+                     <div class="question-desc">
+                       <label>{{hospitalPagesQueBank.quality_care.use_medication_yoga_naturopathy_interventions.ques_text}}
+                     </div>
+                     </div>
+                    
+                 </div>
+                 
+                 
+                 
+                 <div class="col-xs-12 col-md-2 col-xl-2">
+                   <select class="form-control" required
+                     [(ngModel)]="quality_care.use_medication_yoga_naturopathy_interventions.ques_selected_opt"
+                     name="usemedyogselect" #usemedyogselect="ngModel">
+                     <option [ngValue]="null">Select</option>
+                     <option [ngValue]="true">Yes</option>
+                     <option [ngValue]="false">No</option>
+                   </select>
+                   <div *ngIf="usemedyogselect.invalid">
+                     <div *ngIf="qocformSubmitted && usemedyogselect.errors.required" class="text-danger">
+                       Required
+                     </div>
+                   </div>
+                 
+                 </div>
+                 
+                 <div class="col-xs-12 col-md-1 col-xl-1">
+                 
+                   <fieldset
+                     [hidden]="quality_care.use_medication_yoga_naturopathy_interventions.ques_selected_opt!=true">
+                     <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc17.click()">
+                       <i class="bx bx-upload"></i>
+                     </a>
+                 
+                     <input hidden type="file" #doc17
+                       (change)="previewImage($event.target.files,quality_care.use_medication_yoga_naturopathy_interventions,'ques_doc_url')" />
+                 
+                 
+                     <a title="View Document" (click)="openUploadedDocsModal(uploadViewModel,quality_care.use_medication_yoga_naturopathy_interventions,'ques_doc_url')" class="mt-4">
+                 
+                       <i
+                         [ngClass]="(quality_care.use_medication_yoga_naturopathy_interventions!=null?quality_care.use_medication_yoga_naturopathy_interventions.ques_doc_url:'')|uploadbtnpipe"></i>
+                     </a>
+                     <input hidden type="text" name="usemedyogdoc" #usemedyogdoc="ngModel" required
+                       [disabled]="quality_care.use_medication_yoga_naturopathy_interventions.ques_selected_opt!=true"
+                       [(ngModel)]="quality_care.use_medication_yoga_naturopathy_interventions.ques_doc_url" required>
+                     <div *ngIf="usemedyogdoc.invalid">
+                       <div *ngIf="qocformSubmitted && usemedyogdoc.errors.required" class="text-danger">
+                         Required
+                       </div>
+                     </div>
+                 
+                 
+                 
+                   </fieldset>
+                 
+                 
+                 
+                 </div>
+                 <div class="col-xs-12 col-md-1 col-xl-1">
+                 
+                 </div>
+                 
+                 
+                 </div>
+                 -->
+          <!--Question start region end-->
+
+        </ng-template>
+      </ngb-panel>
+      <!--./static--2 -->
+
+      <ngb-panel id="static-3">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Quality Improvement and Patient Safety
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-3']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-3']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <!--Question  start region-->
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.updates_quality_improvement_patient_safety_program.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.updates_quality_improvement_patient_safety_program.ques_selected_opt"
+                name="qtimprprgmselect" #qtimprprgmselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="qtimprprgmselect.invalid">
+                <div *ngIf="qocformSubmitted && qtimprprgmselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.updates_quality_improvement_patient_safety_program.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.updates_quality_improvement_patient_safety_program,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc18
+                  (change)="previewImage(doc18,$event.target.files,quality_care.updates_quality_improvement_patient_safety_program,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.updates_quality_improvement_patient_safety_program,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.updates_quality_improvement_patient_safety_program!=null?quality_care.updates_quality_improvement_patient_safety_program.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="usemedyogdoc" #qtimprprgmdoc="ngModel" required
+                  [disabled]="quality_care.updates_quality_improvement_patient_safety_program.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.updates_quality_improvement_patient_safety_program.ques_doc_url" required>
+                <div *ngIf="qtimprprgmdoc.invalid">
+                  <div *ngIf="qocformSubmitted && qtimprprgmdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.updates_quality_improvement_patient_safety_program:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.updates_quality_improvement_patient_safety_program:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','updates_quality_improvement_patient_safety_program',hospitalPagesQueBank.quality_care.updates_quality_improvement_patient_safety_program)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.updates_quality_improvement_patient_safety_program?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.document_quality_improvement_patient_safety_program.ques_text}}
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.document_quality_improvement_patient_safety_program.ques_selected_opt"
+                name="docqtyimprvselect" #docqtyimprvselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="docqtyimprvselect.invalid">
+                <div *ngIf="qocformSubmitted && docqtyimprvselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.document_quality_improvement_patient_safety_program.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.document_quality_improvement_patient_safety_program,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc19
+                  (change)="previewImage(doc19,$event.target.files,quality_care.document_quality_improvement_patient_safety_program,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.document_quality_improvement_patient_safety_program,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.document_quality_improvement_patient_safety_program!=null?quality_care.document_quality_improvement_patient_safety_program.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="usemedyogdoc" #docqtyimprvdoc="ngModel" required
+                  [disabled]="quality_care.document_quality_improvement_patient_safety_program.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.document_quality_improvement_patient_safety_program.ques_doc_url" required>
+                <div *ngIf="docqtyimprvdoc.invalid">
+                  <div *ngIf="qocformSubmitted && docqtyimprvdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.document_quality_improvement_patient_safety_program:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.document_quality_improvement_patient_safety_program:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','document_quality_improvement_patient_safety_program',hospitalPagesQueBank.quality_care.document_quality_improvement_patient_safety_program)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.document_quality_improvement_patient_safety_program?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.coordinate_with_quality_improvement_and_patient_safety.ques_text}}<br>
+                  <small class="pl-1 text-info"><i><b>Note:</b> preferably having good knowledge of accreditation
+                      standards,
+                      statutory
+                      requirements, hospital quality improvement principles, patient and general safety</i></small>
+                  <!-- <div class="labelnote">
+                      <span class="labelhighlight">*</span> having good knowledge of accreditation standards, statutory requirements, hospital quality improvement principles, patient and general safety
+                   </div> -->
+                </div>
+
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.coordinate_with_quality_improvement_and_patient_safety.ques_selected_opt"
+                name="cordqtyimprselect" #cordqtyimprselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="cordqtyimprselect.invalid">
+                <div *ngIf="qocformSubmitted && cordqtyimprselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.coordinate_with_quality_improvement_and_patient_safety.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.coordinate_with_quality_improvement_and_patient_safety,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc20
+                  (change)="previewImage(doc20,$event.target.files,quality_care.coordinate_with_quality_improvement_and_patient_safety,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.coordinate_with_quality_improvement_and_patient_safety,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.coordinate_with_quality_improvement_and_patient_safety!=null?quality_care.coordinate_with_quality_improvement_and_patient_safety.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="cordqtyimprdoc" #cordqtyimprdoc="ngModel" required
+                  [disabled]="quality_care.coordinate_with_quality_improvement_and_patient_safety.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.coordinate_with_quality_improvement_and_patient_safety.ques_doc_url"
+                  required>
+                <div *ngIf="cordqtyimprdoc.invalid">
+                  <div *ngIf="qocformSubmitted && cordqtyimprdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.coordinate_with_quality_improvement_and_patient_safety:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.coordinate_with_quality_improvement_and_patient_safety:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','coordinate_with_quality_improvement_and_patient_safety',hospitalPagesQueBank.quality_care.coordinate_with_quality_improvement_and_patient_safety)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.coordinate_with_quality_improvement_and_patient_safety?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.manpower_material_consumable_financial_resources.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.manpower_material_consumable_financial_resources.ques_selected_opt"
+                name="manpwmatselect" #manpwmatselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="manpwmatselect.invalid">
+                <div *ngIf="qocformSubmitted && manpwmatselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.manpower_material_consumable_financial_resources.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.manpower_material_consumable_financial_resources,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc21
+                  (change)="previewImage(doc21,$event.target.files,quality_care.manpower_material_consumable_financial_resources,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.manpower_material_consumable_financial_resources,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.manpower_material_consumable_financial_resources!=null?quality_care.manpower_material_consumable_financial_resources.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="manpwmatdoc" #manpwmatdoc="ngModel" required
+                  [disabled]="quality_care.manpower_material_consumable_financial_resources.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.manpower_material_consumable_financial_resources.ques_doc_url" required>
+                <div *ngIf="manpwmatdoc.invalid">
+                  <div *ngIf="qocformSubmitted && manpwmatdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.manpower_material_consumable_financial_resources:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.manpower_material_consumable_financial_resources:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','manpower_material_consumable_financial_resources',hospitalPagesQueBank.quality_care.manpower_material_consumable_financial_resources)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.manpower_material_consumable_financial_resources?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.provided_for_quality_improvement_and_patient.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.provided_for_quality_improvement_and_patient.ques_selected_opt"
+                name="prvdqtyimpvselect" #prvdqtyimpvselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="prvdqtyimpvselect.invalid">
+                <div *ngIf="qocformSubmitted && prvdqtyimpvselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.provided_for_quality_improvement_and_patient.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.provided_for_quality_improvement_and_patient,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc22
+                  (change)="previewImage(doc22,$event.target.files,quality_care.provided_for_quality_improvement_and_patient,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.provided_for_quality_improvement_and_patient,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.provided_for_quality_improvement_and_patient!=null?quality_care.provided_for_quality_improvement_and_patient.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="prvdqtyimpvdoc" #prvdqtyimpvdoc="ngModel" required
+                  [disabled]="quality_care.provided_for_quality_improvement_and_patient.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.provided_for_quality_improvement_and_patient.ques_doc_url" required>
+                <div *ngIf="prvdqtyimpvdoc.invalid">
+                  <div *ngIf="qocformSubmitted && prvdqtyimpvdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.provided_for_quality_improvement_and_patient:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.provided_for_quality_improvement_and_patient:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','provided_for_quality_improvement_and_patient',hospitalPagesQueBank.quality_care.provided_for_quality_improvement_and_patient)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.provided_for_quality_improvement_and_patient?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.quality_improvement_and_patient_safety_programme.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.quality_improvement_and_patient_safety_programme.ques_selected_opt"
+                name="ptsftyprgm" #ptsftyprgm="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="ptsftyprgm.invalid">
+                <div *ngIf="qocformSubmitted && ptsftyprgm.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.quality_improvement_and_patient_safety_programme.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.quality_improvement_and_patient_safety_programme,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc23
+                  (change)="previewImage(doc23,$event.target.files,quality_care.quality_improvement_and_patient_safety_programme,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.quality_improvement_and_patient_safety_programme,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.quality_improvement_and_patient_safety_programme!=null?quality_care.quality_improvement_and_patient_safety_programme.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="ptsftyprgmdoc" #ptsftyprgmdoc="ngModel" required
+                  [disabled]="quality_care.quality_improvement_and_patient_safety_programme.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.quality_improvement_and_patient_safety_programme.ques_doc_url" required>
+                <div *ngIf="ptsftyprgmdoc.invalid">
+                  <div *ngIf="qocformSubmitted && ptsftyprgmdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.quality_improvement_and_patient_safety_programme:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.quality_improvement_and_patient_safety_programme:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','quality_improvement_and_patient_safety_programme',hospitalPagesQueBank.quality_care.quality_improvement_and_patient_safety_programme)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.quality_improvement_and_patient_safety_programme?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>7.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.periodically_inspect_patient_safety_devices.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.periodically_inspect_patient_safety_devices.ques_selected_opt"
+                name="periodinspselect" #periodinspselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="periodinspselect.invalid">
+                <div *ngIf="qocformSubmitted && periodinspselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.periodically_inspect_patient_safety_devices.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.periodically_inspect_patient_safety_devices,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc24
+                  (change)="previewImage(doc24,$event.target.files,quality_care.periodically_inspect_patient_safety_devices,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.periodically_inspect_patient_safety_devices,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.periodically_inspect_patient_safety_devices!=null?quality_care.periodically_inspect_patient_safety_devices.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="periodinspdoc" #periodinspdoc="ngModel" required
+                  [disabled]="quality_care.periodically_inspect_patient_safety_devices.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.periodically_inspect_patient_safety_devices.ques_doc_url" required>
+                <div *ngIf="periodinspdoc.invalid">
+                  <div *ngIf="qocformSubmitted && periodinspdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.periodically_inspect_patient_safety_devices:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.periodically_inspect_patient_safety_devices:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','periodically_inspect_patient_safety_devices',hospitalPagesQueBank.quality_care.periodically_inspect_patient_safety_devices)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.periodically_inspect_patient_safety_devices?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>8.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.upper_limit_for_different_services_being_provided.ques_text}}<br>
+                  <small class="pl-1 text-info"><i><b>Note:</b>For e.g. waiting time, soft skills, behaviour, attitude,
+                      communication skill,
+                      etc.</i></small>
+                  <!-- <div class="labelnote">
+                  <span class="labelhighlight">*</span> For e.g. waiting time, soft skills, behaviour, attitude, communication skill, etc.
+               </div> -->
+                </div>
+
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.upper_limit_for_different_services_being_provided.ques_selected_opt"
+                name="diffservcselect" #diffservcselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="diffservcselect.invalid">
+                <div *ngIf="qocformSubmitted && diffservcselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset
+                [hidden]="quality_care.upper_limit_for_different_services_being_provided.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.upper_limit_for_different_services_being_provided,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc25
+                  (change)="previewImage(doc25,$event.target.files,quality_care.upper_limit_for_different_services_being_provided,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.upper_limit_for_different_services_being_provided,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.upper_limit_for_different_services_being_provided!=null?quality_care.upper_limit_for_different_services_being_provided.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="diffservcdoc" #diffservcdoc="ngModel" required
+                  [disabled]="quality_care.upper_limit_for_different_services_being_provided.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.upper_limit_for_different_services_being_provided.ques_doc_url" required>
+                <div *ngIf="diffservcdoc.invalid">
+                  <div *ngIf="qocformSubmitted && diffservcdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.upper_limit_for_different_services_being_provided:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.upper_limit_for_different_services_being_provided:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','upper_limit_for_different_services_being_provided',hospitalPagesQueBank.quality_care.upper_limit_for_different_services_being_provided)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.upper_limit_for_different_services_being_provided?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>9.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.plans_and_policies_to_provide_a_safe_and_secure.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.plans_and_policies_to_provide_a_safe_and_secure.ques_selected_opt"
+                name="plnpolcselect" #plnpolcselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="plnpolcselect.invalid">
+                <div *ngIf="qocformSubmitted && plnpolcselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.plans_and_policies_to_provide_a_safe_and_secure.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.plans_and_policies_to_provide_a_safe_and_secure,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc26
+                  (change)="previewImage(doc26,$event.target.files,quality_care.plans_and_policies_to_provide_a_safe_and_secure,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.plans_and_policies_to_provide_a_safe_and_secure,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.plans_and_policies_to_provide_a_safe_and_secure!=null?quality_care.plans_and_policies_to_provide_a_safe_and_secure.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="plnpolcdoc" #plnpolcdoc="ngModel" required
+                  [disabled]="quality_care.plans_and_policies_to_provide_a_safe_and_secure.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.plans_and_policies_to_provide_a_safe_and_secure.ques_doc_url" required>
+                <div *ngIf="plnpolcdoc.invalid">
+                  <div *ngIf="qocformSubmitted && plnpolcdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.plans_and_policies_to_provide_a_safe_and_secure:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.plans_and_policies_to_provide_a_safe_and_secure:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','plans_and_policies_to_provide_a_safe_and_secure',hospitalPagesQueBank.quality_care.plans_and_policies_to_provide_a_safe_and_secure)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.plans_and_policies_to_provide_a_safe_and_secure?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <hr class="form-seprator" />
+
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>10.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.process_for_periodic_review_of_safety_plans.ques_text}}</div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required
+                [(ngModel)]="quality_care.process_for_periodic_review_of_safety_plans.ques_selected_opt"
+                name="prossfrprdcselect" #prossfrprdcselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="prossfrprdcselect.invalid">
+                <div *ngIf="qocformSubmitted && prossfrprdcselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-1 text-center">
+              <fieldset [hidden]="quality_care.process_for_periodic_review_of_safety_plans.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.process_for_periodic_review_of_safety_plans,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc27
+                  (change)="previewImage(doc27,$event.target.files,quality_care.process_for_periodic_review_of_safety_plans,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.process_for_periodic_review_of_safety_plans,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.process_for_periodic_review_of_safety_plans!=null?quality_care.process_for_periodic_review_of_safety_plans.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="prossfrprdcdoc" #prossfrprdcdoc="ngModel" required
+                  [disabled]="quality_care.process_for_periodic_review_of_safety_plans.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.process_for_periodic_review_of_safety_plans.ques_doc_url" required>
+                <div *ngIf="prossfrprdcdoc.invalid">
+                  <div *ngIf="qocformSubmitted && prossfrprdcdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.process_for_periodic_review_of_safety_plans:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.process_for_periodic_review_of_safety_plans:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','process_for_periodic_review_of_safety_plans',hospitalPagesQueBank.quality_care.process_for_periodic_review_of_safety_plans)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.process_for_periodic_review_of_safety_plans?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+        </ng-template>
+      </ngb-panel>
+
+
+
+
+      <ngb-panel id="static-4">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Invasive Interventions and Operative Procedures
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-4']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-4']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.performs_invasive_procedures_operative_procedures.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required (change)="performInvasiveProSelection()"
+                [(ngModel)]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt"
+                name="prfminvasiveselect" #prfminvasiveselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="prfminvasiveselect.invalid">
+                <div *ngIf="qocformSubmitted && prfminvasiveselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.performs_invasive_procedures_operative_procedures:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.performs_invasive_procedures_operative_procedures:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','performs_invasive_procedures_operative_procedures',hospitalPagesQueBank.quality_care.performs_invasive_procedures_operative_procedures)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.performs_invasive_procedures_operative_procedures?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <fieldset>
+            <!--Question  start region-->
+            <div class="row mt-2">
+              <div class="col-sm-8">
+                <div class="media">
+                  <div class="mr-3"><b>2.</b></div>
+                  <div class="media-body">
+                    {{hospitalPagesQueBank.quality_care.operative_notes_procedure_notes_and_post_operative.ques_text}}
+                  </div>
+                </div>
+                <!--./frm-question-->
+              </div>
+
+              <div class="col-xs-12 col-md-2 col-xl-2">
+                <fieldset
+                  [disabled]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true">
+                  <select class="form-control"
+                    [required]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt==true"
+                    [(ngModel)]="quality_care.operative_notes_procedure_notes_and_post_operative.ques_selected_opt"
+                    name="oprtvnotesselect" #oprtvnotesselect="ngModel">
+                    <option [ngValue]="null">Select</option>
+                    <option [ngValue]="true">Yes</option>
+                    <option [ngValue]="false">No</option>
+                  </select>
+                  <div *ngIf="oprtvnotesselect.invalid">
+                    <div *ngIf="qocformSubmitted && oprtvnotesselect.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+
+              <div class="col-xs-12 col-md-1 col-xl-1">
+              </div>
+              <div class="col-sm-1 text-center">
+                <button type="button"
+                  *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.operative_notes_procedure_notes_and_post_operative:'')|DaNcBtnHideShow:Stage_id"
+                  [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.operative_notes_procedure_notes_and_post_operative:'')|DaNcbtnColorPipe"
+                  (click)="openNcModel('quality_care','operative_notes_procedure_notes_and_post_operative',hospitalPagesQueBank.quality_care.operative_notes_procedure_notes_and_post_operative)">NC
+                  {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.operative_notes_procedure_notes_and_post_operative?.nc_cycle_count:''}}
+                </button>
+              </div>
+            </div>
+            <hr class="form-seprator" />
+            <!--Question start region end-->
+            <!--Question  start region-->
+            <div class="row mt-2">
+              <div class="col-sm-8">
+                <div class="media">
+                  <div class="mr-3"><b>3.</b></div>
+                  <div class="media-body">
+                    {{hospitalPagesQueBank.quality_care.pre_operative_diagnosis_performing_invasive_procedure.ques_text}}
+                  </div>
+                </div>
+                <!--./frm-question-->
+              </div>
+
+              <div class="col-xs-12 col-md-2 col-xl-2">
+                <fieldset
+                  [disabled]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true">
+                  <select class="form-control" required
+                    [required]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt==true"
+                    [(ngModel)]="quality_care.pre_operative_diagnosis_performing_invasive_procedure.ques_selected_opt"
+                    name="preoprdiagnselect" #preoprdiagnselect="ngModel">
+                    <option [ngValue]="null">Select</option>
+                    <option [ngValue]="true">Yes</option>
+                    <option [ngValue]="false">No</option>
+                  </select>
+                  <div *ngIf="preoprdiagnselect.invalid">
+                    <div *ngIf="qocformSubmitted && preoprdiagnselect.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+
+              <div class="col-xs-12 col-md-1 col-xl-1">
+                <fieldset
+                  *ngIf="quality_care.pre_operative_diagnosis_performing_invasive_procedure.ques_selected_opt==true">
+                  <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                    (click)="openDocModel(quality_care.pre_operative_diagnosis_performing_invasive_procedure,'ques_doc_url')">
+                    <i class="bx bx-upload"></i>
+                  </a>
+                  <!-- <input hidden type="file" #doc30
+                    (change)="previewImage(doc30,$event.target.files,quality_care.pre_operative_diagnosis_performing_invasive_procedure,'ques_doc_url')" /> -->
+                  <a title="View Document"
+                    (click)="openUploadedDocsModal(uploadViewModel,quality_care.pre_operative_diagnosis_performing_invasive_procedure,'ques_doc_url')"
+                    class="mt-4">
+                    <i
+                      [ngClass]="(quality_care.pre_operative_diagnosis_performing_invasive_procedure!=null?quality_care.pre_operative_diagnosis_performing_invasive_procedure.ques_doc_url:'')|uploadbtnpipe"></i>
+                  </a>
+                  <input hidden type="text" name="preoprdiagndoc" #preoprdiagndoc="ngModel" required
+                    [disabled]="quality_care.pre_operative_diagnosis_performing_invasive_procedure.ques_selected_opt!=true"
+                    [(ngModel)]="quality_care.pre_operative_diagnosis_performing_invasive_procedure.ques_doc_url"
+                    required>
+                  <div *ngIf="preoprdiagndoc.invalid">
+                    <div *ngIf="qocformSubmitted && preoprdiagndoc.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-sm-1 text-center">
+                <button type="button"
+                  *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.pre_operative_diagnosis_performing_invasive_procedure:'')|DaNcBtnHideShow:Stage_id"
+                  [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.pre_operative_diagnosis_performing_invasive_procedure:'')|DaNcbtnColorPipe"
+                  (click)="openNcModel('quality_care','pre_operative_diagnosis_performing_invasive_procedure',hospitalPagesQueBank.quality_care.pre_operative_diagnosis_performing_invasive_procedure)">NC
+                  {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.pre_operative_diagnosis_performing_invasive_procedure?.nc_cycle_count:''}}
+                </button>
+              </div>
+            </div>
+            <hr class="form-seprator" />
+            <!--Question start region end-->
+            <!--Question  start region-->
+            <div class="row mt-2">
+              <div class="col-sm-8">
+                <div class="media">
+                  <div class="mr-3"><b>4.</b></div>
+                  <div class="media-body">
+                    {{hospitalPagesQueBank.quality_care.who_conducts_the_pre_operative_diagnosis.ques_text}}
+                  </div>
+                </div>
+                <!--./frm-question-->
+              </div>
+              <div class="col-xs-12 col-md-2 col-xl-2">
+                <!-- <select class="form-control" required
+                          [disabled]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true"
+                            [(ngModel)]="quality_care.who_conducts_the_pre_operative_diagnosis.ques_selected_opt"
+                            name="cndtpreoprtvselect" #cndtpreoprtvselect="ngModel">
+                            <option [ngValue]="null">Select</option>
+                            <option [ngValue]="true">Yes</option>
+                            <option [ngValue]="false">No</option>
+                          </select>
+                          <div *ngIf="cndtpreoprtvselect.invalid">
+                            <div *ngIf="qocformSubmitted && cndtpreoprtvselect.errors.required" class="text-danger">
+                              Required
+                            </div>
+                          </div> -->
+              </div>
+              <div class="col-xs-12 col-md-1 col-xl-1">
+                <!--       
+                          <fieldset
+                            [hidden]="quality_care.who_conducts_the_pre_operative_diagnosis.ques_selected_opt!=true">
+                            <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc31.click()">
+                              <i class="bx bx-upload"></i>
+                            </a>
+                          
+                            <input hidden type="file" #doc31
+                              (change)="previewImage($event.target.files,quality_care.who_conducts_the_pre_operative_diagnosis,'ques_doc_url')" />
+                          
+                          
+                            <a title="View Document" (click)="openUploadedDocsModal(uploadViewModel,quality_care.who_conducts_the_pre_operative_diagnosis,'ques_doc_url')" class="mt-4">
+                          
+                              <i
+                                [ngClass]="(quality_care.who_conducts_the_pre_operative_diagnosis!=null?quality_care.who_conducts_the_pre_operative_diagnosis.ques_doc_url:'')|uploadbtnpipe"></i>
+                            </a>
+                            <input hidden type="text" name="cndtpreoprtvdoc" #cndtpreoprtvdoc="ngModel" required
+                              [disabled]="quality_care.who_conducts_the_pre_operative_diagnosis.ques_selected_opt!=true"
+                              [(ngModel)]="quality_care.who_conducts_the_pre_operative_diagnosis.ques_doc_url" required>
+                            <div *ngIf="cndtpreoprtvdoc.invalid">
+                              <div *ngIf="qocformSubmitted && cndtpreoprtvdoc.errors.required" class="text-danger">
+                                Required
+                              </div>
+                            </div>
+                          
+                          
+                          
+                          </fieldset> -->
+              </div>
+              <div class="col-sm-1 text-center">
+                <button type="button"
+                  *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.who_conducts_the_pre_operative_diagnosis:'')|DaNcBtnHideShow:Stage_id"
+                  [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.who_conducts_the_pre_operative_diagnosis:'')|DaNcbtnColorPipe"
+                  (click)="openNcModel('quality_care','who_conducts_the_pre_operative_diagnosis',hospitalPagesQueBank.quality_care.who_conducts_the_pre_operative_diagnosis)">NC
+                  {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.who_conducts_the_pre_operative_diagnosis?.nc_cycle_count:''}}
+                </button>
+              </div>
+            </div>
+            <div class="row mt-2" ngModelGroup="PreOperativeDiagnosis" #pre_operative_diagnosis="ngModelGroup"
+              appMinOneCheckboxSelect>
+              <div class="col-md-12 custom-control custom-checkbox mb-1 ml-3">
+                <div *ngIf="qocformSubmitted && pre_operative_diagnosis.invalid" class="text-danger">
+
+                  <div *ngIf="pre_operative_diagnosis.errors?.minOneChecked">Please select atleast one option</div>
+
+                </div>
+                <div class="form-check mb-2">
+                  <input type="checkbox" class="custom-control-input" name="vsnmiss" id="vsnmiss"
+                    [hidden]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true"
+                    [disabled]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true"
+                    [(ngModel)]="quality_care.who_conducts_the_pre_operative_diagnosis.ayush_doctor">
+                  <label class="custom-control-label" for="vsnmiss"
+                    [hidden]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true">AYUSH
+                    Doctor</label>
+                  <fieldset class="IconRight mr-4"
+                    *ngIf="quality_care.who_conducts_the_pre_operative_diagnosis.ayush_doctor==true">
+                    <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                      (click)="openDocModel(quality_care.who_conducts_the_pre_operative_diagnosis,'ayush_doctor_url')">
+                      <i class="bx bx-upload"></i>
+                    </a>
+                    <!-- <input hidden type="file" #doc30
+                      (change)="previewImage(doc30,$event.target.files,quality_care.who_conducts_the_pre_operative_diagnosis,'ayush_doctor_url')" /> -->
+                    <a title="View Document" class="mt-4"
+                      (click)="openUploadedDocsModal(uploadViewModel,quality_care.who_conducts_the_pre_operative_diagnosis,'ayush_doctor_url')">
+                      <i
+                        [ngClass]="(quality_care.who_conducts_the_pre_operative_diagnosis!=null?quality_care.who_conducts_the_pre_operative_diagnosis.ayush_doctor_url:'')|uploadbtnpipe"></i>
+                    </a>
+                    <input hidden type="text" name="ayush_doct_url" #ayush_doct_url="ngModel" required
+                      [(ngModel)]="quality_care.who_conducts_the_pre_operative_diagnosis.ayush_doctor_url" required>
+                    <div *ngIf="ayush_doct_url.invalid">
+                      <div *ngIf="qocformSubmitted && ayush_doct_url.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="form-check mb-2">
+                  <input type="checkbox" class="custom-control-input" name="membteam" id="membteam"
+                    [hidden]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true"
+                    [disabled]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true"
+                    [(ngModel)]="quality_care.who_conducts_the_pre_operative_diagnosis.member_of_team">
+                  <label class="custom-control-label" for="membteam"
+                    [hidden]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true">Member
+                    of Team</label>
+                  <fieldset class="IconRight mr-4"
+                    *ngIf="quality_care.who_conducts_the_pre_operative_diagnosis.member_of_team==true">
+                    <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                      (click)="openDocModel(quality_care.who_conducts_the_pre_operative_diagnosis,'member_of_team_url')">
+                      <i class="bx bx-upload"></i>
+                    </a>
+                    <!-- <input hidden type="file" #doc28
+                      (change)="previewImage(doc28,$event.target.files,quality_care.who_conducts_the_pre_operative_diagnosis,'member_of_team_url')" /> -->
+                    <a title="View Document" class="mt-4"
+                      (click)="openUploadedDocsModal(uploadViewModel,quality_care.who_conducts_the_pre_operative_diagnosis,'member_of_team_url')">
+                      <i
+                        [ngClass]="(quality_care.who_conducts_the_pre_operative_diagnosis!=null?quality_care.who_conducts_the_pre_operative_diagnosis.member_of_team_url:'')|uploadbtnpipe"></i>
+                    </a>
+                    <input hidden type="text" name="teammem_url" #teammem_url="ngModel" required
+                      [(ngModel)]="quality_care.who_conducts_the_pre_operative_diagnosis.member_of_team_url" required>
+                    <div *ngIf="teammem_url.invalid">
+                      <div *ngIf="qocformSubmitted && teammem_url.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="form-check mb-2">
+                  <input type="checkbox" class="custom-control-input" name="someoneelse" id="someoneelse"
+                    [hidden]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true"
+                    [disabled]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true"
+                    [(ngModel)]="quality_care.who_conducts_the_pre_operative_diagnosis.someoneelse">
+                  <label class="custom-control-label" for="someoneelse"
+                    [hidden]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true">Someone
+                    else</label>
+                  <fieldset class="IconRight mr-4"
+                    *ngIf="quality_care.who_conducts_the_pre_operative_diagnosis.someoneelse==true">
+                    <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                      (click)="openDocModel(quality_care.who_conducts_the_pre_operative_diagnosis,'someoneelse_url')">
+                      <i class="bx bx-upload"></i>
+                    </a>
+                    <!-- <input hidden type="file" #doc29
+                      (change)="previewImage(doc29,$event.target.files,quality_care.who_conducts_the_pre_operative_diagnosis,'someoneelse_url')" /> -->
+                    <a title="View Document" class="mt-4"
+                      (click)="openUploadedDocsModal(uploadViewModel,quality_care.who_conducts_the_pre_operative_diagnosis,'someoneelse_url')">
+                      <i
+                        [ngClass]="(quality_care.who_conducts_the_pre_operative_diagnosis!=null?quality_care.who_conducts_the_pre_operative_diagnosis.someoneelse_url:'')|uploadbtnpipe"></i>
+                    </a>
+                    <input hidden type="text" name="someoneelse_url" #someoneelse_url="ngModel" required
+                      [(ngModel)]="quality_care.who_conducts_the_pre_operative_diagnosis.someoneelse_url" required>
+                    <div *ngIf="someoneelse_url.invalid">
+                      <div *ngIf="qocformSubmitted && someoneelse_url.errors.required" class="text-danger">
+                        Required
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <hr class="form-seprator" />
+            <!--Question start region end-->
+            <!--Question  start region-->
+            <div class="row mt-2">
+              <div class="col-sm-8">
+                <div class="media">
+                  <div class="mr-3"><b>5.</b></div>
+                  <div class="media-body">
+                    {{hospitalPagesQueBank.quality_care.applicable_for_both_emergency_and_routine_cases.ques_text}}
+                  </div>
+                </div>
+                <!--./frm-question-->
+              </div>
+
+              <div class="col-xs-12 col-md-2 col-xl-2">
+                <fieldset
+                  [disabled]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt!=true">
+                  <select class="form-control"
+                    [required]="quality_care.performs_invasive_procedures_operative_procedures.ques_selected_opt==true"
+                    [(ngModel)]="quality_care.applicable_for_both_emergency_and_routine_cases.ques_selected_opt"
+                    name="emrgnroutselect" #emrgnroutselect="ngModel">
+                    <option [ngValue]="null">Select</option>
+                    <option [ngValue]="true">Yes</option>
+                    <option [ngValue]="false">No</option>
+                  </select>
+                  <div *ngIf="emrgnroutselect.invalid">
+                    <div *ngIf="qocformSubmitted && emrgnroutselect.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+
+              <div class="col-xs-12 col-md-1 col-xl-1">
+                <fieldset
+                  [hidden]="quality_care.applicable_for_both_emergency_and_routine_cases.ques_selected_opt!=true">
+                  <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                    (click)="openDocModel(quality_care.applicable_for_both_emergency_and_routine_cases,'ques_doc_url')">
+                    <i class="bx bx-upload"></i>
+                  </a>
+                  <!-- <input hidden type="file" #doc32
+                    (change)="previewImage(doc32,$event.target.files,quality_care.applicable_for_both_emergency_and_routine_cases,'ques_doc_url')" /> -->
+                  <a title="View Document"
+                    (click)="openUploadedDocsModal(uploadViewModel,quality_care.applicable_for_both_emergency_and_routine_cases,'ques_doc_url')"
+                    class="mt-4">
+                    <i
+                      [ngClass]="(quality_care.applicable_for_both_emergency_and_routine_cases!=null?quality_care.applicable_for_both_emergency_and_routine_cases.ques_doc_url:'')|uploadbtnpipe"></i>
+                  </a>
+                  <input hidden type="text" name="emrgnroutdoc" #emrgnroutdoc="ngModel" required
+                    [disabled]="quality_care.applicable_for_both_emergency_and_routine_cases.ques_selected_opt!=true"
+                    [(ngModel)]="quality_care.applicable_for_both_emergency_and_routine_cases.ques_doc_url" required>
+                  <div *ngIf="emrgnroutdoc.invalid">
+                    <div *ngIf="qocformSubmitted && emrgnroutdoc.errors.required" class="text-danger">
+                      Required
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-sm-1 text-center">
+                <button type="button"
+                  *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.applicable_for_both_emergency_and_routine_cases:'')|DaNcBtnHideShow:Stage_id"
+                  [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.applicable_for_both_emergency_and_routine_cases:'')|DaNcbtnColorPipe"
+                  (click)="openNcModel('quality_care','applicable_for_both_emergency_and_routine_cases',hospitalPagesQueBank.quality_care.applicable_for_both_emergency_and_routine_cases)">NC
+                  {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.applicable_for_both_emergency_and_routine_cases?.nc_cycle_count:''}}
+                </button>
+              </div>
+            </div>
+
+            <!--Question start region end-->
+          </fieldset>
+        </ng-template>
+      </ngb-panel>
+      <br>
+      <ngb-panel id="static-5">
+        <ng-template ngbPanelHeader>
+          <button ngbPanelToggle class="btn btn-link text-left">Obstetrical and Paediatric Services
+            <div class="w-100">
+
+              <div class="d-flex accordionToggleIcon" *ngIf="openById['static-5']">
+                <i class="mdi mdi-minus"></i>
+              </div>
+              <div class="d-flex accordionToggleIcon" *ngIf="!openById['static-5']">
+                <i class="mdi mdi-plus"></i>
+              </div>
+            </div>
+          </button>
+        </ng-template>
+
+        <ng-template ngbPanelContent>
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>1.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.does_hospital_provide_obstetrical_services.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <select class="form-control" required (ngModelChange)="oobstericalServcSelectionchange()"
+                [(ngModel)]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt"
+                name="obstservcselect" #obstservcselect="ngModel">
+                <option [ngValue]="null">Select</option>
+                <option [ngValue]="true">Yes</option>
+                <option [ngValue]="false">No</option>
+              </select>
+              <div *ngIf="obstservcselect.invalid">
+                <div *ngIf="qocformSubmitted && obstservcselect.errors.required" class="text-danger">
+                  Required
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <!-- <fieldset
+                       [hidden]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                       <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4" (click)="doc33.click()">
+                         <i class="bx bx-upload"></i>
+                       </a>
+                       
+                       <input hidden type="file" #doc33
+                         (change)="previewImage($event.target.files,quality_care.does_hospital_provide_obstetrical_services,'ques_doc_url')" />
+                       
+                       
+                       <a title="View Document" (click)="openUploadedDocsModal(uploadViewModel,quality_care.hospital_takes_the_approval_of_the_concerned_authority,'ques_doc_url')" class="mt-4">
+                       
+                         <i
+                           [ngClass]="(quality_care.does_hospital_provide_obstetrical_services!=null?quality_care.does_hospital_provide_obstetrical_services.ques_doc_url:'')|uploadbtnpipe"></i>
+                       </a>
+                       <input hidden type="text" name="obstservcdoc" #obstservcdoc="ngModel" required
+                         [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true"
+                         [(ngModel)]="quality_care.does_hospital_provide_obstetrical_services.ques_doc_url" required>
+                       <div *ngIf="obstservcdoc.invalid">
+                         <div *ngIf="qocformSubmitted && obstservcdoc.errors.required" class="text-danger">
+                           Required
+                         </div>
+                       </div>
+                       
+                       
+                       
+                       </fieldset> -->
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.does_hospital_provide_obstetrical_services:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.does_hospital_provide_obstetrical_services:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','does_hospital_provide_obstetrical_services',hospitalPagesQueBank.quality_care.does_hospital_provide_obstetrical_services)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.does_hospital_provide_obstetrical_services?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>2.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.pre_natal_peri_natal_and_post_natal_monitoring.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.pre_natal_peri_natal_and_post_natal_monitoring.ques_selected_opt"
+                  name="prenatalselect" #prenatalselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="prenatalselect.invalid">
+                  <div *ngIf="qocformSubmitted && prenatalselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset [hidden]="quality_care.pre_natal_peri_natal_and_post_natal_monitoring.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.pre_natal_peri_natal_and_post_natal_monitoring,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc34
+                  (change)="previewImage(doc34,$event.target.files,quality_care.pre_natal_peri_natal_and_post_natal_monitoring,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.pre_natal_peri_natal_and_post_natal_monitoring,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.pre_natal_peri_natal_and_post_natal_monitoring!=null?quality_care.pre_natal_peri_natal_and_post_natal_monitoring.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="prenataldoc" #prenataldoc="ngModel" required
+                  [disabled]="quality_care.pre_natal_peri_natal_and_post_natal_monitoring.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.pre_natal_peri_natal_and_post_natal_monitoring.ques_doc_url" required>
+                <div *ngIf="prenataldoc.invalid">
+                  <div *ngIf="qocformSubmitted && prenataldoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.pre_natal_peri_natal_and_post_natal_monitoring:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.pre_natal_peri_natal_and_post_natal_monitoring:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','pre_natal_peri_natal_and_post_natal_monitoring',hospitalPagesQueBank.quality_care.pre_natal_peri_natal_and_post_natal_monitoring)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.pre_natal_peri_natal_and_post_natal_monitoring?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>3.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.hand_over_separate_discharge_summary_note_newborn.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.hand_over_separate_discharge_summary_note_newborn.ques_selected_opt"
+                  name="handovrselect" #handovrselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="handovrselect.invalid">
+                  <div *ngIf="qocformSubmitted && handovrselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset
+                [hidden]="quality_care.hand_over_separate_discharge_summary_note_newborn.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.hand_over_separate_discharge_summary_note_newborn,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc35
+                  (change)="previewImage(doc35,$event.target.files,quality_care.hand_over_separate_discharge_summary_note_newborn,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.hand_over_separate_discharge_summary_note_newborn,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.hand_over_separate_discharge_summary_note_newborn!=null?quality_care.hand_over_separate_discharge_summary_note_newborn.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="handovrdoc" #handovrdoc="ngModel" required
+                  [disabled]="quality_care.hand_over_separate_discharge_summary_note_newborn.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.hand_over_separate_discharge_summary_note_newborn.ques_doc_url" required>
+                <div *ngIf="handovrdoc.invalid">
+                  <div *ngIf="qocformSubmitted && handovrdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.hand_over_separate_discharge_summary_note_newborn:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.hand_over_separate_discharge_summary_note_newborn:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','hand_over_separate_discharge_summary_note_newborn',hospitalPagesQueBank.quality_care.hand_over_separate_discharge_summary_note_newborn)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.hand_over_separate_discharge_summary_note_newborn?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>4.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified.ques_selected_opt"
+                  name="antenatalselect" #antenatalselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="antenatalselect.invalid">
+                  <div *ngIf="qocformSubmitted && antenatalselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset
+                [hidden]="quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc37
+                  (change)="previewImage(doc37,$event.target.files,quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified!=null?quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="antenataldoc" #antenataldoc="ngModel" required
+                  [disabled]="quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified.ques_doc_url"
+                  required>
+                <div *ngIf="antenataldoc.invalid">
+                  <div *ngIf="qocformSubmitted && antenataldoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','maintains_the_ante_natal_card_for_obstetric_patient_qualified',hospitalPagesQueBank.quality_care.maintains_the_ante_natal_card_for_obstetric_patient_qualified)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.maintains_the_ante_natal_card_for_obstetric_patient_qualified?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>5.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.care_of_obstetric_patient_at_regular_interval.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.care_of_obstetric_patient_at_regular_interval.ques_selected_opt"
+                  name="careobstericselect" #careobstericselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="careobstericselect.invalid">
+                  <div *ngIf="qocformSubmitted && careobstericselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset [hidden]="quality_care.care_of_obstetric_patient_at_regular_interval.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.care_of_obstetric_patient_at_regular_interval,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc38
+                  (change)="previewImage(doc38,$event.target.files,quality_care.care_of_obstetric_patient_at_regular_interval,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.care_of_obstetric_patient_at_regular_interval,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.care_of_obstetric_patient_at_regular_interval!=null?quality_care.care_of_obstetric_patient_at_regular_interval.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="careobstericdoc" #careobstericdoc="ngModel" required
+                  [disabled]="quality_care.care_of_obstetric_patient_at_regular_interval.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.care_of_obstetric_patient_at_regular_interval.ques_doc_url" required>
+                <div *ngIf="careobstericdoc.invalid">
+                  <div *ngIf="qocformSubmitted && careobstericdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.care_of_obstetric_patient_at_regular_interval:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.care_of_obstetric_patient_at_regular_interval:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','care_of_obstetric_patient_at_regular_interval',hospitalPagesQueBank.quality_care.care_of_obstetric_patient_at_regular_interval)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.care_of_obstetric_patient_at_regular_interval?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>6.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.obstetric_patients_getting_diet_counselling_qualified.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.obstetric_patients_getting_diet_counselling_qualified.ques_selected_opt"
+                  name="bastpatselect" #bastpatselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="bastpatselect.invalid">
+                  <div *ngIf="qocformSubmitted && bastpatselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset
+                [hidden]="quality_care.obstetric_patients_getting_diet_counselling_qualified.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.obstetric_patients_getting_diet_counselling_qualified,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc39
+                  (change)="previewImage(doc39,$event.target.files,quality_care.obstetric_patients_getting_diet_counselling_qualified,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.obstetric_patients_getting_diet_counselling_qualified,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.obstetric_patients_getting_diet_counselling_qualified!=null?quality_care.obstetric_patients_getting_diet_counselling_qualified.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="bastpatdoc" #bastpatdoc="ngModel" required
+                  [disabled]="quality_care.obstetric_patients_getting_diet_counselling_qualified.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.obstetric_patients_getting_diet_counselling_qualified.ques_doc_url"
+                  required>
+                <div *ngIf="bastpatdoc.invalid">
+                  <div *ngIf="qocformSubmitted && bastpatdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.obstetric_patients_getting_diet_counselling_qualified:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.obstetric_patients_getting_diet_counselling_qualified:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','obstetric_patients_getting_diet_counselling_qualified',hospitalPagesQueBank.quality_care.obstetric_patients_getting_diet_counselling_qualified)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.obstetric_patients_getting_diet_counselling_qualified?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <!-- <div class="row">
+                 <div class="col-xs-12 col-md-8 col-xl-8">
+                   <div class="frm-question">
+                     <span class="quest-count"><b><b>7.</b></b></span>
+                     <div class="question-desc">
+                       <label>{{hospitalPagesQueBank.quality_care.non_clinic_services_provided_by_the_organization.ques_text}}
+                     </div>
+                     </div>
+                    
+                 </div>
+                 
+                 
+                 
+                 <div class="col-xs-12 col-md-2 col-xl-2">
+                  
+                 
+                 </div>
+                 
+                 <div class="col-xs-12 col-md-1 col-xl-1">
+                 
+                 
+                 </div>
+                 <div class="col-xs-12 col-md-1 col-xl-1">
+                 
+                 </div>
+                 
+                 
+                 </div> -->
+          <!-- <div class="row">
+                 <div class="col-xs-12 col-md-12 col-xl-12">
+                     
+                   <div class="table-responsive mb-0">
+                     <table class="table table-centered table-nowrap">
+                       <thead class="thead-light">
+                 
+                    
+                    <tr>
+                     <th class="text-center">Service</th>
+                     <th  style="width: 20%;" class="text-center">In-House</th>
+                     <th  style="width: 20%;" class="text-center">Outsourced</th>
+                     <th style="width: 20%;" class="text-center">Not Applicable</th>
+                    </tr>
+                       </thead>
+                       <tr>
+                         <td colspan="4" class="text-center table-danger">Professions allied to medicine</td>
+                 
+                     </tr>
+                    <tr *ngFor="let data of quality_care.qoc_nonclncl_service;let i=index" >
+                     <td class="text-center">{{data.service}}</td>
+                  
+                     <td  style="width: 20%;" class="text-center">
+                       <input type="checkbox" name="qocnonclninhouse{{i}}" #qocnonclninhouse="ngModel" [(ngModel)]="data.inhouse"   required>
+                      
+                     </td>
+                     <td  style="width: 20%;" class="text-center">
+                       <input type="checkbox" name="qocnonclnoutsrc{{i}}" #qocnonclnoutsrc="ngModel" [(ngModel)]="data.outsource"   required>
+                     
+                     </td>
+                     <td  style="width: 20%;" class="text-center">
+                         <input type="checkbox" name="qocnonclnntaplb{{i}}" #qocnonclnntaplb="ngModel" [(ngModel)]="data.not_applicable"   required>
+                       
+                       </td>
+                    </tr>
+                   
+                    
+                 
+                 </table>
+                    </div>
+                 
+                 </div>
+                 
+                 
+                 </div>  -->
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>7.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.take_care_of_new_born_and_paediatric_patients.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.take_care_of_new_born_and_paediatric_patients.ques_selected_opt"
+                  name="tkcrnewbornselect" #tkcrnewbornselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="tkcrnewbornselect.invalid">
+                  <div *ngIf="qocformSubmitted && tkcrnewbornselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset [hidden]="quality_care.take_care_of_new_born_and_paediatric_patients.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.take_care_of_new_born_and_paediatric_patients,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc40
+                  (change)="previewImage(doc40,$event.target.files,quality_care.take_care_of_new_born_and_paediatric_patients,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.take_care_of_new_born_and_paediatric_patients,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.take_care_of_new_born_and_paediatric_patients!=null?quality_care.take_care_of_new_born_and_paediatric_patients.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="tkcrnewborndoc" #tkcrnewborndoc="ngModel" required
+                  [disabled]="quality_care.take_care_of_new_born_and_paediatric_patients.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.take_care_of_new_born_and_paediatric_patients.ques_doc_url" required>
+                <div *ngIf="tkcrnewborndoc.invalid">
+                  <div *ngIf="qocformSubmitted && tkcrnewborndoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.take_care_of_new_born_and_paediatric_patients:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.take_care_of_new_born_and_paediatric_patients:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','take_care_of_new_born_and_paediatric_patients',hospitalPagesQueBank.quality_care.take_care_of_new_born_and_paediatric_patients)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.take_care_of_new_born_and_paediatric_patients?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>8.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.nutritional_growth_and_immunization_assessment.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.nutritional_growth_and_immunization_assessment.ques_selected_opt"
+                  name="nutrigrwthselect" #nutrigrwthselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="nutrigrwthselect.invalid">
+                  <div *ngIf="qocformSubmitted && nutrigrwthselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset [hidden]="quality_care.nutritional_growth_and_immunization_assessment.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.nutritional_growth_and_immunization_assessment,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc41
+                  (change)="previewImage(doc41,$event.target.files,quality_care.nutritional_growth_and_immunization_assessment,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.nutritional_growth_and_immunization_assessment,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.nutritional_growth_and_immunization_assessment!=null?quality_care.nutritional_growth_and_immunization_assessment.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="nutrigrwthdoc" #nutrigrwthdoc="ngModel" required
+                  [disabled]="quality_care.nutritional_growth_and_immunization_assessment.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.nutritional_growth_and_immunization_assessment.ques_doc_url" required>
+                <div *ngIf="nutrigrwthdoc.invalid">
+                  <div *ngIf="qocformSubmitted && nutrigrwthdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.nutritional_growth_and_immunization_assessment:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.nutritional_growth_and_immunization_assessment:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','nutritional_growth_and_immunization_assessment',hospitalPagesQueBank.quality_care.nutritional_growth_and_immunization_assessment)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.nutritional_growth_and_immunization_assessment?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>9.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.maintains_the_child_abduction_prevention_protocols.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.maintains_the_child_abduction_prevention_protocols.ques_selected_opt"
+                  name="child_abdctnselect" #child_abdctnselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="child_abdctnselect.invalid">
+                  <div *ngIf="qocformSubmitted && child_abdctnselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset
+                [hidden]="quality_care.maintains_the_child_abduction_prevention_protocols.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.maintains_the_child_abduction_prevention_protocols,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc42
+                  (change)="previewImage(doc42,$event.target.files,quality_care.maintains_the_child_abduction_prevention_protocols,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.maintains_the_child_abduction_prevention_protocols,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.maintains_the_child_abduction_prevention_protocols!=null?quality_care.maintains_the_child_abduction_prevention_protocols.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="child_abdctndoc" #child_abdctndoc="ngModel" required
+                  [disabled]="quality_care.maintains_the_child_abduction_prevention_protocols.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.maintains_the_child_abduction_prevention_protocols.ques_doc_url" required>
+                <div *ngIf="child_abdctndoc.invalid">
+                  <div *ngIf="qocformSubmitted && child_abdctndoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.maintains_the_child_abduction_prevention_protocols:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.maintains_the_child_abduction_prevention_protocols:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','maintains_the_child_abduction_prevention_protocols',hospitalPagesQueBank.quality_care.maintains_the_child_abduction_prevention_protocols)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.maintains_the_child_abduction_prevention_protocols?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>10.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.adequate_security_system_to_prevent_such_issues.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.adequate_security_system_to_prevent_such_issues.ques_selected_opt"
+                  name="adqisecrtyselect" #adqisecrtyselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="adqisecrtyselect.invalid">
+                  <div *ngIf="qocformSubmitted && adqisecrtyselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset [hidden]="quality_care.adequate_security_system_to_prevent_such_issues.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.adequate_security_system_to_prevent_such_issues,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc43
+                  (change)="previewImage(doc43,$event.target.files,quality_care.adequate_security_system_to_prevent_such_issues,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.adequate_security_system_to_prevent_such_issues,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.adequate_security_system_to_prevent_such_issues!=null?quality_care.adequate_security_system_to_prevent_such_issues.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="adqisecrtydoc" #adqisecrtydoc="ngModel" required
+                  [disabled]="quality_care.adequate_security_system_to_prevent_such_issues.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.adequate_security_system_to_prevent_such_issues.ques_doc_url" required>
+                <div *ngIf="adqisecrtydoc.invalid">
+                  <div *ngIf="qocformSubmitted && adqisecrtydoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.adequate_security_system_to_prevent_such_issues:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.adequate_security_system_to_prevent_such_issues:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','adequate_security_system_to_prevent_such_issues',hospitalPagesQueBank.quality_care.adequate_security_system_to_prevent_such_issues)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.adequate_security_system_to_prevent_such_issues?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>11.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.follows_the_defined_process_rapid_response.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.follows_the_defined_process_rapid_response.ques_selected_opt"
+                  name="flwdefnprcselect" #flwdefnprcselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="flwdefnprcselect.invalid">
+                  <div *ngIf="qocformSubmitted && flwdefnprcselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset [hidden]="quality_care.follows_the_defined_process_rapid_response.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.follows_the_defined_process_rapid_response,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc44
+                  (change)="previewImage(doc44,$event.target.files,quality_care.follows_the_defined_process_rapid_response,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.follows_the_defined_process_rapid_response,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.follows_the_defined_process_rapid_response!=null?quality_care.follows_the_defined_process_rapid_response.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="flwdefnprccdoc" #flwdefnprccdoc="ngModel" required
+                  [disabled]="quality_care.follows_the_defined_process_rapid_response.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.follows_the_defined_process_rapid_response.ques_doc_url" required>
+                <div *ngIf="flwdefnprccdoc.invalid">
+                  <div *ngIf="qocformSubmitted && flwdefnprccdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.follows_the_defined_process_rapid_response:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.follows_the_defined_process_rapid_response:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','follows_the_defined_process_rapid_response',hospitalPagesQueBank.quality_care.follows_the_defined_process_rapid_response)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.follows_the_defined_process_rapid_response?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+          <hr class="form-seprator" />
+          <!--Question start region end-->
+          <!--Question  start region-->
+          <div class="row mt-2">
+            <div class="col-sm-8">
+              <div class="media">
+                <div class="mr-3"><b>12.</b></div>
+                <div class="media-body">
+                  {{hospitalPagesQueBank.quality_care.security_surveillance_system_at_pre_defined_interval.ques_text}}
+                </div>
+              </div>
+              <!--./frm-question-->
+            </div>
+            <div class="col-xs-12 col-md-2 col-xl-2">
+              <fieldset [disabled]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt!=true">
+                <select class="form-control"
+                  [required]="quality_care.does_hospital_provide_obstetrical_services.ques_selected_opt==true"
+                  [(ngModel)]="quality_care.security_surveillance_system_at_pre_defined_interval.ques_selected_opt"
+                  name="scrtysurvselect" #scrtysurvselect="ngModel">
+                  <option [ngValue]="null">Select</option>
+                  <option [ngValue]="true">Yes</option>
+                  <option [ngValue]="false">No</option>
+                </select>
+                <div *ngIf="scrtysurvselect.invalid">
+                  <div *ngIf="qocformSubmitted && scrtysurvselect.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+
+            </div>
+            <div class="col-xs-12 col-md-1 col-xl-1">
+              <fieldset
+                [hidden]="quality_care.security_surveillance_system_at_pre_defined_interval.ques_selected_opt!=true">
+                <a title="Upload Document" *ngIf="this.currUsrRole ==3 && Stage_id ==20" class="mr-4 mt-4"
+                  (click)="openDocModel(quality_care.security_surveillance_system_at_pre_defined_interval,'ques_doc_url')">
+                  <i class="bx bx-upload"></i>
+                </a>
+                <!-- <input hidden type="file" #doc45
+                  (change)="previewImage(doc45,$event.target.files,quality_care.security_surveillance_system_at_pre_defined_interval,'ques_doc_url')" /> -->
+                <a title="View Document"
+                  (click)="openUploadedDocsModal(uploadViewModel,quality_care.security_surveillance_system_at_pre_defined_interval,'ques_doc_url')"
+                  class="mt-4">
+                  <i
+                    [ngClass]="(quality_care.security_surveillance_system_at_pre_defined_interval!=null?quality_care.security_surveillance_system_at_pre_defined_interval.ques_doc_url:'')|uploadbtnpipe"></i>
+                </a>
+                <input hidden type="text" name="scrtysurvdoc" #scrtysurvdoc="ngModel" required
+                  [disabled]="quality_care.security_surveillance_system_at_pre_defined_interval.ques_selected_opt!=true"
+                  [(ngModel)]="quality_care.security_surveillance_system_at_pre_defined_interval.ques_doc_url" required>
+                <div *ngIf="scrtysurvdoc.invalid">
+                  <div *ngIf="qocformSubmitted && scrtysurvdoc.errors.required" class="text-danger">
+                    Required
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-sm-1 text-center">
+              <button type="button"
+                *ngIf="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.security_surveillance_system_at_pre_defined_interval:'')|DaNcBtnHideShow:Stage_id"
+                [ngClass]="(ncFormTabInfo!=null?ncFormTabInfo.quality_care.security_surveillance_system_at_pre_defined_interval:'')|DaNcbtnColorPipe"
+                (click)="openNcModel('quality_care','security_surveillance_system_at_pre_defined_interval',hospitalPagesQueBank.quality_care.security_surveillance_system_at_pre_defined_interval)">NC
+                {{ncFormTabInfo!=null?ncFormTabInfo.quality_care?.security_surveillance_system_at_pre_defined_interval?.nc_cycle_count:''}}
+              </button>
+            </div>
+          </div>
+
+          <!--Question start region end-->
+        </ng-template>
+      </ngb-panel>
+      <br>
+    </ngb-accordion>
+  </form>
+  <!-- image view model -->
+  <ng-template #uploadViewModel role="document" let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title mt-0">Uploaded doc(s)</h5>
+      <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+    </div>
+    <div class="modal-body">
+      <!-- ------ -->
+      <div *ngIf="!(ary_uploadedDocs===null || ary_uploadedDocs===undefined)" class="table-responsive">
+        <table class="table table-bordered table-striped customTable">
+          <thead>
+            <tr>
+              <th class="text-center"> Name </th>
+              <th class="text-center">Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of ary_uploadedDocs">
+              <td class="text-center">{{item.fn}}</td>
+              <td class="text-center">
+                <a class="text-success mouse-pointer" title="Download file" (click)="downloadUploadFile(item)">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+                <a style="margin-left: 10px;" class="text-danger mouse-pointer" title="Delete file"
+                  *ngIf="this.currUsrRole ==3 && Stage_id ==20" (click)="deleteUploadFile(item)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-template>
+  <!-- image view model -->
+</div>
+<ng-template #documentuploadModel role="document" let-modal>
+
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Upload Document</h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+    <!-- <div class="row mt-2">
+      <ngb-progressbar *ngIf="showUploadMsg!=null" [value]="this.progress" type="progress-bar" showValue="true"
+        style="width: 100%;">
+      </ngb-progressbar>
+    </div> -->
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <h5 style="margin-left: 10px;"><strong>Document</strong></h5>
+
+    </div>
+
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <input style="margin-left: 10px;" type="file" #myFileInput (change)="handleFileInput($event.target.files)" />
+
+    </div>
+    <div class="row mt-2">
+      <!-- (change)="previewImage(doc1,$event.target.files,admin_record.hospital_maintains_the_documents_brochure,'ques_doc_url')" -->
+      <label style="margin-left: 10px;"><i class="text-info"><b>Note: </b>The following formats are accepted: PDF, JPG,
+          JPEG, PNG. The
+          maximum file size allowed in 20 MB.</i></label>
+
+    </div>
+    <div class="row">
+      <br>
+    </div>
+    <div class="row mt-2">
+      <!--  -->
+      <div class="alert alert-success  fade show" style="width: 100%;" *ngIf="showUploadMsg==true">
+
+        The file has been successfully uploaded
+      </div>
+
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="Upload2(myFileInput)">Upload</button>
+  </div>
+</ng-template>

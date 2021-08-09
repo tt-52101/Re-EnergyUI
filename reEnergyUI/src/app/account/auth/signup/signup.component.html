@@ -1,0 +1,557 @@
+<div class="loginBg_container">
+  <!-- ------------------------- -->
+  <div class="nabh_logo d-none d-sm-block">
+    <!-- <a href="/" class="text-dark"><i class="fas fa-home h2"></i></a> -->
+    <a href="https://www.nabh.co/" target="_blank" class="text-dark"><img src="assets/images/ayush-img/nabh_logo.png"
+        alt="nabh-logo" class="img-fluid"></a>
+  </div>
+  <!--./logo-qci-->
+
+  <div class="logo_qci">
+    <a href="https://www.qcin.org/" target="_blank"><img src="assets/images/ayush-img/qci_logo.png" alt="qci-logo"
+        class="img-fluid"></a>
+  </div>
+  <!-- ---------------------------------------- -->
+
+  <div style="margin-left: 10%; margin-right: 10%;" class="account-pages my-3 pt-sm-3">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-8 col-xl-8">
+          <div class="card overflow-hidden mb-3">
+            <div class="bg-soft-primary">
+              <div class="row">
+                <div class="app-title-main text-primary p-2">
+                  <h5 class="text-primary"><a href="https://www.nabh.co/Ayush-EntryLevelHospital.aspx"
+                      target="_blank">NABH AYUSH Entry Level Certification</a></h5>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-0">
+
+              <form class="form-horizontal" name="signupForm" [formGroup]="signupForm" (ngSubmit)="onSubmit(OtpModal)"
+                novalidate>
+
+                <ngb-alert type="success" *ngIf="successmsg" [dismissible]="false">{{msg}}
+                </ngb-alert>
+
+                <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+
+
+                <br>
+
+                <div class="form-group mb-2">
+
+                  <label for="name">Organisation Name </label>
+                  <small class="pl-1">as registered with regulatory agencies </small>
+
+
+                  <input type="text" formControlName="org_name" class="form-control input_text"
+                    [ngClass]="{ 'custom-invalid': submitted && f.org_name.errors }" id="org_name" />
+
+                  <div *ngIf="submitted && f.org_name.errors" class="custom-error-msg">
+                    <div *ngIf="f.org_name.errors.required">Organisation Name is required.</div>
+                  </div>
+                </div>
+
+
+                <!--Commented by yogendra-->
+                <!-- <div class="row">
+
+                 
+                    <div class="col-xs-12 col-md-6 col-xl-6">
+
+                      <div class="form-group mb-2">
+                        <label  for="nameOfSpoc">SPOC Name</label>
+
+                        <input type="text" class="form-control  input_text" formControlName="spoc_name" id="spoc_name"
+                          [ngClass]="{ 'custom-invalid': submitted && f.spoc_name.errors }" />
+
+                        <div *ngIf="submitted && f.spoc_name.errors" class="custom-error-msg">
+                          <div *ngIf="f.spoc_name.errors.required">SPOC name is required</div>
+                        </div>
+                      </div>
+
+                    </div>
+                   
+                    <div class="col-xs-12 col-md-6 col-xl-6">
+                      <div class="form-group mb-2">
+                        <label for="SPOCDesignation">SPOC Designation</label>
+
+                        <input type="text" class="form-control" formControlName="spoc_designation" id="spoc_designation"
+                          [ngClass]="{ 'custom-invalid': submitted && f.spoc_designation.errors }"
+                         />
+
+                        <div *ngIf="submitted && f.spoc_designation.errors" class="custom-error-msg">
+                          <div *ngIf="f.spoc_designation.errors.required">SPOC Designation is required</div>
+                          <div *ngIf="f.spoc_designation.errors.pattern">invalid SPOC</div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div> -->
+                <!--./row-->
+                <!--Commented by yogendra-->
+                <!-- <div class="row">
+
+                   
+                    <div class="col-xs-12 col-md-6 col-xl-6">
+
+                      <div class="form-group mb-2">
+                        <label for="email">Email ID</label>
+
+                        <input type="email" formControlName="email" class="form-control"
+                          [ngClass]="{ 'custom-invalid': submitted && f.email.errors }" id="email"
+                         />
+
+                        <div *ngIf="submitted && f.email.errors" class="custom-error-msg">
+                          <div *ngIf="f.email.errors.required">Email is required</div>
+                          <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                      </div>
+
+                    </div>
+                    
+                    <div class="col-xs-12 col-md-6 col-xl-6">
+
+                      <div class="form-group mb-2">
+                        <label for="MobileNumber">Mobile Number</label>
+
+                        <input type="text" class="form-control" formControlName="mobile" id="mobile"
+                        (keypress)="onlyNumberKey($event)" [ngClass]="{
+                          'custom-invalid': submitted &&
+                          f.mobile.errors }" maxlength="10" />
+
+                        <div *ngIf="submitted && f.mobile.errors" class="custom-error-msg">
+                          <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+                          <div *ngIf="f.mobile.errors.maxlength">Mobile Number can not more than 10 digit</div>
+                          <div *ngIf="f.mobile.errors.pattern">Only digits allowed</div>
+                          <div *ngIf="f.mobile.errors.minlength">Invalid mobile number</div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div> -->
+                <!--./row-->
+
+                <div class="row">
+
+                  <!--./col-xl-6-->
+                  <div class="col-xs-12 col-md-4 col-xl-4">
+
+                    <div class="form-group mb-2">
+                      <label for="State">State</label>
+                      <ng-select [items]="state" [ngClass]="{ 'custom-invalid': submitted && f.statecode.errors }"
+                        bindLabel="statename" (change)="selectState($event)" placeholder="Select State"
+                        formControlName="statecode"></ng-select>
+                      <!-- <select class="form-control" formControlName="statecode" id="statecode"
+                          [ngClass]="{ 'custom-invalid': submitted && f.statecode.errors }" (change)="selectState($event)">
+                          <option value="">Select State</option>
+                          <option [value]="itm.statecode" *ngFor="let itm of state">{{itm.statename}}</option>
+                         
+
+                        </select> -->
+                      <div *ngIf="submitted && f.statecode.errors" class="custom-error-msg">
+                        <div *ngIf="f.statecode.errors.required">
+                          State is required.</div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <!--./col-xl-6-->
+                  <div class="col-xs-12 col-md-4 col-xl-4">
+
+                    <div class="form-group mb-2">
+                      <label for="City">District</label>
+                      <ng-select [items]="district" [ngClass]="{ 'custom-invalid': submitted && f.citycode.errors }"
+                        bindLabel="districtname" placeholder="Select District" (change)="selectDistrict($event)"
+                        formControlName="citycode"></ng-select>
+                      <!-- <select class="form-control" formControlName="citycode" id="citycode"
+                          [ngClass]="{ 'custom-invalid': submitted && f.citycode.errors }">>
+                          <option value="">Select District</option>
+                          <option [value]="itm.id" *ngFor="let itm of district">{{itm.districtname}}</option>
+                         
+                        </select>-->
+                      <div *ngIf="submitted && f.citycode.errors" class="custom-error-msg">
+                        <div *ngIf="f.citycode.errors.required">District is required.</div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-xs-12 col-md-4 col-xl-4">
+
+                    <div class="form-group mb-2">
+                      <label for="city">City</label>
+
+                      <input type="text" formControlName="city" class="form-control" (keypress)="onlyAphaKey($event)"
+                        [ngClass]="{ 'custom-invalid': submitted && f.city.errors }" id="city" maxlength="50" />
+
+                      <div *ngIf="submitted && f.city.errors" class="custom-error-msg">
+                        <div *ngIf="f.city.errors.required">City is required.</div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!--./row-->
+
+                <!--./row-->
+
+                <div class="row">
+
+
+
+
+                  <div class="col-xs-12 col-md-8 col-xl-8">
+
+                    <div class="form-group mb-2">
+                      <label for="address">Address</label>
+                      <small class="pl-1">same address will be printed on the certificate</small>
+                      <input type="text" class="form-control" formControlName="address" id="address" [ngClass]="{
+                          'custom-invalid': submitted &&
+                          f.address.errors }" maxlength="150" />
+
+                      <div *ngIf="submitted && f.address.errors" class="custom-error-msg">
+                        <div *ngIf="f.address.errors.required">Address is required.</div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-xs-12 col-md-4 col-xl-4">
+
+                    <div class="form-group mb-2">
+                      <label for="PinCodeNo">Pin code</label>
+
+                      <input type="text" class="form-control" formControlName="pincode" id="pincode"
+                        [ngClass]="{ 'custom-invalid': submitted && f.pincode.errors }" maxlength="6"
+                        (keypress)="onlyNumberKey($event)" />
+
+                      <div *ngIf="submitted && f.pincode.errors" class="custom-error-msg">
+                        <div *ngIf="f.pincode.errors.required">Pin code is required.</div>
+                        <div *ngIf="f.pincode.errors.maxlength">Pin code can not more than 10 digit</div>
+                        <div *ngIf="f.pincode.errors.pattern">Only digits allowed</div>
+                        <div *ngIf="f.pincode.errors.minlength">Invalid pin code</div>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                </div>
+                <!--./row-->
+
+
+                <!--./row-->
+
+                <!-- <div class="row"> -->
+
+                <div class="app-title-main text-primary" style="margin-top: 10px;">
+                  <label class="text-primary">CERTIFICATION COORDINATOR</label>
+                </div>
+                <hr style="margin-top: -7px;" />
+                <!-- </div> -->
+                <!--./row-->
+
+                <div class="row">
+
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+
+                    <div class="form-group mb-1">
+                      <label for="spoc_name">Name</label>
+
+                      <input type="text" formControlName="spoc_name" class="form-control"
+                        [ngClass]="{ 'custom-invalid': submitted && f.spoc_name.errors }" id="spoc_name"
+                        maxlength="50" />
+
+                      <div *ngIf="submitted && f.spoc_name.errors" class="custom-error-msg">
+                        <div *ngIf="f.spoc_name.errors.required">Name is required.</div>
+
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+
+                    <div class="form-group mb-1">
+                      <label for="spoc_designation">Designation</label>
+
+                      <input type="text" class="form-control" formControlName="spoc_designation" id="spoc_designation"
+                        [ngClass]="{
+                          'custom-invalid': submitted &&
+                          f.spoc_designation.errors }" maxlength="150" />
+
+                      <div *ngIf="submitted && f.spoc_designation.errors" class="custom-error-msg">
+                        <div *ngIf="f.spoc_designation.errors.required">Designation is required.</div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!--./row-->
+
+                <div class="row">
+
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+
+                    <div class="form-group mb-2 mt-2">
+
+                      <label for="email">Email ID </label>
+                      <i class="fa fa-info-circle text-primary ml-1" placement="right" triggers="mouseenter:mouseleave"
+                        ngbPopover="This Email ID will be used to create the organisation account and cannot be changed later"></i>
+                      <!-- <small class="pl-1">This will be used to create the user account</small>
+                        -->
+
+                      <input type="email" formControlName="email" class="form-control"
+                        [ngClass]="{ 'custom-invalid': submitted && f.email.errors }" id="email" />
+
+                      <div *ngIf="submitted && f.email.errors" class="custom-error-msg">
+                        <div *ngIf="f.email.errors.required">Email ID is required.</div>
+                        <div *ngIf="f.email.errors.pattern">Email ID must be a valid email address</div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-xs-12 col-md-6 col-xl-6">
+
+                    <div class="form-group mb-2 mt-2">
+                      <label for="MobileNumber">Mobile Number</label>
+
+                      <input type="text" class="form-control" formControlName="mobile" id="mobile"
+                        (keypress)="onlyNumberKey($event)" [ngClass]="{
+                          'custom-invalid': submitted &&
+                          f.mobile.errors }" maxlength="10" />
+
+                      <div *ngIf="submitted && f.mobile.errors" class="custom-error-msg">
+                        <div *ngIf="f.mobile.errors.required">Mobile Number is required.</div>
+                        <div *ngIf="f.mobile.errors.maxlength">Mobile Number can not more than 10 digit</div>
+                        <div *ngIf="f.mobile.errors.pattern">Only digits allowed</div>
+                        <div *ngIf="f.mobile.errors.minlength">Invalid mobile number</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!--./row-->
+                <!--./row-->
+                <div class="mt-1">
+                  <button class="btn btn-primary btn-block" type="submit" [ladda]="loading"
+                    style="margin-top: 10px;">Register</button>
+                  <!-- <button class="btn btn-primary btn-block" (click)="positionSuccess('hellooo')">Submit999</button> -->
+                </div>
+                <div class="mt-2 text-center">
+                  <p class="mb-0"><a routerLink="/account/login" class="text-primary"><i class="fa fa-arrow-left"></i>
+                      Back to Login</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- end card -->
+
+          <div class="text-center text-white">
+            © 2021 NABH. All Rights Reserved.
+
+          </div>
+        </div> <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </div>
+  <!-- end page -->
+</div>
+<!--./loginBg_container-->
+<!-- image view model -->
+<ng-template #OtpModal role="document" let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Verify Email ID and Mobile Number </h5>
+    <button type="button" class="close" aria-hidden="true" (click)="modal.dismiss('Cross click')">×</button>
+  </div>
+  <div class="modal-body">
+
+    <ngb-alert type="success"
+      *ngIf="alertmsg!=null && (email_mobile_verification.ismobile_otp_verifies==false || email_mobile_verification.isemail_otp_verifies==false)"
+      [dismissible]="false">
+      {{alertmsg}}
+    </ngb-alert>
+    <!--Email Otp-->
+    <form [formGroup]="emailVerificationForm">
+      <div class="row  mt-4 text-center">
+        <!-- <div class="col-md-1"></div> -->
+
+
+        <div class="col-md-4">
+          <label style="font-weight: bold;">Email:</label>
+
+        </div>
+        <div class="col-md-4">
+          <input formControlName="email_address" name="email_address"
+            *ngIf="email_mobile_verification.isemail_edit==true && email_mobile_verification.isemail_otp_verifies==false"
+            type="text" class="form-control">
+          <label
+            *ngIf="email_mobile_verification.isemail_edit==false || email_mobile_verification.isemail_otp_verifies==true">{{email_mobile_verification.email}}</label>
+          <div *ngIf="submitted && f.email.errors" class="custom-error-msg">
+            <div *ngIf="f.email.errors.required">Email ID is required.</div>
+            <div *ngIf="f.email.errors.pattern">Email ID must be a valid email address</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <!-- <button class="btn btn-primary" style="font-size: 5px;" (click)="editEmailAddress()"  *ngIf="email_mobile_verification.isemail_edit==false && email_mobile_verification.isemail_otp_verifies==false"><i class="fas fa-edit fa-2x"></i></button>
+      <button class="btn btn-success" style="font-size: 5px;" (click)="saveEmailAddress()" [ladda]="saveemailloading" *ngIf="email_mobile_verification.isemail_edit==true && email_mobile_verification.isemail_otp_verifies==false"><i class="fas fa-save fa-2x"></i></button> -->
+          <button class="btn btn-primary" style="width:60px" (click)="editEmailAddress()"
+            *ngIf="email_mobile_verification.isemail_edit==false && email_mobile_verification.isemail_otp_verifies==false">Edit</button>
+          <button class="btn btn-success" style="width:60px" (click)="saveEmailAddress()" [ladda]="saveemailloading"
+            *ngIf="email_mobile_verification.isemail_edit==true && email_mobile_verification.isemail_otp_verifies==false">Save</button>
+        </div>
+        <!-- <div class="col-md-1"></div> -->
+
+      </div>
+    </form>
+    <div class="row mt-2 text-center" *ngIf="email_mobile_verification.isemail_otp_verifies==false">
+      <!-- <div class="col-md-1"></div> -->
+
+
+      <div class="col-md-4">
+        <label style="font-weight: bold;">Verify OTP:</label>
+
+      </div>
+      <div class="col-md-4">
+        <input maxlength="6" name="emailotp" [(ngModel)]="email_mobile_verification.emailOtp" type="text"
+          class="form-control">
+      </div>
+      <div class="col-md-4">
+        <!-- <button [ladda]="verifyemailotploading" class="btn btn-success" style="font-size: 5px;" *ngIf="(email_mobile_verification.emailOtp!=null?(email_mobile_verification.emailOtp.trim().length==6):false) && email_mobile_verification.isemail_edit==false" (click)="verifyEmailOtp()"><i class="fas fa-check fa-2x"></i></button> -->
+        <button [ladda]="verifyemailotploading" style="width:60px" class="btn btn-success"
+          *ngIf="(email_mobile_verification.emailOtp!=null?(email_mobile_verification.emailOtp.trim().length==6):false) && email_mobile_verification.isemail_edit==false"
+          (click)="verifyEmailOtp()">Verify</button>
+      </div>
+      <!-- <div class="col-md-1"></div>-->
+    </div>
+
+    <div class="row mt-2 text-center" *ngIf="email_mobile_verification.isemail_otp_verifies==false">
+      <!-- <div class="col-md-1"></div>
+     -->
+
+      <div class="col-md-4">
+
+
+      </div>
+      <div class="col-md-4">
+        <button [ladda]="emailoptgenrationloading" (click)="regenrateEmailOtp()"
+          *ngIf="email_mobile_verification.isemail_edit==false" class="btn  form-control "
+          style="background: #6CB3FB;color: white;">Resend OTP</button>
+      </div>
+      <div class="col-md-4"></div>
+
+      <!-- <div class="col-md-1"></div>-->
+    </div>
+
+    <div class="row mt-3 mb-3 text-center" *ngIf="email_mobile_verification.isemail_otp_verifies==false">
+      <div class="col-12">
+        <strong>Note:</strong>In case you have not received the OTP, please check Junk/Spam folder
+      </div>
+
+    </div>
+    <hr style="margin-top: -7px;" />
+
+    <!--Email Otp End-->
+
+    <!--Mobile Otp-->
+    <form [formGroup]="mobileVerificationForm">
+      <div class="row text-center">
+        <!-- <div class="col-md-1"></div> -->
+
+
+        <div class="col-md-4">
+          <label style="font-weight: bold;"> Mobile Number:</label>
+
+        </div>
+        <div class="col-md-4">
+          <input
+            *ngIf="email_mobile_verification.ismobile_edit==true && email_mobile_verification.ismobile_otp_verifies==false"
+            type="text" maxlength="10" (keypress)="onlyNumberKey($event)" formControlName="mobile_no" name="mobile_no"
+            class="form-control">
+          <label
+            *ngIf="email_mobile_verification.ismobile_edit==false|| email_mobile_verification.ismobile_otp_verifies==true">{{email_mobile_verification.mobilenumber}}</label>
+        </div>
+        <div class="col-md-4">
+          <!-- <button class="btn btn-primary" style="font-size: 5px;" (click)="editMobileNo()" *ngIf="email_mobile_verification.ismobile_edit==false && email_mobile_verification.ismobile_otp_verifies==false"><i class="fas fa-edit fa-2x"></i></button>
+  <button class="btn btn-success" style="font-size: 5px;" (click)="saveMobileNo()" *ngIf="email_mobile_verification.ismobile_edit==true && email_mobile_verification.ismobile_otp_verifies==false" [ladda]="savemobileloading"><i class="fas fa-save fa-2x"></i></button> -->
+          <button class="btn btn-primary" style="width:60px" (click)="editMobileNo()"
+            *ngIf="email_mobile_verification.ismobile_edit==false && email_mobile_verification.ismobile_otp_verifies==false">Edit</button>
+          <button class="btn btn-success" style="width:60px" (click)="saveMobileNo()"
+            *ngIf="email_mobile_verification.ismobile_edit==true && email_mobile_verification.ismobile_otp_verifies==false"
+            [ladda]="savemobileloading">Save</button>
+        </div>
+        <!-- <div class="col-md-1"></div> -->
+
+      </div>
+    </form>
+    <div class="row mt-2 text-center" *ngIf="email_mobile_verification.ismobile_otp_verifies==false">
+      <!-- <div class="col-md-1"></div> -->
+
+
+      <div class="col-md-4">
+        <label style="font-weight: bold;">Verify OTP:</label>
+
+      </div>
+      <div class="col-md-4">
+        <input maxlength="6" [(ngModel)]="email_mobile_verification.mobileOtp" name="mobileotp" type="text"
+          class="form-control">
+      </div>
+      <div class="col-md-4">
+        <!-- <button [ladda]="verifymobileotploading" class="btn btn-success" style="font-size: 5px;" *ngIf="(email_mobile_verification.mobileOtp!=null?(email_mobile_verification.mobileOtp.trim().length==6):false) && email_mobile_verification.ismobile_edit==false" (click)="verifyMobileOtp()"><i class="fas fa-check fa-2x"></i></button> -->
+        <button style="width:60px" [ladda]="verifymobileotploading" class="btn btn-success"
+          *ngIf="(email_mobile_verification.mobileOtp!=null?(email_mobile_verification.mobileOtp.trim().length==6):false) && email_mobile_verification.ismobile_edit==false"
+          (click)="verifyMobileOtp()">Verify</button>
+      </div>
+      <!-- <div class="col-md-1"></div> -->
+    </div>
+
+    <div class="row mt-2 text-center" *ngIf="email_mobile_verification.ismobile_otp_verifies==false">
+      <!-- <div class="col-md-1"></div> -->
+
+
+      <div class="col-md-4">
+
+
+      </div>
+      <div class="col-md-4">
+        <button [ladda]="mobileoptgenrationloading" *ngIf="email_mobile_verification.ismobile_edit==false"
+          class="btn  form-control" style="background: #6CB3FB;color: white;" (click)="regenrateMobileOtp()">Resend
+          OTP</button>
+      </div>
+      <div class="col-md-4"></div>
+
+      <!-- <div class="col-md-1"></div> -->
+    </div>
+
+
+
+    <!--Mobile Otp End-->
+
+    <div
+      *ngIf="email_mobile_verification.ismobile_otp_verifies==true && email_mobile_verification.isemail_otp_verifies==true"
+      class="row mt-8">
+      <div class="col-md-10"></div>
+      <div class="col-md-2">
+        <button class="btn btn-success" (click)="registrationAction()">Proceed</button>
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+
+</ng-template>
+<!-- image view model -->

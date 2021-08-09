@@ -1,0 +1,2568 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+
+
+    <div class="card">
+      <div class="card-body">
+
+        <!-- <div class="card-body p-0"> -->
+
+        <!-- <div class="col-xs-12 col-md-8 col-xl-8">
+             
+            <button class="btn btn-danger float-right ml-2 btn-rounded waves-effect" (click)="searchReset()"><i class="bx bx-reset mr-1" ></i>Reset</button>
+            <button class="btn btn-primary float-right ml-2 btn-rounded waves-effect" (click)="getVendorList()"><i class="bx bx-file mr-1"></i>Search</button>
+            <button class="btn btn-success float-right ml-2 btn-rounded waves-effect" (click)="exportData()"><i class="bx bx-export mr-1"></i>Export</button>
+      </div> -->
+        <form #FormBuilderQuestionForm="ngForm">
+
+          <div class="row mt-2">
+            <div class="col-xs-12 col-md-8 col-xl-8">
+              <h4 class="card-title custom-title" style="margin-top: 2%;">&nbsp;Section Name - {{sectionName}}
+              </h4>
+            </div>
+            <!-- <div class="col-sm-8">
+              <label for="">Section Name - {{sectionName}}</label>
+            </div> -->
+            <!-- <div class="col-xs-12 col-md-6 col-xl-2"  style="float: right;">
+              <button type="button" (click)="openQuestionModel(QuestionFromModel)"
+                class="btn btn-info btn-rounded waves-effect waves-light mr-1 float-right"><i
+                  class="bx bx-plus mr-1"></i>Add New  Question</button>
+                <button type="button" (click)="openGroupModel(addGroupModel)"
+                class="btn btn-info btn-rounded waves-effect waves-light mr-1" float-right><i
+                  class="bx bx-plus mr-1"></i>Add New Group</button>
+            </div> -->
+
+
+            <div class="col-xs-12 col-md-4 col-xl-4">
+
+              <button class="btn btn-success float-right ml-2 btn-rounded waves-effect"
+                (click)="openQuestionModel(QuestionFromModel)"><i class="bx bx-plus mr-1"></i>Add New Question</button>
+              <button class="btn btn-primary float-right ml-2 btn-rounded waves-effect"
+                (click)="openGroupModel(addGroupModel)"><i class="bx bx-plus mr-1"></i>Add New Group</button>
+              <!-- <button class="btn btn-success float-right ml-2 btn-rounded waves-effect" (click)="exportData()"><i class="bx bx-export mr-1"></i>Export</button> -->
+            </div>
+
+          </div>
+
+          <div class="row mt-1">
+            <div class="col-md-12">
+              <div class="table-responsive mt-3">
+                <table class="table table-centered table-bordered hospitalTrackGrid">
+                  <thead class="thead-light">
+                    <!-- <div class="table-responsive">
+          <table class="table table-bordered table-striped customTable mb-0">
+            <thead> -->
+                    <tr class="text-center">
+                      <th>#</th>
+                      <th style="width: 10px;">Que S.Tag</th>
+                      <th style="width: 45%;">Question Title</th>
+                      <th>Group Name</th>
+                      <th style="width: 33px;">Question Type</th>
+                      <th>Status</th>
+                      <th>Order</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- -->
+                    <tr *ngFor="let item of formBuilderQuestionInfoList;let i=index">
+
+                      <td class="text-center">{{i+1}}</td>
+                      <td>{{item.ques_serial_tag_no}}</td>
+                      <td>{{item.question_text}}</td>
+                      <td>{{item.group_name}}</td>
+                      <td class="text-center">{{item.question_type}}</td>
+                      <td class="text-center">{{item.status_str|titlecase}}</td>
+                      <td class="text-center">
+                        <div>
+                          <!-- [disabled]="this.ProjectSelected.stage.toLowerCase() == 'close' || this.selAsmtSchItem.stage.toLowerCase() == 'publish' " -->
+                          <button *ngIf="item.is_apply_external_rule==false" placement="top" matTooltip="Change Order"
+                            class="btnIcon" style="background-color:transparent; border: none;color:black">
+                            <i style="font-size: 18px;" class="fa fa-sort-up" (click)="sortupFormQuestion(i)"></i>
+                          </button>
+                        </div>
+
+                        <div>
+                          <!-- [disabled]="this.ProjectSelected.stage.toLowerCase() == 'close' || this.selAsmtSchItem.stage.toLowerCase() == 'publish' " -->
+                          <button *ngIf="item.is_apply_external_rule==false" matTooltip="Change Order" class="btnIcon"
+                            style="background-color:transparent; border: none;color:black">
+                            <i style="font-size: 18px;" class="fa fa-sort-down" (click)="sortdownFormQuestion(i)"></i>
+                          </button>
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <span>
+
+                          <button class="btn" title="Edit Question Details"
+                            (click)="editFromQuestionInfo(QuestionFromModel,item,i)">
+                            <i class="fa fa-edit blueIcon"></i></button>
+
+                        </span>
+                        <button class="btn" title="Apply Rule"
+                          (click)="openExternalRuleModel(QuestionExternalRuleFromModel,item,i)">
+                          <i class="fa fa-info"
+                            [ngClass]="{'redText': item.is_apply_external_rule==false, 'greenText': item.is_apply_external_rule==true}"></i></button>
+                        <!-- is_external_group_rule -->
+                        <button class="btn" title="Apply Group Rule"
+                          (click)="openExternalGroupRuleModel(QuestionExternalGroupRuleFromModel,item,i)">
+                          <i class="fa fa-cubes"
+                            [ngClass]="{'': item.is_external_group_rule==false, 'greenText': item.is_external_group_rule==true}"></i></button>
+
+                        <button class="btn" title="Publish Question" (click)="publishFormBuilderQuestionInfo(item)">
+                          <i class="fa fa-gavel" style="color: brown;"></i></button>
+
+
+                        <button *ngIf="item.is_apply_external_rule" class="btn" title="Delete Rule"
+                          (click)="deleteExternalRule(item)">
+                          <i class="bx bx-trash danger"></i></button>
+                        <button *ngIf="item.ques_status==false" class="btn" title="Delete Question"
+                          (click)="deleteQuestion(item)">
+                          <i class="fas fa-trash" style="color: red;"></i></button>
+                      </td>
+
+
+
+                    </tr>
+                  </tbody>
+                </table>
+                <tfoot style="float: right;">
+                  &nbsp; <button class="btn btn-info float-right btn-rounded waves-effect"
+                    *ngIf="formBuilderQuestionInfoList.length>0" (click)="UpdateOrderFormBuilderQuestionInfo()">Save
+                    Order</button>&nbsp;
+                  <button class="btn btn-info float-right btn-rounded waves-effect"
+                    *ngIf="formBuilderQuestionInfoList.length>0" (click)="PublishAllFormBuilderQuestionInfo()">
+                    Publish All Questions</button> &nbsp;
+                  <!-- <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls> -->
+                </tfoot>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <div class="row mt-1">
+            <div class="col-md-12">
+              <div class="table-responsive mt-3">
+                <table class="table table-centered table-bordered hospitalTrackGrid">
+                  <thead class="thead-light">
+                    <!-- <div class="table-responsive">
+          <table class="table table-bordered table-striped customTable mb-0">
+            <thead> -->
+                    <tr class="text-center">
+                      <th>#</th>
+                      <th>Group Name</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- -->
+                    <tr *ngFor="let item of formBuilderGroupInfoList;let i=index">
+
+                      <td class="text-center">{{i+1}}</td>
+                      <td class="text-center">{{item.group_name}}</td>
+                      <td class="text-center">
+                        <span>
+
+                          <button class="btn" title="Edit Group Details"
+                            (click)="editFromGroupInfo(addGroupModel,item,i)">
+                            <i class="fa fa-edit blueIcon"></i></button>
+
+                        </span>
+                        <button class="btn" title="Delete Group" (click)="deleteGroupeInfo(item)">
+                          <i class="fas fa-trash" style="color: red;"></i></button>
+                      </td>
+
+
+
+                    </tr>
+                  </tbody>
+                </table>
+                <tfoot style="float: right;">
+                  <!-- &nbsp; <button class="btn btn-info float-right btn-rounded waves-effect"
+                    *ngIf="formBuilderQuestionInfoList.length>0" (click)="UpdateOrderFormBuilderQuestionInfo()">Save
+                    Order</button>&nbsp;
+                  <button class="btn btn-info float-right btn-rounded waves-effect"
+                    *ngIf="formBuilderQuestionInfoList.length>0" (click)="PublishAllFormBuilderQuestionInfo()">
+                    Publish All Questions</button> &nbsp; -->
+                  <!-- <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls> -->
+                </tfoot>
+              </div>
+            </div>
+          </div>
+
+
+
+        </form>
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+  </div>
+</div>
+
+<ng-template #QuestionFromModel let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">{{formBuilderQuestionModelHeading}}</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-hidden="true">×</button>
+  </div>
+  <form #myForm="ngForm">
+    <div class="modal-body">
+
+      <div class="row">
+        <fieldset *ngIf="isSectctedQuestionType">
+          <div class="col-xs-4 col-md-4col-xl-4">
+            <h5 class="modal-title mt-0" style="margin-left:5px ;">Select Question Type</h5>
+            <span *ngFor="let itm of formBuilderQuestionTypeList;let i=index;">
+              <div class="form-check form-check-inline">
+                <button name="option{{i}}" id="radio1" (click)="questionTypeClicked(itm)" style="border:none;
+                  width: 180px;margin-top: 8px;margin-left: 5px;height: 38px;
+                  background-color: #f4f5f5;text-decoration-color: black;">
+                  <i class="{{itm.icon}}" style="font-size: 15px !important;text-align: left;"></i>&nbsp;
+                  &nbsp;{{itm.question_type}}</button>
+
+              </div>
+            </span>
+          </div>
+        </fieldset>
+
+      </div>
+
+
+
+
+      <!-- 1 for text -->
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id==1">
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Title</label>
+              <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span>
+              <textarea type="text" class="form-control" id="Question_Title" name="Question_Title"
+                [(ngModel)]="formBuilderQuestionInfo.question_text" #Question_Title="ngModel"
+                placeholder="Enter a Question Title" required></textarea>
+              <div *ngIf="Question_Title.errors && (Question_Title.dirty || Question_Title.touched)"
+                class="text-danger">
+                <div *ngIf="Question_Title.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Serial Tag No</label>
+              <input type="text" class="form-control" id="ques_serial_tag_no" name="ques_serial_tag_no"
+                [(ngModel)]="formBuilderQuestionInfo.ques_serial_tag_no" #ques_serial_tag_no="ngModel"
+                placeholder="Enter a Question Serial Nimber" />
+              <div *ngIf="ques_serial_tag_no.errors && (ques_serial_tag_no.dirty || ques_serial_tag_no.touched)"
+                class="text-danger">
+                <div *ngIf="ques_serial_tag_no.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Description</label>
+              <textarea type="text" class="form-control" id="Description" name="Description"
+                [(ngModel)]="formBuilderQuestionInfo.question_description" #Description="ngModel"
+                placeholder="Description"></textarea>
+              <div *ngIf="Description.errors && (Description.dirty || Description.touched)" class="text-danger">
+                <div *ngIf="Description.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Help Text</label>
+              <input type="text" class="form-control" id="Question_help_text" name="Question_help_text"
+                [(ngModel)]="formBuilderQuestionInfo.help_text" #Question_help_text="ngModel"
+                placeholder="Enter a Question Help Text" />
+              <div *ngIf="Question_help_text.errors && (Question_help_text.dirty || Question_help_text.touched)"
+                class="text-danger">
+                <div *ngIf="Question_help_text.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Keyword</label>
+              <input type="text" class="form-control" id="Keyword" name="Keyword"
+                [(ngModel)]="formBuilderQuestionInfo.ques_keyowrd" #Keyword="ngModel" placeholder="Keyword">
+              <div *ngIf="Keyword.errors && (Keyword.dirty || Keyword.touched)" class="text-danger">
+                <div *ngIf="Keyword.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+                <input type="checkbox" name="Mendetory" #Mendetory="ngModel"
+                  [(ngModel)]="formBuilderQuestionInfo.mandatory_question" checked>
+                Mandatory question *
+              </div>
+
+              <div *ngIf="Mendetory.errors && (Mendetory.dirty || Mendetory.touched)" class="text-danger">
+                <div *ngIf="Mendetory.errors.required">
+                  required
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Maximum number of characters allowed</label>
+              <input type="number" class="form-control" id="Maximum_number_of_characters"
+                name="Maximum_number_of_characters" [(ngModel)]="formBuilderQuestionInfo.maximum_number_of_characters"
+                #Maximum_number_of_characters="ngModel" placeholder="Count" required>
+              <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+      
+          <div class="col-xs-12 col-md-6 col-xl-6">
+
+          </div>
+
+
+        </div> -->
+
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture Image</label>
+              <div style="margin-top: 5px;">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_image" [value]=true>
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_image" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture NC</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]="true">
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionNo" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+
+
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-6" *ngIf="formBuilderQuestionInfo.is_capture_image">
+            <div class="form-group mb-3">
+              <label>Capture Number of images</label>
+              <input type="number" class="form-control" id="number_of_images" name="number_of_images"
+                [(ngModel)]="formBuilderQuestionInfo.number_of_images" #number_of_images="ngModel"
+                placeholder="number_of_images" [required]="formBuilderQuestionInfo.is_capture_image">
+              <div *ngIf="number_of_images.errors && (number_of_images.dirty || number_of_images.touched)"
+                class="text-danger">
+                <div *ngIf="number_of_images.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Maximum number of characters allowed</label>
+              <input type="number" class="form-control" id="Maximum_number_of_characters"
+                name="Maximum_number_of_characters" [(ngModel)]="formBuilderQuestionInfo.maximum_number_of_characters"
+                #Maximum_number_of_characters="ngModel" placeholder="Count">
+              <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <!-- 2 for Single Choice -->
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id==2">
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Title</label>
+              <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span>
+              <textarea type="text" class="form-control" id="Question_Title" name="Question_Title"
+                [(ngModel)]="formBuilderQuestionInfo.question_text" #Question_Title="ngModel"
+                placeholder="Enter a Question Title" required></textarea>
+              <div *ngIf="Question_Title.errors && (Question_Title.dirty || Question_Title.touched)"
+                class="text-danger">
+                <div *ngIf="Question_Title.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Serial Tag No</label>
+              <input type="text" class="form-control" id="ques_serial_tag_no" name="ques_serial_tag_no"
+                [(ngModel)]="formBuilderQuestionInfo.ques_serial_tag_no" #ques_serial_tag_no="ngModel"
+                placeholder="Enter a Question Serial Nimber" />
+              <div *ngIf="ques_serial_tag_no.errors && (ques_serial_tag_no.dirty || ques_serial_tag_no.touched)"
+                class="text-danger">
+                <div *ngIf="ques_serial_tag_no.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Description</label>
+              <textarea type="text" class="form-control" id="Description" name="Description"
+                [(ngModel)]="formBuilderQuestionInfo.question_description" #Description="ngModel"
+                placeholder="Description"></textarea>
+              <div *ngIf="Description.errors && (Description.dirty || Description.touched)" class="text-danger">
+                <div *ngIf="Description.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Help Text</label>
+              <input type="text" class="form-control" id="Question_help_text" name="Question_help_text"
+                [(ngModel)]="formBuilderQuestionInfo.help_text" #Question_help_text="ngModel"
+                placeholder="Enter a Question Help Text" />
+              <div *ngIf="Question_help_text.errors && (Question_help_text.dirty || Question_help_text.touched)"
+                class="text-danger">
+                <div *ngIf="Question_help_text.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Keyword</label>
+              <input type="text" class="form-control" id="Keyword" name="Keyword"
+                [(ngModel)]="formBuilderQuestionInfo.ques_keyowrd" #Keyword="ngModel" placeholder="Keyword">
+              <div *ngIf="Keyword.errors && (Keyword.dirty || Keyword.touched)" class="text-danger">
+                <div *ngIf="Keyword.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+
+                <input type="checkbox" name="Mendetory" #Mendetory="ngModel"
+                  [(ngModel)]="formBuilderQuestionInfo.mandatory_question" checked>
+                Mandatory question *
+              </div>
+
+              <div *ngIf="Mendetory.errors && (Mendetory.dirty || Mendetory.touched)" class="text-danger">
+                <div *ngIf="Mendetory.errors.required">
+                  required
+                </div>
+              </div>
+              <!-- <label></label> -->
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture Image</label>
+              <div style="margin-top: 5px;">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_image" [value]=true>
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_image" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture NC</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]="true">
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionNo" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-6" *ngIf="formBuilderQuestionInfo.is_capture_image">
+            <div class="form-group mb-3">
+              <label>Capture Number of images</label>
+              <input type="number" class="form-control" id="number_of_images" name="number_of_images"
+                [(ngModel)]="formBuilderQuestionInfo.number_of_images" #number_of_images="ngModel"
+                placeholder="number_of_images" [required]="formBuilderQuestionInfo.is_capture_image">
+              <div *ngIf="number_of_images.errors && (number_of_images.dirty || number_of_images.touched)"
+                class="text-danger">
+                <div *ngIf="number_of_images.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="form-group mb-3">
+            &nbsp;&nbsp;&nbsp;<label>Options</label>
+          </div>
+        </div>
+
+        <div class="row" *ngFor="let itm of formBuilderQuestionInfo.questionOption;let i=index;">
+          <div class="col-xs-12 col-md-4 col-xl-4">
+            <div class="form-group mb-3">
+              <label></label>
+              <input type="text" hidden class="form-control" id="index{{i}}" name="index{{i}}"
+                [(ngModel)]="itm.option_order" #index="ngModel" [value]="i+1">
+              <input type="text" class="form-control" id="option{{i}}" name="option{{i}}" [(ngModel)]="itm.option_text"
+                #option="ngModel" placeholder="Option" required>
+
+              <div *ngIf="option.errors && (option.dirty || option.touched)" class="text-danger">
+                <div *ngIf="option.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- col -->
+
+          <div class="col-xs-12 col-md-3 col-xl-3">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-2">
+                <input type="checkbox" name="is_image_internal_rule{{i}}" #is_image_internal_rule="ngModel"
+                  [(ngModel)]="itm.is_image_internal_rule">
+                &nbsp;&nbsp; Hide Image Icon
+              </div>
+
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-2 col-xl-2">
+
+            <div>
+              <!-- [disabled]="this.ProjectSelected.stage.toLowerCase() == 'close' || this.selAsmtSchItem.stage.toLowerCase() == 'publish' " -->
+              <button placement="top" matTooltip="Change Order" class="btnIcon"
+                style="background-color:transparent; border: none;color:black">
+                <i style="font-size: 15px; margin-top: 15px;" class="fa fa-sort-up" (click)="sortup(i)"></i>
+              </button>
+            </div>
+
+            <div>
+              <!-- [disabled]="this.ProjectSelected.stage.toLowerCase() == 'close' || this.selAsmtSchItem.stage.toLowerCase() == 'publish' " -->
+              <button matTooltip="Change Order" class="btnIcon"
+                style="background-color:transparent; border: none;color:black">
+                <i style="font-size: 15px;" class="fa fa-sort-down" (click)="sortdown(i)"></i>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- col- -->
+          <div class="col-xs-12 col-md-5 col-xl-3">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-1">
+                <button type="button" (click)="removeOption(itm)"
+                  class="btn btn-danger btn-rounded btn-sm waves-effect waves-light mr-1"><i
+                    class="bx bx-trash mr-1"></i>Delete</button>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          &nbsp;&nbsp;&nbsp; <button type="button" (click)="addOption()"
+            class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1"><i class="bx bx-plus mr-1"></i>Add
+            Option</button>
+        </div>
+
+      </fieldset>
+
+      <!-- 3 for Multiple Choice -->
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id==3">
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Title</label>
+              <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span>
+              <textarea type="text" class="form-control" id="Question_Title" name="Question_Title"
+                [(ngModel)]="formBuilderQuestionInfo.question_text" #Question_Title="ngModel"
+                placeholder="Enter a Question Title" required></textarea>
+              <div *ngIf="Question_Title.errors && (Question_Title.dirty || Question_Title.touched)"
+                class="text-danger">
+                <div *ngIf="Question_Title.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Serial Tag No</label>
+              <input type="text" class="form-control" id="ques_serial_tag_no" name="ques_serial_tag_no"
+                [(ngModel)]="formBuilderQuestionInfo.ques_serial_tag_no" #ques_serial_tag_no="ngModel"
+                placeholder="Enter a Question Serial Nimber" />
+              <div *ngIf="ques_serial_tag_no.errors && (ques_serial_tag_no.dirty || ques_serial_tag_no.touched)"
+                class="text-danger">
+                <div *ngIf="ques_serial_tag_no.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Description</label>
+              <textarea type="text" class="form-control" id="Description" name="Description"
+                [(ngModel)]="formBuilderQuestionInfo.question_description" #Description="ngModel"
+                placeholder="Description"></textarea>
+              <div *ngIf="Description.errors && (Description.dirty || Description.touched)" class="text-danger">
+                <div *ngIf="Description.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Help Text</label>
+              <input type="text" class="form-control" id="Question_help_text" name="Question_help_text"
+                [(ngModel)]="formBuilderQuestionInfo.help_text" #Question_help_text="ngModel"
+                placeholder="Enter a Question Help Text" />
+              <div *ngIf="Question_help_text.errors && (Question_help_text.dirty || Question_help_text.touched)"
+                class="text-danger">
+                <div *ngIf="Question_help_text.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Keyword</label>
+              <input type="text" class="form-control" id="Keyword" name="Keyword"
+                [(ngModel)]="formBuilderQuestionInfo.ques_keyowrd" #Keyword="ngModel" placeholder="Keyword">
+              <div *ngIf="Keyword.errors && (Keyword.dirty || Keyword.touched)" class="text-danger">
+                <div *ngIf="Keyword.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+                <input type="checkbox" name="Mendetory" #Mendetory="ngModel"
+                  [(ngModel)]="formBuilderQuestionInfo.mandatory_question" checked>
+                Mandatory question *
+              </div>
+
+              <div *ngIf="Mendetory.errors && (Mendetory.dirty || Mendetory.touched)" class="text-danger">
+                <div *ngIf="Mendetory.errors.required">
+                  required
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture Image</label>
+              <div style="margin-top: 5px;">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_image" [value]=true>
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_image" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture NC</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]="true">
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionNo" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-6" *ngIf="formBuilderQuestionInfo.is_capture_image">
+            <div class="form-group mb-3">
+              <label>Capture Number of images</label>
+              <input type="number" class="form-control" id="number_of_images" name="number_of_images"
+                [(ngModel)]="formBuilderQuestionInfo.number_of_images" #number_of_images="ngModel"
+                placeholder="number_of_images" [required]="formBuilderQuestionInfo.is_capture_image">
+              <div *ngIf="number_of_images.errors && (number_of_images.dirty || number_of_images.touched)"
+                class="text-danger">
+                <div *ngIf="number_of_images.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="form-group mb-3">
+            &nbsp;&nbsp;&nbsp; <label>Options</label>
+          </div>
+        </div>
+
+        <div class="row" *ngFor="let itm of formBuilderQuestionInfo.questionOption;let i=index;">
+          <div class="col-xs-12 col-md-4 col-xl-4">
+            <div class="form-group mb-3">
+              <label></label>
+              <input type="text" hidden class="form-control" id="index{{i}}" name="index{{i}}"
+                [(ngModel)]="itm.option_order" #index="ngModel" [value]="i+1">
+              <input type="text" class="form-control" id="option{{i}}" name="option{{i}}" [(ngModel)]="itm.option_text"
+                #option="ngModel" placeholder="Option" required>
+
+              <div *ngIf="option.errors && (option.dirty || option.touched)" class="text-danger">
+                <div *ngIf="option.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- col -->
+
+          <div class="col-xs-12 col-md-3 col-xl-3">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+                <input type="checkbox" name="is_image_internal_rule" #is_image_internal_rule="ngModel"
+                  [(ngModel)]="itm.is_image_internal_rule">
+                Hide Image Icon
+              </div>
+
+            </div>
+
+
+          </div>
+          <div class="col-xs-12 col-md-2 col-xl-2">
+
+            <div>
+              <!-- [disabled]="this.ProjectSelected.stage.toLowerCase() == 'close' || this.selAsmtSchItem.stage.toLowerCase() == 'publish' " -->
+              <button placement="top" matTooltip="Change Order" class="btnIcon"
+                style="background-color:transparent; border: none;color:black">
+                <i style="font-size: 15px; margin-top: 15px;" class="fa fa-sort-up" (click)="sortup(i)"></i>
+              </button>
+            </div>
+
+            <div>
+              <!-- [disabled]="this.ProjectSelected.stage.toLowerCase() == 'close' || this.selAsmtSchItem.stage.toLowerCase() == 'publish' " -->
+              <button matTooltip="Change Order" class="btnIcon"
+                style="background-color:transparent; border: none;color:black">
+                <i style="font-size: 15px;" class="fa fa-sort-down" (click)="sortdown(i)"></i>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- col- -->
+          <div class="col-xs-12 col-md-3 col-xl-3">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-1">
+                <button type="button" (click)="removeOption(itm)"
+                  class="btn btn-danger btn-rounded btn-sm waves-effect waves-light mr-1"><i
+                    class="bx bx-trash mr-1"></i>Delete</button>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+        <div class="row">
+          &nbsp;&nbsp;&nbsp; <button type="button" (click)="addOption()"
+            class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1"><i class="bx bx-plus mr-1"></i>Add
+            Option</button>
+        </div>
+
+      </fieldset>
+
+      <!-- 4 for Number-->
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id==4">
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Title </label> <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span>
+              <textarea type="text" class="form-control" id="Question_Title" name="Question_Title"
+                [(ngModel)]="formBuilderQuestionInfo.question_text" #Question_Title="ngModel"
+                placeholder="Enter a Question Title"></textarea>
+              <div *ngIf="Question_Title.errors && (Question_Title.dirty || Question_Title.touched)"
+                class="text-danger">
+                <div *ngIf="Question_Title.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Serial Tag No</label>
+              <input type="text" class="form-control" id="ques_serial_tag_no" name="ques_serial_tag_no"
+                [(ngModel)]="formBuilderQuestionInfo.ques_serial_tag_no" #ques_serial_tag_no="ngModel"
+                placeholder="Enter a Question Serial Nimber" />
+              <div *ngIf="ques_serial_tag_no.errors && (ques_serial_tag_no.dirty || ques_serial_tag_no.touched)"
+                class="text-danger">
+                <div *ngIf="ques_serial_tag_no.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Description</label>
+              <textarea type="text" class="form-control" id="Description" name="Description"
+                [(ngModel)]="formBuilderQuestionInfo.question_description" #Description="ngModel"
+                placeholder="Description"></textarea>
+              <div *ngIf="Description.errors && (Description.dirty || Description.touched)" class="text-danger">
+                <div *ngIf="Description.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Help Text</label>
+              <input type="text" class="form-control" id="Question_help_text" name="Question_help_text"
+                [(ngModel)]="formBuilderQuestionInfo.help_text" #Question_help_text="ngModel"
+                placeholder="Enter a Question Help Text" />
+              <div *ngIf="Question_help_text.errors && (Question_help_text.dirty || Question_help_text.touched)"
+                class="text-danger">
+                <div *ngIf="Question_help_text.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Keyword</label>
+              <input type="text" class="form-control" id="Keyword" name="Keyword"
+                [(ngModel)]="formBuilderQuestionInfo.ques_keyowrd" #Keyword="ngModel" placeholder="Keyword">
+              <div *ngIf="Keyword.errors && (Keyword.dirty || Keyword.touched)" class="text-danger">
+                <div *ngIf="Keyword.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+                <input type="checkbox" name="Mendetory" #Mendetory="ngModel"
+                  [(ngModel)]="formBuilderQuestionInfo.mandatory_question" checked>
+                Mandatory question *
+              </div>
+
+              <div *ngIf="Mendetory.errors && (Mendetory.dirty || Mendetory.touched)" class="text-danger">
+                <div *ngIf="Mendetory.errors.required">
+                  required
+                </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture Image</label>
+              <div style="margin-top: 5px;">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_image" [value]=true>
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_image" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture NC</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]="true">
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionNo" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-6" *ngIf="formBuilderQuestionInfo.is_capture_image">
+            <div class="form-group mb-3">
+              <label>Capture Number of images</label>
+              <input type="number" class="form-control" id="number_of_images" name="number_of_images"
+                [(ngModel)]="formBuilderQuestionInfo.number_of_images" #number_of_images="ngModel"
+                placeholder="number_of_images" required>
+              <div *ngIf="number_of_images.errors && (number_of_images.dirty || number_of_images.touched)"
+                class="text-danger">
+                <div *ngIf="number_of_images.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <div class="row">
+          &nbsp; &nbsp;&nbsp;<h5>Select limit type </h5>
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <!-- <label>Select limit type </label> -->
+              <input type="number" class="form-control" id="lower_limit" name="lower_limit"
+                [(ngModel)]="formBuilderQuestionInfo.minimum_value" #lower_limit="ngModel" placeholder="Lower Limit">
+              <div *ngIf="lower_limit.errors && (lower_limit.dirty || lower_limit.touched)" class="text-danger">
+                <div *ngIf="lower_limit.errors.required">
+                  required
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <!-- <label>Select limit type </label> -->
+              <input type="number" class="form-control" id="upper_limit" name="upper_limit"
+                [(ngModel)]="formBuilderQuestionInfo.maximum_value" #upper_limit="ngModel" placeholder="Upper Limit">
+              <div *ngIf="upper_limit.errors && (upper_limit.dirty || upper_limit.touched)" class="text-danger">
+                <div *ngIf="upper_limit.errors.required">
+                  required
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+      </fieldset>
+
+      <!-- 5 for location-->
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id==5">
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Title</label>
+              <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span>
+              <textarea type="text" class="form-control" id="Question_Title" name="Question_Title"
+                [(ngModel)]="formBuilderQuestionInfo.question_text" #Question_Title="ngModel"
+                placeholder="Enter a Question Title" required></textarea>
+              <div *ngIf="Question_Title.errors && (Question_Title.dirty || Question_Title.touched)"
+                class="text-danger">
+                <div *ngIf="Question_Title.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Serial Tag No</label>
+              <input type="text" class="form-control" id="ques_serial_tag_no" name="ques_serial_tag_no"
+                [(ngModel)]="formBuilderQuestionInfo.ques_serial_tag_no" #ques_serial_tag_no="ngModel"
+                placeholder="Enter a Question Serial Nimber" />
+              <div *ngIf="ques_serial_tag_no.errors && (ques_serial_tag_no.dirty || ques_serial_tag_no.touched)"
+                class="text-danger">
+                <div *ngIf="ques_serial_tag_no.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Description</label>
+              <textarea type="text" class="form-control" id="Description" name="Description"
+                [(ngModel)]="formBuilderQuestionInfo.question_description" #Description="ngModel"
+                placeholder="Description"></textarea>
+              <div *ngIf="Description.errors && (Description.dirty || Description.touched)" class="text-danger">
+                <div *ngIf="Description.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Help Text</label>
+              <input type="text" class="form-control" id="Question_help_text" name="Question_help_text"
+                [(ngModel)]="formBuilderQuestionInfo.help_text" #Question_help_text="ngModel"
+                placeholder="Enter a Question Help Text" />
+              <div *ngIf="Question_help_text.errors && (Question_help_text.dirty || Question_help_text.touched)"
+                class="text-danger">
+                <div *ngIf="Question_help_text.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Keyword</label>
+              <input type="text" class="form-control" id="Keyword" name="Keyword"
+                [(ngModel)]="formBuilderQuestionInfo.ques_keyowrd" #Keyword="ngModel" placeholder="Keyword">
+              <div *ngIf="Keyword.errors && (Keyword.dirty || Keyword.touched)" class="text-danger">
+                <div *ngIf="Keyword.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+                <input type="checkbox" name="Mendetory" #Mendetory="ngModel"
+                  [(ngModel)]="formBuilderQuestionInfo.mandatory_question" checked>
+                Mandatory question *
+              </div>
+
+              <div *ngIf="Mendetory.errors && (Mendetory.dirty || Mendetory.touched)" class="text-danger">
+                <div *ngIf="Mendetory.errors.required">
+                  required
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+      </fieldset>
+
+      <!-- 6 for Date-->
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id==6">
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Title</label>
+              <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span>
+              <textarea type="text" class="form-control" id="Question_Title" name="Question_Title"
+                [(ngModel)]="formBuilderQuestionInfo.question_text" #Question_Title="ngModel"
+                placeholder="Enter a Question Title" required></textarea>
+              <div *ngIf="Question_Title.errors && (Question_Title.dirty || Question_Title.touched)"
+                class="text-danger">
+                <div *ngIf="Question_Title.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Serial Tag No</label>
+              <input type="text" class="form-control" id="ques_serial_tag_no" name="ques_serial_tag_no"
+                [(ngModel)]="formBuilderQuestionInfo.ques_serial_tag_no" #ques_serial_tag_no="ngModel"
+                placeholder="Enter a Question Serial Nimber" />
+              <div *ngIf="ques_serial_tag_no.errors && (ques_serial_tag_no.dirty || ques_serial_tag_no.touched)"
+                class="text-danger">
+                <div *ngIf="ques_serial_tag_no.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Description</label>
+              <textarea type="text" class="form-control" id="Description" name="Description"
+                [(ngModel)]="formBuilderQuestionInfo.question_description" #Description="ngModel"
+                placeholder="Description"></textarea>
+              <div *ngIf="Description.errors && (Description.dirty || Description.touched)" class="text-danger">
+                <div *ngIf="Description.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Help Text</label>
+              <input type="text" class="form-control" id="Question_help_text" name="Question_help_text"
+                [(ngModel)]="formBuilderQuestionInfo.help_text" #Question_help_text="ngModel"
+                placeholder="Enter a Question Help Text" />
+              <div *ngIf="Question_help_text.errors && (Question_help_text.dirty || Question_help_text.touched)"
+                class="text-danger">
+                <div *ngIf="Question_help_text.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Keyword</label>
+              <input type="text" class="form-control" id="Keyword" name="Keyword"
+                [(ngModel)]="formBuilderQuestionInfo.ques_keyowrd" #Keyword="ngModel" placeholder="Keyword">
+              <div *ngIf="Keyword.errors && (Keyword.dirty || Keyword.touched)" class="text-danger">
+                <div *ngIf="Keyword.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+                <input type="checkbox" name="Mendetory" #Mendetory="ngModel"
+                  [(ngModel)]="formBuilderQuestionInfo.mandatory_question" checked>
+                Mandatory question *
+              </div>
+
+              <div *ngIf="Mendetory.errors && (Mendetory.dirty || Mendetory.touched)" class="text-danger">
+                <div *ngIf="Mendetory.errors.required">
+                  required
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+      </fieldset>
+
+
+
+      <!-- 9 for Phone-->
+      <!--old changed-->
+      <!-- 7 for Email-->
+      <!--new-->
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id==7">
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Title</label>
+              <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span>
+              <textarea type="text" class="form-control" id="Question_Title" name="Question_Title"
+                [(ngModel)]="formBuilderQuestionInfo.question_text" #Question_Title="ngModel"
+                placeholder="Enter a Question Title" required></textarea>
+              <div *ngIf="Question_Title.errors && (Question_Title.dirty || Question_Title.touched)"
+                class="text-danger">
+                <div *ngIf="Question_Title.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Serial Tag No</label>
+              <input type="text" class="form-control" id="ques_serial_tag_no" name="ques_serial_tag_no"
+                [(ngModel)]="formBuilderQuestionInfo.ques_serial_tag_no" #ques_serial_tag_no="ngModel"
+                placeholder="Enter a Question Serial Nimber" />
+              <div *ngIf="ques_serial_tag_no.errors && (ques_serial_tag_no.dirty || ques_serial_tag_no.touched)"
+                class="text-danger">
+                <div *ngIf="ques_serial_tag_no.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Description</label>
+              <textarea type="text" class="form-control" id="Description" name="Description"
+                [(ngModel)]="formBuilderQuestionInfo.question_description" #Description="ngModel"
+                placeholder="Description"></textarea>
+              <div *ngIf="Description.errors && (Description.dirty || Description.touched)" class="text-danger">
+                <div *ngIf="Description.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Help Text</label>
+              <input type="text" class="form-control" id="Question_help_text" name="Question_help_text"
+                [(ngModel)]="formBuilderQuestionInfo.help_text" #Question_help_text="ngModel"
+                placeholder="Enter a Question Help Text" />
+              <div *ngIf="Question_help_text.errors && (Question_help_text.dirty || Question_help_text.touched)"
+                class="text-danger">
+                <div *ngIf="Question_help_text.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Keyword</label>
+              <input type="text" class="form-control" id="Keyword" name="Keyword"
+                [(ngModel)]="formBuilderQuestionInfo.ques_keyowrd" #Keyword="ngModel" placeholder="Keyword">
+              <div *ngIf="Keyword.errors && (Keyword.dirty || Keyword.touched)" class="text-danger">
+                <div *ngIf="Keyword.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+                <input type="checkbox" name="Mendetory" #Mendetory="ngModel"
+                  [(ngModel)]="formBuilderQuestionInfo.mandatory_question" checked>
+                Mandatory question *
+              </div>
+
+              <div *ngIf="Mendetory.errors && (Mendetory.dirty || Mendetory.touched)" class="text-danger">
+                <div *ngIf="Mendetory.errors.required">
+                  required
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture NC</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]="true">
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionNo" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+
+      </fieldset>
+
+
+
+
+
+      <!-- 8 for location-->
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id==8">
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Title</label>
+              <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span>
+              <textarea type="text" class="form-control" id="Question_Title" name="Question_Title"
+                [(ngModel)]="formBuilderQuestionInfo.question_text" #Question_Title="ngModel"
+                placeholder="Enter a Question Title" required></textarea>
+              <div *ngIf="Question_Title.errors && (Question_Title.dirty || Question_Title.touched)"
+                class="text-danger">
+                <div *ngIf="Question_Title.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Serial Tag No</label>
+              <input type="text" class="form-control" id="ques_serial_tag_no" name="ques_serial_tag_no"
+                [(ngModel)]="formBuilderQuestionInfo.ques_serial_tag_no" #ques_serial_tag_no="ngModel"
+                placeholder="Enter a Question Serial Nimber" />
+              <div *ngIf="ques_serial_tag_no.errors && (ques_serial_tag_no.dirty || ques_serial_tag_no.touched)"
+                class="text-danger">
+                <div *ngIf="ques_serial_tag_no.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Description</label>
+              <textarea type="text" class="form-control" id="Description" name="Description"
+                [(ngModel)]="formBuilderQuestionInfo.question_description" #Description="ngModel"
+                placeholder="Description"></textarea>
+              <div *ngIf="Description.errors && (Description.dirty || Description.touched)" class="text-danger">
+                <div *ngIf="Description.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Help Text</label>
+              <input type="text" class="form-control" id="Question_help_text" name="Question_help_text"
+                [(ngModel)]="formBuilderQuestionInfo.help_text" #Question_help_text="ngModel"
+                placeholder="Enter a Question Help Text" />
+              <div *ngIf="Question_help_text.errors && (Question_help_text.dirty || Question_help_text.touched)"
+                class="text-danger">
+                <div *ngIf="Question_help_text.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Keyword</label>
+              <input type="text" class="form-control" id="Keyword" name="Keyword"
+                [(ngModel)]="formBuilderQuestionInfo.ques_keyowrd" #Keyword="ngModel" placeholder="Keyword">
+              <div *ngIf="Keyword.errors && (Keyword.dirty || Keyword.touched)" class="text-danger">
+                <div *ngIf="Keyword.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+                <input type="checkbox" name="Mendetory" #Mendetory="ngModel"
+                  [(ngModel)]="formBuilderQuestionInfo.mandatory_question" checked>
+                Mandatory question *
+              </div>
+
+              <div *ngIf="Mendetory.errors && (Mendetory.dirty || Mendetory.touched)" class="text-danger">
+                <div *ngIf="Mendetory.errors.required">
+                  required
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture NC</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]="true">
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionNo" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+      </fieldset>
+
+      <!-- 10 for Photograph-->
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id==10">
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Title</label>
+              <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span>
+              <textarea type="text" class="form-control" id="Question_Title" name="Question_Title"
+                [(ngModel)]="formBuilderQuestionInfo.question_text" #Question_Title="ngModel"
+                placeholder="Enter a Question Title" required></textarea>
+              <div *ngIf="Question_Title.errors && (Question_Title.dirty || Question_Title.touched)"
+                class="text-danger">
+                <div *ngIf="Question_Title.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Serial Tag No</label>
+              <input type="text" class="form-control" id="ques_serial_tag_no" name="ques_serial_tag_no"
+                [(ngModel)]="formBuilderQuestionInfo.ques_serial_tag_no" #ques_serial_tag_no="ngModel"
+                placeholder="Enter a Question Serial Nimber" />
+              <div *ngIf="ques_serial_tag_no.errors && (ques_serial_tag_no.dirty || ques_serial_tag_no.touched)"
+                class="text-danger">
+                <div *ngIf="ques_serial_tag_no.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Description</label>
+              <textarea type="text" class="form-control" id="Description" name="Description"
+                [(ngModel)]="formBuilderQuestionInfo.question_description" #Description="ngModel"
+                placeholder="Description"></textarea>
+              <div *ngIf="Description.errors && (Description.dirty || Description.touched)" class="text-danger">
+                <div *ngIf="Description.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Help Text</label>
+              <input type="text" class="form-control" id="Question_help_text" name="Question_help_text"
+                [(ngModel)]="formBuilderQuestionInfo.help_text" #Question_help_text="ngModel"
+                placeholder="Enter a Question Help Text" />
+              <div *ngIf="Question_help_text.errors && (Question_help_text.dirty || Question_help_text.touched)"
+                class="text-danger">
+                <div *ngIf="Question_help_text.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Keyword</label>
+              <input type="text" class="form-control" id="Keyword" name="Keyword"
+                [(ngModel)]="formBuilderQuestionInfo.ques_keyowrd" #Keyword="ngModel" placeholder="Keyword">
+              <div *ngIf="Keyword.errors && (Keyword.dirty || Keyword.touched)" class="text-danger">
+                <div *ngIf="Keyword.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label></label>
+              <div class="mt-3">
+                <input type="checkbox" name="Mendetory" #Mendetory="ngModel"
+                  [(ngModel)]="formBuilderQuestionInfo.mandatory_question" checked>
+                Mandatory question *
+              </div>
+
+              <div *ngIf="Mendetory.errors && (Mendetory.dirty || Mendetory.touched)" class="text-danger">
+                <div *ngIf="Mendetory.errors.required">
+                  required
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+
+
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture NC</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]="true">
+                  <label class="form-check-label" for="radio1">Yes</label>
+                  <input class="form-check-input" type="radio" name="optionNo" id="radio1"
+                    [(ngModel)]="formBuilderQuestionInfo.is_capture_nc" [value]=false style="margin-left: 10px;">
+                  <label class="form-check-label" for="radio1">No</label>
+                </div>
+              </div>
+              <!-- <div
+                  *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                  class="text-danger">
+                  <div *ngIf="Maximum_number_of_characters.errors.required">
+                    required
+                  </div>
+                </div> -->
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Capture Number of images</label>
+              <input type="number" class="form-control" id="number_of_images" name="number_of_images"
+                [(ngModel)]="formBuilderQuestionInfo.number_of_images" #number_of_images="ngModel"
+                placeholder="number_of_images" [required]="formBuilderQuestionInfo.is_capture_image">
+              <div *ngIf="number_of_images.errors && (number_of_images.dirty || number_of_images.touched)"
+                class="text-danger">
+                <div *ngIf="number_of_images.errors.required">
+                  required
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+
+        </div>
+
+      </fieldset>
+
+
+      <fieldset *ngIf="formBuilderQuestionInfo.question_type_id>0">
+        <div class="row">
+          <!--./col-xl-6-->
+          <div class="col-xs-12 col-md-12 col-xl-12">
+
+            <div class="form-group mb-3">
+              <label>Question Group</label>
+              <!-- <span class="m-r-sm hidden-sm-down pull-right"
+                style="color: #CECECE; font-weight: bold;">{{question_type | uppercase }}</span> -->
+
+              <select class="form-control" [(ngModel)]="formBuilderQuestionInfo.group_id" name="group_ques"
+                #group_ques="ngModel">
+                <option [ngValue]=null>Select</option>
+                <option [ngValue]="item.id" *ngFor="let item of formBuilderGroupInfoList">{{item.group_name}}</option>
+              </select>
+
+            </div>
+
+          </div>
+          <!--./col-xl-6-->
+
+        </div>
+      </fieldset>
+
+
+    </div><br>
+    <div class="modal-footer" *ngIf="this.formBuilderQuestionInfo.question_type_id > 0">
+      <button type="button" class="btn btn-primary" (click)="addOrUpdateQuestionInfo()"
+        [disabled]="!myForm.form.valid">Save</button>
+    </div>
+  </form>
+</ng-template>
+
+
+
+
+<ng-template #QuestionExternalRuleFromModel let-modal>
+  <!-- <div class="modal-dialog modal-lg modal-notify modal-success custom-modalAll" role="document"> -->
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Apply Rule</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-hidden="true">×</button>
+  </div>
+  <form #myForm="ngForm">
+    <div class="modal-body">
+
+
+      <!-- 1 for text -->
+      <fieldset>
+        <div class="row">
+          <!--./col-xl-12-->
+          <div class="col-xs-2 col-md-2 col-xl-2">
+
+            <div class="form-group mb-3">
+              <label>Question Title: {{question_type | uppercase }}</label>
+
+              <!-- <div>
+                <p>{{this.formBuilderQuestionExternalRule.source_ques_text}}</p>
+              </div> -->
+
+            </div>
+
+          </div>
+          <!--./col-xl-12-->
+          <div class="col-xs-10 col-md-10 col-xl-10">
+            <p>{{this.formBuilderQuestionExternalRule.source_ques_text}}</p>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label><i>Selected Question will not be visible in following conditions :</i></label>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Select Question</label>
+              <select class="form-control" name="Select_question_on_rule" (change)="ChangeSourceQuesRule($event)"
+                [(ngModel)]="selectRuleQuestionItem" #Select_question_on_rule="ngModel">
+
+
+                <option [ngValue]="itm" *ngFor="let itm of formBuilderQuestionInfoSouceQuesList; let i=index">
+                  {{itm.question_text}}
+                </option>
+
+                <!-- <option value="true">Yes</option>
+                <option value="false">No</option> -->
+              </select>
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Maximum number of characters allowed</label>
+
+
+            </div>
+          </div>
+          
+
+
+        </div> -->
+
+        <fieldset *ngFor="let itm of formBuilderQuestionExternalRule.ruleDepentQuestions;let xx=index;">
+          <div class="row">
+
+            <!-- col- -->
+            <div class="col-xs-12 col-md-6 col-xl-6">
+              <div class="form-group mb-3">
+                <label></label>
+
+                <input type="text" readonly class="form-control" id="optionquestion_text{{xx}}"
+                  name="optionquestion_text{{xx}}" [(ngModel)]="itm.question_text" #optquestion_text="ngModel"
+                  placeholder="question_text">
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class=" col-xs-12 col-md-1 col-xl-1"
+                *ngIf="formBuilderQuestionExternalRule.ruleDepentQuestions.length>0">
+                <div class="mt-4">
+                  <button type="button" (click)="removeformBuilderQuestionExternalRule(itm)"
+                    class="btn btn-danger btn-rounded btn-sm waves-effect waves-light mr-1"><i
+                      class="bx bx-trash mr-1"></i></button>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <div class="row">
+
+            <div class="col-xs-12 col-md-1 col-xl-1"></div>
+            <div class="col-xs-12 col-md-4 col-xl-4">
+              <div *ngFor="let itmop of itm.questionOption;let io=index;">
+                <input type="checkbox" name="ques_imis_image_external_rule{{io}}"
+                  id="ques_imis_image_external_rule{{io}}" #ques_imis_image_external_rule="ngModel"
+                  [(ngModel)]="itmop.is_image_external_rule"> &nbsp; {{itmop.option_text}}
+              </div>
+
+
+            </div>
+          </div>
+
+        </fieldset>
+
+        <div class="row">
+
+          <button type="button" (click)="AddExternalRule()" style="margin-left:10px ;"
+            class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1"><i
+              class="bx bx-plus mr-1"></i>Add</button>
+        </div>
+        <br>
+        <!-- <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label> Select Condition Type</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionExternalRule.rule_condition" value="AND">
+                  <label class="form-check-label" for="radio1">AND</label>
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    style="margin-left:5px ;" [(ngModel)]="formBuilderQuestionExternalRule.rule_condition" value="OR">
+                  <label class="form-check-label" for="radio1">OR</label>
+                </div>
+              </div>
+               <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> 
+
+            </div>
+
+          </div>
+        </div> -->
+
+
+      </fieldset>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" [disabled]="!myForm.form.valid"
+        (click)="saveExternalRule()">Apply</button>
+    </div>
+  </form>
+  <!-- </div> -->
+</ng-template>
+
+
+
+<ng-template #addGroupModel let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">{{formBuilderGroupModelHeading}}</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-hidden="true">×</button>
+  </div>
+  <form #myGroupInfo="ngForm">
+    <div class="modal-body">
+
+
+
+      <div class="row">
+
+        <!--./col-xl-6-->
+        <div class="col-xs-12 col-md-12 col-xl-12">
+
+          <div class="form-group mb-3">
+            <label>Group Name</label>
+            <input type="text" class="form-control" id="group_name" name="group_name"
+              [(ngModel)]="formBuilderGroupInfo.group_name" #group_name="ngModel" required />
+            <div *ngIf="group_name.errors && (group_name.dirty || group_name.touched)" class="text-danger">
+              <div *ngIf="group_name.errors.required">
+                required
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!--./col-xl-6-->
+
+      </div>
+      <div class="row">
+
+        <!--./col-xl-6-->
+        <!-- <div class="col-xs-12 col-md-6 col-xl-6">
+
+          <div class="form-group mb-3">
+            <label>Status</label>
+
+            <select class="form-control" required [(ngModel)]="formBuilderSection.status" name="sectionstatus"
+              #sectionstatus="ngModel">
+              <option [ngValue]=null>Select</option>
+              <option [ngValue]="false">Draft</option>
+              <option [ngValue]="true">Live</option>
+            </select>
+            <div *ngIf="sectionstatus.invalid">
+              <div *ngIf="sectionstatus && sectionstatus.errors.required" class="text-danger">
+                Required
+              </div>
+            </div>
+
+          </div>
+
+        </div> -->
+        <!--./col-xl-6-->
+
+      </div>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" [disabled]="!myGroupInfo.form.valid"
+        (click)="saveFormGroupInfo()">Save</button>
+    </div>
+  </form>
+</ng-template>
+
+
+<ng-template #QuestionExternalGroupRuleFromModel let-modal>
+  <!-- <div class="modal-dialog modal-lg modal-notify modal-success custom-modalAll" role="document"> -->
+  <div class="modal-header">
+    <h5 class="modal-title mt-0">Group Apply Rule</h5>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-hidden="true">×</button>
+  </div>
+  <form #myGroupForm="ngForm">
+    <div class="modal-body">
+
+
+      <!-- 1 for text -->
+      <fieldset>
+        <div class="row">
+          <!--./col-xl-12-->
+          <div class="col-xs-2 col-md-2 col-xl-2">
+
+            <div class="form-group mb-3">
+              <label>Question Title: {{question_type | uppercase }}</label>
+
+              <!-- <div>
+                <p>{{this.formBuilderQuestionExternalRule.source_ques_text}}</p>
+              </div> -->
+
+            </div>
+
+          </div>
+          <!--./col-xl-12-->
+          <div class="col-xs-10 col-md-10 col-xl-10">
+            <p>{{this.formBuilderQuestionExternalRule.source_ques_text}}</p>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label><i>Selected Question will not be visible in following conditions :</i></label>
+
+            </div>
+          </div>
+
+
+        </div>
+
+        <!-- <div class="row">
+
+          <div class="col-xs-12 col-md-12 col-xl-12">
+            <div class="form-group mb-3">
+              <label>Select Question</label>
+              <select class="form-control" name="Select_question_on_rule" (change)="ChangeSourceQuesRule($event)"
+                [(ngModel)]="selectRuleQuestionItem" #Select_question_on_rule="ngModel">
+
+
+                <option [ngValue]="itm" *ngFor="let itm of formBuilderQuestionInfoSouceQuesList; let i=index">
+                  {{itm.question_text}}
+                </option>
+
+                
+              </select>
+
+            </div>
+          </div>
+
+        </div> -->
+
+
+        <!-- <div class="row">
+
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label>Maximum number of characters allowed</label>
+
+
+            </div>
+          </div>
+          
+
+
+        </div> -->
+
+        <fieldset *ngFor="let itm of formBuilderQuestionExternalRule.ruleDepentQuestions;let i=index;">
+          <div class="row">
+
+            <!-- col- -->
+            <div class="col-xs-12 col-md-6 col-xl-6">
+              <div class="form-group mb-3">
+                <label></label>
+
+                <input type="text" readonly class="form-control" id="option{{i}}" name="option{{i}}"
+                  [(ngModel)]="itm.question_text" #option="ngModel" placeholder="Option">
+              </div>
+            </div>
+
+
+            <!-- <div class="row">
+              <div class=" col-xs-12 col-md-1 col-xl-1"
+                *ngIf="formBuilderQuestionExternalRule.ruleDepentQuestions.length>0">
+                <div class="mt-4">
+                  <button type="button" (click)="removeformBuilderQuestionExternalRule(itm)"
+                    class="btn btn-danger btn-rounded btn-sm waves-effect waves-light mr-1"><i
+                      class="bx bx-trash mr-1"></i></button>
+                </div>
+              </div>
+            </div> -->
+
+
+          </div>
+
+
+          <div class="row" *ngFor="let itmop of itm.questionOption;let i=index;">
+
+            <div class="col-xs-12 col-md-1 col-xl-1"></div>
+
+            <!-- <span *ngFor="let itmop of itm.questionOption;let i=index;"> -->
+              <div class="col-xs-12 col-md-3 col-xl-3 mt-3">
+                <!-- <div *ngFor="let itmop of itm.questionOption;let i=index;">                 -->
+                <input type="checkbox" name="ques_imtop{{i}}" #ques_imtop="ngModel"
+                  [(ngModel)]="itmop.is_image_external_rule" [checked]="itmop.is_image_external_rule==true" required>
+                &nbsp; {{itmop.option_text}}
+
+                <!-- <select class="form-control" name="Select_question_Group_on_rule{{i}}" 
+                [(ngModel)]="itmop.group_id" #Select_question_Group_on_rule="ngModel">
+
+
+                <option [ngValue]="itm.id" *ngFor="let itm of itmop.formBuilderGroupInfo; let i=index">
+                  {{itm.group_name}}
+                </option>
+               
+              </select> -->
+
+                <!-- </div> -->
+
+
+              </div>
+
+              <div class="col-xs-12 col-md-4 col-xl-4 mt-2">
+                <select class="form-control" name="Select_question_Group_on_rule{{i}}" [(ngModel)]="itmop.group_id"
+                  #Select_question_Group_on_rule="ngModel">
+
+
+                  <option [ngValue]="itm.id" *ngFor="let itm of itmop.formBuilderGroupInfo; let i=index">
+                    {{itm.group_name}}
+                  </option>
+
+                </select>
+              </div>
+
+
+            <!-- </span> -->
+
+          </div>
+
+        </fieldset>
+
+        <!-- <div class="row">
+
+          <button type="button" (click)="AddExternalRule()" style="margin-left:10px ;"
+            class="btn btn-info btn-rounded btn-sm waves-effect waves-light mr-1"><i
+              class="bx bx-plus mr-1"></i>Add</button>
+        </div> -->
+        <br>
+        <!-- <div class="row">
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label> Select Condition Type</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    [(ngModel)]="formBuilderQuestionExternalRule.rule_condition" value="AND">
+                  <label class="form-check-label" for="radio1">AND</label>
+                  <input class="form-check-input" type="radio" name="optionImageYes" id="radio1"
+                    style="margin-left:5px ;" [(ngModel)]="formBuilderQuestionExternalRule.rule_condition" value="OR">
+                  <label class="form-check-label" for="radio1">OR</label>
+                </div>
+              </div>
+               <div
+                *ngIf="Maximum_number_of_characters.errors && (Maximum_number_of_characters.dirty || Maximum_number_of_characters.touched)"
+                class="text-danger">
+                <div *ngIf="Maximum_number_of_characters.errors.required">
+                  required
+                </div>
+              </div> 
+
+            </div>
+
+          </div>
+        </div> -->
+
+
+      </fieldset>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="saveExternalGorupRule()">Apply</button>
+
+      <button type="button" class="btn btn-primary" (click)="resetExternalGorupRule()">Reset</button>
+
+    </div>
+  </form>
+  <!-- </div> -->
+</ng-template>
