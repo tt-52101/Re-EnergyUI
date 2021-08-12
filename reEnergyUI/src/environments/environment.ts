@@ -19,11 +19,11 @@ export const environment = {
   totalCtrl_center: 1000,
   // PaymentFor: 'live', // rrc live/test/local
   PaymentFor: 'local',
-  reportUrl: 'http://localhost:49360/',
-  apiUrl: 'http://localhost:59017/api/',  // local
+  // reportUrl: 'http://localhost:49360/',
+  // apiUrl: 'http://localhost:59017/api/',  // local
 
-  // reportUrl: 'http://aeltest.nabh.co:5004/',//test
-  // apiUrl: 'http://aeltest.nabh.co:5002/api/', // test
+  reportUrl: 'http://aeltest.nabh.co:5004/',//test
+  apiUrl: 'http://aeltest.nabh.co:5002/api/', // test
 
   // reportUrl: 'http://aelc.nabh.co:5004/', //live
   // apiUrl: 'https://aelc.nabh.co:5002/api/',   // live

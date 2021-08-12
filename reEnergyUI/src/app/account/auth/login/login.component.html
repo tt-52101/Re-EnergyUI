@@ -9,20 +9,19 @@
   </div>
   <!--./logo-qci-->
 
-  <div class="logo_qci">
+  <!-- <div class="logo_qci">
     <a href="https://www.qcin.org/" target="_blank"><img src="assets/images/ayush-img/qci_logo.png" alt="qci-logo"
         class="img-fluid"></a>
-  </div>
-  <div class="account-pages pt-1 pb-5 mt-4">
+  </div> -->
+  <div class="account-pages pt-5 pb-5 mt-4">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-5 col-lg-5 col-xl-5">
-          <div class="card overflow-hidden mb-2">
+          <div class="card overflow-hidden mb-2 loginCard">
             <div class="bg-soft-primary">
               <div class="row">
-                <div class="app-title-main text-primary p-3">
-                  <h5 class="text-primary"><a href="https://www.nabh.co/Ayush-EntryLevelHospital.aspx"
-                      target="_blank">Re Energy Pall</a></h5>
+                <div class="app-title-main text-primary p-2">
+                  <h5 class="text-primary"><a href="#" target="_blank">ReEnergy Pass Application</a></h5>
                 </div>
               </div>
             </div>
@@ -83,23 +82,22 @@
                   </div>
 
                   <div class="mb-3">
-                    <button [ladda]="loading" class="btn btn-primary btn-block" type="submit" (click)="onSubmit()">
+                    <button [ladda]="loading" class="btn btn-primary btn-block btn-custom-login" type="submit" (click)="onSubmit()">
                       Log In
                     </button>
                   </div>
 
-                  <div class="mb-3 text-center">
-                    <a routerLink="/account/reset-password" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Forgot
+                  <div class="mb-5 text-center">
+                    <a routerLink="/account/reset-password" class="text-muted float-left"><i class="mdi mdi-lock mr-1"></i> Forgot
                       Password</a>
+
+                      <a routerLink="/account/signup" class="text-primary float-right">Register</a>
                   </div>
 
-                  <div class="mb-1">
-                    <a routerLink="/account/signup" class="btn btn-green btn-block">Register</a>
-                  </div>
-                  <div class="mt-3 text-center">
+                  <!-- <div class="mt-3 text-center">
                     <a href="https://www.nabh.co/Resources.aspx" target="_blank" class="text-muted"><i
                         class="fa fa-info-circle text-primary mr-2"></i>Resources</a>
-                  </div>
+                  </div> -->
                 </form>
 
 
@@ -111,8 +109,8 @@
             </div>
           </div>
 
-          <div class="text-center text-white">
-            © 2021 NABH. All Rights Reserved.
+          <div class="text-center text-dark">
+            © 2021. All Rights Reserved.
 
           </div>
         </div>

@@ -26,7 +26,7 @@
   bottom: 0;
   top: 0;
   background-size: cover;
-  background-position: center;
+  background-position: top;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -133,4 +133,19 @@ font-weight: 600;
 .custom-invalid{
   border-color: #f46a6a;
   box-shadow: 0 0 0 0.15rem rgba(244, 106, 106, 0.25);
+}
+.btn-custom-login{
+  color: #fff;
+  background-color: #c4007a;
+  border-color: #c4007a;
+}
+.btn-custom-login:hover,
+.btn-custom-login:active
+.btn-custom-login:focus{
+  color: #fff;
+  background-color: #c4007a;
+  border-color: #c4007a;
+}
+::ng-deep .loginCard {
+  background-color: rgb(255 255 255 / 90%);
 }
