@@ -19,6 +19,7 @@ export const environment = {
   totalCtrl_center: 1000,
   // PaymentFor: 'live', // rrc live/test/local
   PaymentFor: 'local',
+  
   // reportUrl: 'http://localhost:49360/',
   // apiUrl: 'http://localhost:59017/api/',  // local
 
