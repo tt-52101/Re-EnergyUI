@@ -5,24 +5,23 @@
 
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary float-right waves-effect">
+                <button type="button" class="btn btn-primary float-right waves-effect"
+                    (click)="addStudio(addStudioModel)">
                     <i class="bx bx-plus mr-1"></i>Add New Studio</button>
                 <h4 class="card-title mb-4">Studios</h4>
                 <div class="row mt-5">
-                    
-                    <div class="col-xs-12 col-md-6 col-xl-2">
-                        <input type="text" class="form-control" placeholder="Studio Id" 
-                            >
-                        
+
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Studio Id">
+
 
                     </div>
-                    <div class="col-xs-12 col-md-6 col-xl-2">
-                        <input type="text" class="form-control" placeholder="Studio Name" 
-                            >
-                        
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Studio Name">
+
 
                     </div>
-                    <div class="col-xs-12 col-md-6 col-xl-2">
+                    <div class="col-md-2">
                         <select class="form-control">
                             <option [ngValue]=null>Category</option>
                             <option>Standard</option>
@@ -30,28 +29,20 @@
                             <option>Luxury</option>
                         </select>
                     </div>
-                    <div class="col-xs-12 col-md-6 col-xl-2">
+                    <div class="col-md-2">
                         <select class="form-control">
                             <option [ngValue]=null>Type</option>
                             <option>Fitness Center</option>
                             <option>Wellness Center</option>
                             <option>Beauty Center</option>
-                           
-                        </select>
-                    </div>
-                    <div class="col-xs-12 col-md-6 col-xl-2">
-                        <select class="form-control">
-                            <option [ngValue]=null>Status</option>
-                            <option>Active</option>
-                            <option>Inactive</option>
-                           
-                        </select>
-                    </div>
-                   
-                    <div class="col-xs-12 col-md-8 col-xl-2">
 
-                        <button
-                            class="btn btn-primary float-right ml-2 btn-rounded waves-effect"><i
+                        </select>
+                    </div>
+                  
+
+                    <div class="col-md-4">
+
+                        <button class="btn btn-primary float-right ml-2 btn-rounded waves-effect"><i
                                 class="bx bx-file mr-1"></i>Export Data</button>
 
                         <button class="btn btn-danger float-right btn-rounded waves-effect"><i
@@ -85,23 +76,24 @@
                                 <td class="text-center">{{data.type}}</td>
                                 <td class="text-center">{{data.status}}</td>
                                 <td class="text-center">{{data.category}}</td>
-                               
-                                
+
+
                                 <td class="text-center">
-                                    
+
                                     <button type="button" class="button-icon"><i class="bx bxs-book-content"
-                                        title="View Detail" style="color:green; font-weight: bolder; font-size: larger;"></i>
+                                            title="View Detail"
+                                            style="color:green; font-weight: bolder; font-size: larger;"></i>
                                     </button>
 
                                     <button type="button" class="button-icon ml-2 mr-2">
-                                        <i style="color: #00aff0; font-weight: bolder; font-size: larger;" class="bx bx-food-menu"
-                                          title="Services"></i>
+                                        <i style="color: #00aff0; font-weight: bolder; font-size: larger;"
+                                            class="bx bx-food-menu" title="Services"></i>
                                     </button>
-                                      
-                                      <button type="button" class="button-icon">
-                                        <i style="color: blue; font-weight: bolder; font-size: larger;" class="bx bx-detail"
-                                          title="Customer Details"></i>
-                                      </button>
+
+                                    <button type="button" class="button-icon">
+                                        <i style="color: blue; font-weight: bolder; font-size: larger;"
+                                            class="bx bx-detail" title="Customer Details"></i>
+                                    </button>
 
 
                                 </td>
@@ -121,3 +113,144 @@
         </div>
     </div>
 </div>
+<form #studioForm="ngForm" novalidate>
+    <ng-template #addStudioModel let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title mt-0">{{UserModalCaption}}</h5>
+
+            <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-hidden="true">×</button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Studio Name</label>
+                    <input type="text" class="form-control">
+                </div>
+               
+                <div class="col-md-6">
+                    <label>Logo</label>
+                    <fieldset class="form-control">
+                        <a title="Upload Photo" class="mr-4 mt-4">
+                            <i class="bx bx-upload"></i>
+                        </a>
+
+
+
+
+                        <a title="View Photo" class="mt-4">
+
+                            <i
+                                [ngClass]="''|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" required>
+
+
+
+
+                    </fieldset>
+                </div>
+            </div>
+            <h6 style="font-weight: bold;margin-top: 15px;">Location Details</h6>
+            <hr style="color: #00aff0;">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>Street</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Locality</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>State PostCode</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Phone Number</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Alternate Phone Number</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>Website URL</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label style="font-weight: 600;">Opening Hrs</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Days</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label>From</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label>To</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <label>Studio Description</label>
+                    <textarea rows="3" class="form-control"></textarea>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <label>Brief Description of Services</label>
+                    <textarea rows="2" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label>Facilities available in Studio</label>
+                    <select class="form-control">
+                      <option value="">Select Fecilities</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Upload Picture of the Studio</label>
+                    <fieldset class="form-control">
+                        <a title="Upload Document" class="mr-4 mt-4">
+                            <i class="bx bx-upload"></i>
+                        </a>
+
+
+
+
+                        <a title="View Document" class="mt-4">
+
+                            <i
+                                [ngClass]="''|uploadbtnpipe"></i>
+                        </a>
+                        <input hidden type="text" required>
+
+
+
+
+                    </fieldset>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label>Enable Review of the Studio</label>
+                    <div class="form-check form-check-inline form-control">
+                        <input  class="form-check-input" type="radio"  value="yes" style="margin-left: 10px;">
+                        <label class="form-check-label" for="fire_noc_third_party_rd">Yes</label>
+                        <input  class="form-check-input" type="radio"  value="no" style="margin-left: 10px;">
+                        <label class="form-check-label" for="fire_noc_third_party_rd">No</label>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
+            <button type="button" class="btn btn-info" [disabled]="!studioForm.form.valid">Save</button>
+
+        </div>
+    </ng-template>
+</form>

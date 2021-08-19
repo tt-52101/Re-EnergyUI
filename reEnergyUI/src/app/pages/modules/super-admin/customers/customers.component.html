@@ -7,25 +7,25 @@
             <div class="card-body">
                 <h4 class="card-title mb-4">Customers</h4>
                 <div class="row">
-                    <div class="col-xs-12 col-md-6 col-xl-2">
+                    <div class="col-xs-12 col-md-2 col-xl-2">
                         <select class="form-control">
                             <option [ngValue]="10">--show Entries--</option>
                             <option *ngFor="let data of enties" [ngValue]="data">{{data}}</option>
                         </select>
                     </div>
-                    <div class="col-xs-12 col-md-6 col-xl-2">
+                    <div class="col-xs-12 col-md-2 col-xl-2">
                         <input type="text" class="form-control" placeholder="Customer Name">
 
 
                     </div>
-                    <div class="col-xs-12 col-md-6 col-xl-2">
+                    <div class="col-xs-12 col-md-2 col-xl-2">
                         <input type="text" class="form-control" placeholder="User Id">
 
 
                     </div>
 
 
-                    <div class="col-xs-12 col-md-8 col-xl-6">
+                    <div class="col-xs-12 col-md-6 col-xl-6">
 
                         <button class="btn btn-primary float-right ml-2 btn-rounded waves-effect"><i
                                 class="bx bx-file mr-1"></i>Export Data</button>
