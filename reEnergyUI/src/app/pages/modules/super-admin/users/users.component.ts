@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -12,9 +12,12 @@ export class UsersComponent implements OnInit {
     {userid:'R000001',username:'Mayra@gmail.com',role:'Admin',status:'Active',creationdate:'1-Aug-2021'},
     {userid:'R000002',username:'Jaoh@and.com',role:'ReEnergy Trainer',status:'Active',creationdate:'1-Aug-2021'},
   ]
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
+  adduser(AdduserModel){
+    this.modalService.open(AdduserModel, { size: 'lg' });
 
+  }
 }

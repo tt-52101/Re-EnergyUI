@@ -19,19 +19,19 @@
 
         <div class="row mt-5">
 
-          <div class="col-xs-12 col-md-6 col-xl-2">
+          <div class="col-xs-12 col-md-2 col-xl-2">
             <select class="form-control" name="showEntitity" [(ngModel)]="this.UsrFltr.limit" (change)="showEnteries()">
               <option [ngValue]="10">--show Entries--</option>
               <option *ngFor="let data of enties" [ngValue]="data">{{data}}</option>
             </select>
           </div>
 
-          <div class="col-xs-12 col-md-6 col-xl-2">
+          <div class="col-xs-12 col-md-2 col-xl-2">
             <input type="text" class="form-control" (change)="getUserData()" [(ngModel)]="this.UsrFltr.searchtext"
               placeholder="Search" name="searchEntitity">
           </div>
 
-          <div class="col-xs-12 col-md-6 col-xl-2">
+          <div class="col-xs-12 col-md-2 col-xl-2">
             <select class="form-control" name="searchrole" (change)="getUserData()"
               [(ngModel)]="this.UsrFltr.selectedrole">
               <option value=0>Select Role</option>
@@ -39,7 +39,7 @@
             </select>
           </div>
 
-          <div class="col-xs-12 col-md-6 col-xl-2">
+          <div class="col-xs-12 col-md-2 col-xl-2">
             <select class="form-control" name="searchStatus" [(ngModel)]="this.UsrFltr.searchstatus"
               (change)="getUserData()">
               <option [ngValue]="null">Select Status</option>
@@ -48,7 +48,7 @@
             </select>
           </div>
 
-          <div class="col-xs-12 col-md-2 col-xl-1 pr-0">
+          <div class="col-xs-12 col-md-1 col-xl-1 pr-0">
 
             <span class="input-group clockpicker" (click)="d1.toggle()">
               <input name="datefrom" [(ngModel)]="SearchFrom" (ngModelChange)="getUserData()" ngbDatepicker
@@ -57,7 +57,7 @@
 
           </div>
 
-          <div class="col-xs-12 col-md-2 col-xl-1 pl-0">
+          <div class="col-xs-12 col-md-1 col-xl-1 pl-0">
             <span class="input-group clockpicker" (click)="d2.toggle()">
               <input name="dateto" [(ngModel)]="SearchTo" (ngModelChange)="getUserData()" ngbDatepicker
                 class="form-control dateControlR" placeholder="Date To" #d2="ngbDatepicker">

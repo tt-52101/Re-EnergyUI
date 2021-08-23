@@ -31,4 +31,7 @@ export class CustomersComponent implements OnInit {
     this.UserModalCaption='Payment History'
     this.modalService.open(paymentHistoryModel, { size: 'xl' });
   }
+  addnotification(addNotificationModel){
+    this.modalService.open(addNotificationModel, { size: 'lg' });
+  }
 }
