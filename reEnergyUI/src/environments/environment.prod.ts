@@ -16,7 +16,8 @@ export const environment = {
   //PaymentFor: 'live', // rrc live/test/local
   PaymentFor: 'test',  //test
   reportUrl: 'http://aeltest.nabh.co:5008/',//test
-  apiUrl: 'http://aeltest.nabh.co:5002/api/',// test 'https://aelc.nabh.co:5002/api/'
+  apiUrl: 'http://13.232.213.66:5004/api/'
+    
 
 
   // reportUrl: 'http://aelc.nabh.co:5004/', //live
