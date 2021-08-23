@@ -5,7 +5,7 @@
 
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary float-right waves-effect">
+                <button type="button" class="btn btn-primary float-right waves-effect" (click)="adduser(AdduserModel)">
                     <i class="bx bx-plus mr-1"></i>Add New User</button>
                 <h4 class="card-title mb-4">Users</h4>
                 <div class="row mt-5">
@@ -121,3 +121,117 @@
         </div>
     </div>
 </div>
+<form #userForm="ngForm" novalidate>
+
+    <ng-template #AdduserModel let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title mt-0">Add New User</h5>
+  
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-hidden="true">×</button>
+      </div>
+  
+      <div class="modal-body">
+  
+        <div class="row">
+  
+          <div class="col-xs-12 col-md-6 col-xl-6">
+  
+            <div class="form-group mb-3">
+  
+              <label class="txtbold">First Name</label>
+  
+              <input type="text" class="form-control" id="firstname" name="firstname"
+               
+                placeholder="Enter First Name" required />
+  
+           
+  
+            </div>
+  
+          </div>
+  
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label class="txtbold">Last Name</label>
+  
+              <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name"
+             name="lastname" />
+  
+            </div>
+  
+          </div>
+        </div>
+  
+        <div class="row">
+  
+          <div class="col-xs-12 col-md-6 col-xl-6">
+  
+            <div class="form-group mb-3">
+              <label class="txtbold">User ID</label>
+  
+              <input type="text" class="form-control" id="email" placeholder="Enter Email" name="email" maxlength="200"
+                required
+                pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
+  
+            </div>
+  
+          </div>
+  
+          <div class="col-xs-12 col-md-6 col-xl-6">
+            <div class="form-group mb-3">
+              <label class="txtbold">Mobile</label>
+  
+              <input type="text" class="form-control" id="mobile" name="mobile" minlength="10"
+                required maxlength="10"
+                 placeholder="Enter Mobile Number" />
+  
+            </div>
+  
+          </div>
+        </div>
+  
+        <div class="row">
+  
+          <div class="col-xs-12 col-md-6 col-xl-6">
+  
+            <div class="form-group mb-3">
+              <label for="nameOfSpoc" class="txtbold">Role</label>
+              <select class="form-control" id="role" name="role"
+                 required>
+                <option value=0>Select Role</option>
+                <option>Super Admin</option>
+                <option>Admin</option>
+                <option>Re-Energy Trainer</option>
+                <option>Studio Admin</option>
+              </select>
+            </div>
+  
+          </div>
+  
+          <div class="col-xs-12 col-sm-6">
+            <label class="control-label txtbold">Active</label>
+            <div>
+              <label class="switch switch-icon switch-success">
+                <input type="checkbox" class="switch-input" id="isactive" name="isactive">
+                <span class="switch-label" data-on="&#xf00c;" data-off="&#xf00d;"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </div>
+  
+          </div>
+  
+        </div>
+  
+        
+  
+      </div>
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
+        <button type="button" class="btn btn-info" [disabled]="!userForm.form.valid"
+          >Save</button>
+  
+      </div>
+    </ng-template>
+  
+  </form>

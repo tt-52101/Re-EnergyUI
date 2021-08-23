@@ -20,4 +20,7 @@ export class StudiosComponent implements OnInit {
     this.UserModalCaption='Add New Studio Details'
     this.modalService.open(addStudioModel, { size: 'lg' });
   }
+  addStudioService(openmodel){
+    this.modalService.open(openmodel, { size: 'lg' });
+  }
 }
