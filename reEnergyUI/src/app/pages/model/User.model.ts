@@ -12,18 +12,15 @@ export class User {
   roleid: number;
   firstname: string;
   lastname: string;
+  fullname: string;
   email: string;
   mobile: string;
   userpassword: string;
   isactive: boolean;
-  notes: string;
-  otplogid: string;
-  isFirstTimeLogin: string;
   creationdate: string;
   rolename: string;
-  sNo: number;
-  fullname: string;
-  capacity: number;
+ 
+
 }
 
 ////#region rrc

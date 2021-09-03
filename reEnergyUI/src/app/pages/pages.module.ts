@@ -34,20 +34,11 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { MapsModule } from './maps/maps.module';
 import { ChatComponent } from './chat/chat.component';
 import { AdminDashboardComponent } from './dashboard/admindashboard/admidashboard.component';
-import { HospitalDashboardComponent } from './dashboard/hospitaldashboard/hospitaldashboard.component';
-//import { CcDashboardComponent } from './dashboard/ccdashboard/CcDashboardComponent.component';
-// import { AssessordashboardComponent } from './dashboard/assessordashboard/assessordashboard.component';
-import { QuestionBankComponent } from './modules/question-bank/question-bank.component';
-// import { AssessorComponent } from './modules/assessor/assessor.component';
 import { CentrequestionBankComponent } from './modules/centrequestion-bank/centrequestion-bank.component';
-import { from } from 'rxjs';
 import { ArchwizardModule } from 'angular-archwizard';
-import { AsrdashboardComponent } from './dashboard/asrdashboard/asrdashboard.component';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LaddaModule } from 'angular2-ladda';
-import { CcDashboardComponent } from './dashboard/ccdashboard/ccdashboard.component';
-
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -60,12 +51,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CalendarComponent,
     ChatComponent,
     AdminDashboardComponent,
-    HospitalDashboardComponent,
-    AsrdashboardComponent,
-    QuestionBankComponent,
     CentrequestionBankComponent,
-    CcDashboardComponent
-    // AssessordashboardComponent,
+   
 
 
 

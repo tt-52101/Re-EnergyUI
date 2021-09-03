@@ -1,15 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { AsrlistComponent } from './asrlist/asrlist.component';
-import { UserListComponent } from './userlist/user-list.component';
-import { HospitalListComponent } from './hospitallist/hospital-list.component';
-import { HospitalTrackerComponent } from './hospital-tracker/hospital-tracker.component';
-import { DaAllocateComponent } from './da-allocation/da-allocate.component';
-import { CertifiedHospitalComponent } from './certified-hospital/certified-hospital.component';
-import { OaAllocationComponent } from './oa-allocation/oa-allocation.component';
-import { CcAllocationComponent } from './cc-allocation/cc-allocation.component';
-import { CcAllocationFilter } from '../../model/FilterRow.model';
 import { ApplicationTracerComponent } from './application-tracer/application-tracer.component';
 import { StudiosComponent } from './studios/studios.component';
 import { UsersComponent } from './users/users.component';
@@ -22,14 +13,7 @@ const route: Routes = [
   {
     path: '',
     children: [
-      {
-        path: 'hospitals',
-        component: HospitalListComponent
-      },
-      {
-        path: 'users',
-        component: UserListComponent
-      },
+     
       {
         path: 'customer',
         component: CustomersComponent
@@ -58,30 +42,7 @@ const route: Routes = [
         path: 'vedios',
         component: OnDemaindVideoComponent
       },
-      {
-        path: 'applicationtracker',
-        component: HospitalTrackerComponent
-      },
-      {
-        path: 'daallocation',
-        component: DaAllocateComponent
-      },
-      {
-        path: 'ccallocation',
-        component: CcAllocationComponent
-      },
-      {
-        path: 'oaallocation',
-        component: OaAllocationComponent
-      },
-      {
-        path: 'assessorlist',
-        component: AsrlistComponent
-      },
-      {
-        path: 'certified',
-        component: CertifiedHospitalComponent
-      },
+    
       {
         path: 'paytrack',
         component: ApplicationTracerComponent

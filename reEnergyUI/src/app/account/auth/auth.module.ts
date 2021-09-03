@@ -6,11 +6,9 @@ import { NgbAlertModule, NgbDropdownModule, NgbPopover, NgbPopoverModule, NgbToo
 
 import { UIModule } from '../../shared/ui/ui.module';
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 import { AuthRoutingModule } from './auth-routing';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
-import { HttpClientModule } from '@angular/common/http';
-import { BasicCertificationComponent } from './basic-certification/basic-Certification.component';
+
 import { NgSelectModule } from '@ng-select/ng-select';
 import { LaddaModule } from 'angular2-ladda';
 
@@ -19,7 +17,7 @@ import { PasswordchangeComponent } from './passwordchange/passwordchange.compone
 import { ForgotPasswordComponent } from './forgotpassword/forgotpassword.component';
 import { SharedModule } from 'src/app/pages/modules/shared.module';
 @NgModule({
-  declarations: [LoginComponent, SignupComponent, PasswordresetComponent, BasicCertificationComponent, PasswordchangeComponent, ForgotPasswordComponent],
+  declarations: [LoginComponent, PasswordresetComponent, PasswordchangeComponent, ForgotPasswordComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

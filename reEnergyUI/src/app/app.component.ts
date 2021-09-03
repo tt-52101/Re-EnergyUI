@@ -1,6 +1,6 @@
 import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { HospitalDataShareService } from './pages/modules/hospital/hospital/datashareservice/hospitalDataShare.service';
+import { CommonService } from './pages/api-services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,11 @@ export class AppComponent {
   showLoader:boolean=false;
  // public loadingTemplate: TemplateRef<any>;
   
-  constructor(private toastsrvc:ToastrService,private hospdataserv: HospitalDataShareService)
+  constructor(private toastsrvc:ToastrService,private commonsrvc: CommonService)
   {
     
    
-    this.hospdataserv.getLoaderStatus().subscribe(data => {
+    this.commonsrvc.getLoaderStatus().subscribe(data => {
       if (data != null || data != undefined) {
         this.showLoader=data;
       }

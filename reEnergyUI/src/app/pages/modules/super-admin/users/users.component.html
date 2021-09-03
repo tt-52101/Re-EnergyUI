@@ -22,13 +22,13 @@
                     </div>
 
                     <div class="col-xs-12 col-md-2">
-                        <select class="form-control">
-                            <option [ngValue]=null>Role</option>
-                            <option>Super Admin</option>
-                            <option>Admin</option>
-                            <option>Studio Admin</option>
-                            <option>Re-Energy Trainer</option>
+                        <select class="form-control" [(ngModel)]="searchRole">
+
+                            <option [value]=null>--Select--</option>
+                            <option *ngFor="let val of userRoleDropdown" [value]="val.value">{{val.text}}</option>
+                           
                         </select>
+                      
                     </div>
 
                     <div class="col-xs-12 col-md-2">
@@ -140,12 +140,12 @@
   
               <label class="txtbold">First Name</label>
   
-              <input type="text" class="form-control" id="firstname" name="firstname"
+              <input [ngClass]="{'redBrdr':firstname.invalid}"  type="text" class="form-control" id="firstname" name="firstname"
                
-                placeholder="Enter First Name" required />
+            #firstname="ngModel"    [(ngModel)]="userModel.firstname" placeholder="Enter First Name" required />
   
            
-  
+ 
             </div>
   
           </div>
@@ -155,7 +155,7 @@
               <label class="txtbold">Last Name</label>
   
               <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name"
-             name="lastname" />
+              [(ngModel)]="userModel.lastname"  name="lastname" />
   
             </div>
   
@@ -169,8 +169,8 @@
             <div class="form-group mb-3">
               <label class="txtbold">User ID</label>
   
-              <input type="text" class="form-control" id="email" placeholder="Enter Email" name="email" maxlength="200"
-                required
+              <input  [ngClass]="{'redBrdr':email.invalid}" type="text" class="form-control" placeholder="Enter Email" name="email" maxlength="200"
+              [(ngModel)]="userModel.email"   required #email="ngModel"
                 pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
   
             </div>
@@ -181,9 +181,9 @@
             <div class="form-group mb-3">
               <label class="txtbold">Mobile</label>
   
-              <input type="text" class="form-control" id="mobile" name="mobile" minlength="10"
-                required maxlength="10"
-                 placeholder="Enter Mobile Number" />
+              <input   (keypress)="onlyNumberKey($event)"  [ngClass]="{'redBrdr':mobile.invalid}" type="text" class="form-control" id="mobile" name="mobile" minlength="10"
+                required maxlength="10" #mobile="ngModel"
+                [(ngModel)]="userModel.mobile"   placeholder="Enter Mobile Number" />
   
             </div>
   
@@ -196,14 +196,12 @@
   
             <div class="form-group mb-3">
               <label for="nameOfSpoc" class="txtbold">Role</label>
-              <select class="form-control" id="role" name="role"
-                 required>
-                <option value=0>Select Role</option>
-                <option>Super Admin</option>
-                <option>Admin</option>
-                <option>Re-Energy Trainer</option>
-                <option>Studio Admin</option>
-              </select>
+              <select  [ngClass]="{'redBrdr':role.invalid}"  #role="ngModel" name="role" required class="form-control" [(ngModel)]="userModel.roleid">
+
+                <option [value]=null>--Select--</option>
+                <option *ngFor="let val of userRoleDropdown" [value]="val.value">{{val.text}}</option>
+               
+            </select>
             </div>
   
           </div>
@@ -212,7 +210,7 @@
             <label class="control-label txtbold">Active</label>
             <div>
               <label class="switch switch-icon switch-success">
-                <input type="checkbox" class="switch-input" id="isactive" name="isactive">
+                <input  [(ngModel)]="userModel.isactive" type="checkbox" class="switch-input" id="isactive" name="isactive">
                 <span class="switch-label" data-on="&#xf00c;" data-off="&#xf00d;"></span>
                 <span class="switch-handle"></span>
               </label>
@@ -228,7 +226,7 @@
   
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="modal.dismiss('Cross click')">Cancel</button>
-        <button type="button" class="btn btn-info" [disabled]="!userForm.form.valid"
+        <button type="button" class="btn btn-info" [disabled]="!userForm.form.valid" (click)="saveUserData()"
           >Save</button>
   
       </div>

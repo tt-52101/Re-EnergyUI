@@ -5,35 +5,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ChatComponent } from './chat/chat.component';
 import { AdminDashboardComponent } from './dashboard/admindashboard/admidashboard.component';
-import { HospitalDashboardComponent } from './dashboard/hospitaldashboard/hospitaldashboard.component';
-import { QuestionBankComponent } from './modules/question-bank/question-bank.component';
 import { CentrequestionBankComponent } from './modules/centrequestion-bank/centrequestion-bank.component';
-import { CentralComponent } from './modules/hospital/central/central.component';
-// import { AssessordashboardComponent } from './dashboard/assessordashboard/assessordashboard.component';
-
-import { AsrdashboardComponent } from './dashboard/asrdashboard/asrdashboard.component';
-import { CcDashboardComponent } from './dashboard/ccdashboard/ccdashboard.component';
-
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'admindashboard', component: AdminDashboardComponent },
   { path: 'superadmindashboard', component: AdminDashboardComponent },
-  { path: 'hospitaldashboard', component: HospitalDashboardComponent },
-  // { path: 'asrdashboard', component: AssessordashboardComponent },
-  { path: 'ccdashboard', component: CcDashboardComponent },
   { path: 'secretariatdashboard', component: AdminDashboardComponent }, // rrc
-
-
-  { path: 'asrdashboard', component: AsrdashboardComponent },
-
-
-  { path: 'questionBank', component: QuestionBankComponent },
   { path: 'centrequestionBank', component: CentrequestionBankComponent },
-  { path: 'central', component: CentralComponent },
-
-
   { path: 'calendar', component: CalendarComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'ecommerce', loadChildren: () => import('./ecommerce/ecommerce.module').then(m => m.EcommerceModule) },
@@ -63,15 +43,7 @@ const routes: Routes = [
   { // rrc
     path: 'secretariat',
     loadChildren: () => import('./modules/super-admin/super-admin.module').then(m => m.SuperAdminModule),
-  },
-  {
-    path: 'assessor',
-    loadChildren: () => import('./modules/assessor/assessor.module').then(m => m.AssessorModule),
-  },
-  {
-    path: 'comettee',
-    loadChildren: () => import('./modules/comettee/comettee.module').then(m => m.CometteeModule),
-  },
+  }
 ];
 
 @NgModule({

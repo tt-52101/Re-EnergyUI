@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { DateStruct } from 'src/app/pages/model/hospital/SupportService.model';
 import { AdminService } from 'src/app/pages/api-services/admin.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { saveAs } from 'file-saver';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
-import { FormBuilderDataShareService } from '../../formbuilder/datashareservices/FormBuilderDataShareService';
 import { CustomTosterServiceService } from 'src/app/customtoster-service/customTosterService.service';
-import { PayemntTracker, PayemntTrackerList } from 'src/app/pages/model/PaymentTrack';
 import { AuthenticationService } from 'src/app/core/services/auth.service';
 import { FileUploadService } from 'src/app/pages/api-services/fileupload.service';
 
@@ -47,7 +44,7 @@ export class ApplicationTracerComponent implements OnInit {
   dummy_datas=[
     {studioid:'500001',name:'Fintness Plants',studiotype:'Fitness Center',totalpayment:''}
   ]
-  constructor(private formBuilderdataservc: FormBuilderDataShareService, private uploadService: FileUploadService, private authenticationService: AuthenticationService, private tostr: CustomTosterServiceService, private dtpip: DatePipe, private router: Router, private modalService: NgbModal, private adminService: AdminService) {
+  constructor(private uploadService: FileUploadService, private authenticationService: AuthenticationService, private tostr: CustomTosterServiceService, private dtpip: DatePipe, private router: Router, private modalService: NgbModal, private adminService: AdminService) {
     // this.applicationList = new PayemntTracker();
     // this.rptUrl = this.authenticationService.rptUrl;
     // this.getDropDownData();

@@ -15,6 +15,17 @@ export class DropDownService {
     this.apiUrl = environment.apiUrl;
   }
 
+  //***Method Under Use */
+
+  getDropDownData(value): Observable<Dropdown[]> {
+    return this.http.get<Dropdown[]>(this.apiUrl + "unauthorized/getDropdownData?dropdownValue="+value);
+  }
+
+
+
+
+  ///////////////////////
+
   // getQualificationlistList(): Observable<QualificationItem[]> {
   //   return this.http.get<QualificationItem[]>(this.apiUrl + "unauthorized/getAllEducationQualifications");
   // }
@@ -42,5 +53,14 @@ export class DropDownService {
 export class DropdownData {
   id: number;
   value: string
+
+}
+
+
+export class Dropdown
+{
+
+  value:string
+  text:number
 
 }

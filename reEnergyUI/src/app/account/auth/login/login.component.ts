@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http'
-import { from } from 'rxjs';
-import { HospitalDataShareService } from 'src/app/pages/modules/hospital/hospital/datashareservice/hospitalDataShare.service';
 
 @Component({
   selector: 'app-login',
@@ -29,15 +27,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   year: number = new Date().getFullYear();
 
   // tslint:disable-next-line: max-line-length
-  constructor(private http: HttpClient, private hospdataserv: HospitalDataShareService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService) {
-    //  //debugger
-    let isRegistered = this.hospdataserv.getRegisteredStatus();
-    if (isRegistered) {
-      this.registrationSuccess = true;
-      this.hospdataserv.setRegisteredStatus(false);
-
-
-    }
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService) {
+  
+   
 
 
   }
